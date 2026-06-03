@@ -1,4 +1,5 @@
 :root {
+  /* ── Core colours ─────────────────────────────────── */
   --color-maroon: #6c1f35;
   --color-maroon-dark: #41111f;
   --color-ink: #171717;
@@ -6,8 +7,25 @@
   --color-paper: #ffffff;
   --color-soft: #f4f1ed;
   --color-line: rgba(23, 23, 23, 0.14);
+
+  /* ── Accent colours ──────────────────────────────── */
+  --color-blue: #0c4a6e;
+  --color-blue-light: #e0f2fe;
+
+  /* ── Spacing ───────────────────────────────────────── */
+  --spacing-sm: clamp(0.5rem, 2vw, 1rem);
+  --spacing-md: clamp(1rem, 3vw, 2rem);
+  --spacing-lg: clamp(2rem, 5vw, 4rem);
+  --spacing-xl: clamp(3rem, 7vw, 6rem);
+
+  /* ── Typography ───────────────────────────────────── */
   --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* ── Motion ────────────────────────────────────────── */
   --ease-standard: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: 150ms cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-normal: 250ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 * {

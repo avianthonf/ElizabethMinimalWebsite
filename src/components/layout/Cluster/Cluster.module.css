@@ -1,0 +1,28 @@
+.cluster {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Alignment ────────────────────────────────────── */
+
+.alignStart {
+  align-items: flex-start;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.alignEnd {
+  align-items: flex-end;
+}
+
+.alignSpaceBetween {
+  justify-content: space-between;
+}
+
+/* ── Wrap ─────────────────────────────────────────── */
+
+.wrap {
+  flex-wrap: wrap;
+}

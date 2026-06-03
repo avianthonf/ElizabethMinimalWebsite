@@ -1,0 +1,165 @@
+.titleBar {
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(180px, 1fr) minmax(220px, auto) auto auto;
+  align-items: center;
+  gap: clamp(18px, 2.2vw, 34px);
+  padding: clamp(22px, 3vw, 44px) clamp(24px, 5vw, 72px);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.titleBar a,
+.titleBar button {
+  pointer-events: auto;
+}
+
+.titleBar button:disabled {
+  opacity: 1;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.transparent {
+  background: transparent;
+  color: var(--color-paper);
+}
+
+/* ── Brand ─────────────────────────────────────────── */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-width: min-content;
+  gap: clamp(8px, 1.2vw, 14px);
+  color: currentColor;
+  text-decoration: none;
+}
+
+.brand span:last-child {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 3vw, 3.35rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
+}
+
+.brand:hover {
+  opacity: 0.82;
+}
+
+/* ── Crest ─────────────────────────────────────────── */
+
+.crest {
+  display: inline-grid;
+  width: clamp(24px, 2.6vw, 40px);
+  aspect-ratio: 0.78;
+  place-items: center;
+  border: 2px solid currentColor;
+  border-radius: 2px 2px 12px 12px;
+  font-size: clamp(0.85rem, 1.2vw, 1.2rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ── Nav Links ─────────────────────────────────────── */
+
+.navLinks {
+  display: flex;
+  justify-content: end;
+  gap: clamp(18px, 2vw, 30px);
+}
+
+/* ── Buttons ───────────────────────────────────────── */
+
+.searchButton,
+.menuButton {
+  border: 0;
+  color: currentColor;
+  background: transparent;
+  cursor: pointer;
+}
+
+.searchButton {
+  position: relative;
+  width: 34px;
+  height: 34px;
+}
+
+.searchButton span {
+  position: absolute;
+  inset: 5px 8px 8px 5px;
+  border: 4px solid currentColor;
+  border-radius: 50%;
+}
+
+.searchButton span::after {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  width: 8px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 999px;
+  transform: rotate(45deg);
+  content: "";
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuButton span:first-child {
+  color: currentColor;
+  font-size: clamp(0.9rem, 1.25vw, 1.18rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.22);
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menuIcon span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .navLinks {
+    display: none;
+  }
+
+  .titleBar {
+    grid-template-columns: minmax(160px, 1fr) auto auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .titleBar {
+    grid-template-columns: 1fr auto auto;
+    padding: clamp(14px, 2.4vw, 28px) clamp(16px, 3.2vw, 34px);
+    gap: clamp(10px, 1.5vw, 20px);
+  }
+
+  .brand span:last-child {
+    font-size: clamp(1.1rem, 2.4vw, 2rem);
+  }
+}

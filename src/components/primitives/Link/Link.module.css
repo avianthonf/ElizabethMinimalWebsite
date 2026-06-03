@@ -1,0 +1,54 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--transition-fast);
+}
+
+.link:hover {
+  opacity: 0.72;
+}
+
+/* ── Variants ────────────────────────────────────── */
+
+.default {
+  color: var(--color-maroon);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.default:hover {
+  opacity: 0.8;
+}
+
+.nav {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(0.9rem, 1.25vw, 1.18rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-paper);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.22);
+  text-decoration: none;
+}
+
+.nav:hover {
+  opacity: 0.78;
+}
+
+.footer {
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.footer:hover {
+  color: var(--color-ink);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}

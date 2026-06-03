@@ -1,0 +1,98 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+  line-height: 1;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Variants ────────────────────────────────────── */
+
+.primary {
+  background: var(--color-maroon);
+  color: var(--color-paper);
+  border: 2px solid var(--color-maroon);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--color-maroon-dark);
+  border-color: var(--color-maroon-dark);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--color-maroon);
+  border: 2px solid var(--color-maroon);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--color-maroon);
+  color: var(--color-paper);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--color-maroon);
+  border: 2px solid transparent;
+}
+
+.ghost:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+/* ── Sizes ────────────────────────────────────────── */
+
+.sizeSmall {
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  padding: 0.5em 1.2em;
+}
+
+.sizeMedium {
+  font-size: clamp(0.8rem, 1.15vw, 1.05rem);
+  padding: 0.65em 1.6em;
+}
+
+.sizeLarge {
+  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+  padding: 0.8em 2em;
+}
+
+/* ── Icon ─────────────────────────────────────────── */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.label {
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

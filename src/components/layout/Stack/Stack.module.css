@@ -1,0 +1,27 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Lobotomized owl — gap between consecutive children */
+.stack > * + * {
+  margin-block-start: var(--stack-gap, 1rem);
+}
+
+/* ── Gap scale ────────────────────────────────────── */
+
+.gapSmall {
+  --stack-gap: var(--spacing-sm);
+}
+
+.gapMedium {
+  --stack-gap: var(--spacing-md);
+}
+
+.gapLarge {
+  --stack-gap: var(--spacing-lg);
+}
+
+.gapXlarge {
+  --stack-gap: var(--spacing-xl);
+}

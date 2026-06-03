@@ -1,6 +1,9 @@
-import Link from "next/link";
-import { HorizontalPage, HorizontalScroll } from "@/components/HorizontalScroll";
 import { LoadOverlay } from "@/components/LoadOverlay";
+import { HorizontalPage, HorizontalScroll } from "@/components/HorizontalScroll";
+import { Header } from "@/components/navigation/Header";
+import { ValueCard } from "@/components/content/ValueCard";
+import { Heading } from "@/components/primitives/Heading";
+import { Text } from "@/components/primitives/Text";
 import styles from "./WalkerHomepage.module.css";
 
 const values = [
@@ -14,32 +17,7 @@ export function WalkerHomepage(): React.ReactNode {
     <main className={styles.page}>
       <LoadOverlay />
 
-      <header className={styles.titleBar} aria-label="Primary site navigation">
-        <Link className={styles.brand} href="/" aria-label="St. Elizabeth High School home">
-          <span className={styles.crest} aria-hidden="true">S</span>
-          <span>St. Elizabeth High School</span>
-        </Link>
-
-        <nav className={styles.navLinks} aria-label="Audience navigation">
-          <Link href="/inquire">Inquire</Link>
-          <Link href="/visit">Visit</Link>
-          <Link href="/summer">Summer</Link>
-          <Link href="/about">St. Elizabeth</Link>
-        </nav>
-
-        <button className={styles.searchButton} type="button" aria-label="Search" disabled>
-          <span aria-hidden="true" />
-        </button>
-
-        <button className={styles.menuButton} type="button" aria-label="Open menu" disabled>
-          <span>Menu</span>
-          <span className={styles.menuIcon} aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
-      </header>
+      <Header />
 
       <HorizontalScroll height="100vh" gap="0px" ariaLabel="St. Elizabeth homepage vertical driven horizontal stage">
         <HorizontalPage screen className={`${styles.panel} ${styles.videoPanel}`} ariaLabel="St. Elizabeth homepage video introduction">
@@ -63,20 +41,21 @@ export function WalkerHomepage(): React.ReactNode {
           ariaLabel="St. Elizabeth homepage dynamic content page"
         >
           <div className={styles.dynamicIntro}>
-            <p className={styles.eyebrow}>We Value</p>
-            <h2>Pages stack to the right.</h2>
-            <p>
+            <Text variant="eyebrow" as="p" className={styles.eyebrow}>We Value</Text>
+            <Heading level="h2" variant="section">Pages stack to the right.</Heading>
+            <Text variant="muted" as="p" size="medium">
               This second page contains child elements arranged horizontally inside the larger pinned stage.
-            </p>
+            </Text>
           </div>
 
           <div className={styles.dynamicCards}>
             {values.map((value) => (
-              <article className={styles.valueCard} key={value.number}>
-                <span>{value.number}</span>
-                <h3>{value.title}</h3>
-                <p>{value.body}</p>
-              </article>
+              <ValueCard
+                key={value.number}
+                number={value.number}
+                title={value.title}
+                body={value.body}
+              />
             ))}
           </div>
         </HorizontalPage>

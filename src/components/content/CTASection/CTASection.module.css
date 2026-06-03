@@ -1,0 +1,41 @@
+.content {
+  max-width: 780px;
+}
+
+.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Light text overrides for dark backgrounds ────── */
+
+.lightHeading {
+  color: var(--color-paper);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
+}
+
+.lightText {
+  color: var(--color-paper);
+  opacity: 0.9;
+}
+
+/* ── CTAs ─────────────────────────────────────────── */
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: clamp(8px, 1.5vw, 20px);
+}
+
+.ctasCentered {
+  justify-content: center;
+}
+
+.ghostLight {
+  color: var(--color-paper) !important;
+}
+
+.ghostLight:hover {
+  text-decoration: underline;
+}

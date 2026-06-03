@@ -1,0 +1,105 @@
+.footer {
+  width: 100%;
+  padding: var(--spacing-xl) 0;
+}
+
+.bgMaroon {
+  background: var(--color-maroon);
+  color: var(--color-paper);
+}
+
+.bgSoft {
+  background: var(--color-soft);
+}
+
+/* ── Layout ───────────────────────────────────────── */
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.topRow {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.5fr);
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.intro {
+  max-width: 480px;
+}
+
+/* ── Link groups ──────────────────────────────────── */
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.7vw, 10px);
+}
+
+/* ── Bottom row ───────────────────────────────────── */
+
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.bgSoft .bottomRow {
+  border-top-color: var(--color-line);
+}
+
+.socialLinks {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+/* ── Light variants for dark backgrounds ──────────── */
+
+.lightHeading {
+  color: var(--color-paper);
+}
+
+.lightText {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lightEyebrow {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.lightCaption {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .topRow {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    max-width: none;
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

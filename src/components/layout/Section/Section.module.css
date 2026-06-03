@@ -1,0 +1,55 @@
+.section {
+  display: block;
+  width: 100%;
+}
+
+/* ── Backgrounds ──────────────────────────────────── */
+
+.bgPaper {
+  background: var(--color-paper);
+}
+
+.bgSoft {
+  background: var(--color-soft);
+}
+
+.bgMaroon {
+  background: var(--color-maroon);
+  color: var(--color-paper);
+}
+
+.bgInk {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.bgBlue {
+  background: var(--color-blue);
+  color: var(--color-paper);
+}
+
+/* ── Padding ──────────────────────────────────────── */
+
+.padNone {
+  padding: 0;
+}
+
+.padSmall {
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+}
+
+.padMedium {
+  padding-top: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+}
+
+.padLarge {
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+}
+
+.padXlarge {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+}

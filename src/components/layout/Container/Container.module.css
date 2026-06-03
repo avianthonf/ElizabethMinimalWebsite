@@ -1,0 +1,28 @@
+.container {
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 72px);
+  padding-right: clamp(20px, 5vw, 72px);
+}
+
+.widthNarrow {
+  max-width: 780px;
+}
+
+.widthDefault {
+  max-width: 1180px;
+}
+
+.widthWide {
+  max-width: 1440px;
+}
+
+.widthFull {
+  max-width: none;
+}
+
+@media (max-width: 760px) {
+  .container {
+    padding-left: clamp(14px, 3vw, 28px);
+    padding-right: clamp(14px, 3vw, 28px);
+  }
+}

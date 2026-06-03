@@ -1,0 +1,32 @@
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 5vw, 72px);
+  height: clamp(48px, 5vw, 72px);
+  border-radius: 50%;
+  background: var(--color-soft);
+  color: var(--color-maroon);
+  margin-bottom: clamp(8px, 1.5vw, 20px);
+  flex-shrink: 0;
+}
+
+.iconWrapper svg {
+  width: 50%;
+  height: 50%;
+}
+
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--transition-fast);
+}
+
+.cardLink:hover {
+  opacity: 0.92;
+}
+
+.cardLink:hover article {
+  border-color: var(--color-maroon);
+}

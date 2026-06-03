@@ -1,0 +1,50 @@
+.text {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Sizes ────────────────────────────────────────── */
+
+.sizeSmall {
+  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  line-height: 1.45;
+}
+
+.sizeMedium {
+  font-size: clamp(0.94rem, 1.6vw, 1.35rem);
+  line-height: 1.55;
+}
+
+.sizeLarge {
+  font-size: clamp(1.05rem, 1.8vw, 1.55rem);
+  line-height: 1.62;
+}
+
+/* ── Variants ──────────────────────────────────────── */
+
+.body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--color-maroon);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+}
+
+.caption {
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.muted {
+  font-family: var(--font-sans);
+  color: var(--color-muted);
+}
