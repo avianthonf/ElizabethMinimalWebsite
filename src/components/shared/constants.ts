@@ -1,4 +1,14 @@
-/** Pixel-width breakpoints used by media queries across components. */
+/**
+ * Design token constants — REFERENCE ONLY.
+ * Components use the CSS custom properties in globals.css, not these constants.
+ *
+ * NOTE: The CSS variable name --color-maroon was intentionally kept after the
+ * accent colour changed from maroon (#6c1f35) to royal blue (#0c217c) to match
+ * St. Elizabeth's brand identity. Renaming the variable across 30+ files was
+ * deemed riskier than keeping the semantically-mismatched name.
+ *
+ * Pixel-width breakpoints used by media queries across components.
+ */
 export const BREAKPOINTS = {
   smallMobile: 420,
   mobile: 760,

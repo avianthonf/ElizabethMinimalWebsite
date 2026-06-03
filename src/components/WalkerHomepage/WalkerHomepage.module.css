@@ -1,130 +1,15 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   WalkerHomepage — 8-Panel Horizontal Scroll Styles
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Page Wrapper ────────────────────────────────────────────────────── */
+
 .page {
   min-height: 100vh;
   background: var(--color-paper);
 }
 
-.titleBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  display: grid;
-  width: 100%;
-  grid-template-columns: minmax(180px, 1fr) minmax(220px, auto) auto auto;
-  align-items: center;
-  gap: clamp(18px, 2.2vw, 34px);
-  padding: clamp(22px, 3vw, 44px) clamp(24px, 5vw, 72px);
-  color: var(--color-paper);
-  pointer-events: none;
-}
-
-.titleBar a,
-.titleBar button {
-  pointer-events: auto;
-}
-
-.titleBar button:disabled {
-  opacity: 1;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  min-width: min-content;
-  gap: clamp(8px, 1.2vw, 14px);
-  color: currentColor;
-  text-decoration: none;
-}
-
-.brand span:last-child {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.45rem, 3vw, 3.35rem);
-  line-height: 1;
-  letter-spacing: -0.05em;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
-}
-
-.crest {
-  display: inline-grid;
-  width: clamp(24px, 2.6vw, 40px);
-  aspect-ratio: 0.78;
-  place-items: center;
-  border: 2px solid currentColor;
-  border-radius: 2px 2px 12px 12px;
-  font-size: clamp(0.85rem, 1.2vw, 1.2rem);
-  font-weight: 900;
-  line-height: 1;
-}
-
-.searchButton,
-.menuButton {
-  border: 0;
-  color: currentColor;
-  background: transparent;
-  cursor: pointer;
-}
-
-.navLinks {
-  display: flex;
-  justify-content: end;
-  gap: clamp(18px, 2vw, 30px);
-}
-
-.navLinks a,
-.menuButton span:first-child {
-  color: currentColor;
-  font-size: clamp(0.9rem, 1.25vw, 1.18rem);
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.22);
-}
-
-.searchButton {
-  position: relative;
-  width: 34px;
-  height: 34px;
-}
-
-.searchButton span {
-  position: absolute;
-  inset: 5px 8px 8px 5px;
-  border: 4px solid currentColor;
-  border-radius: 50%;
-}
-
-.searchButton span::after {
-  position: absolute;
-  right: -10px;
-  bottom: -7px;
-  width: 14px;
-  height: 4px;
-  background: currentColor;
-  border-radius: 999px;
-  content: "";
-  transform: rotate(45deg);
-}
-
-.menuButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.menuIcon {
-  display: grid;
-  gap: 7px;
-}
-
-.menuIcon span {
-  display: block;
-  width: 40px;
-  height: 6px;
-  border-radius: 999px;
-  background: currentColor;
-}
+/* ── Panel Base ──────────────────────────────────────────────────────── */
 
 .panel {
   position: relative;
@@ -134,31 +19,35 @@
   background: var(--color-paper);
 }
 
-.videoPanel {
+/* ── Panel 1: Hero ──────────────────────────────────────────────────── */
+
+.heroPanel {
   place-items: stretch;
   color: var(--color-paper);
   background: var(--color-ink);
 }
 
-.videoFallback {
+.heroBackground {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.24), transparent 28%),
-    linear-gradient(135deg, var(--color-maroon), var(--color-maroon-dark) 46%, #111 100%);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
 }
 
-.heroVideo {
+.heroGradient {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.18), transparent 32%),
+    radial-gradient(ellipse at 70% 80%, rgba(12, 33, 124, 0.4), transparent 50%),
+    linear-gradient(135deg, var(--color-maroon), var(--color-maroon-dark) 46%, #02081f 100%);
 }
 
 .heroOverlay {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   align-self: end;
   display: grid;
   max-width: min(1180px, calc(100vw - 32px));
@@ -168,18 +57,14 @@
   padding: 0 clamp(22px, 7vw, 84px) clamp(18px, 2.6vw, 38px);
 }
 
-.heroOverlay h1,
-.dynamicIntro h2 {
+.heroHeading {
   margin: 0;
-  font-size: clamp(2.15rem, 7vw, 7.5rem);
-  line-height: 0.9;
+  font-family: var(--font-serif);
+  font-size: clamp(3.92rem, 11.9vw, 9.8rem);
+  font-weight: 900;
+  line-height: 0.72;
   letter-spacing: -0.07em;
   text-transform: uppercase;
-}
-
-.heroOverlay h1 {
-  font-size: clamp(3.92rem, 11.9vw, 9.8rem);
-  line-height: 0.72;
   color: var(--color-paper);
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }
@@ -195,28 +80,9 @@
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.38);
 }
 
-.dynamicIntro p {
-  max-width: 620px;
-  margin: 24px 0 0;
-  color: currentColor;
-  font-size: clamp(0.94rem, 1.6vw, 1.35rem);
-  line-height: 1.55;
-}
+/* ── Panel 2: Values ────────────────────────────────────────────────── */
 
-.eyebrow {
-  margin: 0 0 18px;
-  color: var(--color-maroon);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.videoPanel .eyebrow {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.dynamicPage {
+.valuesPanel {
   grid-template-columns: minmax(280px, 0.72fr) minmax(360px, 1fr);
   align-items: center;
   gap: clamp(28px, 5vw, 72px);
@@ -224,95 +90,114 @@
   background: var(--color-soft);
 }
 
-.dynamicIntro {
+.valuesIntro {
   max-width: 640px;
 }
 
-.dynamicIntro p {
+.valuesIntro p {
   color: var(--color-muted);
 }
 
-.dynamicCards {
+.valuesCards {
   display: flex;
   align-items: stretch;
   gap: clamp(16px, 2vw, 28px);
   min-width: 0;
 }
 
-.valueCard {
-  display: flex;
-  flex: 1 1 0;
-  min-width: clamp(145px, 13vw, 190px);
-  min-height: clamp(260px, 45vh, 420px);
-  padding: clamp(16px, 2.4vw, 34px);
-  border: 1px solid var(--color-line);
-  flex-direction: column;
-  justify-content: flex-end;
+/* ── Panel 3: Photo Grid ────────────────────────────────────────────── */
+
+.gridPanel {
   background: var(--color-paper);
 }
 
-.valueCard span {
-  margin-bottom: auto;
-  color: var(--color-maroon);
-  font-size: clamp(2.8rem, 5vw, 5.25rem);
-  font-weight: 900;
-  letter-spacing: -0.08em;
+.gridSection {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
-.valueCard h3 {
-  margin: 32px 0 12px;
-  font-size: clamp(1rem, 1.4vw, 1.35rem);
-  text-transform: uppercase;
+.gridHeader {
+  text-align: left;
 }
 
-.valueCard p {
-  margin: 0;
-  color: var(--color-muted);
-  line-height: 1.5;
+/* ── Panel 4: Stats ─────────────────────────────────────────────────── */
+
+.statsPanel {
+  padding: clamp(28px, 5vw, 72px);
+  align-content: center;
+  background: var(--color-paper);
 }
+
+/* ── Panel 5: Testimonials ──────────────────────────────────────────── */
+
+.testimonialsPanel {
+  background: var(--color-soft);
+}
+
+.testimonialsSection {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.testimonialsHeader {
+  text-align: left;
+}
+
+/* ── Panel 6: CTA ───────────────────────────────────────────────────── */
+
+.ctaPanel {
+  background: var(--color-blue);
+}
+
+/* ── Panel 7: News ──────────────────────────────────────────────────── */
+
+.newsPanel {
+  background: var(--color-paper);
+}
+
+.newsSection {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.newsHeader {
+  text-align: left;
+}
+
+.newsCta {
+  text-align: left;
+}
+
+/* ── Panel 8: Footer ────────────────────────────────────────────────── */
+
+.footerPanel {
+  background: var(--color-maroon);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet: ≤1100px ────────────────────────────────────────────────── */
 
 @media (max-width: 1100px) {
-  .titleBar {
-    grid-template-columns: minmax(180px, 1fr) auto auto;
-  }
-
-  .navLinks {
-    display: none;
-  }
-
-  .dynamicPage {
+  .valuesPanel {
     grid-template-columns: minmax(240px, 0.75fr) minmax(340px, 1fr);
+  }
+
+  .gridHeader,
+  .testimonialsHeader,
+  .newsHeader {
+    text-align: left;
   }
 }
 
+/* ── Mobile: ≤760px ─────────────────────────────────────────────────── */
+
 @media (max-width: 760px) {
-  .titleBar {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 14px;
-    padding: 20px;
-  }
-
-  .brand span:last-child {
-    font-size: clamp(1.35rem, 6vw, 2rem);
-  }
-
-  .searchButton {
-    display: none;
-  }
-
-  .menuButton span:first-child {
-    display: none;
-  }
-
-  .menuIcon {
-    gap: 5px;
-  }
-
-  .menuIcon span {
-    width: 34px;
-    height: 5px;
-  }
-
   .heroOverlay {
     max-width: calc(100vw - 32px);
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -320,13 +205,7 @@
     padding: 0 20px 26px;
   }
 
-  .heroOverlay h1,
-  .dynamicIntro h2 {
-    font-size: clamp(2rem, 11vw, 3.7rem);
-    letter-spacing: -0.06em;
-  }
-
-  .heroOverlay h1 {
+  .heroHeading {
     font-size: clamp(2.73rem, 13.3vw, 4.55rem);
   }
 
@@ -335,64 +214,42 @@
     line-height: 1.42;
   }
 
-  .dynamicIntro p {
-    margin-top: 16px;
-  }
-
-  .dynamicPage {
+  .valuesPanel {
     grid-template-columns: minmax(230px, 0.7fr) minmax(480px, 1.3fr);
     align-content: center;
     gap: 20px;
     padding: 78px 20px 28px;
   }
 
-  .dynamicIntro {
+  .valuesIntro {
     max-width: 300px;
   }
 
-  .dynamicCards {
+  .valuesCards {
     gap: 12px;
   }
 
-  .valueCard {
-    min-width: 142px;
-    min-height: clamp(300px, 52vh, 390px);
-    padding: 16px;
+  .statsPanel {
+    padding: 48px 20px;
   }
 
-  .valueCard span {
-    font-size: clamp(2rem, 10vw, 3.2rem);
-  }
-
-  .valueCard h3 {
-    margin: 18px 0 8px;
+  .testimonialsSection {
+    padding: 48px 20px;
   }
 }
 
-@media (max-width: 420px) {
-  .titleBar {
-    padding-inline: 16px;
-  }
+/* ── Small Mobile: ≤420px ───────────────────────────────────────────── */
 
-  .dynamicPage {
+@media (max-width: 420px) {
+  .valuesPanel {
     grid-template-columns: minmax(210px, 0.62fr) minmax(450px, 1.38fr);
     padding-inline: 18px;
   }
 }
 
+/* ── Landscape: max-height ≤520px + landscape orientation ───────────── */
+
 @media (max-height: 520px) and (orientation: landscape) {
-  .titleBar {
-    padding: 14px 22px;
-  }
-
-  .brand span:last-child {
-    font-size: clamp(1.25rem, 4vw, 2rem);
-  }
-
-  .crest {
-    width: 24px;
-  }
-
   .heroOverlay {
     max-width: min(880px, calc(100vw - 32px));
     grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
@@ -400,48 +257,22 @@
     padding: 0 22px 18px;
   }
 
-  .heroOverlay h1,
-  .dynamicIntro h2 {
-    font-size: clamp(1.8rem, 7vw, 4.2rem);
-  }
-
-  .heroOverlay h1 {
+  .heroHeading {
     font-size: clamp(2.94rem, 10.5vw, 4.9rem);
   }
 
-  .heroStatement,
-  .dynamicIntro p {
-    margin-top: 10px;
+  .heroStatement {
     font-size: 0.63rem;
     line-height: 1.35;
   }
 
-  .dynamicPage {
+  .valuesPanel {
     grid-template-columns: minmax(220px, 0.68fr) minmax(520px, 1.32fr);
     gap: 20px;
     padding: 58px 22px 18px;
   }
 
-  .dynamicCards {
+  .valuesCards {
     gap: 12px;
-  }
-
-  .valueCard {
-    min-width: 150px;
-    min-height: clamp(170px, 48vh, 230px);
-    padding: 14px;
-  }
-
-  .valueCard span {
-    font-size: clamp(1.9rem, 6vw, 3rem);
-  }
-
-  .valueCard h3 {
-    margin: 14px 0 6px;
-  }
-
-  .valueCard p {
-    font-size: 0.85rem;
-    line-height: 1.35;
   }
 }

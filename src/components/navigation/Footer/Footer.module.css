@@ -31,6 +31,10 @@
   max-width: 480px;
 }
 
+.introBody {
+  white-space: pre-line;
+}
+
 /* ── Link groups ──────────────────────────────────── */
 
 .linkGroup {
@@ -67,6 +71,19 @@
 .socialLinks {
   display: flex;
   gap: var(--spacing-md);
+  align-items: center;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  transition: opacity var(--transition-fast);
+}
+
+.socialLink:hover {
+  opacity: 0.7;
 }
 
 /* ── Light variants for dark backgrounds ──────────── */

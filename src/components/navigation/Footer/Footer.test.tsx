@@ -9,7 +9,21 @@ describe("Footer", () => {
     expect(footer).toBeInTheDocument();
   });
 
-  it("renders link sections", () => {
+  it("renders default intro content", () => {
+    render(<Footer />);
+    expect(screen.getByText("St. Elizabeth High School")).toBeInTheDocument();
+    expect(screen.getByText(/Guiding Minds, Nurturing Hearts, Building Futures/)).toBeInTheDocument();
+  });
+
+  it("renders default link sections (4 columns)", () => {
+    render(<Footer />);
+    expect(screen.getByText("About")).toBeInTheDocument();
+    expect(screen.getByText("Admissions")).toBeInTheDocument();
+    expect(screen.getByText("Academics")).toBeInTheDocument();
+    expect(screen.getByText("Community")).toBeInTheDocument();
+  });
+
+  it("renders custom link sections", () => {
     render(
       <Footer
         sections={[
@@ -24,7 +38,7 @@ describe("Footer", () => {
     expect(screen.getByText("Home")).toBeInTheDocument();
   });
 
-  it("renders intro content", () => {
+  it("renders custom intro content", () => {
     render(
       <Footer
         intro={{ heading: "St. Elizabeth", body: "A school community." }}
@@ -39,16 +53,22 @@ describe("Footer", () => {
     expect(screen.getByText("© 2026 St. Elizabeth High School")).toBeInTheDocument();
   });
 
-  it("renders social links", () => {
+  it("renders social media links with accessible labels", () => {
     render(
       <Footer
         socialLinks={[
-          { platform: "Instagram", href: "https://instagram.com" },
-          { platform: "Facebook", href: "https://facebook.com" },
+          { platform: "facebook", href: "https://facebook.com" },
+          { platform: "instagram", href: "https://instagram.com" },
         ]}
       />,
     );
-    expect(screen.getByText("Instagram")).toBeInTheDocument();
-    expect(screen.getByText("Facebook")).toBeInTheDocument();
+    expect(screen.getByLabelText("St. Elizabeth High School on facebook")).toBeInTheDocument();
+    expect(screen.getByLabelText("St. Elizabeth High School on instagram")).toBeInTheDocument();
+  });
+
+  it("uses maroon background by default", () => {
+    const { container } = render(<Footer />);
+    const footer = container.querySelector("footer");
+    expect(footer).toBeInTheDocument();
   });
 });

@@ -11,6 +11,7 @@ export interface LinkProps {
   external?: boolean;
   className?: string;
   ariaLabel?: string;
+  onClick?: () => void;
 }
 
 const variantClass: Record<LinkVariant, string> = {
@@ -26,6 +27,7 @@ export function Link({
   external,
   className,
   ariaLabel,
+  onClick,
 }: LinkProps): ReactNode {
   const isExternal = external ?? /^https?:\/\//.test(href);
 
@@ -41,6 +43,7 @@ export function Link({
         rel="noopener noreferrer"
         target="_blank"
         aria-label={ariaLabel}
+        onClick={onClick}
       >
         {children}
       </a>
@@ -48,7 +51,7 @@ export function Link({
   }
 
   return (
-    <NextLink href={href} className={composedClassName} aria-label={ariaLabel}>
+    <NextLink href={href} className={composedClassName} aria-label={ariaLabel} onClick={onClick}>
       {children}
     </NextLink>
   );

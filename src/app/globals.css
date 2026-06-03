@@ -1,7 +1,7 @@
 :root {
   /* ── Core colours ─────────────────────────────────── */
-  --color-maroon: #6c1f35;
-  --color-maroon-dark: #41111f;
+  --color-maroon: #0c217c;
+  --color-maroon-dark: #060f45;
   --color-ink: #171717;
   --color-muted: #5f5f5f;
   --color-paper: #ffffff;
@@ -48,6 +48,25 @@ body {
 button,
 a {
   font: inherit;
+}
+
+.skipLink {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--color-maroon);
+  color: var(--color-paper);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+}
+
+.skipLink:focus {
+  top: 8px;
+  left: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {

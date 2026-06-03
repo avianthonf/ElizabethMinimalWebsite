@@ -1,51 +1,186 @@
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
 import { WalkerHomepage } from "./WalkerHomepage";
 
+// Mock the horizontal scroll components (they use client-side APIs)
+vi.mock("@/components/HorizontalScroll", () => ({
+  HorizontalScroll: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="horizontal-scroll">{children}</div>
+  ),
+  HorizontalPage: ({ children }: { children: React.ReactNode; screen?: boolean; width?: string }) => (
+    <div data-testid="horizontal-page">{children}</div>
+  ),
+}));
+
+// Mock LoadOverlay (uses animation APIs)
+vi.mock("@/components/LoadOverlay", () => ({
+  LoadOverlay: () => <div data-testid="load-overlay" />,
+}));
+
+// Mock MenuOverlay (uses browser APIs)
+vi.mock("@/components/navigation/MenuOverlay", () => ({
+  MenuOverlay: () => <div data-testid="menu-overlay" />,
+}));
+
+// Mock next/image (used by ImageCard)
+vi.mock("next/image", () => ({
+  default: ({ src, alt }: { src: string; alt: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} />
+  ),
+}));
+
+// Mock data modules
+vi.mock("@/data/homepage", () => ({
+  HERO_CONTENT: {
+    statement: "St. Elizabeth High School inspires transformative learning...",
+    heading: "Guiding Minds, Nurturing Hearts, Building Futures",
+    loadOverlayText: "WE BELIEVE",
+  },
+  VALUES: [
+    { number: "01", title: "Faith", body: "In God we trust, in Truth we stand..." },
+    { number: "02", title: "Excellence", body: "Academic rigor and holistic growth..." },
+    { number: "03", title: "Community", body: "Inclusive, nurturing, and committed..." },
+  ],
+  STATS: [
+    { value: "1949", label: "Founded", description: "Over seven decades..." },
+    { value: "1200+", label: "Students", description: "A vibrant student body..." },
+    { value: "CBSE", label: "Affiliated", description: "Central Board of Secondary Education..." },
+  ],
+  TESTIMONIALS: [
+    { quote: "St. Elizabeth shaped me into the person I am today.", attribution: "Alumni, Class of 2020", role: "alumni" as const },
+    { quote: "The teachers here don't just teach — they inspire.", attribution: "Current Student, Class XII", role: "student" as const },
+    { quote: "A nurturing environment where every child finds their voice.", attribution: "Parent of Class VIII Student", role: "parent" as const },
+  ],
+  CTA_CONTENT: {
+    heading: "Ready to Join Our Community?",
+    description: "Start your St. Elizabeth journey today.",
+    primaryCTA: { text: "Inquire Now" as const, href: "/admissions" as const },
+    secondaryCTA: { text: "Plan a Visit" as const, href: "/contact/visit" as const },
+  },
+  LATEST_NEWS: [
+    { title: "Annual Day Celebration 2024", date: "November 15, 2024", excerpt: "Students, staff, and families gathered...", imageFilename: "test.jpg", href: "/news/1" },
+    { title: "Sports Meet XXII — A Display of Spirit", date: "November 22, 2024", excerpt: "Houses competed with passion...", imageFilename: "test.jpg", href: "/news/2" },
+    { title: "Feast Day Celebrations at St. Elizabeth", date: "November 19, 2024", excerpt: "The school community came together...", imageFilename: "test.jpg", href: "/news/3" },
+  ],
+}));
+
+vi.mock("@/data/navigation", () => ({
+  HEADER_NAV_LINKS: [
+    { text: "About", href: "/about" },
+    { text: "Admissions", href: "/admissions" },
+    { text: "Academics", href: "/academics" },
+    { text: "Athletics", href: "/athletics" },
+    { text: "Arts", href: "/arts" },
+    { text: "Student Life", href: "/student-life" },
+    { text: "Alumni", href: "/alumni" },
+    { text: "News", href: "/news" },
+    { text: "Contact", href: "/contact" },
+  ],
+  FOOTER_SECTIONS: [
+    { title: "About", links: [{ text: "Mission", href: "/about/mission" }] },
+  ],
+  FOOTER_INTRO: { heading: "St. Elizabeth High School", body: "Guiding Minds..." },
+  FOOTER_SOCIAL_LINKS: [],
+  FOOTER_COPYRIGHT: "© 2026 St. Elizabeth High School",
+  MENU_CATEGORIES: [
+    { title: "ABOUT", links: [{ text: "Mission & Values", href: "/about/mission" }] },
+  ],
+}));
+
+vi.mock("@/data/images", () => ({
+  HERO_IMAGES: [
+    { filename: "DSC07580.jpg", alt: "Hero image", section: "homepage-hero" },
+    { filename: "DSC07548.jpg", alt: "About hero image", section: "about-hero" },
+    { filename: "DSC07360.jpg", alt: "Admissions hero image", section: "admissions-hero" },
+  ],
+  HOMEPAGE_GRID_IMAGES: [
+    { filename: "DSC07290.jpg", alt: "Grid image", category: "community", section: "homepage-grid" },
+    { filename: "DSC07292.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
+    { filename: "DSC07294.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
+    { filename: "DSC07300.jpg", alt: "Grid image", category: "community", section: "homepage-grid" },
+    { filename: "DSC07301.jpg", alt: "Grid image", category: "athletics", section: "homepage-grid" },
+    { filename: "DSC07305.jpg", alt: "Grid image", category: "athletics", section: "homepage-grid" },
+    { filename: "DSC07317.jpg", alt: "Grid image", category: "general", section: "homepage-grid" },
+    { filename: "DSC07328.jpg", alt: "Grid image", category: "academics", section: "homepage-grid" },
+    { filename: "DSC07335.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
+    { filename: "DSC07346.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
+    { filename: "DSC07351.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
+    { filename: "DSC07370.jpg", alt: "Grid image", category: "community", section: "homepage-grid" },
+  ],
+  ACADEMICS_HERO: { filename: "DSC07576.jpg", alt: "Academics hero" },
+  ATHLETICS_IMAGES: [{ filename: "DSC07495.jpg", alt: "Athletics" }],
+  ARTS_IMAGES: [{ filename: "DSC07565.jpg", alt: "Arts" }],
+  STUDENT_LIFE_IMAGES: [{ filename: "DSC07504.jpg", alt: "Student Life" }],
+  COMMUNITY_IMAGES: [
+    { filename: "DSC07619.jpg", alt: "Community" },
+    { filename: "DSC07469.jpg", alt: "Community 2" },
+  ],
+  CONTACT_IMAGES: [{ filename: "DSC07557.jpg", alt: "Contact" }],
+  NEWS_IMAGES: [{ filename: "DSC07504.jpg", alt: "News" }],
+}));
+
 describe("WalkerHomepage", () => {
-  it("renders the masked load overlay", () => {
+  it("renders the LoadOverlay", () => {
     render(<WalkerHomepage />);
-
-    expect(screen.getByLabelText("Homepage load overlay")).toBeInTheDocument();
-    expect(screen.getAllByText("WE BELIEVE")).toHaveLength(2);
+    expect(screen.getByTestId("load-overlay")).toBeDefined();
   });
 
-  it("renders a fixed top title bar", () => {
+  it("renders the HorizontalScroll", () => {
     render(<WalkerHomepage />);
-
-    expect(screen.getByRole("banner", { name: "Primary site navigation" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "St. Elizabeth High School home" })).toBeInTheDocument();
-    expect(screen.getByRole("navigation", { name: "Audience navigation" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Search" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Open menu" })).toBeInTheDocument();
+    expect(screen.getByTestId("horizontal-scroll")).toBeDefined();
   });
 
-  it("renders one vertical-driven horizontal stage with page-one reference text", () => {
+  it("renders the hero heading from data", () => {
     render(<WalkerHomepage />);
-
-    expect(screen.getByLabelText("St. Elizabeth homepage vertical driven horizontal stage")).toBeInTheDocument();
-    expect(screen.getByLabelText("St. Elizabeth homepage video introduction")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 1, name: "Known" })).toBeInTheDocument();
-    expect(screen.getByText(/St. Elizabeth High School inspires transformative learning/)).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { level: 1, name: "Start with the whole screen." })).not.toBeInTheDocument();
+    expect(
+      screen.getByText("Guiding Minds, Nurturing Hearts, Building Futures")
+    ).toBeDefined();
   });
 
-  it("renders the homepage video source", () => {
+  it("renders all three value cards", () => {
     render(<WalkerHomepage />);
-
-    const video = screen.getByLabelText("St. Elizabeth campus homepage video.");
-
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute("src", "/videos/1-homepage-video.mp4");
+    expect(screen.getByText("Faith")).toBeDefined();
+    expect(screen.getByText("Excellence")).toBeDefined();
+    // "Community" appears in both value cards and footer — use getAllByText
+    expect(screen.getAllByText("Community").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders a dynamic second page with horizontally stacked child cards", () => {
+  it("renders the We Believe eyebrow text", () => {
     render(<WalkerHomepage />);
+    const eyebrows = screen.getAllByText("We Believe");
+    expect(eyebrows.length).toBeGreaterThan(0);
+  });
 
-    expect(screen.getByLabelText("St. Elizabeth homepage dynamic content page")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: "Pages stack to the right." })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: "Curiosity" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: "Dignity" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: "Honor" })).toBeInTheDocument();
+  it("renders stat values", () => {
+    render(<WalkerHomepage />);
+    expect(screen.getByText("1949")).toBeDefined();
+    expect(screen.getByText("1200+")).toBeDefined();
+    expect(screen.getByText("CBSE")).toBeDefined();
+  });
+
+  it("renders all three testimonials", () => {
+    render(<WalkerHomepage />);
+    expect(screen.getByText(/St. Elizabeth shaped me/)).toBeDefined();
+    expect(screen.getByText(/The teachers here/)).toBeDefined();
+    expect(screen.getByText(/A nurturing environment/)).toBeDefined();
+  });
+
+  it("renders CTA buttons", () => {
+    render(<WalkerHomepage />);
+    expect(screen.getByText("Inquire Now")).toBeDefined();
+    expect(screen.getByText("Plan a Visit")).toBeDefined();
+  });
+
+  it("renders news items", () => {
+    render(<WalkerHomepage />);
+    expect(screen.getByText("Annual Day Celebration 2024")).toBeDefined();
+    expect(screen.getByText("Sports Meet XXII — A Display of Spirit")).toBeDefined();
+    expect(screen.getByText("Feast Day Celebrations at St. Elizabeth")).toBeDefined();
+  });
+
+  it("renders the MenuOverlay", () => {
+    render(<WalkerHomepage />);
+    expect(screen.getByTestId("menu-overlay")).toBeDefined();
   });
 });

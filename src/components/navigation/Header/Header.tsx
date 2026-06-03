@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import { Link } from "@/components/primitives/Link";
 import styles from "./Header.module.css";
 
@@ -16,13 +16,31 @@ export interface HeaderProps {
   fixed?: boolean;
   transparent?: boolean;
   className?: string;
+  /** Called when the menu button is clicked. If not provided, menu button is disabled. */
+  onMenuClick?: () => void;
+  /** Whether the menu is currently open (changes button aria-label and aria-expanded) */
+  isMenuOpen?: boolean;
+  /** Ref to attach to the menu button for focus restoration on overlay close */
+  menuButtonRef?: RefObject<HTMLButtonElement | null>;
 }
 
+/**
+ * Default primary navigation for St. Elizabeth High School.
+ * Can be overridden per-page via the `navLinks` prop.
+ *
+ * Note: The original Walker School defaults (Inquire, Visit, Summer, St. Elizabeth)
+ * have been replaced with the St. Elizabeth site navigation from PAGE_ELEMENT_HIERARCHY.md §9.
+ */
 const DEFAULT_NAV: HeaderNavLink[] = [
-  { text: "Inquire", href: "/inquire" },
-  { text: "Visit", href: "/visit" },
-  { text: "Summer", href: "/summer" },
-  { text: "St. Elizabeth", href: "/about" },
+  { text: "About", href: "/about" },
+  { text: "Admissions", href: "/admissions" },
+  { text: "Academics", href: "/academics" },
+  { text: "Athletics", href: "/athletics" },
+  { text: "Arts", href: "/arts" },
+  { text: "Student Life", href: "/student-life" },
+  { text: "Alumni", href: "/alumni" },
+  { text: "News", href: "/news" },
+  { text: "Contact", href: "/contact" },
 ];
 
 export function Header({
@@ -34,6 +52,9 @@ export function Header({
   fixed = true,
   transparent = true,
   className,
+  onMenuClick,
+  isMenuOpen = false,
+  menuButtonRef,
 }: HeaderProps): ReactNode {
   const composedClassName = [
     styles.titleBar,
@@ -79,10 +100,13 @@ export function Header({
 
       {showMenu && (
         <button
+          ref={menuButtonRef}
           className={styles.menuButton}
           type="button"
-          aria-label="Open menu"
-          disabled
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          disabled={!onMenuClick}
+          onClick={onMenuClick}
         >
           <span>Menu</span>
           <span className={styles.menuIcon} aria-hidden="true">
