@@ -60,17 +60,17 @@
 /* ── Sizes ────────────────────────────────────────── */
 
 .sizeSmall {
-  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1vw, 0.9rem));
   padding: 0.5em 1.2em;
 }
 
 .sizeMedium {
-  font-size: clamp(0.8rem, 1.15vw, 1.05rem);
+  font-size: calc(var(--text-scale) * clamp(0.8rem, 1.15vw, 1.05rem));
   padding: 0.65em 1.6em;
 }
 
 .sizeLarge {
-  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+  font-size: calc(var(--text-scale) * clamp(0.9rem, 1.3vw, 1.2rem));
   padding: 0.8em 2em;
 }
 

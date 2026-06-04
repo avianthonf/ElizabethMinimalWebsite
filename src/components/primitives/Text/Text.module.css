@@ -6,17 +6,17 @@
 /* ── Sizes ────────────────────────────────────────── */
 
 .sizeSmall {
-  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
   line-height: 1.45;
 }
 
 .sizeMedium {
-  font-size: clamp(0.94rem, 1.6vw, 1.35rem);
+  font-size: calc(var(--text-scale) * clamp(0.94rem, 1.6vw, 1.35rem));
   line-height: 1.55;
 }
 
 .sizeLarge {
-  font-size: clamp(1.05rem, 1.8vw, 1.55rem);
+  font-size: calc(var(--text-scale) * clamp(1.05rem, 1.8vw, 1.55rem));
   line-height: 1.62;
 }
 
@@ -29,7 +29,7 @@
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: calc(var(--text-scale) * 0.78rem);
   font-weight: 800;
   color: var(--color-maroon);
   text-transform: uppercase;
@@ -39,7 +39,7 @@
 
 .caption {
   font-family: var(--font-sans);
-  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
   color: var(--color-muted);
   line-height: 1.4;
 }

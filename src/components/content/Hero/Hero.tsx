@@ -49,7 +49,11 @@ export function Hero({
     : undefined;
 
   return (
-    <section className={composedClassName} style={mediaBackground}>
+    <section
+      className={composedClassName}
+      style={mediaBackground}
+      {...(hasMedia ? { "data-header-theme": "light" } : {})}
+    >
       {backgroundVideo && (
         <video
           className={styles.video}

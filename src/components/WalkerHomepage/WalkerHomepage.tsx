@@ -110,7 +110,7 @@ export function WalkerHomepage(): React.ReactNode {
         {/* ══════════════════════════════════════════════════════════════
             PANEL 1: Photo Hero (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
-        <HorizontalPage screen className={`${styles.panel} ${styles.heroPanel}`} ariaLabel="St. Elizabeth High School — introduction">
+        <HorizontalPage screen headerTheme="light" className={`${styles.panel} ${styles.heroPanel}`} ariaLabel="St. Elizabeth High School — introduction">
           <div
             className={styles.heroBackground}
             style={{ backgroundImage: `url('/images/${HERO_IMAGES[0].filename}')` }}
@@ -133,6 +133,7 @@ export function WalkerHomepage(): React.ReactNode {
           mobileWidth="max(760px, 180vw)"
           smallMobileWidth="max(720px, 200vw)"
           landscapeWidth="max(860px, 125vw)"
+          headerTheme="dark"
           className={`${styles.panel} ${styles.valuesPanel}`}
           ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
         >
@@ -165,6 +166,7 @@ export function WalkerHomepage(): React.ReactNode {
           mobileWidth="max(760px, 220vw)"
           smallMobileWidth="max(720px, 240vw)"
           landscapeWidth="max(1200px, 150vw)"
+          headerTheme="dark"
           className={`${styles.panel} ${styles.gridPanel}`}
           ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
         >
@@ -201,6 +203,7 @@ export function WalkerHomepage(): React.ReactNode {
           mobileWidth="max(760px, 175vw)"
           smallMobileWidth="max(720px, 195vw)"
           landscapeWidth="max(720px, 105vw)"
+          headerTheme="dark"
           className={`${styles.panel} ${styles.statsPanel}`}
           ariaLabel="School statistics — Founded 1949, 1200+ students, CBSE affiliated"
         >
@@ -242,6 +245,7 @@ export function WalkerHomepage(): React.ReactNode {
           mobileWidth="max(760px, 200vw)"
           smallMobileWidth="max(720px, 220vw)"
           landscapeWidth="max(1000px, 130vw)"
+          headerTheme="dark"
           className={`${styles.panel} ${styles.testimonialsPanel}`}
           ariaLabel="Testimonials from students, alumni, and parents"
         >
@@ -276,7 +280,7 @@ export function WalkerHomepage(): React.ReactNode {
         {/* ══════════════════════════════════════════════════════════════
             PANEL 6: CTA Banner (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
-        <HorizontalPage screen className={`${styles.panel} ${styles.ctaPanel}`} ariaLabel="Call to action — Join our community">
+        <HorizontalPage screen headerTheme="light" className={`${styles.panel} ${styles.ctaPanel}`} ariaLabel="Call to action — Join our community">
           <CTASection
             heading={CTA_CONTENT.heading}
             description={CTA_CONTENT.description}
@@ -290,7 +294,7 @@ export function WalkerHomepage(): React.ReactNode {
         {/* ══════════════════════════════════════════════════════════════
             PANEL 7: Latest News (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
-        <HorizontalPage screen className={`${styles.panel} ${styles.newsPanel}`} ariaLabel="Latest news and events">
+        <HorizontalPage screen headerTheme="dark" className={`${styles.panel} ${styles.newsPanel}`} ariaLabel="Latest news and events">
           <Section background="paper" padding="xlarge" className={styles.newsSection}>
             <Container>
               <Stack gap="xlarge">
@@ -322,7 +326,7 @@ export function WalkerHomepage(): React.ReactNode {
         {/* ══════════════════════════════════════════════════════════════
             PANEL 8: Footer (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
-        <HorizontalPage screen className={`${styles.panel} ${styles.footerPanel}`} ariaLabel="Site footer with contact information and links">
+        <HorizontalPage screen headerTheme="light" className={`${styles.panel} ${styles.footerPanel}`} ariaLabel="Site footer with contact information and links">
           <Footer
             intro={FOOTER_INTRO}
             sections={FOOTER_SECTIONS}

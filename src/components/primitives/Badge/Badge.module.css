@@ -8,20 +8,20 @@
 /* ── Variants ──────────────────────────────────────── */
 
 .number {
-  font-size: clamp(2.8rem, 5vw, 5.25rem);
+  font-size: calc(var(--text-scale) * clamp(2.8rem, 5vw, 5.25rem));
   letter-spacing: -0.08em;
   margin-bottom: auto;
 }
 
 .status {
-  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 0.15em 0.6em;
 }
 
 .label {
-  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }

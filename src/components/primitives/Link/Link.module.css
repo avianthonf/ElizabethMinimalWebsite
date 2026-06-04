@@ -23,7 +23,7 @@
 .nav {
   font-family: var(--font-sans);
   font-weight: 900;
-  font-size: clamp(0.9rem, 1.25vw, 1.18rem);
+  font-size: calc(var(--text-scale) * clamp(0.9rem, 1.25vw, 1.18rem));
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-paper);
@@ -37,7 +37,7 @@
 
 .footer {
   font-family: var(--font-sans);
-  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
   color: var(--color-muted);
   text-decoration: none;
 }
