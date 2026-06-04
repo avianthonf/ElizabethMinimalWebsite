@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HeaderThemeController } from "@/components/HeaderThemeController";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
         <a href="#main-content" className="skipLink">
           Skip to main content
         </a>
+        <HeaderThemeController />
         {children}
       </body>
     </html>

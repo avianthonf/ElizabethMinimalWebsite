@@ -66,7 +66,7 @@
 
 .subheading {
   font-family: var(--font-sans);
-  font-size: clamp(1.05rem, 1.8vw, 1.55rem);
+  font-size: calc(var(--text-scale) * clamp(1.05rem, 1.8vw, 1.55rem));
   font-weight: 700;
   line-height: 1.35;
   margin: 0;

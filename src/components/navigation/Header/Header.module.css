@@ -4,7 +4,7 @@
   grid-template-columns: minmax(180px, 1fr) minmax(220px, auto) auto auto;
   align-items: center;
   gap: clamp(18px, 2.2vw, 34px);
-  padding: clamp(22px, 3vw, 44px) clamp(24px, 5vw, 72px);
+  padding: clamp(11px, 1.5vw, 22px) clamp(24px, 5vw, 72px);
   z-index: 20;
   pointer-events: none;
 }
@@ -22,11 +22,12 @@
   position: fixed;
   top: 0;
   left: 0;
+  color: var(--header-color, var(--color-ink));
 }
 
 .transparent {
   background: transparent;
-  color: var(--color-paper);
+  color: var(--header-color, var(--color-paper));
 }
 
 /* ── Brand ─────────────────────────────────────────── */
@@ -43,7 +44,7 @@
 
 .brand span:last-child {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.45rem, 3vw, 3.35rem);
+  font-size: calc(var(--text-scale) * clamp(1.45rem, 3vw, 3.35rem));
   line-height: 1;
   letter-spacing: -0.05em;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
@@ -62,7 +63,7 @@
   place-items: center;
   border: 2px solid currentColor;
   border-radius: 2px 2px 12px 12px;
-  font-size: clamp(0.85rem, 1.2vw, 1.2rem);
+  font-size: calc(var(--text-scale) * clamp(0.85rem, 1.2vw, 1.2rem));
   font-weight: 900;
   line-height: 1;
 }
@@ -118,7 +119,7 @@
 
 .menuButton span:first-child {
   color: currentColor;
-  font-size: clamp(0.9rem, 1.25vw, 1.18rem);
+  font-size: calc(var(--text-scale) * clamp(0.9rem, 1.25vw, 1.18rem));
   font-weight: 900;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -160,6 +161,6 @@
   }
 
   .brand span:last-child {
-    font-size: clamp(1.1rem, 2.4vw, 2rem);
+    font-size: calc(var(--text-scale) * clamp(1.1rem, 2.4vw, 2rem));
   }
 }

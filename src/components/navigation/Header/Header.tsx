@@ -66,7 +66,7 @@ export function Header({
     .join(" ");
 
   return (
-    <header className={composedClassName} aria-label="Primary site navigation">
+    <header className={composedClassName} aria-label="Primary site navigation" data-header="true">
       <Link
         href={brandHref}
         className={styles.brand}

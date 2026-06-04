@@ -45,7 +45,7 @@
   color: var(--color-paper);
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: calc(var(--text-scale) * 0.9rem);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -86,7 +86,7 @@
   display: block;
   margin-bottom: clamp(12px, 2vw, 18px);
   color: rgba(255, 255, 255, 0.6) !important;
-  font-size: 0.72rem !important;
+  font-size: calc(var(--text-scale) * 0.72rem) !important;
 }
 
 .categoryLinks {
@@ -101,7 +101,7 @@
 
 .menuLink {
   color: var(--color-paper) !important;
-  font-size: clamp(1rem, 1.4vw, 1.25rem) !important;
+  font-size: calc(var(--text-scale) * clamp(1rem, 1.4vw, 1.25rem)) !important;
   font-weight: 700 !important;
   text-decoration: none !important;
   text-transform: none !important;
@@ -181,7 +181,7 @@
   }
 
   .menuLink {
-    font-size: 1.1rem !important;
+    font-size: calc(var(--text-scale) * 1.1rem) !important;
   }
 }
 

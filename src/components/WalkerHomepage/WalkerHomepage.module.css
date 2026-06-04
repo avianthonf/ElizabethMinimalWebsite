@@ -60,7 +60,7 @@
 .heroHeading {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(3.92rem, 11.9vw, 9.8rem);
+  font-size: calc(var(--text-scale) * clamp(4.2rem, 10vw, 10.5rem));
   font-weight: 900;
   line-height: 0.72;
   letter-spacing: -0.07em;
@@ -73,7 +73,7 @@
   max-width: 520px;
   margin: 0;
   color: var(--color-paper);
-  font-size: clamp(0.7rem, 1.015vw, 1.015rem);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
   font-weight: 900;
   line-height: 1.62;
   text-align: center;
@@ -206,11 +206,11 @@
   }
 
   .heroHeading {
-    font-size: clamp(2.73rem, 13.3vw, 4.55rem);
+    font-size: calc(var(--text-scale) * clamp(2.73rem, 13.3vw, 4.55rem));
   }
 
   .heroStatement {
-    font-size: clamp(0.546rem, 2.24vw, 0.7rem);
+    font-size: calc(var(--text-scale) * clamp(0.546rem, 2.24vw, 0.7rem));
     line-height: 1.42;
   }
 
@@ -258,11 +258,11 @@
   }
 
   .heroHeading {
-    font-size: clamp(2.94rem, 10.5vw, 4.9rem);
+    font-size: calc(var(--text-scale) * clamp(2.94rem, 10.5vw, 4.9rem));
   }
 
   .heroStatement {
-    font-size: 0.63rem;
+    font-size: calc(var(--text-scale) * 0.63rem);
     line-height: 1.35;
   }
 
