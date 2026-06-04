@@ -5,6 +5,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "St. Elizabeth High School",
   description: "Horizontal homepage prototype for St. Elizabeth High School.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
