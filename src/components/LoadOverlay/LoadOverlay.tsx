@@ -30,16 +30,18 @@ export function LoadOverlay(): ReactNode {
         <defs>
           <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
             <rect width="100" height="100" fill="white" />
-            <text
-              className={styles.maskText}
-              x="50"
-              y="50"
-              dominantBaseline="middle"
-              textAnchor="middle"
-              vectorEffect="non-scaling-stroke"
-            >
-              {LOAD_MESSAGE}
-            </text>
+            <g className={styles.maskGroup}>
+              <text
+                className={styles.maskText}
+                x="50"
+                y="50"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                vectorEffect="non-scaling-stroke"
+              >
+                {LOAD_MESSAGE}
+              </text>
+            </g>
           </mask>
         </defs>
         <rect width="100" height="100" fill="white" mask={`url(#${maskId})`} />
