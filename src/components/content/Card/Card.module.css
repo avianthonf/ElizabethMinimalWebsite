@@ -18,10 +18,22 @@
 }
 
 .value {
-  justify-content: flex-end;
-  flex: 1 1 0;
-  min-width: clamp(145px, 13vw, 190px);
-  min-height: clamp(260px, 45vh, 420px);
+  position: relative;
+  flex: 1 1 280px;
+  min-width: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-ink);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  cursor: default;
+  border: none;
+}
+
+.value:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  --card-hover-scale: 1.04;
 }
 
 .icon {

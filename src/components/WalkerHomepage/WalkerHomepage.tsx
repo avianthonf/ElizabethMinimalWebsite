@@ -43,6 +43,7 @@ import { MenuOverlay } from "@/components/navigation/MenuOverlay";
 import {
   HERO_IMAGES,
   HOMEPAGE_GRID_IMAGES,
+  VALUES_IMAGES,
   ACADEMICS_HERO,
   ATHLETICS_IMAGES,
   ARTS_IMAGES,
@@ -128,11 +129,11 @@ export function WalkerHomepage(): React.ReactNode {
             PANEL 2: "We Believe" Values (60vw desktop)
             ══════════════════════════════════════════════════════════════ */}
         <HorizontalPage
-          width="clamp(900px, 60vw, 1300px)"
-          tabletWidth="min(900px, 110vw)"
+          width="clamp(960px, 85vw, 1400px)"
+          tabletWidth="min(1040px, 110vw)"
           mobileWidth="max(760px, 180vw)"
           smallMobileWidth="max(720px, 200vw)"
-          landscapeWidth="max(860px, 125vw)"
+          landscapeWidth="max(960px, 125vw)"
           headerTheme="dark"
           className={`${styles.panel} ${styles.valuesPanel}`}
           ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
@@ -146,14 +147,20 @@ export function WalkerHomepage(): React.ReactNode {
             </Text>
           </div>
           <div className={styles.valuesCards}>
-            {VALUES.map((value) => (
-              <ValueCard
-                key={value.number}
-                number={value.number}
-                title={value.title}
-                body={value.body}
-              />
-            ))}
+            {VALUES.map((value) => {
+              const imageKey = value.title.toLowerCase() as keyof typeof VALUES_IMAGES;
+              const asset = VALUES_IMAGES[imageKey];
+              return (
+                <ValueCard
+                  key={value.number}
+                  number={value.number}
+                  title={value.title}
+                  body={value.body}
+                  image={`/images/${asset.filename}`}
+                  imageAlt={asset.alt}
+                />
+              );
+            })}
           </div>
         </HorizontalPage>
 

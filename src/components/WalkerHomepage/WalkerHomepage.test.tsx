@@ -108,6 +108,11 @@ vi.mock("@/data/images", () => ({
     { filename: "DSC07351.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
     { filename: "DSC07370.jpg", alt: "Grid image", category: "community", section: "homepage-grid" },
   ],
+  VALUES_IMAGES: {
+    faith: { filename: "DSC07463.jpg", alt: "Faith heritage image" },
+    excellence: { filename: "DSC07497.jpg", alt: "Excellence academic image" },
+    community: { filename: "DSC07378.jpg", alt: "Community gathering image" },
+  },
   ACADEMICS_HERO: { filename: "DSC07576.jpg", alt: "Academics hero" },
   ATHLETICS_IMAGES: [{ filename: "DSC07495.jpg", alt: "Athletics" }],
   ARTS_IMAGES: [{ filename: "DSC07565.jpg", alt: "Arts" }],
