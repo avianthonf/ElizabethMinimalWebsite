@@ -42,11 +42,6 @@ vi.mock("@/data/homepage", () => ({
     { number: "02", title: "Excellence", body: "Academic rigor and holistic growth..." },
     { number: "03", title: "Community", body: "Inclusive, nurturing, and committed..." },
   ],
-  STATS: [
-    { value: "1949", label: "Founded", description: "Over seven decades..." },
-    { value: "1200+", label: "Students", description: "A vibrant student body..." },
-    { value: "CBSE", label: "Affiliated", description: "Central Board of Secondary Education..." },
-  ],
   TESTIMONIALS: [
     { quote: "St. Elizabeth shaped me into the person I am today.", attribution: "Alumni, Class of 2020", role: "alumni" as const },
     { quote: "The teachers here don't just teach — they inspire.", attribution: "Current Student, Class XII", role: "student" as const },
@@ -156,13 +151,6 @@ describe("WalkerHomepage", () => {
     render(<WalkerHomepage />);
     const eyebrows = screen.getAllByText("We Believe");
     expect(eyebrows.length).toBeGreaterThan(0);
-  });
-
-  it("renders stat values", () => {
-    render(<WalkerHomepage />);
-    expect(screen.getByText("1949")).toBeDefined();
-    expect(screen.getByText("1200+")).toBeDefined();
-    expect(screen.getByText("CBSE")).toBeDefined();
   });
 
   it("renders all three testimonials", () => {

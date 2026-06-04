@@ -167,15 +167,7 @@
      they overflow right, extending track.scrollWidth. */
 }
 
-/* ── Panel 4: Stats ─────────────────────────────────────────────────── */
-
-.statsPanel {
-  padding: clamp(28px, 5vw, 72px);
-  align-content: center;
-  background: var(--color-paper);
-}
-
-/* ── Panel 5: Testimonials ──────────────────────────────────────────── */
+/* ── Panel 4: Testimonials ──────────────────────────────────────────── */
 
 .testimonialsPanel {
   background: var(--color-soft);
@@ -191,13 +183,13 @@
   text-align: left;
 }
 
-/* ── Panel 6: CTA ───────────────────────────────────────────────────── */
+/* ── Panel 5: CTA ───────────────────────────────────────────────────── */
 
 .ctaPanel {
   background: var(--color-blue);
 }
 
-/* ── Panel 7: News ──────────────────────────────────────────────────── */
+/* ── Panel 6: News ──────────────────────────────────────────────────── */
 
 .newsPanel {
   background: var(--color-paper);
@@ -217,7 +209,7 @@
   text-align: left;
 }
 
-/* ── Panel 8: Footer ────────────────────────────────────────────────── */
+/* ── Panel 7: Footer ────────────────────────────────────────────────── */
 
 .footerPanel {
   background: var(--color-maroon);
@@ -290,10 +282,6 @@
   .valuesCards {
     flex-direction: column;
     gap: 20px;
-  }
-
-  .statsPanel {
-    padding: 48px 20px;
   }
 
   .testimonialsSection {
