@@ -59,15 +59,20 @@
 /* ── Crest ─────────────────────────────────────────── */
 
 .crest {
-  display: inline-grid;
-  width: clamp(24px, 2.6vw, 40px);
-  aspect-ratio: 0.78;
-  place-items: center;
+  display: block;
+  width: clamp(28px, 2.8vw, 44px);
+  aspect-ratio: 0.876;
+  background-color: currentColor;
+  mask-image: url(/logo.png);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url(/logo.png);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
   border: 2px solid currentColor;
   border-radius: 2px 2px 12px 12px;
-  font-size: calc(var(--text-scale) * clamp(0.85rem, 1.2vw, 1.2rem));
-  font-weight: 900;
-  line-height: 1;
 }
 
 /* ── Nav Links ─────────────────────────────────────── */

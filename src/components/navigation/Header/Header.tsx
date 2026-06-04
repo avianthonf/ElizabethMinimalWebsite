@@ -73,9 +73,10 @@ export function Header({
         variant="default"
         ariaLabel={`${brandText} home`}
       >
-        <span className={styles.crest} aria-hidden="true">
-          S
-        </span>
+        <span
+          className={styles.crest}
+          aria-hidden="true"
+        />
         <span>{brandText}</span>
       </Link>
 
