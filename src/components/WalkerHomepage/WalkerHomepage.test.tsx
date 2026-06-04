@@ -34,7 +34,7 @@ vi.mock("next/image", () => ({
 vi.mock("@/data/homepage", () => ({
   HERO_CONTENT: {
     statement: "St. Elizabeth High School inspires transformative learning...",
-    heading: "Guiding Minds, Nurturing Hearts, Building Futures",
+    heading: "Nurturing Hearts",
     loadOverlayText: "WE BELIEVE",
   },
   VALUES: [
@@ -135,7 +135,7 @@ describe("WalkerHomepage", () => {
   it("renders the hero heading from data", () => {
     render(<WalkerHomepage />);
     expect(
-      screen.getByText("Guiding Minds, Nurturing Hearts, Building Futures")
+      screen.getByText("Nurturing Hearts")
     ).toBeDefined();
   });
 
