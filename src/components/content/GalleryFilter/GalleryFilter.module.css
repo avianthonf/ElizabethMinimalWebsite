@@ -1,0 +1,98 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   GalleryFilter — Horizontal pill bar for category filtering
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.filterBar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 8px 0 16px;
+  background: var(--color-gallery-bg);
+}
+
+/* ── Pill Base ─────────────────────────────────────────── */
+
+.pill {
+  flex-shrink: 0;
+  padding: 8px 18px;
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-scale) * 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-line);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition:
+    background-color 250ms var(--ease-standard),
+    color 250ms var(--ease-standard),
+    border-color 250ms var(--ease-standard),
+    box-shadow 250ms var(--ease-standard);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.pill:hover {
+  border-color: var(--color-maroon);
+  color: var(--color-maroon);
+  background: rgba(12, 33, 124, 0.04);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--color-maroon);
+  outline-offset: 2px;
+}
+
+/* ── Active State ──────────────────────────────────────── */
+
+.active {
+  background: var(--color-maroon);
+  color: var(--color-paper);
+  border-color: var(--color-maroon);
+  box-shadow: 0 2px 8px rgba(12, 33, 124, 0.22);
+}
+
+.active:hover {
+  background: var(--color-maroon-dark);
+  border-color: var(--color-maroon-dark);
+  color: var(--color-paper);
+}
+
+/* ── Mobile — horizontal scrollable snap ──────────────── */
+
+@media (max-width: 760px) {
+  .filterBar {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+    gap: 8px;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .filterBar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pill {
+    scroll-snap-align: start;
+    padding: 7px 16px;
+    font-size: calc(var(--text-scale) * 0.7rem);
+  }
+}
+
+/* ── Reduced Motion ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .pill {
+    transition: none;
+  }
+}

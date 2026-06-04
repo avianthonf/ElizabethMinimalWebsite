@@ -11,6 +11,8 @@
   /* ── Accent colours ──────────────────────────────── */
   --color-blue: #0c4a6e;
   --color-blue-light: #e0f2fe;
+  --color-gold: #c9a84c;
+  --color-gallery-bg: #faf9f7;
 
   /* ── Spacing ───────────────────────────────────────── */
   --spacing-sm: clamp(0.5rem, 2vw, 1rem);

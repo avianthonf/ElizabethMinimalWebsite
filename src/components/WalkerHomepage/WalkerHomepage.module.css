@@ -114,20 +114,57 @@
   min-width: 0;
 }
 
-/* ── Panel 3: Photo Grid ────────────────────────────────────────────── */
+/* ── Panel 3: Masonry Mosaic Gallery ─────────────────────────────────
 
-.gridPanel {
-  background: var(--color-paper);
+   HORIZONTAL-FLOW STRATEGY:
+   - Panel fills 100vh (forced by track) and starts at 100vw width
+   - Cards use flex-column-wrap with explicit heights: fill DOWN first,
+     then wrap RIGHT. Overflow extends beyond panel content-box.
+   - Panel has overflow:visible on x-axis so overflow isn't clipped
+   - HorizontalScroll track.scrollWidth picks up the overflow,
+     creating additional scroll distance automatically
+   - No internal vertical scrollbar — the horizontal scroll IS the navigation
+
+   Card height formula (3 rows, 2 gaps of 24px):
+     standard = (grid_height - 48px) / 3       → 1 row
+     hero     = (grid_height - 48px) * 2/3 + 24px  → 2 rows + gap
+   Card width = card_height × 4/3 (via aspect-ratio)                ── */
+
+.galleryPanel {
+  width: max-content !important;
+  min-width: 100vw !important;
+  overflow-x: visible !important;
+  overflow-y: hidden !important;
+  display: flex !important;
+  flex-direction: column;
+  background: var(--color-gallery-bg);
+  padding: clamp(28px, 5vw, 72px);
 }
 
-.gridSection {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.gridHeader {
+.galleryHeader {
   text-align: left;
+  flex-shrink: 0;
+  margin-bottom: clamp(8px, 1vw, 16px);
+}
+
+.galleryHeader h2 {
+  font-size: calc(var(--text-scale) * clamp(1.4rem, 2.5vw, 2.6rem));
+  line-height: 1.08;
+}
+
+/* ── Column-wrap masonry grid ─────────────────────────── */
+
+.galleryGrid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 24px;
+  flex: 1 1 0;
+  min-height: 0;
+  align-content: flex-start;
+  /* No explicit width — cards determine column width.
+     When columns exceed available horizontal space,
+     they overflow right, extending track.scrollWidth. */
 }
 
 /* ── Panel 4: Stats ─────────────────────────────────────────────────── */
@@ -202,10 +239,19 @@
     font-size: calc(var(--text-scale) * clamp(1.4rem, 3vw, 2rem));
   }
 
-  .gridHeader,
+  .galleryHeader,
   .testimonialsHeader,
   .newsHeader {
     text-align: left;
+  }
+
+  /* Tablet: 2-row masonry */
+  .galleryGrid {
+    gap: 18px;
+  }
+
+  .galleryPanel {
+    padding: clamp(24px, 4vw, 48px);
   }
 }
 
@@ -252,6 +298,20 @@
 
   .testimonialsSection {
     padding: 48px 20px;
+  }
+
+  /* Mobile: single-row of full-width cards flowing right */
+  .galleryGrid {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .galleryPanel {
+    padding: 36px 16px 28px;
+  }
+
+  .galleryHeader h2 {
+    font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
   }
 }
 
