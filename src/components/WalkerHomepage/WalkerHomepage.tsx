@@ -6,7 +6,6 @@ import { HorizontalPage, HorizontalScroll } from "@/components/HorizontalScroll"
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { ValueCard } from "@/components/content/ValueCard";
-import { IconCard } from "@/components/content/IconCard";
 import { ImageCard } from "@/components/content/ImageCard";
 import { GalleryCard } from "@/components/content/GalleryCard/GalleryCard";
 import { GalleryFilter } from "@/components/content/GalleryFilter/GalleryFilter";
@@ -18,20 +17,14 @@ import { CTASection } from "@/components/content/CTASection";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { Link } from "@/components/primitives/Link";
-import { Icon } from "@/components/primitives/Icon";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Grid } from "@/components/layout/Grid";
 import { Stack } from "@/components/layout/Stack";
-import { SplitLayout } from "@/components/layout/SplitLayout";
-import { CommunityIcon } from "@/components/icons/CommunityIcon";
-import { AcademicIcon } from "@/components/icons/AcademicIcon";
-import { SportsIcon } from "@/components/icons/SportsIcon";
 
 import {
   HERO_CONTENT,
   VALUES,
-  STATS,
   TESTIMONIALS,
   CTA_CONTENT,
   LATEST_NEWS,
@@ -61,13 +54,6 @@ import {
 import type { ImageAsset } from "@/data/images";
 
 import styles from "./WalkerHomepage.module.css";
-
-// ── Icon mapping for stat IconCards ────────────────────────────────────
-const statIcons = [
-  <Icon key="founded" size="large" decorative><CommunityIcon /></Icon>,
-  <Icon key="students" size="large" decorative><AcademicIcon /></Icon>,
-  <Icon key="affiliated" size="large" decorative><SportsIcon /></Icon>,
-];
 
 export function WalkerHomepage(): React.ReactNode {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -348,49 +334,7 @@ export function WalkerHomepage(): React.ReactNode {
         </HorizontalPage>
 
         {/* ══════════════════════════════════════════════════════════════
-            PANEL 4: School Stats (50vw desktop)
-            ══════════════════════════════════════════════════════════════ */}
-        <HorizontalPage
-          width="clamp(700px, 50vw, 1000px)"
-          tabletWidth="min(700px, 90vw)"
-          mobileWidth="max(760px, 175vw)"
-          smallMobileWidth="max(720px, 195vw)"
-          landscapeWidth="max(720px, 105vw)"
-          headerTheme="dark"
-          className={`${styles.panel} ${styles.statsPanel}`}
-          ariaLabel="School statistics — Founded 1949, 1200+ students, CBSE affiliated"
-        >
-          <SplitLayout
-            left={
-              <Stack gap="medium">
-                <Text variant="eyebrow">Our Legacy</Text>
-                <Heading level="h2" variant="section">Since 1949</Heading>
-                <Text variant="muted" size="medium">
-                  St. Elizabeth High School has been educating students in Pomburpa, Goa, India.
-                  Guided by our motto &lsquo;Truth and Honesty,&rsquo; we foster a supportive
-                  environment where every child discovers their potential and purpose.
-                </Text>
-                <Link href="/about/history">Learn About Our History</Link>
-              </Stack>
-            }
-            right={
-              <Grid columns={3} gap="medium" responsive>
-                {STATS.map((stat, i) => (
-                  <IconCard
-                    key={stat.label}
-                    icon={statIcons[i]}
-                    title={stat.value}
-                    description={`${stat.label} — ${stat.description}`}
-                  />
-                ))}
-              </Grid>
-            }
-            ratio="1-2"
-          />
-        </HorizontalPage>
-
-        {/* ══════════════════════════════════════════════════════════════
-            PANEL 5: Testimonials (80vw desktop)
+            PANEL 4: Testimonials (80vw desktop)
             ══════════════════════════════════════════════════════════════ */}
         <HorizontalPage
           width="clamp(1100px, 80vw, 1600px)"
@@ -431,7 +375,7 @@ export function WalkerHomepage(): React.ReactNode {
         </HorizontalPage>
 
         {/* ══════════════════════════════════════════════════════════════
-            PANEL 6: CTA Banner (100vw, screen mode)
+            PANEL 5: CTA Banner (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
         <HorizontalPage screen headerTheme="light" className={`${styles.panel} ${styles.ctaPanel}`} ariaLabel="Call to action — Join our community">
           <CTASection
@@ -445,7 +389,7 @@ export function WalkerHomepage(): React.ReactNode {
         </HorizontalPage>
 
         {/* ══════════════════════════════════════════════════════════════
-            PANEL 7: Latest News (100vw, screen mode)
+            PANEL 6: Latest News (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
         <HorizontalPage screen headerTheme="dark" className={`${styles.panel} ${styles.newsPanel}`} ariaLabel="Latest news and events">
           <Section background="paper" padding="xlarge" className={styles.newsSection}>
@@ -477,7 +421,7 @@ export function WalkerHomepage(): React.ReactNode {
         </HorizontalPage>
 
         {/* ══════════════════════════════════════════════════════════════
-            PANEL 8: Footer (100vw, screen mode)
+            PANEL 7: Footer (100vw, screen mode)
             ══════════════════════════════════════════════════════════════ */}
         <HorizontalPage screen headerTheme="light" className={`${styles.panel} ${styles.footerPanel}`} ariaLabel="Site footer with contact information and links">
           <Footer
