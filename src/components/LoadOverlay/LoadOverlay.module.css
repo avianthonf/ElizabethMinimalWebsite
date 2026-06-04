@@ -22,7 +22,7 @@
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transform-box: fill-box;
+  transform-box: view-box;
   transform-origin: center;
   animation: expandMaskText 1s cubic-bezier(0.25, 0.1, 0.0, 1.0) 0.76s forwards;
 }
