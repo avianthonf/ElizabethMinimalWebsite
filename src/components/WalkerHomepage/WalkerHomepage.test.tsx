@@ -108,6 +108,7 @@ vi.mock("@/data/images", () => ({
     { filename: "DSC07351.jpg", alt: "Grid image", category: "student-life", section: "homepage-grid" },
     { filename: "DSC07370.jpg", alt: "Grid image", category: "community", section: "homepage-grid" },
   ],
+  HOMEPAGE_GRID_HERO_FILENAMES: ["DSC07290.jpg", "DSC07301.jpg"],
   VALUES_IMAGES: {
     faith: { filename: "DSC07463.jpg", alt: "Faith heritage image" },
     excellence: { filename: "DSC07497.jpg", alt: "Excellence academic image" },

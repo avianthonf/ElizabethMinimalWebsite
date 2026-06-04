@@ -1,0 +1,251 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   GalleryCard — Cinematic full-bleed masonry card
+
+   Layout: flex column-wrap parent with 3 fixed rows.
+   Cards fill DOWN then WRAP RIGHT. Heroes span 2 rows.
+
+   Card height (3 rows, 2 gaps of 24px):
+     standard = (100% - 48px) / 3                 → 1 row
+     hero     = (100% - 48px) * 2 / 3 + 24px      → 2 rows + gap
+   Card width = height × (4/3) via aspect-ratio
+
+   Z-index stacking:
+     z-0  imageWrapper  — full-bleed photograph with color grade
+     z-1  duotone       — brand maroon tint overlay (8% opacity)
+     z-2  gradient      — dark gradient for bottom text legibility
+     z-3  titleOverlay  — white serif category name, bottom-left
+     z-4  pillContainer — sub-category/date pill, top-right
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Card Base ────────────────────────────────────────── */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--color-ink);
+  border: 2px solid transparent;
+  transition:
+    opacity 600ms var(--ease-standard),
+    transform 600ms var(--ease-standard),
+    border-color 600ms var(--ease-standard);
+
+  /* Scroll reveal: hidden → visible (slides in from left as
+     the horizontal scroll reveals cards to the right) */
+  opacity: 0;
+  transform: translateX(-30px);
+  transition-delay: calc(var(--stagger-index, 0) * 100ms);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: scale(1.02);
+  border-color: var(--color-gold);
+}
+
+.visible:hover,
+.visible:focus-visible {
+  transform: scale(1.02);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.filteredOut {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0;
+  border-width: 0;
+  margin: 0;
+  overflow: hidden;
+  transition:
+    opacity 300ms var(--ease-standard),
+    transform 300ms var(--ease-standard),
+    width 0ms 300ms;
+}
+
+/* ── Card Sizes for Column-Wrap Flex Layout ───────────
+
+   The parent .galleryGrid uses:
+     display: flex; flex-direction: column; flex-wrap: wrap; gap: 24px;
+
+   Cards fill DOWN in columns, then wrap RIGHT.
+   Standard = 1 row tall. Hero = 2 rows tall + gap between them. */
+
+.standard {
+  height: calc((100% - 48px) / 3);
+  aspect-ratio: 4 / 3;
+  /* width auto-computed from height × (4/3) */
+}
+
+.hero {
+  height: calc((100% - 48px) * 2 / 3 + 24px);
+  aspect-ratio: 4 / 3;
+  /* width auto-computed: 2 rows worth of height × (4/3) */
+  /* The hero naturally spans 2 standard rows + the gap between */
+}
+
+/* ── Image Layer (z-0) ────────────────────────────────── */
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.image {
+  object-fit: cover;
+  /* Cinematic color grade */
+  filter: saturate(0.85) contrast(1.05);
+  transition: transform 600ms var(--ease-standard);
+}
+
+.card:hover .image,
+.card:focus-visible .image {
+  transform: scale(1.05);
+}
+
+/* ── Duotone Overlay (z-1) ────────────────────────────── */
+
+.duotone {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(12, 33, 124, 0.08); /* brand maroon #0c217c at 8% */
+  pointer-events: none;
+}
+
+/* ── Bottom Gradient (z-2) ────────────────────────────── */
+
+.gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 55%,
+    rgba(23, 23, 23, 0.35) 75%,
+    rgba(23, 23, 23, 0.65) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Title Overlay (z-3) ──────────────────────────────── */
+
+.titleOverlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: clamp(16px, 2vw, 28px);
+  pointer-events: none;
+}
+
+.titleText {
+  font-family: var(--font-serif);
+  font-size: calc(var(--text-scale) * clamp(0.9rem, 1.1vw, 1.25rem));
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.hero .titleText {
+  font-size: calc(var(--text-scale) * clamp(1.1rem, 1.4vw, 1.6rem));
+}
+
+/* ── Pill (z-4) ───────────────────────────────────────── */
+
+.pillContainer {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.pill {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-scale) * 0.65rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(23, 23, 23, 0.48);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Tablet (≤1100px): 2-row masonry ────────────────────
+   Cards take ~50% height so only 2 rows fit,
+   creating wider columns that scroll faster. ────────── */
+
+@media (max-width: 1100px) {
+  .standard {
+    height: calc((100% - 24px) / 2);
+  }
+
+  .hero {
+    height: 100%;
+  }
+}
+
+/* ── Mobile (≤760px): single full-height row ─────────────
+   Each card takes full container height, forming a
+   horizontal strip of full-bleed cards. At this size
+   the HorizontalPage switches to screen-mode scrolling. ── */
+
+@media (max-width: 760px) {
+  .standard,
+  .hero {
+    height: 100%;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ── Reduced Motion ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .card:hover {
+    transform: none !important;
+  }
+
+  .image {
+    transition: none;
+  }
+
+  .card:hover .image {
+    transform: none;
+  }
+
+  .filteredOut {
+    opacity: 0;
+    transform: none;
+  }
+}

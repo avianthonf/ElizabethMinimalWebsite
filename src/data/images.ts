@@ -57,6 +57,10 @@ export interface ImageAsset {
   category: ImageCategory;
   /** Specific website section this image is assigned to */
   section: ImageSection;
+  /** Optional sub-category label for gallery display (e.g. "Inter-House 2024") */
+  subCategory?: string;
+  /** Optional date label for gallery display (e.g. "Spring 2025") */
+  date?: string;
   /** Aesthetic profile for component mapping */
   profile: {
     brightness: number;       // 0-255, from EXIF analysis
@@ -155,7 +159,18 @@ export const ACADEMICS_HERO: ImageAsset = {
   },
 };
 
-// ── Homepage Photo Grid (12 images — 3 columns × 4 rows) ──────────────
+// ── Homepage Photo Grid (12 images — masonry gallery) ──────────────────
+//
+// Hero images (span 6 cols × 2 rows in the masonry grid):
+//   DSC07290 — community gathering, warm/cozy
+//   DSC07301 — athletics, dynamic/bold
+//
+// All other images are standard (span 3 cols × 1 row).
+
+export const HOMEPAGE_GRID_HERO_FILENAMES: string[] = [
+  "DSC07290.jpg",
+  "DSC07301.jpg",
+];
 
 export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   {
@@ -163,6 +178,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Cozy community gathering at St. Elizabeth High School, warm intimate atmosphere",
     category: "community",
     section: "homepage-grid",
+    subCategory: "Gathering",
+    date: "Spring 2025",
     profile: {
       brightness: 97.5, contrast: 56.3, complexity: "high",
       temperature: "warm", moodTags: ["cozy", "intimate", "nostalgic", "lively"],
@@ -173,6 +190,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Students interacting during a school activity at St. Elizabeth High School",
     category: "student-life",
     section: "homepage-grid",
+    subCategory: "Campus Life",
+    date: "Fall 2024",
     profile: {
       brightness: 106.1, contrast: 56.7, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],
@@ -183,6 +202,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Engaging school event at St. Elizabeth High School with students and staff",
     category: "student-life",
     section: "homepage-grid",
+    subCategory: "School Event",
+    date: "Annual Day 2024",
     profile: {
       brightness: 105.1, contrast: 64.4, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],
@@ -193,6 +214,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Intimate school community moment at St. Elizabeth High School",
     category: "community",
     section: "homepage-grid",
+    subCategory: "Community Outreach",
+    date: "Winter 2024",
     profile: {
       brightness: 98.4, contrast: 46.6, complexity: "high",
       temperature: "warm", moodTags: ["cozy", "intimate", "nostalgic"],
@@ -203,6 +226,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Dynamic indoor school activity at St. Elizabeth High School, high energy atmosphere",
     category: "athletics",
     section: "homepage-grid",
+    subCategory: "Inter-House",
+    date: "2024",
     profile: {
       brightness: 118.8, contrast: 71.9, complexity: "high",
       temperature: "warm", moodTags: ["dynamic", "bold", "eye-catching"],
@@ -213,6 +238,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Bold action scene at St. Elizabeth High School, students participating in event",
     category: "athletics",
     section: "homepage-grid",
+    subCategory: "Sports Day",
+    date: "2024",
     profile: {
       brightness: 116.2, contrast: 71.1, complexity: "high",
       temperature: "warm", moodTags: ["dynamic", "bold", "eye-catching"],
@@ -223,6 +250,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Campus grounds at St. Elizabeth High School in medium daylight, natural setting",
     category: "general",
     section: "homepage-grid",
+    subCategory: "Campus",
+    date: "Spring 2025",
     profile: {
       brightness: 130.8, contrast: 70.2, complexity: "medium",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic", "dynamic"],
@@ -233,6 +262,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Students engaged in learning activity at St. Elizabeth High School",
     category: "academics",
     section: "homepage-grid",
+    subCategory: "Classroom",
+    date: "Fall 2024",
     profile: {
       brightness: 113.3, contrast: 64.4, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],
@@ -243,6 +274,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Bright school activity at St. Elizabeth High School, students in daylight",
     category: "student-life",
     section: "homepage-grid",
+    subCategory: "Activities",
+    date: "Spring 2025",
     profile: {
       brightness: 128.7, contrast: 68.9, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],
@@ -253,6 +286,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "School campus life at St. Elizabeth High School, natural warm daylight",
     category: "student-life",
     section: "homepage-grid",
+    subCategory: "Friendship",
+    date: "Fall 2024",
     profile: {
       brightness: 137.1, contrast: 66.3, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],
@@ -263,6 +298,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Students at St. Elizabeth High School engaged in group activity, medium daylight",
     category: "student-life",
     section: "homepage-grid",
+    subCategory: "Group Work",
+    date: "2024",
     profile: {
       brightness: 123.1, contrast: 61.4, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],
@@ -273,6 +310,8 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
     alt: "Story-rich school moment at St. Elizabeth High School, warm atmosphere",
     category: "community",
     section: "homepage-grid",
+    subCategory: "Celebration",
+    date: "Annual Day 2024",
     profile: {
       brightness: 117.3, contrast: 68.5, complexity: "high",
       temperature: "warm", moodTags: ["balanced", "natural", "authentic"],

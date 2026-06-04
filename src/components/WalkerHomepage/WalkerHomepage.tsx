@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { LoadOverlay } from "@/components/LoadOverlay";
 import { HorizontalPage, HorizontalScroll } from "@/components/HorizontalScroll";
 import { Header } from "@/components/navigation/Header";
@@ -8,6 +8,11 @@ import { Footer } from "@/components/navigation/Footer";
 import { ValueCard } from "@/components/content/ValueCard";
 import { IconCard } from "@/components/content/IconCard";
 import { ImageCard } from "@/components/content/ImageCard";
+import { GalleryCard } from "@/components/content/GalleryCard/GalleryCard";
+import { GalleryFilter } from "@/components/content/GalleryFilter/GalleryFilter";
+import type { GalleryCategory } from "@/components/content/GalleryFilter/GalleryFilter";
+import { GalleryLightbox } from "@/components/content/GalleryLightbox/GalleryLightbox";
+import type { LightboxImage } from "@/components/content/GalleryLightbox/GalleryLightbox";
 import { Card } from "@/components/content/Card";
 import { CTASection } from "@/components/content/CTASection";
 import { Heading } from "@/components/primitives/Heading";
@@ -43,6 +48,7 @@ import { MenuOverlay } from "@/components/navigation/MenuOverlay";
 import {
   HERO_IMAGES,
   HOMEPAGE_GRID_IMAGES,
+  HOMEPAGE_GRID_HERO_FILENAMES,
   VALUES_IMAGES,
   ACADEMICS_HERO,
   ATHLETICS_IMAGES,
@@ -67,12 +73,135 @@ export function WalkerHomepage(): React.ReactNode {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
+  // ── Gallery state ───────────────────────────────────────────────
+  const [galleryFilter, setGalleryFilter] = useState<GalleryCategory>("All");
+  const [lightboxIndex, setLightboxIndex] = useState(-1);
+  const [revealedCards, setRevealedCards] = useState<Set<number>>(new Set());
+  const revealObserverRef = useRef<IntersectionObserver | null>(null);
+  // Ref to always hold latest lightbox image count (avoids stale closure)
+  const lightboxCountRef = useRef(0);
+
   const handleMenuOpen = useCallback(() => setIsMenuOpen(true), []);
   const handleMenuClose = useCallback(() => {
     setIsMenuOpen(false);
     // Restore focus to the Menu button when overlay closes
     menuButtonRef.current?.focus();
   }, []);
+
+  // ── Gallery filter handler ──────────────────────────────────────
+  const handleFilterChange = useCallback((category: GalleryCategory) => {
+    setGalleryFilter(category);
+    // Reset reveals for shuffle animation feel
+    setRevealedCards(new Set());
+    // Reveal after a brief delay for the shuffle transition
+    setTimeout(() => {
+      setRevealedCards(new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]));
+    }, 350);
+  }, []);
+
+  // ── Lightbox handlers ───────────────────────────────────────────
+  const handleOpenLightbox = useCallback((visibleIndex: number) => {
+    setLightboxIndex(visibleIndex);
+  }, []);
+
+  const handleCloseLightbox = useCallback(() => {
+    setLightboxIndex(-1);
+  }, []);
+
+  const handlePrevImage = useCallback(() => {
+    setLightboxIndex((prev) => {
+      const count = lightboxCountRef.current;
+      if (count === 0) return prev;
+      return (prev - 1 + count) % count;
+    });
+  }, []);
+
+  const handleNextImage = useCallback(() => {
+    setLightboxIndex((prev) => {
+      const count = lightboxCountRef.current;
+      if (count === 0) return prev;
+      return (prev + 1) % count;
+    });
+  }, []);
+
+  // ── Scroll-triggered reveal ─────────────────────────────────────
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      // If IntersectionObserver isn't available, show all cards immediately
+      setRevealedCards(new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-gallery-index"));
+            if (!isNaN(index)) {
+              setRevealedCards((prev) => {
+                if (prev.has(index)) return prev;
+                const next = new Set(prev);
+                next.add(index);
+                return next;
+              });
+            }
+          }
+        });
+      },
+      {
+        root: null, // browser viewport
+        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.15,
+      },
+    );
+
+    revealObserverRef.current = observer;
+
+    // Observe all gallery cards after they mount
+    const timeout = setTimeout(() => {
+      document.querySelectorAll("[data-gallery-index]").forEach((el) => {
+        observer.observe(el);
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+      revealObserverRef.current = null;
+    };
+  }, []);
+
+  // ── Filtered gallery images ─────────────────────────────────────
+  const filterCategoryMap: Record<GalleryCategory, string | null> = {
+    All: null,
+    Academics: "academics",
+    Athletics: "athletics",
+    Community: "community",
+    "Student Life": "student-life",
+    General: "general",
+  };
+
+  // Build filtered array but keep original indices for lightbox
+  const galleryImages = HOMEPAGE_GRID_IMAGES.map((img, i) => {
+    const targetCat = filterCategoryMap[galleryFilter];
+    if (targetCat !== null && img.category !== targetCat) {
+      return null; // filtered out
+    }
+    return { ...img, _originalIndex: i };
+  });
+
+  const visibleGalleryImages = galleryImages.filter((img): img is NonNullable<typeof img> => img !== null);
+
+  // Build lightbox image list from filtered images (for navigation context)
+  const lightboxImages: LightboxImage[] = visibleGalleryImages.map((img) => ({
+    src: `/images/${img.filename}`,
+    alt: img.alt,
+    caption: img.category.charAt(0).toUpperCase() + img.category.slice(1),
+    subCaption: img.subCategory ?? img.date,
+  }));
+
+  // Keep ref current for use in callbacks
+  lightboxCountRef.current = lightboxImages.length;
 
   return (
     <main id="main-content" className={styles.page}>
@@ -165,40 +294,57 @@ export function WalkerHomepage(): React.ReactNode {
         </HorizontalPage>
 
         {/* ══════════════════════════════════════════════════════════════
-            PANEL 3: Photo Grid (120vw desktop)
-            ══════════════════════════════════════════════════════════════ */}
+            PANEL 3: Masonry Mosaic Gallery — horizontal flow
+            ══════════════════════════════════════════════════════════════
+
+            Panel uses screen mode + CSS width:max-content override.
+            Cards flow in flex-column-wrap: fill DOWN then RIGHT.
+            The panel expands beyond 100vw and the HorizontalScroll
+            track measures the extra width automatically.
+
+            On tablet/mobile the panel may need internal scroll
+            since viewports are narrower — handled via breakpoints. */}
         <HorizontalPage
-          width="clamp(1400px, 120vw, 2200px)"
-          tabletWidth="min(1100px, 140vw)"
-          mobileWidth="max(760px, 220vw)"
-          smallMobileWidth="max(720px, 240vw)"
-          landscapeWidth="max(1200px, 150vw)"
+          screen
           headerTheme="dark"
-          className={`${styles.panel} ${styles.gridPanel}`}
+          className={`${styles.panel} ${styles.galleryPanel}`}
           ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
         >
-          <Section background="paper" padding="large" className={styles.gridSection}>
-            <Container width="wide">
-              <Stack gap="large">
-                <div className={styles.gridHeader}>
-                  <Text variant="eyebrow" as="p">Experience St. Elizabeth</Text>
-                  <Heading level="h2" variant="section">Life at Our School</Heading>
-                </div>
-                <Grid columns={4} gap="medium" responsive>
-                  {HOMEPAGE_GRID_IMAGES.map((img: ImageAsset) => (
-                    <ImageCard
-                      key={img.filename}
-                      image={`/images/${img.filename}`}
-                      imageAlt={img.alt}
-                      title={img.category.charAt(0).toUpperCase() + img.category.slice(1)}
-                      aspectRatio="4:3"
-                      href={`/${img.category === "general" ? "about" : img.category}`}
-                    />
-                  ))}
-                </Grid>
-              </Stack>
-            </Container>
-          </Section>
+          <div className={styles.galleryHeader}>
+            <Text variant="eyebrow" as="p">Experience St. Elizabeth</Text>
+            <Heading level="h2" variant="section">Life at Our School</Heading>
+          </div>
+          <GalleryFilter
+            active={galleryFilter}
+            onChange={handleFilterChange}
+          />
+          <div className={styles.galleryGrid}>
+            {visibleGalleryImages.map((img, visibleIdx) => {
+              const isHero = HOMEPAGE_GRID_HERO_FILENAMES.includes(img.filename);
+              return (
+                <GalleryCard
+                  key={img.filename}
+                  image={`/images/${img.filename}`}
+                  imageAlt={img.alt}
+                  title={img.category.charAt(0).toUpperCase() + img.category.slice(1)}
+                  subCategory={img.subCategory}
+                  date={img.date}
+                  span={isHero ? "hero" : "standard"}
+                  index={img._originalIndex}
+                  onSelect={() => handleOpenLightbox(visibleIdx)}
+                  isVisible={revealedCards.has(img._originalIndex)}
+                  filterActive={true}
+                />
+              );
+            })}
+          </div>
+          <GalleryLightbox
+            images={lightboxImages}
+            currentIndex={lightboxIndex}
+            onClose={handleCloseLightbox}
+            onPrev={handlePrevImage}
+            onNext={handleNextImage}
+          />
         </HorizontalPage>
 
         {/* ══════════════════════════════════════════════════════════════
