@@ -8,7 +8,7 @@
 export const HERO_CONTENT = {
   statement:
     "St. Elizabeth High School inspires transformative learning through meaningful relationships, academic excellence and unique opportunities. With an average class size of 15 students, each student is challenged, supported and most of all...",
-  heading: "Guiding Minds, Nurturing Hearts, Building Futures",
+  heading: "Nurturing Hearts",
   loadOverlayText: "WE BELIEVE",
 } as const;
 
