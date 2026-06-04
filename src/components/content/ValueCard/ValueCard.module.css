@@ -1,5 +1,100 @@
-.inner {
+/* ═══════════════════════════════════════════════════════════════════════
+   ValueCard — layered image card with watermark number
+
+   Z-index stacking:
+     z-0  imageWrapper  — full-bleed background photograph
+     z-1  overlay       — dark gradient for text legibility
+     z-2  watermark     — large decorative number, 8 % opacity
+     z-3  content       — title + body text, flex-end aligned
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Image layer ──────────────────────────────────────── */
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+  transform: scale(var(--card-hover-scale, 1));
+}
+
+/* ── Gradient overlay ────────────────────────────────── */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 23, 23, 0.35) 0%,
+    rgba(23, 23, 23, 0.55) 60%,
+    rgba(23, 23, 23, 0.82) 100%
+  );
+}
+
+/* ── Decorative watermark number ─────────────────────── */
+
+.watermark {
+  position: absolute;
+  right: clamp(12px, 2vw, 24px);
+  bottom: clamp(8px, 1.5vw, 20px);
+  z-index: 2;
+  font-family: var(--font-sans);
+  font-size: clamp(5rem, 8vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+  color: var(--color-paper);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Text content ────────────────────────────────────── */
+
+.content {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 1vw, 14px);
+  justify-content: flex-end;
+  gap: clamp(8px, 1.2vw, 14px);
+  padding: clamp(18px, 2.5vw, 28px);
+  min-height: clamp(200px, 22vh, 300px);
+  color: var(--color-paper);
+}
+
+/* Force light text on the dark overlay background.
+   Heading.card and Text.muted both default to --color-ink.
+   CSS Modules hashes class names, so we target with [class*="…"]. */
+.content h3 {
+  color: var(--color-paper);
+}
+
+.content p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ── Mobile: shorter cards when stacked vertically ───── */
+
+@media (max-width: 760px) {
+  .content {
+    min-height: clamp(200px, 30vh, 280px);
+  }
+
+  .watermark {
+    font-size: clamp(3.5rem, 8vw, 5rem);
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none;
+  }
 }

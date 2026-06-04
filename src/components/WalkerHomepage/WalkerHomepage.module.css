@@ -83,15 +83,23 @@
 /* ── Panel 2: Values ────────────────────────────────────────────────── */
 
 .valuesPanel {
-  grid-template-columns: minmax(280px, 0.72fr) minmax(360px, 1fr);
-  align-items: center;
-  gap: clamp(28px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 36px);
   padding: clamp(28px, 5vw, 72px);
   background: var(--color-soft);
 }
 
 .valuesIntro {
-  max-width: 640px;
+  max-width: 720px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.valuesIntro h2 {
+  font-size: calc(var(--text-scale) * clamp(1.6rem, 3vw, 2.5rem));
+  line-height: 1.08;
 }
 
 .valuesIntro p {
@@ -100,8 +108,9 @@
 
 .valuesCards {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
-  gap: clamp(16px, 2vw, 28px);
+  gap: clamp(16px, 2vw, 24px);
   min-width: 0;
 }
 
@@ -185,7 +194,12 @@
 
 @media (max-width: 1100px) {
   .valuesPanel {
-    grid-template-columns: minmax(240px, 0.75fr) minmax(340px, 1fr);
+    padding: clamp(28px, 4vw, 56px);
+    gap: clamp(14px, 2.5vw, 28px);
+  }
+
+  .valuesIntro h2 {
+    font-size: calc(var(--text-scale) * clamp(1.4rem, 3vw, 2rem));
   }
 
   .gridHeader,
@@ -215,18 +229,21 @@
   }
 
   .valuesPanel {
-    grid-template-columns: minmax(230px, 0.7fr) minmax(480px, 1.3fr);
-    align-content: center;
-    gap: 20px;
-    padding: 78px 20px 28px;
+    padding: 48px 20px 28px;
+    gap: 28px;
   }
 
   .valuesIntro {
-    max-width: 300px;
+    max-width: 100%;
+  }
+
+  .valuesIntro h2 {
+    font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
   }
 
   .valuesCards {
-    gap: 12px;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .statsPanel {
@@ -242,8 +259,11 @@
 
 @media (max-width: 420px) {
   .valuesPanel {
-    grid-template-columns: minmax(210px, 0.62fr) minmax(450px, 1.38fr);
-    padding-inline: 18px;
+    padding: 40px 16px 24px;
+  }
+
+  .valuesCards {
+    gap: 16px;
   }
 }
 
@@ -267,12 +287,7 @@
   }
 
   .valuesPanel {
-    grid-template-columns: minmax(220px, 0.68fr) minmax(520px, 1.32fr);
-    gap: 20px;
-    padding: 58px 22px 18px;
-  }
-
-  .valuesCards {
-    gap: 12px;
+    gap: 14px;
+    padding: 28px 22px 18px;
   }
 }
