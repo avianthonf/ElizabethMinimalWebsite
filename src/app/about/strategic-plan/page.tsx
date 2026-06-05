@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { Hero } from "@/components/content/Hero";
@@ -30,6 +31,21 @@ export default function StrategicPlanPage() {
     <>
       <Header navLinks={HEADER_NAV_LINKS} transparent={false} fixed />
       <main id="main-content">
+        <nav
+          aria-label="Breadcrumb"
+          style={{
+            padding: "var(--spacing-md) 0 0",
+            fontSize: "calc(var(--text-scale) * 0.85rem)",
+            color: "var(--color-muted)",
+          }}
+        >
+          <Container width="narrow">
+            <Link href="/about" style={{ color: "var(--color-muted)", textDecoration: "underline" }}>
+              About
+            </Link>
+            {" / Strategic Plan"}
+          </Container>
+        </nav>
         <Hero
           eyebrow="Our Future"
           heading="Strategic Plan"
@@ -54,7 +70,7 @@ export default function StrategicPlanPage() {
                       <Heading level="h3" variant="card">
                         {point.title}
                       </Heading>
-                      <Text variant="muted" size="small">
+                      <Text variant="muted" size="medium">
                         {point.description}
                       </Text>
                     </Stack>

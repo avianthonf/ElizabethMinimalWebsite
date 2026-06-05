@@ -28,7 +28,7 @@ export function Heading({
   variant = "default",
   children,
   className,
-  uppercase = variant === "hero" || variant === "section",
+  uppercase = false,
 }: HeadingProps): ReactNode {
   const composedClassName = [
     styles.heading,

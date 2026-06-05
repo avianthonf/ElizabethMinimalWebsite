@@ -10,6 +10,8 @@ export interface SplitLayoutProps {
   ratio?: SplitRatio;
   gap?: SplitGap;
   reverse?: boolean;
+  /** Viewport width (px) at which the split collapses to a single column. Default 760. */
+  stackAt?: number;
   className?: string;
 }
 
@@ -27,6 +29,7 @@ export function SplitLayout({
   ratio = "1-2",
   gap = "large",
   reverse = false,
+  stackAt,
   className,
 }: SplitLayoutProps): ReactNode {
   const composedClassName = [
@@ -39,9 +42,19 @@ export function SplitLayout({
     .join(" ");
 
   return (
-    <div className={composedClassName} style={{ gap: `var(--spacing-${gap})` }}>
-      <div className={styles.left}>{left}</div>
-      <div className={styles.right}>{right}</div>
-    </div>
+    <>
+      {stackAt !== undefined && (
+        <style>
+          {`@media (max-width: ${stackAt}px) { .split-custom-${stackAt} { grid-template-columns: 1fr; } }`}
+        </style>
+      )}
+      <div
+        className={composedClassName + (stackAt !== undefined ? ` split-custom-${stackAt}` : "")}
+        style={{ gap: `var(--spacing-${gap})` }}
+      >
+        <div className={styles.left}>{left}</div>
+        <div className={styles.right}>{right}</div>
+      </div>
+    </>
   );
 }

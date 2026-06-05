@@ -50,18 +50,21 @@ export const HISTORY_TIMELINE = [
 
 export const STAFF_MEMBERS = [
   {
-    name: "Principal",
-    title: "Head of School",
+    name: "", // TODO: Add actual name
+    role: "Principal",
+    department: "Head of School",
     description: "Leading St. Elizabeth with vision, dedication, and a deep commitment to the school's mission of Truth and Honesty.",
   },
   {
-    name: "Vice Principal",
-    title: "Academic Affairs",
+    name: "", // TODO: Add actual name
+    role: "Vice Principal",
+    department: "Academic Affairs",
     description: "Overseeing curriculum development, teacher mentorship, and academic standards across all grade levels.",
   },
   {
-    name: "Board of Trustees",
-    title: "Governance",
+    name: "", // TODO: Add actual name
+    role: "Board Chair",
+    department: "Governance",
     description: "A dedicated group of community leaders ensuring the school's long-term sustainability and adherence to its founding values.",
   },
 ] as const;

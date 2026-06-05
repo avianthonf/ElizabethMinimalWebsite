@@ -18,6 +18,8 @@ export interface MediaBlockProps {
   description: string;
   mediaPosition?: MediaPosition;
   cta?: { text: string; href: string };
+  /** Viewport width (px) at which the inner split collapses. Default 760. */
+  stackAt?: number;
   className?: string;
 }
 
@@ -29,6 +31,7 @@ export function MediaBlock({
   description,
   mediaPosition = "left",
   cta,
+  stackAt,
   className,
 }: MediaBlockProps): ReactNode {
   const mediaElement =
@@ -79,6 +82,7 @@ export function MediaBlock({
       right={mediaPosition === "left" ? textContent : mediaElement}
       ratio="equal"
       gap="large"
+      stackAt={stackAt}
       className={className}
     />
   );

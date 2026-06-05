@@ -11,3 +11,10 @@
   object-fit: cover;
   display: block;
 }
+
+/* Stack media and text vertically when nested inside a split container */
+@media (max-width: 1100px) {
+  .imageWrapper {
+    aspect-ratio: 16 / 9;
+  }
+}

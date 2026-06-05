@@ -60,18 +60,18 @@ describe("About Data", () => {
       expect(STAFF_MEMBERS).toHaveLength(3);
     });
 
-    it("all members have name, title, and description", () => {
+    it("all members have role, department, and description", () => {
       for (const member of STAFF_MEMBERS) {
-        expect(member.name).toBeTruthy();
-        expect(member.title).toBeTruthy();
+        expect(member.role).toBeTruthy();
+        expect(member.department).toBeTruthy();
         expect(member.description.length).toBeGreaterThan(20);
       }
     });
 
-    it("includes Board of Trustees", () => {
-      const trustees = STAFF_MEMBERS.find((m) => m.name === "Board of Trustees");
-      expect(trustees).toBeDefined();
-      expect(trustees!.title).toBe("Governance");
+    it("includes leadership roles", () => {
+      const principal = STAFF_MEMBERS.find((m) => m.role === "Principal");
+      expect(principal).toBeDefined();
+      expect(principal!.department).toBe("Head of School");
     });
   });
 

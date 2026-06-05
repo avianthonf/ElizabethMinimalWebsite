@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { Hero } from "@/components/content/Hero";
@@ -29,6 +30,21 @@ export default function StaffPage() {
     <>
       <Header navLinks={HEADER_NAV_LINKS} transparent={false} fixed />
       <main id="main-content">
+        <nav
+          aria-label="Breadcrumb"
+          style={{
+            padding: "var(--spacing-md) 0 0",
+            fontSize: "calc(var(--text-scale) * 0.85rem)",
+            color: "var(--color-muted)",
+          }}
+        >
+          <Container width="narrow">
+            <Link href="/about" style={{ color: "var(--color-muted)", textDecoration: "underline" }}>
+              About
+            </Link>
+            {" / Staff & Leadership"}
+          </Container>
+        </nav>
         <Hero
           eyebrow="Our Leaders"
           heading="Staff & Leadership"
@@ -48,12 +64,21 @@ export default function StaffPage() {
               </Heading>
               <Stack gap="medium">
                 {STAFF_MEMBERS.map((member) => (
-                  <Card key={member.name} variant="default" padding="medium">
+                  <Card
+                    key={member.role}
+                    variant="default"
+                    padding="medium"
+                  >
                     <Stack gap="small">
-                      <Heading level="h3" variant="card">
-                        {member.name}
-                      </Heading>
-                      <Text variant="eyebrow">{member.title}</Text>
+                      {member.name && (
+                        <Heading level="h3" variant="card">
+                          {member.name}
+                        </Heading>
+                      )}
+                      <Text variant="eyebrow">{member.role}</Text>
+                      <Text variant="muted" size="small">
+                        {member.department}
+                      </Text>
                       <Text variant="muted" size="medium">
                         {member.description}
                       </Text>
