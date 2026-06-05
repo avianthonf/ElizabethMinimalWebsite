@@ -74,6 +74,7 @@ export default function AboutPage() {
                     heading="A Tradition of Excellence"
                     description="For over seven decades, St. Elizabeth has provided quality education to students from across North Goa."
                     mediaPosition="left"
+                    stackAt={900}
                     cta={{ text: "Our History", href: "/about/history" }}
                   />
                 </Stack>
@@ -113,6 +114,16 @@ export default function AboutPage() {
                       title="Staff"
                       description="Our leadership team"
                       href="/about/staff"
+                    />
+                    <IconCard
+                      icon={
+                        <Icon size="medium">
+                          <AcademicIcon />
+                        </Icon>
+                      }
+                      title="Strategic Plan"
+                      description="Priorities for the future"
+                      href="/about/strategic-plan"
                     />
                   </Stack>
                 </Stack>

@@ -164,7 +164,7 @@ export const FOOTER_INTRO = {
 
 Ven. Fr. Hilario Gonsalves Rd
 Pomburpa, Bardez
-Goa 4031102, India
+Goa 403511, India
 
 info@stelizabethhighschool.in`,
 };

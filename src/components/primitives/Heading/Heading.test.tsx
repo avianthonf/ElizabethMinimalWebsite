@@ -9,7 +9,7 @@ describe("Heading", () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it("renders hero variant as h1 with uppercase", () => {
+  it("renders hero variant as h1 without uppercase by default", () => {
     render(
       <Heading level="h1" variant="hero">
         Known
@@ -18,6 +18,7 @@ describe("Heading", () => {
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toBeInTheDocument();
     expect(heading.textContent).toBe("Known");
+    // Uppercase is off by default; pass uppercase prop to enable it
   });
 
   it("respects uppercase prop override", () => {

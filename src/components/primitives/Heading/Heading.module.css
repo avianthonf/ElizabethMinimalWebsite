@@ -7,7 +7,7 @@
 
 .h1 {
   font-size: calc(var(--text-scale) * var(--heading-h1-size, clamp(3.92rem, 11.9vw, 9.8rem)));
-  line-height: 0.72;
+  line-height: 0.88;
 }
 
 .h2 {

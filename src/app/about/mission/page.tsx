@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { Hero } from "@/components/content/Hero";
@@ -30,10 +31,25 @@ export default function MissionPage() {
     <>
       <Header navLinks={HEADER_NAV_LINKS} transparent={false} fixed />
       <main id="main-content">
+        <nav
+          aria-label="Breadcrumb"
+          style={{
+            padding: "var(--spacing-md) 0 0",
+            fontSize: "calc(var(--text-scale) * 0.85rem)",
+            color: "var(--color-muted)",
+          }}
+        >
+          <Container width="narrow">
+            <Link href="/about" style={{ color: "var(--color-muted)", textDecoration: "underline" }}>
+              About
+            </Link>
+            {" / Mission & Values"}
+          </Container>
+        </nav>
         <Hero
           eyebrow="Our Purpose"
           heading="Mission & Values"
-          description={MISSION_STATEMENT.body}
+          description="A nurturing Catholic school community dedicated to academic excellence, character formation, and service to others."
           backgroundImage={`/images/${COMMUNITY_IMAGES[2].filename}`}
         />
 
@@ -44,9 +60,14 @@ export default function MissionPage() {
         >
           <Container width="narrow">
             <Stack gap="large">
-              <Heading level="h2" variant="section">
-                {MISSION_STATEMENT.heading}
-              </Heading>
+              <Stack gap="medium">
+                <Heading level="h2" variant="section">
+                  {MISSION_STATEMENT.heading}
+                </Heading>
+                <Text variant="muted" size="medium">
+                  {MISSION_STATEMENT.body}
+                </Text>
+              </Stack>
               <Grid columns={2} gap="medium" responsive>
                 {MISSION_STATEMENT.values.map((value) => (
                   <Card key={value.title} variant="default" padding="medium">
@@ -54,7 +75,7 @@ export default function MissionPage() {
                       <Heading level="h3" variant="card">
                         {value.title}
                       </Heading>
-                      <Text variant="muted" size="small">
+                      <Text variant="muted" size="medium">
                         {value.description}
                       </Text>
                     </Stack>

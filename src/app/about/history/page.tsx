@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { Hero } from "@/components/content/Hero";
@@ -17,6 +18,7 @@ import {
 } from "@/data/navigation";
 import { HISTORY_TIMELINE } from "@/data/about";
 import { COMMUNITY_IMAGES } from "@/data/images";
+import styles from "./history.module.css";
 
 export const metadata: Metadata = {
   title: "History | St. Elizabeth High School",
@@ -29,6 +31,21 @@ export default function HistoryPage() {
     <>
       <Header navLinks={HEADER_NAV_LINKS} transparent={false} fixed />
       <main id="main-content">
+        <nav
+          aria-label="Breadcrumb"
+          style={{
+            padding: "var(--spacing-md) 0 0",
+            fontSize: "calc(var(--text-scale) * 0.85rem)",
+            color: "var(--color-muted)",
+          }}
+        >
+          <Container width="narrow">
+            <Link href="/about" style={{ color: "var(--color-muted)", textDecoration: "underline" }}>
+              About
+            </Link>
+            {" / History"}
+          </Container>
+        </nav>
         <Hero
           eyebrow="Our Story"
           heading="School History"
@@ -46,18 +63,20 @@ export default function HistoryPage() {
               <Heading level="h2" variant="section">
                 Our Journey
               </Heading>
-              <Stack gap="medium">
+              <div className={styles.timeline}>
                 {HISTORY_TIMELINE.map((entry) => (
-                  <Card key={entry.year} variant="default" padding="medium">
-                    <Stack gap="small">
-                      <Text variant="eyebrow">{entry.year}</Text>
+                  <div key={entry.year} className={styles.entry}>
+                    <div className={styles.year}>
+                      <span className={styles.yearText}>{entry.year}</span>
+                    </div>
+                    <Card variant="default" padding="medium">
                       <Text variant="muted" size="medium">
                         {entry.event}
                       </Text>
-                    </Stack>
-                  </Card>
+                    </Card>
+                  </div>
                 ))}
-              </Stack>
+              </div>
             </Stack>
           </Container>
         </Section>

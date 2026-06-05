@@ -33,6 +33,7 @@
 
 .introBody {
   white-space: pre-line;
+  overflow-wrap: break-word;
 }
 
 /* ── Link groups ──────────────────────────────────── */
