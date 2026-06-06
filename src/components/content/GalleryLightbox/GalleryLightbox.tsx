@@ -1,9 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import styles from "./GalleryLightbox.module.css";
 
 export interface LightboxImage {
@@ -28,51 +30,31 @@ export function GalleryLightbox({
   onPrev,
   onNext,
 }: GalleryLightboxProps): ReactNode | null {
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const prevFocusRef = useRef<HTMLElement | null>(null);
+  const isActive = currentIndex >= 0 && currentIndex < images.length;
 
-  // Save and restore focus
+  // ── Focus trap + body scroll lock ──────────────────────────────────
+
+  const overlayRef = useFocusTrap({ isActive, onEscape: onClose });
+  useBodyScrollLock(isActive);
+
+  // ── Arrow key navigation (separate from focus trap Escape handling) ─
+
   useEffect(() => {
-    if (currentIndex < 0) return;
-    prevFocusRef.current = document.activeElement as HTMLElement;
-    closeButtonRef.current?.focus();
-  }, [currentIndex]);
+    if (!isActive) return;
 
-  // Keyboard navigation
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      switch (e.key) {
-        case "Escape":
-          onClose();
-          break;
-        case "ArrowLeft":
-          e.preventDefault();
-          onPrev();
-          break;
-        case "ArrowRight":
-          e.preventDefault();
-          onNext();
-          break;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        onPrev();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        onNext();
       }
-    },
-    [onClose, onPrev, onNext],
-  );
-
-  useEffect(() => {
-    if (currentIndex < 0) return;
+    };
 
     document.addEventListener("keydown", handleKeyDown);
-    // Prevent body scroll while lightbox is open
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-      // Restore focus
-      prevFocusRef.current?.focus();
-    };
-  }, [currentIndex, handleKeyDown]);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isActive, onPrev, onNext]);
 
   // Close on backdrop click
   const handleBackdropClick = useCallback(
@@ -104,7 +86,6 @@ export function GalleryLightbox({
     >
       {/* Close button */}
       <button
-        ref={closeButtonRef}
         className={styles.closeButton}
         onClick={onClose}
         type="button"

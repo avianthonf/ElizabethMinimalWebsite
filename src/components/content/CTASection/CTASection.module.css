@@ -10,12 +10,12 @@
 /* ── Light text overrides for dark backgrounds ────── */
 
 .lightHeading {
-  color: var(--color-paper);
+  color: var(--s-color-surface);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
 }
 
 .lightText {
-  color: var(--color-paper);
+  color: var(--s-color-surface);
   opacity: 0.9;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .ghostLight {
-  color: var(--color-paper) !important;
+  color: var(--s-color-surface) !important;
 }
 
 .ghostLight:hover {

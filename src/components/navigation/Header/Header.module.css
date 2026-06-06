@@ -22,12 +22,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  color: var(--header-color, var(--color-ink));
+  color: var(--header-color, var(--s-color-text));
 }
 
 .transparent {
   background: transparent;
-  color: var(--header-color, var(--color-paper));
+  color: var(--header-color, var(--s-color-surface));
+}
+
+.solid {
+  background: var(--s-color-surface);
+  color: var(--s-color-text);
+  box-shadow: 0 1px 0 var(--s-color-border);
 }
 
 /* ── Brand ─────────────────────────────────────────── */
@@ -85,40 +91,11 @@
 
 /* ── Buttons ───────────────────────────────────────── */
 
-.searchButton,
 .menuButton {
   border: 0;
   color: currentColor;
   background: transparent;
   cursor: pointer;
-}
-
-.searchButton {
-  position: relative;
-  width: 28px;
-  height: 28px;
-}
-
-.searchButton span {
-  position: absolute;
-  inset: 4px 6px 6px 4px;
-  border: 3px solid currentColor;
-  border-radius: 50%;
-}
-
-.searchButton span::after {
-  position: absolute;
-  right: -8px;
-  bottom: -8px;
-  width: 6px;
-  height: 3px;
-  background: currentColor;
-  border-radius: 999px;
-  transform: rotate(45deg);
-  content: "";
-}
-
-.menuButton {
   display: flex;
   align-items: center;
   gap: 6px;

@@ -23,7 +23,7 @@ export interface FooterProps {
   visualContent?: ReactNode;
   socialLinks?: FooterSocialLink[];
   copyright?: string;
-  background?: "soft" | "maroon";
+  background?: "soft" | "primary";
   className?: string;
 }
 
@@ -103,11 +103,11 @@ export function Footer({
   intro = DEFAULT_INTRO,
   socialLinks = DEFAULT_SOCIAL,
   copyright = DEFAULT_COPYRIGHT,
-  background = "maroon",
+  background = "primary",
   className,
 }: FooterProps): ReactNode {
-  const isDark = background === "maroon";
-  const composedClassName = [styles.footer, isDark ? styles.bgMaroon : styles.bgSoft, className]
+  const isDark = background === "primary";
+  const composedClassName = [styles.footer, isDark ? styles.bgPrimary : styles.bgSoft, className]
     .filter(Boolean)
     .join(" ");
 

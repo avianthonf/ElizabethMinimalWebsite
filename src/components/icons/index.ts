@@ -1,4 +1,2 @@
-export { AcademicIcon } from "./AcademicIcon";
-export { CommunityIcon } from "./CommunityIcon";
-export { SportsIcon } from "./SportsIcon";
-export { ArtsIcon } from "./ArtsIcon";
+export { SchoolIcon } from "./SchoolIcon";
+export type { SchoolIconVariant, SchoolIconProps } from "./SchoolIcon";

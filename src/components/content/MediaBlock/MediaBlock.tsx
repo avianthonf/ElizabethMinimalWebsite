@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { SplitLayout } from "@/components/layout/SplitLayout";
+import type { SplitRatio } from "@/components/layout/SplitLayout";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { Button } from "@/components/primitives/Button";
@@ -20,6 +21,8 @@ export interface MediaBlockProps {
   cta?: { text: string; href: string };
   /** Viewport width (px) at which the inner split collapses. Default 760. */
   stackAt?: number;
+  /** Grid ratio for the inner split. Default "equal". */
+  ratio?: SplitRatio;
   className?: string;
 }
 
@@ -32,6 +35,7 @@ export function MediaBlock({
   mediaPosition = "left",
   cta,
   stackAt,
+  ratio = "equal",
   className,
 }: MediaBlockProps): ReactNode {
   const mediaElement =
@@ -80,7 +84,7 @@ export function MediaBlock({
     <SplitLayout
       left={mediaPosition === "left" ? mediaElement : textContent}
       right={mediaPosition === "left" ? textContent : mediaElement}
-      ratio="equal"
+      ratio={ratio}
       gap="large"
       stackAt={stackAt}
       className={className}

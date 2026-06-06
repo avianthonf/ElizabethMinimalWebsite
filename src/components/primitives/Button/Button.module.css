@@ -26,30 +26,30 @@
 /* ── Variants ────────────────────────────────────── */
 
 .primary {
-  background: var(--color-maroon);
-  color: var(--color-paper);
-  border: 2px solid var(--color-maroon);
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
+  border: 2px solid var(--s-color-primary);
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--color-maroon-dark);
-  border-color: var(--color-maroon-dark);
+  background: var(--s-color-primary-dark);
+  border-color: var(--s-color-primary-dark);
 }
 
 .secondary {
   background: transparent;
-  color: var(--color-maroon);
-  border: 2px solid var(--color-maroon);
+  color: var(--s-color-primary);
+  border: 2px solid var(--s-color-primary);
 }
 
 .secondary:hover:not(:disabled) {
-  background: var(--color-maroon);
-  color: var(--color-paper);
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
 }
 
 .ghost {
   background: transparent;
-  color: var(--color-maroon);
+  color: var(--s-color-primary);
   border: 2px solid transparent;
 }
 

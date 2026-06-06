@@ -19,7 +19,7 @@
 .image {
   object-fit: cover;
   transition: transform var(--transition-normal);
-  transform: scale(var(--card-hover-scale, 1));
+  transform: scale(1);
 }
 
 /* ── Gradient overlay ────────────────────────────────── */
@@ -48,7 +48,7 @@
   font-weight: 900;
   line-height: 0.72;
   letter-spacing: -0.08em;
-  color: var(--color-paper);
+  color: var(--s-color-surface);
   opacity: 0.08;
   pointer-events: none;
   user-select: none;
@@ -65,23 +65,23 @@
   gap: clamp(8px, 1.2vw, 14px);
   padding: clamp(18px, 2.5vw, 28px);
   min-height: clamp(200px, 22vh, 300px);
-  color: var(--color-paper);
+  color: var(--s-color-surface);
 }
 
 /* Force light text on the dark overlay background.
-   Heading.card and Text.muted both default to --color-ink.
+   Heading.card and Text.muted both default to the text colour.
    CSS Modules hashes class names, so we target with [class*="…"]. */
 .content h3 {
-  color: var(--color-paper);
+  color: var(--s-color-surface);
 }
 
 .content p {
   color: rgba(255, 255, 255, 0.82);
 }
 
-/* ── Mobile: shorter cards when stacked vertically ───── */
+/* ── Narrow containers: shorter cards, smaller watermark ─ */
 
-@media (max-width: 760px) {
+@container (max-width: 760px) {
   .content {
     min-height: clamp(200px, 30vh, 280px);
   }

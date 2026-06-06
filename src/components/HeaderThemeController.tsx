@@ -20,8 +20,8 @@ import { useEffect } from "react";
  */
 
 const HEADER_VAR = "--header-color";
-const LIGHT_COLOR = "var(--color-paper)";
-const DARK_COLOR = "var(--color-ink)";
+const LIGHT_COLOR = "var(--s-color-surface)";
+const DARK_COLOR = "var(--s-color-text)";
 const ATTR = "[data-header-theme]";
 
 function resolveTheme(theme: string | undefined): string {

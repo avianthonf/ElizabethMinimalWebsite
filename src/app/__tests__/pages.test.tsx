@@ -27,38 +27,46 @@ vi.mock("@/components/navigation/MenuOverlay", () => ({
   MenuOverlay: () => <div data-testid="menu-overlay" />,
 }));
 
+vi.mock("@/components/HeaderThemeController", () => ({
+  HeaderThemeController: () => null,
+}));
+
+vi.mock("@/components/navigation/Header", () => ({
+  Header: () => <header data-testid="header" />,
+}));
+
 // ── Homepage ─────────────────────────────────────────────────────────────
 
 import HomePage from "../page";
-import AboutPage from "../about/page";
-import AboutMissionPage from "../about/mission/page";
-import AboutHistoryPage from "../about/history/page";
-import AboutStaffPage from "../about/staff/page";
-import AboutStrategicPlanPage from "../about/strategic-plan/page";
-import AdmissionsPage from "../admissions/page";
-import AdmissionsWhyPage from "../admissions/why/page";
-import AdmissionsVisitPage from "../admissions/visit/page";
-import AdmissionsApplyPage from "../admissions/apply/page";
-import AdmissionsTuitionPage from "../admissions/tuition/page";
-import AdmissionsFaqsPage from "../admissions/faqs/page";
-import AcademicsPage from "../academics/page";
-import AcademicsDepartmentsPage from "../academics/departments/page";
-import AcademicsLanguagesPage from "../academics/languages/page";
-import AcademicsLibrariesPage from "../academics/libraries/page";
-import AcademicsCollegeCounselingPage from "../academics/college-counseling/page";
-import AthleticsPage from "../athletics/page";
-import AthleticsTeamsPage from "../athletics/teams/page";
-import ArtsPage from "../arts/page";
-import ArtsVisualArtsPage from "../arts/visual-arts/page";
-import ArtsPerformingArtsPage from "../arts/performing-arts/page";
-import StudentLifePage from "../student-life/page";
-import StudentLifeClubsPage from "../student-life/clubs/page";
-import AlumniPage from "../alumni/page";
-import NewsPage from "../news/page";
-import ContactPage from "../contact/page";
-import ContactVisitPage from "../contact/visit/page";
-import HowToHelpPage from "../how-to-help/page";
-import HowToHelpGivePage from "../how-to-help/give/page";
+import AboutPage from "../(site)/about/page";
+import AboutMissionPage from "../(site)/about/mission/page";
+import AboutHistoryPage from "../(site)/about/history/page";
+import AboutStaffPage from "../(site)/about/staff/page";
+import AboutStrategicPlanPage from "../(site)/about/strategic-plan/page";
+import AdmissionsPage from "../(site)/admissions/page";
+import AdmissionsWhyPage from "../(site)/admissions/why/page";
+import AdmissionsVisitPage from "../(site)/admissions/visit/page";
+import AdmissionsApplyPage from "../(site)/admissions/apply/page";
+import AdmissionsTuitionPage from "../(site)/admissions/tuition/page";
+import AdmissionsFaqsPage from "../(site)/admissions/faqs/page";
+import AcademicsPage from "../(site)/academics/page";
+import AcademicsDepartmentsPage from "../(site)/academics/departments/page";
+import AcademicsLanguagesPage from "../(site)/academics/languages/page";
+import AcademicsLibrariesPage from "../(site)/academics/libraries/page";
+import AcademicsCollegeCounselingPage from "../(site)/academics/college-counseling/page";
+import AthleticsPage from "../(site)/athletics/page";
+import AthleticsTeamsPage from "../(site)/athletics/teams/page";
+import ArtsPage from "../(site)/arts/page";
+import ArtsVisualArtsPage from "../(site)/arts/visual-arts/page";
+import ArtsPerformingArtsPage from "../(site)/arts/performing-arts/page";
+import StudentLifePage from "../(site)/student-life/page";
+import StudentLifeClubsPage from "../(site)/student-life/clubs/page";
+import AlumniPage from "../(site)/alumni/page";
+import NewsPage from "../(site)/news/page";
+import ContactPage from "../(site)/contact/page";
+import ContactVisitPage from "../(site)/contact/visit/page";
+import HowToHelpPage from "../(site)/how-to-help/page";
+import HowToHelpGivePage from "../(site)/how-to-help/give/page";
 
 // ── Tests ────────────────────────────────────────────────────────────────
 

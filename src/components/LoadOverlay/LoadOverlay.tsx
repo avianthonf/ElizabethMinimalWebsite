@@ -5,7 +5,12 @@ import styles from "./LoadOverlay.module.css";
 
 const LOAD_MESSAGE = "WE BELIEVE";
 
-export function LoadOverlay(): ReactNode {
+export interface LoadOverlayProps {
+  /** Called when the fade-out animation completes. Parent can use this to show Header etc. */
+  onComplete?: () => void;
+}
+
+export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
   const maskId = useId();
   const [isVisible, setIsVisible] = useState(true);
 
@@ -16,6 +21,7 @@ export function LoadOverlay(): ReactNode {
   const handleAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
     if (event.currentTarget === event.target && event.animationName.includes("revealOverlay")) {
       setIsVisible(false);
+      onComplete?.();
     }
   };
 
@@ -26,7 +32,7 @@ export function LoadOverlay(): ReactNode {
       aria-live="polite"
       onAnimationEnd={handleAnimationEnd}
     >
-      <svg className={styles.maskStage} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <svg className={styles.maskStage} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
           <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
             <rect width="100" height="100" fill="white" />

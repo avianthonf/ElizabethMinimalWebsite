@@ -1,0 +1,99 @@
+/* ── Panel 1: Hero ──────────────────────────────────────────────────── */
+
+.heroPanel {
+  place-items: stretch;
+  color: var(--s-color-surface);
+  background: var(--s-color-text);
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+}
+
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.18), transparent 32%),
+    radial-gradient(ellipse at 70% 80%, rgba(12, 33, 124, 0.4), transparent 50%),
+    linear-gradient(135deg, var(--s-color-primary), var(--s-color-primary-dark) 46%, #02081f 100%);
+}
+
+.heroOverlay {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  display: grid;
+  max-width: min(1180px, calc(100vw - 32px));
+  grid-template-columns: minmax(280px, 0.48fr) minmax(420px, 0.72fr);
+  align-items: end;
+  gap: clamp(28px, 5vw, 76px);
+  padding: 0 clamp(22px, 7vw, 84px) clamp(18px, 2.6vw, 38px);
+}
+
+.heroHeading {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: calc(var(--text-scale) * clamp(4.2rem, 10vw, 10.5rem));
+  font-weight: 900;
+  line-height: 0.72;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+  color: var(--s-color-surface);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+.heroStatement {
+  max-width: 520px;
+  margin: 0;
+  color: var(--s-color-surface);
+  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
+  font-weight: 900;
+  line-height: 1.62;
+  text-align: center;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.38);
+}
+
+/* ── Mobile: ≤760px ─────────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .heroOverlay {
+    max-width: calc(100vw - 32px);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 18px;
+    padding: 0 20px 26px;
+  }
+
+  .heroHeading {
+    font-size: calc(var(--text-scale) * clamp(2.73rem, 13.3vw, 4.55rem));
+  }
+
+  .heroStatement {
+    font-size: calc(var(--text-scale) * clamp(0.546rem, 2.24vw, 0.7rem));
+    line-height: 1.42;
+  }
+}
+
+/* ── Landscape: max-height ≤520px + landscape orientation ───────────── */
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .heroOverlay {
+    max-width: min(880px, calc(100vw - 32px));
+    grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
+    gap: 20px;
+    padding: 0 22px 18px;
+  }
+
+  .heroHeading {
+    font-size: calc(var(--text-scale) * clamp(2.94rem, 10.5vw, 4.9rem));
+  }
+
+  .heroStatement {
+    font-size: calc(var(--text-scale) * 0.63rem);
+    line-height: 1.35;
+  }
+}

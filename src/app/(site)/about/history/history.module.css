@@ -1,0 +1,75 @@
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: clamp(40px, 6vw, 80px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--s-color-border);
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(80px, 12vw, 160px) 1fr;
+  gap: var(--spacing-md);
+  padding-left: 0;
+}
+
+/* Year badge */
+.year {
+  position: relative;
+  text-align: right;
+  padding-right: var(--spacing-md);
+  padding-top: clamp(16px, 2.4vw, 34px); /* match card padding */
+}
+
+.yearText {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: calc(var(--text-scale) * clamp(0.9rem, 1.3vw, 1.2rem));
+  color: var(--s-color-primary);
+  white-space: nowrap;
+}
+
+/* Dot connector on the timeline line */
+.year::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: calc(clamp(16px, 2.4vw, 34px) + 0.45em);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--s-color-primary);
+  border: 2px solid var(--s-color-surface);
+  box-shadow: 0 0 0 2px var(--s-color-primary);
+}
+
+@media (max-width: 760px) {
+  .timeline::before {
+    left: clamp(20px, 5vw, 40px);
+  }
+
+  .entry {
+    grid-template-columns: clamp(60px, 16vw, 100px) 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .year {
+    text-align: right;
+    padding-right: var(--spacing-sm);
+  }
+
+  .year::after {
+    right: -6px;
+  }
+}

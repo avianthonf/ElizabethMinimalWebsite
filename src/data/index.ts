@@ -6,6 +6,7 @@ export * from "./academics";
 export * from "./athletics";
 export * from "./arts";
 export * from "./student-life";
+export * from "./visits";
 export * from "./contact";
 export * from "./how-to-help";
 export * from "./alumni";

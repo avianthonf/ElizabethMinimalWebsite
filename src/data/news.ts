@@ -79,3 +79,14 @@ export const UPCOMING_EVENTS = [
     description: "A celebration of student creativity featuring art exhibitions, musical performances, and theatrical productions.",
   },
 ] as const;
+
+// ── Async data getter (CMS-ready) ─────────────────────────────────────
+
+export interface NewsData {
+  NEWS_ARTICLES: typeof NEWS_ARTICLES;
+  UPCOMING_EVENTS: typeof UPCOMING_EVENTS;
+}
+
+export async function getNewsData(): Promise<NewsData> {
+  return { NEWS_ARTICLES, UPCOMING_EVENTS };
+}

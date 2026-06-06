@@ -8,7 +8,7 @@ import { Button } from "@/components/primitives/Button";
 import type { SectionBackground } from "@/components/layout/Section";
 import styles from "./CTASection.module.css";
 
-export type CTABackground = "maroon" | "blue" | "soft";
+export type CTABackground = "primary" | "blue" | "soft";
 
 export interface CTASectionProps {
   heading: string;
@@ -21,7 +21,7 @@ export interface CTASectionProps {
 }
 
 const bgMap: Record<CTABackground, SectionBackground> = {
-  maroon: "maroon",
+  primary: "primary",
   blue: "blue",
   soft: "soft",
 };
@@ -31,11 +31,11 @@ export function CTASection({
   description,
   primaryCTA,
   secondaryCTA,
-  background = "maroon",
+  background = "primary",
   centered = true,
   className,
 }: CTASectionProps): ReactNode {
-  const isDark = background === "maroon" || background === "blue";
+  const isDark = background === "primary" || background === "blue";
 
   return (
     <Section background={bgMap[background]} padding="xlarge" className={className}>

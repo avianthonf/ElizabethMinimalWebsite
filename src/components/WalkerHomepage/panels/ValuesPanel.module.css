@@ -1,0 +1,89 @@
+/* ── Panel 2: Values ────────────────────────────────────────────────── */
+
+.valuesPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 36px);
+  padding: clamp(28px, 5vw, 72px);
+  background: var(--s-color-surface-alt);
+}
+
+.valuesIntro {
+  max-width: 720px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.valuesIntro h2 {
+  font-size: calc(var(--text-scale) * clamp(1.6rem, 3vw, 2.5rem));
+  line-height: 1.08;
+}
+
+.valuesIntro p {
+  color: var(--s-color-text-muted);
+}
+
+.valuesCards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 24px);
+  min-width: 0;
+}
+
+/* ── Tablet: ≤1100px ────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .valuesPanel {
+    padding: clamp(28px, 4vw, 56px);
+    gap: clamp(14px, 2.5vw, 28px);
+  }
+
+  .valuesIntro h2 {
+    font-size: calc(var(--text-scale) * clamp(1.4rem, 3vw, 2rem));
+  }
+}
+
+/* ── Mobile: ≤760px ─────────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .valuesPanel {
+    padding: 48px 20px 28px;
+    gap: 28px;
+  }
+
+  .valuesIntro {
+    max-width: 100%;
+  }
+
+  .valuesIntro h2 {
+    font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
+  }
+
+  .valuesCards {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* ── Small Mobile: ≤420px ───────────────────────────────────────────── */
+
+@media (max-width: 420px) {
+  .valuesPanel {
+    padding: 40px 16px 24px;
+  }
+
+  .valuesCards {
+    gap: 16px;
+  }
+}
+
+/* ── Landscape: max-height ≤520px + landscape orientation ───────────── */
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .valuesPanel {
+    gap: 14px;
+    padding: 28px 22px 18px;
+  }
+}

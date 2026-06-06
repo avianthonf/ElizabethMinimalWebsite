@@ -1,7 +1,16 @@
 import { describe, it, expect } from "vitest";
-import { VALUES, STATS, TESTIMONIALS, LATEST_NEWS, HERO_CONTENT } from "../homepage";
+import { VALUES, STATS, TESTIMONIALS, LATEST_NEWS, HERO_CONTENT, getHomepageData } from "../homepage";
 
 describe("Homepage Data", () => {
+  it("getHomepageData() returns all page content", async () => {
+    const data = await getHomepageData();
+    expect(data.HERO_CONTENT).toBeTruthy();
+    expect(data.VALUES).toHaveLength(3);
+    expect(data.STATS).toHaveLength(3);
+    expect(data.TESTIMONIALS).toHaveLength(3);
+    expect(data.LATEST_NEWS).toHaveLength(3);
+    expect(data.CTA_CONTENT.primaryCTA.text).toBe("Inquire Now");
+  });
   it("has exactly 3 values", () => {
     expect(VALUES).toHaveLength(3);
   });

@@ -3,13 +3,13 @@
   padding: var(--spacing-xl) 0;
 }
 
-.bgMaroon {
-  background: var(--color-maroon);
-  color: var(--color-paper);
+.bgPrimary {
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
 }
 
 .bgSoft {
-  background: var(--color-soft);
+  background: var(--s-color-surface-alt);
 }
 
 /* ── Layout ───────────────────────────────────────── */
@@ -66,7 +66,7 @@
 }
 
 .bgSoft .bottomRow {
-  border-top-color: var(--color-line);
+  border-top-color: var(--s-color-border);
 }
 
 .socialLinks {
@@ -90,7 +90,7 @@
 /* ── Light variants for dark backgrounds ──────────── */
 
 .lightHeading {
-  color: var(--color-paper);
+  color: var(--s-color-surface);
 }
 
 .lightText {

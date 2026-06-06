@@ -11,7 +11,6 @@ export interface HeaderProps {
   brandText?: string;
   brandHref?: string;
   navLinks?: HeaderNavLink[];
-  showSearch?: boolean;
   showMenu?: boolean;
   fixed?: boolean;
   transparent?: boolean;
@@ -47,7 +46,6 @@ export function Header({
   brandText = "St. Elizabeth High School",
   brandHref = "/",
   navLinks = DEFAULT_NAV,
-  showSearch = true,
   showMenu = true,
   fixed = true,
   transparent = true,
@@ -59,7 +57,7 @@ export function Header({
   const composedClassName = [
     styles.titleBar,
     fixed && styles.fixed,
-    transparent && styles.transparent,
+    transparent ? styles.transparent : styles.solid,
     className,
   ]
     .filter(Boolean)
@@ -87,17 +85,6 @@ export function Header({
           </Link>
         ))}
       </nav>
-
-      {showSearch && (
-        <button
-          className={styles.searchButton}
-          type="button"
-          aria-label="Search"
-          disabled
-        >
-          <span aria-hidden="true" />
-        </button>
-      )}
 
       {showMenu && (
         <button

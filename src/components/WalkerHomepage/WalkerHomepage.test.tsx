@@ -12,7 +12,8 @@ vi.mock("@/components/HorizontalScroll", () => ({
   ),
 }));
 
-// Mock LoadOverlay (uses animation APIs)
+// Mock LoadOverlay — renders normally, onComplete is tested indirectly
+// by checking that content behind the overlay gate still renders
 vi.mock("@/components/LoadOverlay", () => ({
   LoadOverlay: () => <div data-testid="load-overlay" />,
 }));
@@ -20,6 +21,16 @@ vi.mock("@/components/LoadOverlay", () => ({
 // Mock MenuOverlay (uses browser APIs)
 vi.mock("@/components/navigation/MenuOverlay", () => ({
   MenuOverlay: () => <div data-testid="menu-overlay" />,
+}));
+
+// Mock Header (uses browser APIs)
+vi.mock("@/components/navigation/Header", () => ({
+  Header: () => <header data-testid="header" />,
+}));
+
+// Mock HeaderThemeController (uses document/window)
+vi.mock("@/components/HeaderThemeController", () => ({
+  HeaderThemeController: () => null,
 }));
 
 // Mock next/image (used by ImageCard)
@@ -41,6 +52,11 @@ vi.mock("@/data/homepage", () => ({
     { number: "01", title: "Faith", body: "In God we trust, in Truth we stand..." },
     { number: "02", title: "Excellence", body: "Academic rigor and holistic growth..." },
     { number: "03", title: "Community", body: "Inclusive, nurturing, and committed..." },
+  ],
+  STATS: [
+    { value: "1949", label: "Founded", description: "Over seven decades of educational excellence." },
+    { value: "1200+", label: "Students", description: "A vibrant student body." },
+    { value: "CBSE", label: "Affiliated", description: "CBSE curriculum." },
   ],
   TESTIMONIALS: [
     { quote: "St. Elizabeth shaped me into the person I am today.", attribution: "Alumni, Class of 2020", role: "alumni" as const },

@@ -1,0 +1,31 @@
+/* ── Panel 4: Testimonials ──────────────────────────────────────────── */
+
+.testimonialsPanel {
+  background: var(--s-color-surface-alt);
+}
+
+.testimonialsSection {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.testimonialsHeader {
+  text-align: left;
+}
+
+/* ── Tablet: ≤1100px ────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .testimonialsHeader {
+    text-align: left;
+  }
+}
+
+/* ── Mobile: ≤760px ─────────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .testimonialsSection {
+    padding: 48px 20px;
+  }
+}

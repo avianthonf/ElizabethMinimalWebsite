@@ -51,3 +51,14 @@ export const ATHLETICS_STATS = {
   athletes: "300+",
   championships: "15+",
 } as const;
+
+// ── Async data getter (CMS-ready) ─────────────────────────────────────
+
+export interface AthleticsData {
+  SPORTS: typeof SPORTS;
+  ATHLETICS_STATS: typeof ATHLETICS_STATS;
+}
+
+export async function getAthleticsData(): Promise<AthleticsData> {
+  return { SPORTS, ATHLETICS_STATS };
+}

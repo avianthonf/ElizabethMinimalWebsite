@@ -2,6 +2,20 @@
  * Admissions content for St. Elizabeth High School.
  */
 
+export const ADMISSIONS_VISIT_PAGE = {
+  metaTitle: "Plan Your Visit",
+  metaDescription:
+    "Plan your visit to St. Elizabeth High School in Pomburpa, Goa. Tour our campus, meet our faculty, and experience our community firsthand.",
+  heroEyebrow: "Visit Us",
+  heroHeading: "Plan Your Visit",
+  heroDescription:
+    "Experience St. Elizabeth High School firsthand — walk our campus, meet our faculty, and discover what makes our community special.",
+  sectionHeading: "Schedule a Campus Tour",
+  introText:
+    "We welcome families to visit our campus and experience the St. Elizabeth difference. Tours are available Monday through Friday by appointment. During your visit, you'll tour our facilities, observe classes in session, and meet with our admissions team.",
+  sectionAriaLabel: "Visit information",
+} as const;
+
 export const WHY_ST_ELIZABETH_POINTS = [
   {
     title: "Academic Excellence",
@@ -94,3 +108,17 @@ export const TUITION_INFO = {
   body: "St. Elizabeth High School is committed to making quality education accessible. We offer competitive tuition rates and a range of financial assistance options to support families in our community.",
   assistanceIntro: "Our financial assistance program is designed to ensure that qualified students can attend St. Elizabeth regardless of their family's financial circumstances. Applications are reviewed confidentially.",
 } as const;
+
+// ── Async data getter (CMS-ready) ─────────────────────────────────────
+
+export interface AdmissionsData {
+  ADMISSIONS_VISIT_PAGE: typeof ADMISSIONS_VISIT_PAGE;
+  WHY_ST_ELIZABETH_POINTS: typeof WHY_ST_ELIZABETH_POINTS;
+  ADMISSION_STEPS: typeof ADMISSION_STEPS;
+  FAQS: typeof FAQS;
+  TUITION_INFO: typeof TUITION_INFO;
+}
+
+export async function getAdmissionsData(): Promise<AdmissionsData> {
+  return { ADMISSIONS_VISIT_PAGE, WHY_ST_ELIZABETH_POINTS, ADMISSION_STEPS, FAQS, TUITION_INFO };
+}

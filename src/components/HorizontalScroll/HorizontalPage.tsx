@@ -39,7 +39,7 @@ export function HorizontalPage({
   const dataAttrs = headerTheme ? { "data-header-theme": headerTheme } : undefined;
 
   return (
-    <section className={pageClassName} style={style} aria-label={ariaLabel} {...dataAttrs}>
+    <section className={pageClassName} style={style} aria-label={ariaLabel} role="listitem" {...dataAttrs}>
       {children}
     </section>
   );
