@@ -32,7 +32,7 @@ export function TestimonialsPanel(): ReactNode {
               <Text variant="eyebrow">Voices of Our Community</Text>
               <Heading level="h2" variant="section">What They Say</Heading>
             </div>
-            <Grid columns={2} gap="large" responsive>
+            <Grid columns={3} gap="large" responsive>
               {TESTIMONIALS.map((t) => (
                 <TestimonialCard
                   key={t.attribution}
