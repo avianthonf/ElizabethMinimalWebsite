@@ -103,6 +103,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  transform: translateZ(0); /* force GPU compositing layer to prevent edge cutoff */
 }
 
 .image {
