@@ -47,9 +47,15 @@ describe("StatsPanel", () => {
     expect(screen.getByText("Our School at a Glance")).toBeDefined();
   });
 
+  it("renders all three stat values", () => {
+    render(<StatsPanel />);
+    expect(screen.getByText("1949")).toBeDefined();
+    expect(screen.getByText("1200+")).toBeDefined();
+    expect(screen.getByText("CBSE")).toBeDefined();
+  });
+
   it("renders all three stat labels", () => {
     render(<StatsPanel />);
-    // stat.label is the title shown to the user
     expect(screen.getByText("Founded")).toBeDefined();
     expect(screen.getByText("Students")).toBeDefined();
     expect(screen.getByText("Affiliated")).toBeDefined();

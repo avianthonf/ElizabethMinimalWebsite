@@ -37,6 +37,8 @@ export function HorizontalScroll({
   const frameRef = useRef<number | null>(null);
   const measurementsRef = useRef(DEFAULT_MEASUREMENTS);
   const [spacerHeight, setSpacerHeight] = useState("100vh");
+  const pendingMeasure = useRef(false);
+  const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
   const measure = useCallback(() => {
     const viewport = viewportRef.current;
@@ -103,6 +105,17 @@ export function HorizontalScroll({
     track.style.transform = `translate3d(${-progress * travelDistance}px, 0, 0)`;
   }, []);
 
+  const scheduleMeasure = useCallback(() => {
+    if (pendingMeasure.current) return;
+
+    pendingMeasure.current = true;
+    requestAnimationFrame(() => {
+      pendingMeasure.current = false;
+      measure();
+      updateTransform();
+    });
+  }, [measure, updateTransform]);
+
   useLayoutEffect(() => {
     measure();
     updateTransform();
@@ -135,6 +148,24 @@ export function HorizontalScroll({
       }
     };
   }, [measure, updateTransform]);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    resizeObserverRef.current = new ResizeObserver(() => {
+      scheduleMeasure();
+    });
+
+    resizeObserverRef.current.observe(track);
+
+    return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+        resizeObserverRef.current = null;
+      }
+    };
+  }, [scheduleMeasure]);
 
   const stageClassName = [styles.stage, className ?? ""].filter(Boolean).join(" ");
   const trackClassNames = [styles.track, trackClassName ?? ""].filter(Boolean).join(" ");
