@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { HorizontalPage } from "@/components/HorizontalScroll";
-import { Card } from "@/components/content/Card";
+import { TestimonialCard } from "@/components/content/TestimonialCard";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Grid } from "@/components/layout/Grid";
@@ -16,7 +16,7 @@ import styles from "./TestimonialsPanel.module.css";
 export function TestimonialsPanel(): ReactNode {
   return (
     <HorizontalPage
-      width="clamp(1100px, 80vw, 1600px)"
+      width="clamp(960px, 80vw, 1400px)"
       tabletWidth="min(900px, 110vw)"
       mobileWidth="max(760px, 200vw)"
       smallMobileWidth="max(720px, 220vw)"
@@ -32,20 +32,14 @@ export function TestimonialsPanel(): ReactNode {
               <Text variant="eyebrow">Voices of Our Community</Text>
               <Heading level="h2" variant="section">What They Say</Heading>
             </div>
-            <Grid columns={3} gap="large" responsive>
+            <Grid columns={2} gap="large" responsive>
               {TESTIMONIALS.map((t) => (
-                <Card key={t.attribution} variant="default" padding="large">
-                  <Stack gap="medium">
-                    <Text variant="body" as="p" size="medium">
-                      &ldquo;{t.quote}&rdquo;
-                    </Text>
-                    <div>
-                      <Text variant="caption" as="span">
-                        {t.attribution}
-                      </Text>
-                    </div>
-                  </Stack>
-                </Card>
+                <TestimonialCard
+                  key={t.attribution}
+                  quote={t.quote}
+                  attribution={t.attribution}
+                  role={t.role}
+                />
               ))}
             </Grid>
           </Stack>
