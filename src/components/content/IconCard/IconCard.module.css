@@ -5,10 +5,11 @@
   width: clamp(48px, 5vw, 72px);
   height: clamp(48px, 5vw, 72px);
   border-radius: 50%;
-  background: var(--color-soft);
-  color: var(--color-maroon);
+  background: var(--s-color-surface-alt);
+  color: var(--s-color-primary);
   margin-bottom: clamp(8px, 1.5vw, 20px);
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .iconWrapper svg {
@@ -21,6 +22,7 @@
   text-decoration: none;
   color: inherit;
   transition: opacity var(--transition-fast);
+  overflow: hidden;
 }
 
 .cardLink:hover {
@@ -28,5 +30,5 @@
 }
 
 .cardLink:hover article {
-  border-color: var(--color-maroon);
+  border-color: var(--s-color-primary);
 }

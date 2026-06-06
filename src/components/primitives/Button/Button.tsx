@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode, MouseEvent } from "react";
-import { Link } from "@/components/primitives/Link";
+import { ConditionalLink } from "@/components/primitives/ConditionalLink/ConditionalLink";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost";
@@ -55,27 +55,17 @@ export function Button({
     </>
   );
 
-  if (href) {
-    return (
-      <Link
-        href={href}
-        className={composedClassName}
-        ariaLabel={ariaLabel}
-      >
-        {content}
-      </Link>
-    );
-  }
-
   return (
-    <button
-      type="button"
+    <ConditionalLink
+      href={href}
       className={composedClassName}
+      as="button"
+      type="button"
       disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel}
     >
       {content}
-    </button>
+    </ConditionalLink>
   );
 }

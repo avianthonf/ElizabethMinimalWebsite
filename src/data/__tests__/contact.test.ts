@@ -3,8 +3,8 @@ import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,
   GOOGLE_MAPS_EMBED_URL,
-  CONTACT_FORM_FIELDS,
-} from "../contact";
+} from "../visits";
+import { CONTACT_FORM_FIELDS } from "../contact";
 
 describe("Contact Data", () => {
   describe("SCHOOL_ADDRESS", () => {

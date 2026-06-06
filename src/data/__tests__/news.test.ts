@@ -1,7 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { NEWS_ARTICLES, UPCOMING_EVENTS, type NewsArticle } from "../news";
+import { NEWS_ARTICLES, UPCOMING_EVENTS, getNewsData, type NewsArticle } from "../news";
 
 describe("News Data", () => {
+  it("getNewsData() returns all news content", async () => {
+    const data = await getNewsData();
+    expect(data.NEWS_ARTICLES).toHaveLength(6);
+    expect(data.UPCOMING_EVENTS).toHaveLength(3);
+  });
+
   describe("NEWS_ARTICLES", () => {
     it("has 6 articles", () => {
       expect(NEWS_ARTICLES).toHaveLength(6);

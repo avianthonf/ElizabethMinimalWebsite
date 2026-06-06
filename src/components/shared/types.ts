@@ -14,10 +14,10 @@ export interface AriaProps {
 }
 
 /** Background colour variants available on section-level containers. */
-export type BackgroundColor = "paper" | "soft" | "maroon" | "ink" | "blue";
+export type BackgroundColor = "paper" | "soft" | "primary" | "ink" | "blue";
 
 /** Text colour variants used by typographic primitives. */
-export type TextColor = "ink" | "muted" | "maroon" | "paper";
+export type TextColor = "ink" | "muted" | "primary" | "paper";
 
 /** Standardised spacing scale. */
 export type SpacingScale = "small" | "medium" | "large" | "xlarge";

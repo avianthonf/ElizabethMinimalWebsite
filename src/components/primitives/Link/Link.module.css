@@ -11,7 +11,7 @@
 /* ── Variants ────────────────────────────────────── */
 
 .default {
-  color: var(--color-maroon);
+  color: var(--s-color-primary);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -26,8 +26,7 @@
   font-size: calc(var(--text-scale) * clamp(0.78rem, 1.0vw, 0.98rem));
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-paper);
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.22);
+  color: inherit;
   text-decoration: none;
 }
 
@@ -38,12 +37,12 @@
 .footer {
   font-family: var(--font-sans);
   font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
-  color: var(--color-muted);
+  color: var(--s-color-text-muted);
   text-decoration: none;
 }
 
 .footer:hover {
-  color: var(--color-ink);
+  color: var(--s-color-text);
   opacity: 1;
 }
 

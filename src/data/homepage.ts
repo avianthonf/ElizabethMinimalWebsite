@@ -133,3 +133,24 @@ export const LATEST_NEWS: NewsItemData[] = [
     href: "/news/feast-day-2024",
   },
 ];
+
+// ── Async data getter (CMS-ready) ─────────────────────────────────────
+
+export interface HomepageData {
+  HERO_CONTENT: typeof HERO_CONTENT;
+  VALUES: ValueCardData[];
+  STATS: StatData[];
+  TESTIMONIALS: TestimonialData[];
+  CTA_CONTENT: typeof CTA_CONTENT;
+  LATEST_NEWS: NewsItemData[];
+}
+
+/**
+ * Fetches homepage data.
+ *
+ * Currently returns static content. When a CMS is integrated, replace
+ * only the implementation body — no component changes needed.
+ */
+export async function getHomepageData(): Promise<HomepageData> {
+  return { HERO_CONTENT, VALUES, STATS, TESTIMONIALS, CTA_CONTENT, LATEST_NEWS };
+}

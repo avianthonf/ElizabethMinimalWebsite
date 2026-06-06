@@ -1,0 +1,9 @@
+/* ── Shared panel base ─────────────────────────────────────────────────── */
+
+.panel {
+  position: relative;
+  display: grid;
+  height: 100%;
+  overflow: hidden;
+  background: var(--s-color-surface);
+}

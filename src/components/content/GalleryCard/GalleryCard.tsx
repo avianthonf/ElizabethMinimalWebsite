@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
+import { forwardRef, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import styles from "./GalleryCard.module.css";
 
@@ -18,19 +18,22 @@ export interface GalleryCardProps {
   className?: string;
 }
 
-export function GalleryCard({
-  image,
-  imageAlt,
-  title,
-  subCategory,
-  date,
-  span = "standard",
-  index,
-  onSelect,
-  isVisible,
-  filterActive,
-  className,
-}: GalleryCardProps): ReactNode {
+export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(function GalleryCard(
+  {
+    image,
+    imageAlt,
+    title,
+    subCategory,
+    date,
+    span = "standard",
+    index,
+    onSelect,
+    isVisible,
+    filterActive,
+    className,
+  },
+  ref,
+): ReactNode {
   const handleClick = () => onSelect(index);
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -57,6 +60,7 @@ export function GalleryCard({
 
   return (
     <div
+      ref={ref}
       className={cardClasses}
       style={style}
       data-gallery-index={index}
@@ -72,6 +76,8 @@ export function GalleryCard({
           src={image}
           alt={imageAlt}
           fill
+          quality={90}
+          priority={index < 2}
           className={styles.image}
           sizes={
             span === "hero"
@@ -81,7 +87,7 @@ export function GalleryCard({
         />
       </div>
 
-      {/* z-1: Duotone overlay — brand maroon at 8% */}
+      {/* z-1: Duotone overlay — brand primary (royal blue) at 8% */}
       <div className={styles.duotone} aria-hidden="true" />
 
       {/* z-2: Bottom gradient for text legibility */}
@@ -100,4 +106,4 @@ export function GalleryCard({
       )}
     </div>
   );
-}
+});

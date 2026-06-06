@@ -23,6 +23,7 @@ export function ValueCard({ number, title, body, image, imageAlt, className }: V
             src={image}
             alt={imageAlt ?? ""}
             fill
+            quality={90}
             sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 20vw"
             className={styles.image}
           />

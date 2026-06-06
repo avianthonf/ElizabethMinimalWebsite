@@ -28,14 +28,14 @@
 
 /* ── Colours ───────────────────────────────────────── */
 
-.maroon {
-  color: var(--color-maroon);
+.primary {
+  color: var(--s-color-primary);
 }
 
 .ink {
-  color: var(--color-ink);
+  color: var(--s-color-text);
 }
 
 .muted {
-  color: var(--color-muted);
+  color: var(--s-color-text-muted);
 }

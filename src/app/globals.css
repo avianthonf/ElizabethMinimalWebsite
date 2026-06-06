@@ -1,18 +1,72 @@
-:root {
-  /* ── Core colours ─────────────────────────────────── */
-  --color-maroon: #0c217c;
-  --color-maroon-dark: #060f45;
-  --color-ink: #171717;
-  --color-muted: #5f5f5f;
-  --color-paper: #ffffff;
-  --color-soft: #f4f1ed;
-  --color-line: rgba(23, 23, 23, 0.14);
+/*
+ * ═══════════════════════════════════════════════════════════════════════════
+ * DESIGN TOKEN ARCHITECTURE — Three-Tier CSS Custom Properties
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * TIER 1 — Primitives (--p-*)
+ *   Raw design values. **Never used directly in components.**
+ *   Prefix: --p-color-<name>
+ *   Example: --p-color-royal-blue: #0c217c
+ *
+ * TIER 2 — Semantics (--s-*)
+ *   Theme-aware aliases that reference primitives.
+ *   Components consume these in their .module.css files.
+ *   Prefix: --s-color-<role>
+ *   Example: --s-color-primary: var(--p-color-royal-blue)
+ *
+ * TIER 3 — Component (--c-*)
+ *   Scoped overrides for specific components.
+ *   Defined in the component's own .module.css file.
+ *   Prefix: --c-<component>-<property>
+ *   Example: --c-btn-bg: var(--s-color-primary)
+ *
+ * CASCADE LAYERS:
+ *   1. reset     — element defaults, zero-specificity via :where()
+ *   2. utilities — skip links, layout helpers, a11y overrides
+ *
+ * Design tokens on :root are UNLAYERED so they are always available
+ * regardless of layer ordering.
+ *
+ * CONVENTIONS:
+ *   - Primitives (--p-*) are NEVER referenced outside this file.
+ *   - Components use --s-color-* variables (or --c-* overrides).
+ *   - Add new colours to the primitives tier first, then wire through semantics.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
 
-  /* ── Accent colours ──────────────────────────────── */
-  --color-blue: #0c4a6e;
-  --color-blue-light: #e0f2fe;
-  --color-gold: #c9a84c;
-  --color-gallery-bg: #faf9f7;
+@layer reset, utilities;
+
+/* ── Design Tokens (unlayered — globally available) ─── */
+
+:root {
+  /* ── Tier 1: Primitives (--p-color-*) ──────────────── */
+  --p-color-royal-blue: #0c217c;
+  --p-color-royal-blue-dark: #060f45;
+  --p-color-ink: #171717;
+  --p-color-muted: #5f5f5f;
+  --p-color-paper: #ffffff;
+  --p-color-soft: #f4f1ed;
+  --p-color-line: rgba(23, 23, 23, 0.14);
+  --p-color-deep-blue: #0c4a6e;
+  --p-color-deep-blue-light: #e0f2fe;
+  --p-color-gold: #c9a84c;
+  --p-color-gallery-bg: #faf9f7;
+
+  /* ── Tier 2: Semantics (--s-color-*) ───────────────── */
+  --s-color-primary: var(--p-color-royal-blue);
+  --s-color-primary-dark: var(--p-color-royal-blue-dark);
+  --s-color-text: var(--p-color-ink);
+  --s-color-text-muted: var(--p-color-muted);
+  --s-color-surface: var(--p-color-paper);
+  --s-color-surface-alt: var(--p-color-soft);
+  --s-color-accent: var(--p-color-gold);
+  --s-color-cta-bg: var(--p-color-deep-blue);
+  --s-color-cta-bg-light: var(--p-color-deep-blue-light);
+  --s-color-border: var(--p-color-line);
+  --s-color-gallery-bg: var(--p-color-gallery-bg);
+
+  /* ── Layout ────────────────────────────────────────── */
+  --header-height: clamp(52px, 6vw, 78px);
 
   /* ── Spacing ───────────────────────────────────────── */
   --spacing-sm: clamp(0.5rem, 2vw, 1rem);
@@ -31,65 +85,79 @@
   --ease-standard: cubic-bezier(0.25, 1, 0.5, 1);
   --transition-fast: 150ms cubic-bezier(0.25, 1, 0.5, 1);
   --transition-normal: 250ms cubic-bezier(0.25, 1, 0.5, 1);
+  --animation-stagger: 50ms;
 }
 
-* {
-  box-sizing: border-box;
+/* ── Reset Layer ────────────────────────────────────── */
+
+@layer reset {
+  * {
+    box-sizing: border-box;
+  }
+
+  :where(html),
+  :where(body) {
+    margin: 0;
+    min-height: 100%;
+    background: var(--s-color-surface);
+    color: var(--s-color-text);
+    font-family: var(--font-sans);
+  }
+
+  :where(body) {
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+  }
+
+  :where(h1, h2, h3) {
+    text-wrap: balance;
+  }
+
+  :where(p) {
+    text-wrap: pretty;
+  }
+
+  :where(button, a) {
+    font: inherit;
+  }
 }
 
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-}
+/* ── Utilities Layer ────────────────────────────────── */
 
-body {
-  overflow-x: hidden;
-  overflow-wrap: break-word;
-}
+@layer utilities {
+  .skipLink {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    z-index: 9999;
+    padding: 12px 24px;
+    background: var(--s-color-primary);
+    color: var(--s-color-surface);
+    font-weight: 700;
+    font-size: calc(var(--text-scale) * 1rem);
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+  }
 
-h1, h2, h3 {
-  text-wrap: balance;
-}
+  .skipLink:focus {
+    top: 8px;
+    left: 8px;
+  }
 
-p {
-  text-wrap: pretty;
-}
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
 
-button,
-a {
-  font: inherit;
-}
+  /* ── Fixed header offset ──────────────────────────── */
 
-.skipLink {
-  position: fixed;
-  top: -100%;
-  left: 0;
-  z-index: 9999;
-  padding: 12px 24px;
-  background: var(--color-maroon);
-  color: var(--color-paper);
-  font-weight: 700;
-  font-size: calc(var(--text-scale) * 1rem);
-  text-decoration: none;
-  border-radius: 0 0 4px 0;
-}
-
-.skipLink:focus {
-  top: 8px;
-  left: 8px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+  #main-content {
+    scroll-padding-top: calc(var(--header-height) + 16px);
   }
 }

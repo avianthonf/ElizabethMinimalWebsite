@@ -60,3 +60,15 @@ export const ALUMNI_INTRO = {
   heading: "Once a St. Elizabeth Student, Always Family",
   body: "The bonds formed at St. Elizabeth High School last a lifetime. Our alumni community spans generations and continents, united by shared values of Truth, Honesty, and service. Stay connected, give back, and help shape the future of the school that shaped you.",
 } as const;
+
+// ── Async data getter (CMS-ready) ─────────────────────────────────────
+
+export interface AlumniData {
+  NOTABLE_ALUMNI: typeof NOTABLE_ALUMNI;
+  ALUMNI_EVENTS: typeof ALUMNI_EVENTS;
+  ALUMNI_INTRO: typeof ALUMNI_INTRO;
+}
+
+export async function getAlumniData(): Promise<AlumniData> {
+  return { NOTABLE_ALUMNI, ALUMNI_EVENTS, ALUMNI_INTRO };
+}

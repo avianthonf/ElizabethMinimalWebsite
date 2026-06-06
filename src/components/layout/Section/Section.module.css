@@ -6,26 +6,26 @@
 /* ── Backgrounds ──────────────────────────────────── */
 
 .bgPaper {
-  background: var(--color-paper);
+  background: var(--s-color-surface);
 }
 
 .bgSoft {
-  background: var(--color-soft);
+  background: var(--s-color-surface-alt);
 }
 
-.bgMaroon {
-  background: var(--color-maroon);
-  color: var(--color-paper);
+.bgPrimary {
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
 }
 
 .bgInk {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--s-color-text);
+  color: var(--s-color-surface);
 }
 
 .bgBlue {
-  background: var(--color-blue);
-  color: var(--color-paper);
+  background: var(--s-color-cta-bg);
+  color: var(--s-color-surface);
 }
 
 /* ── Padding ──────────────────────────────────────── */

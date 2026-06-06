@@ -59,6 +59,32 @@ export function HorizontalScroll({
     setSpacerHeight(`${nextSpacerHeight}px`);
   }, []);
 
+  const scrollByPanel = useCallback(
+    (direction: "prev" | "next") => {
+      const stage = stageRef.current;
+      const viewport = viewportRef.current;
+
+      if (!stage || !viewport) {
+        return;
+      }
+
+      const rect = stage.getBoundingClientRect();
+      const currentScroll = -rect.top;
+      const panelAdvance = viewport.clientWidth;
+
+      const targetScroll =
+        direction === "next"
+          ? currentScroll + panelAdvance
+          : currentScroll - panelAdvance;
+
+      window.scrollTo({
+        top: Math.max(0, targetScroll),
+        behavior: "auto",
+      });
+    },
+    [],
+  );
+
   const updateTransform = useCallback(() => {
     frameRef.current = null;
 
@@ -119,11 +145,31 @@ export function HorizontalScroll({
   } as CSSProperties;
 
   return (
-    <section ref={stageRef} className={stageClassName} style={style} aria-label={ariaLabel}>
-      <div ref={viewportRef} className={styles.viewport}>
-        <div ref={trackRef} className={trackClassNames}>
+    <section
+      ref={stageRef}
+      className={stageClassName}
+      style={style}
+      aria-label={ariaLabel}
+      role="region"
+      aria-roledescription="carousel"
+    >
+      <div ref={viewportRef} className={styles.viewport} tabIndex={0}>
+        <div ref={trackRef} className={trackClassNames} role="list">
           {children}
         </div>
+
+        <button
+          type="button"
+          className={`${styles.scrollBtn} ${styles.scrollBtnLeft}`}
+          aria-label="Scroll to previous panel"
+          onClick={() => scrollByPanel("prev")}
+        />
+        <button
+          type="button"
+          className={`${styles.scrollBtn} ${styles.scrollBtnRight}`}
+          aria-label="Scroll to next panel"
+          onClick={() => scrollByPanel("next")}
+        />
       </div>
     </section>
   );

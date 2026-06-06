@@ -1,15 +1,43 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode, type MouseEvent } from "react";
+import { useCallback, useEffect, useState, type ReactNode, type MouseEvent } from "react";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { Link } from "@/components/primitives/Link";
 import { Text } from "@/components/primitives/Text";
 import type { NavCategory } from "@/data/navigation";
+import { MENU_CATEGORIES } from "@/data/navigation";
+import {
+  HERO_IMAGES,
+  ACADEMICS_HERO,
+  ATHLETICS_IMAGES,
+  ARTS_IMAGES,
+  STUDENT_LIFE_IMAGES,
+  COMMUNITY_IMAGES,
+  CONTACT_IMAGES,
+  NEWS_IMAGES,
+} from "@/data/images";
+import type { ImageAsset } from "@/data/images";
 import styles from "./MenuOverlay.module.css";
 
+/** Default preview images assembled from the image registry. */
+const DEFAULT_PREVIEW_IMAGES: Record<string, string> = {
+  ABOUT: HERO_IMAGES.find((i: ImageAsset) => i.section === "about-hero")?.filename ?? "",
+  ADMISSIONS: HERO_IMAGES.find((i: ImageAsset) => i.section === "admissions-hero")?.filename ?? "",
+  ACADEMICS: ACADEMICS_HERO.filename,
+  ATHLETICS: ATHLETICS_IMAGES[0]?.filename ?? "",
+  ARTS: ARTS_IMAGES[0]?.filename ?? "",
+  "STUDENT LIFE": STUDENT_LIFE_IMAGES[0]?.filename ?? "",
+  ALUMNI: COMMUNITY_IMAGES[0]?.filename ?? "",
+  NEWS: NEWS_IMAGES[0]?.filename ?? "",
+  CONTACT: CONTACT_IMAGES[0]?.filename ?? "",
+  "HOW TO HELP": COMMUNITY_IMAGES[1]?.filename ?? "",
+};
+
 export interface MenuOverlayProps {
-  /** Navigation categories to display */
-  categories: NavCategory[];
-  /** Map of category title → image filename for hover preview */
+  /** Navigation categories to display. Defaults to the primary site menu. */
+  categories?: NavCategory[];
+  /** Map of category title → image filename for hover preview. Auto-assembled when omitted. */
   previewImages?: Record<string, string>;
   /** Whether the overlay is currently open */
   isOpen: boolean;
@@ -19,26 +47,17 @@ export interface MenuOverlayProps {
   ariaLabel?: string;
 }
 
-/**
- * Query all focusable elements within the overlay container.
- * Used by the focus-trap keyboard handler.
- */
-function getFocusableElements(container: HTMLElement): HTMLElement[] {
-  return Array.from(
-    container.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    ),
-  );
-}
-
 export function MenuOverlay({
-  categories,
-  previewImages = {},
+  categories = MENU_CATEGORIES,
+  previewImages = DEFAULT_PREVIEW_IMAGES,
   isOpen,
   onClose,
   ariaLabel = "Site navigation menu",
 }: MenuOverlayProps): ReactNode {
-  const overlayRef = useRef<HTMLDivElement>(null);
+  // ── Hooks: focus trap + body scroll lock ──────────────────────────
+
+  const overlayRef = useFocusTrap({ isActive: isOpen, onEscape: onClose });
+  useBodyScrollLock(isOpen);
 
   // ── Animation lifecycle state ─────────────────────────────────────
 
@@ -60,10 +79,7 @@ export function MenuOverlay({
       setShouldRender(true);
       setMountKey((prev) => prev + 1);
 
-      // 2. Prevent body scroll
-      document.body.style.overflow = "hidden";
-
-      // 3. Trigger entrance animation on next paint
+      // 2. Trigger entrance animation on next paint
       const raf1 = requestAnimationFrame(() => {
         const raf2 = requestAnimationFrame(() => {
           setIsAnimating(true);
@@ -78,77 +94,13 @@ export function MenuOverlay({
     // 1. Start exit animation
     setIsAnimating(false);
 
-    // 2. Restore body scroll immediately (the overlay is fading out
-    //    but the underlying page should be scrollable again)
-    document.body.style.overflow = "";
-
-    // 3. Remove from DOM after exit animation completes (200ms)
+    // 2. Remove from DOM after exit animation completes (200ms)
     const exitTimer = setTimeout(() => {
       setShouldRender(false);
       setActiveCategory(null);
     }, 220); // 200ms exit + 20ms buffer
 
     return () => clearTimeout(exitTimer);
-  }, [isOpen]);
-
-  // ── Cleanup body scroll on unmount ───────────────────────────────
-
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  // ── Keyboard: Escape to close + Focus trap ───────────────────────
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleKeyDown = (e: globalThis.KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
-
-      if (e.key === "Tab" && overlayRef.current) {
-        const focusable = getFocusableElements(overlayRef.current);
-        if (focusable.length === 0) return;
-
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          // Shift+Tab: wrap from first to last
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          // Tab: wrap from last to first
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
-
-  // ── Focus first link on open ──────────────────────────────────────
-
-  useEffect(() => {
-    if (isOpen && overlayRef.current) {
-      // Small delay to ensure the DOM is painted before focusing
-      const timer = setTimeout(() => {
-        const firstLink =
-          overlayRef.current?.querySelector<HTMLAnchorElement>("a[href]");
-        firstLink?.focus();
-      }, 100);
-      return () => clearTimeout(timer);
-    }
   }, [isOpen]);
 
   // ── Handlers ──────────────────────────────────────────────────────

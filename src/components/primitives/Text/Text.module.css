@@ -24,14 +24,14 @@
 
 .body {
   font-family: var(--font-sans);
-  color: var(--color-ink);
+  color: var(--s-color-text);
 }
 
 .eyebrow {
   font-family: var(--font-sans);
   font-size: calc(var(--text-scale) * 0.78rem);
   font-weight: 800;
-  color: var(--color-maroon);
+  color: var(--s-color-primary);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   line-height: 1.35;
@@ -40,11 +40,11 @@
 .caption {
   font-family: var(--font-sans);
   font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
-  color: var(--color-muted);
+  color: var(--s-color-text-muted);
   line-height: 1.4;
 }
 
 .muted {
   font-family: var(--font-sans);
-  color: var(--color-muted);
+  color: var(--s-color-text-muted);
 }

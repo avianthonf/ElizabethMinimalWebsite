@@ -17,7 +17,7 @@ export interface SectionProps {
 const bgClass: Record<SectionBackground, string> = {
   paper: styles.bgPaper,
   soft: styles.bgSoft,
-  maroon: styles.bgMaroon,
+  primary: styles.bgPrimary,
   ink: styles.bgInk,
   blue: styles.bgBlue,
 };

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import styles from "./Badge.module.css";
 
 export type BadgeVariant = "number" | "status" | "label";
-export type BadgeColor = "maroon" | "ink" | "muted";
+export type BadgeColor = "primary" | "ink" | "muted";
 
 export interface BadgeProps {
   children: ReactNode;
@@ -14,7 +14,7 @@ export interface BadgeProps {
 export function Badge({
   children,
   variant = "number",
-  color = "maroon",
+  color = "primary",
   className,
 }: BadgeProps): ReactNode {
   const composedClassName = [styles.badge, styles[variant], styles[color], className]

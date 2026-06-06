@@ -11,7 +11,7 @@
   top: 0;
   z-index: 10;
   padding: 8px 0 16px;
-  background: var(--color-gallery-bg);
+  background: var(--s-color-gallery-bg);
 }
 
 /* ── Pill Base ─────────────────────────────────────────── */
@@ -25,9 +25,9 @@
   letter-spacing: 0.03em;
   line-height: 1.4;
   border-radius: 999px;
-  border: 1.5px solid var(--color-line);
+  border: 1.5px solid var(--s-color-border);
   background: transparent;
-  color: var(--color-muted);
+  color: var(--s-color-text-muted);
   cursor: pointer;
   transition:
     background-color 250ms var(--ease-standard),
@@ -39,29 +39,29 @@
 }
 
 .pill:hover {
-  border-color: var(--color-maroon);
-  color: var(--color-maroon);
+  border-color: var(--s-color-primary);
+  color: var(--s-color-primary);
   background: rgba(12, 33, 124, 0.04);
 }
 
 .pill:focus-visible {
-  outline: 2px solid var(--color-maroon);
+  outline: 2px solid var(--s-color-primary);
   outline-offset: 2px;
 }
 
 /* ── Active State ──────────────────────────────────────── */
 
 .active {
-  background: var(--color-maroon);
-  color: var(--color-paper);
-  border-color: var(--color-maroon);
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
+  border-color: var(--s-color-primary);
   box-shadow: 0 2px 8px rgba(12, 33, 124, 0.22);
 }
 
 .active:hover {
-  background: var(--color-maroon-dark);
-  border-color: var(--color-maroon-dark);
-  color: var(--color-paper);
+  background: var(--s-color-primary-dark);
+  border-color: var(--s-color-primary-dark);
+  color: var(--s-color-surface);
 }
 
 /* ── Mobile — horizontal scrollable snap ──────────────── */

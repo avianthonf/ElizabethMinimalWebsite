@@ -66,7 +66,7 @@ describe("Footer", () => {
     expect(screen.getByLabelText("St. Elizabeth High School on instagram")).toBeInTheDocument();
   });
 
-  it("uses maroon background by default", () => {
+  it("uses primary background by default", () => {
     const { container } = render(<Footer />);
     const footer = container.querySelector("footer");
     expect(footer).toBeInTheDocument();

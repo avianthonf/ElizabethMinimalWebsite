@@ -2,6 +2,22 @@
  * How to Help / Giving content for St. Elizabeth High School.
  */
 
+export interface GivingOption {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface SponsorshipTier {
+  name: string;
+  description: string;
+}
+
+export interface ImpactStory {
+  title: string;
+  description: string;
+}
+
 export const GIVING_OPTIONS = [
   {
     title: "Annual Fund",
@@ -18,7 +34,7 @@ export const GIVING_OPTIONS = [
     description: "Share your time and talents. Mentor students, assist with events, support library operations, or contribute your professional expertise.",
     icon: "volunteer",
   },
-] as const;
+] as const satisfies readonly GivingOption[];
 
 export const SPONSORSHIP_TIERS = [
   {
@@ -37,7 +53,7 @@ export const SPONSORSHIP_TIERS = [
     name: "Legacy Circle",
     description: "Leave a lasting legacy through major gifts that transform the school — naming opportunities, endowed faculty chairs, and campus expansion.",
   },
-] as const;
+] as const satisfies readonly SponsorshipTier[];
 
 export const IMPACT_STORIES = [
   {
@@ -48,4 +64,16 @@ export const IMPACT_STORIES = [
     title: "New Science Lab Transforms Learning",
     description: "Thanks to donor support, our new science laboratory provides hands-on learning experiences that inspire the next generation of doctors, engineers, and researchers from Goa.",
   },
-] as const;
+] as const satisfies readonly ImpactStory[];
+
+// ── Async data getter (CMS-ready) ─────────────────────────────────────
+
+export interface HowToHelpData {
+  GIVING_OPTIONS: typeof GIVING_OPTIONS;
+  SPONSORSHIP_TIERS: typeof SPONSORSHIP_TIERS;
+  IMPACT_STORIES: typeof IMPACT_STORIES;
+}
+
+export async function getHowToHelpData(): Promise<HowToHelpData> {
+  return { GIVING_OPTIONS, SPONSORSHIP_TIERS, IMPACT_STORIES };
+}

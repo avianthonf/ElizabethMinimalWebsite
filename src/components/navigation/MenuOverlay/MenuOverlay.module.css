@@ -10,8 +10,8 @@
   z-index: 100;
   display: grid;
   grid-template-columns: 1fr;
-  background: var(--color-maroon);
-  color: var(--color-paper);
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
   overflow-y: auto;
   /* Entrance: 300ms per spec */
   transition: opacity 300ms cubic-bezier(0.25, 1, 0.5, 1);
@@ -42,7 +42,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--color-paper);
+  color: var(--s-color-surface);
   cursor: pointer;
   font-family: var(--font-sans);
   font-size: calc(var(--text-scale) * 0.9rem);
@@ -100,7 +100,7 @@
 }
 
 .menuLink {
-  color: var(--color-paper) !important;
+  color: var(--s-color-surface) !important;
   font-size: calc(var(--text-scale) * clamp(1rem, 1.4vw, 1.25rem)) !important;
   font-weight: 700 !important;
   text-decoration: none !important;
