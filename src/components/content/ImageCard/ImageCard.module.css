@@ -5,12 +5,16 @@
   overflow: hidden;
 }
 
-.imageTop {
+.imageWrapper.imageTop {
   width: 100%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
-.imageLeft {
+.imageWrapper.imageLeft {
   flex-shrink: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 
 .image {
