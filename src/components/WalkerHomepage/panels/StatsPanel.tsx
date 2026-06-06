@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import { HorizontalPage } from "@/components/HorizontalScroll";
-import { IconCard } from "@/components/content/IconCard";
 import { Icon } from "@/components/primitives/Icon";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
@@ -61,12 +60,16 @@ export function StatsPanel(): ReactNode {
       </div>
       <div className={styles.statsCards}>
         {STATS.map((stat) => (
-          <IconCard
-            key={stat.label}
-            icon={STATS_ICONS[stat.value]}
-            title={stat.label}
-            description={stat.description}
-          />
+          <article key={stat.label} className={styles.statsCard} aria-label={`${stat.label}: ${stat.value}`}>
+            <div className={styles.statIcon}>{STATS_ICONS[stat.value]}</div>
+            <p className={styles.statValue}>{stat.value}</p>
+            <Heading level="h3" variant="card" className={styles.statLabel}>
+              {stat.label}
+            </Heading>
+            <Text variant="muted" size="small" className={styles.statDescription}>
+              {stat.description}
+            </Text>
+          </article>
         ))}
       </div>
     </HorizontalPage>

@@ -63,8 +63,7 @@ export default function AboutPage() {
                   heading="A Tradition of Excellence"
                   description="For over seven decades, St. Elizabeth has provided quality education to students from across North Goa."
                   mediaPosition="left"
-                  ratio="1-3"
-                  stackAt={900}
+                  layout="stacked"
                   cta={{ text: "Our History", href: "/about/history" }}
                 />
               </Stack>

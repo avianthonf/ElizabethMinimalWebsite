@@ -10,6 +10,7 @@ import styles from "./MediaBlock.module.css";
 
 export type MediaType = "image" | "video";
 export type MediaPosition = "left" | "right";
+export type MediaBlockLayout = "split" | "stacked";
 
 export interface MediaBlockProps {
   mediaType: MediaType;
@@ -19,6 +20,8 @@ export interface MediaBlockProps {
   description: string;
   mediaPosition?: MediaPosition;
   cta?: { text: string; href: string };
+  /** Layout mode. "split" preserves the existing side-by-side behavior. */
+  layout?: MediaBlockLayout;
   /** Viewport width (px) at which the inner split collapses. Default 760. */
   stackAt?: number;
   /** Grid ratio for the inner split. Default "equal". */
@@ -34,6 +37,7 @@ export function MediaBlock({
   description,
   mediaPosition = "left",
   cta,
+  layout = "split",
   stackAt,
   ratio = "equal",
   className,
@@ -79,6 +83,26 @@ export function MediaBlock({
       )}
     </Stack>
   );
+
+  if (layout === "stacked") {
+    const stackedChildren = mediaPosition === "left" ? (
+      <>
+        {mediaElement}
+        {textContent}
+      </>
+    ) : (
+      <>
+        {textContent}
+        {mediaElement}
+      </>
+    );
+
+    return (
+      <div className={[styles.stacked, className].filter(Boolean).join(" ")}>
+        {stackedChildren}
+      </div>
+    );
+  }
 
   return (
     <SplitLayout

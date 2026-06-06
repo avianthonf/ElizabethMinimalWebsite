@@ -1,10 +1,32 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { HorizontalScroll } from "./HorizontalScroll";
 import { HorizontalPage } from "./HorizontalPage";
 import React from "react";
 
+// Mock ResizeObserver for test environment
+let resizeObserverInstance: {
+  observe: ReturnType<typeof vi.fn>;
+  unobserve: ReturnType<typeof vi.fn>;
+  disconnect: ReturnType<typeof vi.fn>;
+} | null = null;
+
+class ResizeObserverMock {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+
+  constructor(callback: ResizeObserverCallback) {
+    resizeObserverInstance = this;
+  }
+}
+
+global.ResizeObserver = ResizeObserverMock as any;
+
 describe("HorizontalScroll", () => {
+  beforeEach(() => {
+    resizeObserverInstance = null;
+  });
   it("applies pinned stage CSS variables", () => {
     render(
       <HorizontalScroll height="72vh" gap="24px" ariaLabel="Feature scroller">
@@ -190,5 +212,54 @@ describe("HorizontalScroll + HorizontalPage composition", () => {
     expect(scrollSpy).toHaveBeenCalled();
 
     scrollSpy.mockRestore();
+  });
+});
+
+// ── ResizeObserver Integration ────────────────────────────────────
+
+describe("HorizontalScroll ResizeObserver behavior", () => {
+  beforeEach(() => {
+    resizeObserverInstance = null;
+  });
+
+  it("should observe track element for dimension changes", () => {
+    render(
+      <HorizontalScroll ariaLabel="Observed scroller">
+        <article>Panel content</article>
+      </HorizontalScroll>,
+    );
+
+    const stage = screen.getByLabelText("Observed scroller");
+    const viewport = stage.firstElementChild as HTMLDivElement;
+    const track = viewport.firstElementChild as HTMLDivElement;
+
+    expect(resizeObserverInstance).not.toBeNull();
+    expect(resizeObserverInstance!.observe).toHaveBeenCalledWith(track);
+  });
+
+  it("should disconnect observer on unmount", () => {
+    const { unmount } = render(
+      <HorizontalScroll ariaLabel="Temporary scroller">
+        <article>Panel content</article>
+      </HorizontalScroll>,
+    );
+
+    expect(resizeObserverInstance).not.toBeNull();
+    const instance = resizeObserverInstance!;
+
+    unmount();
+
+    expect(instance.disconnect).toHaveBeenCalled();
+  });
+
+  it("should create ResizeObserver instance when component mounts", () => {
+    render(
+      <HorizontalScroll ariaLabel="Mounted scroller">
+        <article>Panel content</article>
+      </HorizontalScroll>,
+    );
+
+    expect(resizeObserverInstance).not.toBeNull();
+    expect(resizeObserverInstance!.observe).toHaveBeenCalledTimes(1);
   });
 });
