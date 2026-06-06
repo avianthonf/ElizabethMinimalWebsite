@@ -1,4 +1,4 @@
-/* ── Panel 6: News ──────────────────────────────────────────────────── */
+/* ── Panel 7: News ──────────────────────────────────────────────────── */
 
 .newsPanel {
   background: var(--s-color-surface);
@@ -10,15 +10,69 @@
   height: 100%;
 }
 
+.newsContent {
+  width: 100%;
+  max-width: none;
+  padding-left: clamp(20px, 5vw, 72px);
+  padding-right: clamp(20px, 5vw, 72px);
+}
+
 .newsHeader {
   text-align: left;
 }
+
+/* ── Card elevation and hover ─────────────────────── */
+
+.newsCard {
+  border: 1px solid var(--s-color-primary);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.newsCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newsCard {
+    transition: none;
+  }
+}
+
+/* ── CTA area ────────────────────────────────────── */
 
 .newsCta {
   text-align: left;
 }
 
-/* ── Tablet: ≤1100px ────────────────────────────────────────────────── */
+.newsCtaLink {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--s-color-primary);
+  color: var(--s-color-surface);
+  font-weight: 700;
+  font-size: calc(var(--text-scale) * 0.9rem);
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  border-radius: 4px;
+  border: 2px solid var(--s-color-primary);
+  transition: transform var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.newsCtaLink:hover {
+  background: transparent;
+  color: var(--s-color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newsCtaLink {
+    transition: none;
+  }
+}
+
+/* ── Responsive tweaks ───────────────────────────── */
 
 @media (max-width: 1100px) {
   .newsHeader {

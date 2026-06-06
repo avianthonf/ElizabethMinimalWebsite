@@ -3,8 +3,11 @@ import Image from "next/image";
 import { Card } from "@/components/content/Card";
 import { ConditionalLink } from "@/components/primitives/ConditionalLink/ConditionalLink";
 import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
+import { Text, type TextVariant } from "@/components/primitives/Text";
 import styles from "./ImageCard.module.css";
+
+// Re-export for module consumers who import ImageCardProps
+export type { TextVariant } from "@/components/primitives/Text";
 
 export type ImagePosition = "top" | "left";
 export type ImageAspectRatio = "16:9" | "4:3" | "1:1";
@@ -14,6 +17,7 @@ export interface ImageCardProps {
   imageAlt: string;
   title: string;
   description?: string;
+  descriptionVariant?: TextVariant;
   imagePosition?: ImagePosition;
   aspectRatio?: ImageAspectRatio;
   href?: string;
@@ -31,6 +35,7 @@ export function ImageCard({
   imageAlt,
   title,
   description,
+  descriptionVariant = "muted",
   imagePosition = "top",
   aspectRatio = "16:9",
   href,
@@ -55,7 +60,7 @@ export function ImageCard({
           <Heading level="h3" variant="card">
             {title}
           </Heading>
-          {description && <Text variant="muted" size="small">{description}</Text>}
+          {description && <Text variant={descriptionVariant} size="small">{description}</Text>}
         </div>
       </Card>
     </ConditionalLink>

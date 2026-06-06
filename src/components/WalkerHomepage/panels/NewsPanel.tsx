@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import { ImageCard } from "@/components/content/ImageCard";
-import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Grid } from "@/components/layout/Grid";
 import { Stack } from "@/components/layout/Stack";
@@ -19,8 +18,8 @@ export const newsPanelClass = `${shared.panel} ${styles.newsPanel}`;
 /** News section content. Wrapping HorizontalPage is applied by the orchestrator. */
 export function NewsPanel(): ReactNode {
   return (
-    <Section background="paper" padding="xlarge" className={styles.newsSection}>
-      <Container>
+    <Section background="soft" padding="xlarge" className={styles.newsSection}>
+      <div className={styles.newsContent}>
         <Stack gap="xlarge">
           <div className={styles.newsHeader}>
             <Text variant="eyebrow">Latest News &amp; Events</Text>
@@ -34,16 +33,18 @@ export function NewsPanel(): ReactNode {
                 imageAlt={item.title}
                 title={item.title}
                 description={`${item.date} — ${item.excerpt}`}
-                aspectRatio="4:3"
+                descriptionVariant="body"
+                aspectRatio="16:9"
                 href={item.href}
+                className={styles.newsCard}
               />
             ))}
           </Grid>
           <div className={styles.newsCta}>
-            <Link href="/news">View All News</Link>
+            <Link href="/news" className={styles.newsCtaLink}>View All News</Link>
           </div>
         </Stack>
-      </Container>
+      </div>
     </Section>
   );
 }
