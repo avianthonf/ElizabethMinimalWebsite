@@ -39,3 +39,52 @@
 .ghostLight:hover {
   text-decoration: underline;
 }
+
+/* ── Split layout (text + image) ──────────────────── */
+
+.splitLayout {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.textCol {
+  flex: 1.2 1 0;
+  min-width: 0;
+}
+
+.imageCol {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bodyText {
+  max-width: 780px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .splitLayout {
+    flex-direction: column;
+  }
+
+  .imageCol {
+    order: -1;
+    width: 100%;
+  }
+
+  .textCol {
+    width: 100%;
+  }
+}

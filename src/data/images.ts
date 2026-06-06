@@ -26,6 +26,7 @@ export type ImageSection =
   | "homepage-stats"
   | "homepage-testimonials"
   | "homepage-news"
+  | "homepage-cta"
   | "about-hero"
   | "about-mission"
   | "about-history"
@@ -805,6 +806,24 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
 ];
 
+// ── CTA Section Images (homepage) ──────────────────────────────────────
+
+export const CTA_IMAGES: ImageAsset[] = [
+  {
+    filename: "DSC07306.jpg",
+    alt: "Students engaged in a group activity at St. Elizabeth High School, warm and welcoming community atmosphere",
+    category: "student-life",
+    section: "homepage-cta",
+    profile: {
+      brightness: 134.1,
+      contrast: 68.8,
+      complexity: "high",
+      temperature: "warm",
+      moodTags: ["balanced", "natural", "authentic"],
+    },
+  },
+];
+
 // ── Contact / Visit Page Images ────────────────────────────────────────
 
 export const CONTACT_IMAGES: ImageAsset[] = [
@@ -981,6 +1000,7 @@ export function getImageByFilename(filename: string): ImageAsset | undefined {
     ...STATS_IMAGES,
     ...TESTIMONIAL_IMAGES,
     ...NEWS_IMAGES,
+    ...CTA_IMAGES,
     ...ACADEMICS_IMAGES,
     ...ATHLETICS_IMAGES,
     ...ARTS_IMAGES,
@@ -1003,6 +1023,7 @@ function countUnique() {
     ...STATS_IMAGES,
     ...TESTIMONIAL_IMAGES,
     ...NEWS_IMAGES,
+    ...CTA_IMAGES,
     ...ACADEMICS_IMAGES,
     ...ATHLETICS_IMAGES,
     ...ARTS_IMAGES,

@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { CTASection } from "./CTASection";
+
+vi.mock("next/image", () => ({
+  default: (props: Record<string, unknown>) => <img {...props} />,
+}));
 
 describe("CTASection", () => {
   it("renders heading", () => {
@@ -20,6 +24,35 @@ describe("CTASection", () => {
     expect(screen.getByText("Start your journey.")).toBeInTheDocument();
     expect(screen.getByText("Apply Now")).toBeInTheDocument();
     expect(screen.getByText("Learn More")).toBeInTheDocument();
+  });
+
+  it("renders eyebrow when provided", () => {
+    render(<CTASection heading="Apply Today" eyebrow="Discover Us" />);
+    expect(screen.getByText("Discover Us")).toBeInTheDocument();
+  });
+
+  it("renders image when provided", () => {
+    render(
+      <CTASection
+        heading="Apply Today"
+        image={{ src: "/images/test.jpg", alt: "Test image" }}
+      />,
+    );
+    const img = screen.getByRole("img", { name: /Test image/i });
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src", "/images/test.jpg");
+  });
+
+  it("uses lightButton variant for primary CTA", () => {
+    const { container } = render(
+      <CTASection
+        heading="Apply Today"
+        background="blue"
+        primaryCTA={{ text: "Apply Now", href: "/apply" }}
+      />,
+    );
+    const btn = container.querySelector("a[href='/apply']");
+    expect(btn?.className).toContain("lightButton");
   });
 
   it("renders with blue background", () => {

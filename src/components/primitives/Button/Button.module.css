@@ -57,6 +57,19 @@
   text-decoration: underline;
 }
 
+/* ── Light button (white on dark background) ─── */
+
+.lightButton {
+  background: var(--s-color-surface);
+  color: var(--s-color-primary);
+  border: 2px solid var(--s-color-surface);
+}
+
+.lightButton:hover:not(:disabled) {
+  background: transparent;
+  color: var(--s-color-surface);
+}
+
 /* ── Sizes ────────────────────────────────────────── */
 
 .sizeSmall {
