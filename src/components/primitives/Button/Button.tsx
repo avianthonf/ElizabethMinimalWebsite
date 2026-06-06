@@ -4,7 +4,7 @@ import type { ReactNode, MouseEvent } from "react";
 import { ConditionalLink } from "@/components/primitives/ConditionalLink/ConditionalLink";
 import styles from "./Button.module.css";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "lightButton";
 export type ButtonSize = "small" | "medium" | "large";
 
 export interface ButtonProps {
