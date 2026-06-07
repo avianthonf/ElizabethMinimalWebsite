@@ -58,6 +58,25 @@
      they overflow right, extending track.scrollWidth. */
 }
 
+/* ── Vertical layout (mobile/tablet) ──────────────────────────────────── */
+
+.verticalGalleryPanel {
+  width: 100%;
+  min-width: auto;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
+  display: block;
+  background: var(--s-color-gallery-bg);
+  padding: clamp(28px, 5vw, 72px);
+}
+
+.verticalGalleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ═══════════════════════════════════════════════════════════════════════ */
@@ -77,6 +96,16 @@
   .galleryPanel {
     padding: clamp(24px, 4vw, 48px);
   }
+
+  /* Vertical layout: slightly larger min cards */
+  .verticalGalleryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .verticalGalleryPanel {
+    padding: clamp(24px, 4vw, 48px);
+  }
 }
 
 /* ── Mobile: ≤760px ───────────────────────────────────────────────────── */
@@ -94,5 +123,15 @@
 
   .galleryHeader h2 {
     font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
+  }
+
+  /* Vertical layout: smaller min cards, tighter padding */
+  .verticalGalleryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .verticalGalleryPanel {
+    padding: 36px 16px 28px;
   }
 }

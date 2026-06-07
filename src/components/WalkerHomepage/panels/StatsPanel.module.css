@@ -138,6 +138,23 @@
   }
 }
 
+/* ── Vertical layout (mobile/tablet) ─────────────────────────────── */
+
+.verticalStatsCards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 24px);
+  min-width: 0;
+}
+
+.verticalStatsCards .statsCard {
+  flex: 1 1 260px;
+  max-width: 320px;
+  min-width: 0;
+}
+
 /* ── Small Mobile: ≤420px ───────────────────────────────────────────── */
 
 @media (max-width: 420px) {

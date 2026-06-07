@@ -40,17 +40,16 @@ const STATS_ICONS: Record<string, ReactNode> = {
   ),
 };
 
-export function StatsPanel(): ReactNode {
+interface StatsPanelProps {
+  layout?: "horizontal" | "vertical";
+}
+
+function StatsPanelContent({ layout = "horizontal" }: StatsPanelProps): ReactNode {
+  const isVertical = layout === "vertical";
+  const cardsClass = isVertical ? styles.verticalStatsCards : styles.statsCards;
+
   return (
-    <HorizontalPage
-      width="clamp(960px, 85vw, 1400px)"
-      tabletWidth="min(1040px, 110vw)"
-      mobileWidth="max(760px, 180vw)"
-      smallMobileWidth="max(720px, 200vw)"
-      headerTheme="dark"
-      className={`${shared.panel} ${styles.statsPanel}`}
-      ariaLabel="St. Elizabeth's High School — key statistics"
-    >
+    <>
       <div className={styles.statsIntro}>
         <Text variant="eyebrow" as="p">By the Numbers</Text>
         <Heading level="h2" variant="section">Our School at a Glance</Heading>
@@ -58,7 +57,7 @@ export function StatsPanel(): ReactNode {
           Seven decades of shaping young minds — here&rsquo;s what makes St. Elizabeth special.
         </Text>
       </div>
-      <div className={styles.statsCards}>
+      <div className={cardsClass}>
         {STATS.map((stat) => (
           <article key={stat.label} className={styles.statsCard} aria-label={`${stat.label}: ${stat.value}`}>
             <div className={styles.statIcon}>{STATS_ICONS[stat.value]}</div>
@@ -72,6 +71,33 @@ export function StatsPanel(): ReactNode {
           </article>
         ))}
       </div>
-    </HorizontalPage>
+    </>
+  );
+}
+
+export function StatsPanel({ layout = "horizontal" }: StatsPanelProps): ReactNode {
+  return (
+    <>
+      {layout === "vertical" ? (
+        <section
+          className={`${shared.panel} ${styles.statsPanel}`}
+          aria-label="St. Elizabeth's High School — key statistics"
+        >
+          <StatsPanelContent layout={layout} />
+        </section>
+      ) : (
+        <HorizontalPage
+          width="clamp(960px, 85vw, 1400px)"
+          tabletWidth="min(1040px, 110vw)"
+          mobileWidth="max(760px, 180vw)"
+          smallMobileWidth="max(720px, 200vw)"
+          headerTheme="dark"
+          className={shared.panel}
+          ariaLabel="St. Elizabeth's High School — key statistics"
+        >
+          <StatsPanelContent layout={layout} />
+        </HorizontalPage>
+      )}
+    </>
   );
 }

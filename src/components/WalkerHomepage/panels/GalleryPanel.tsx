@@ -38,7 +38,11 @@ function GalleryCardWithReveal({
   );
 }
 
-export function GalleryPanel(): ReactNode {
+interface GalleryPanelProps {
+  layout?: "horizontal" | "vertical";
+}
+
+function GalleryPanelContent({ layout = "horizontal" }: GalleryPanelProps): ReactNode {
   const {
     activeFilter,
     lightboxIndex,
@@ -51,46 +55,70 @@ export function GalleryPanel(): ReactNode {
     prevImage,
   } = useGalleryState();
 
+  const isVertical = layout === "vertical";
+  const panelClass = isVertical
+    ? `${styles.verticalGalleryPanel}`
+    : `${styles.galleryPanel}`;
+  const gridClass = isVertical
+    ? `${styles.verticalGalleryGrid}`
+    : `${styles.galleryGrid}`;
+
   return (
-    <HorizontalPage
-      width="auto"
-      headerTheme="dark"
-      className={shared.panel}
-      ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
-    >
-      <section className={styles.galleryPanel} aria-labelledby="gallery-heading">
-        <div id="gallery-heading" className={styles.galleryHeader}>
-          <Text variant="eyebrow" as="p">Experience St. Elizabeth</Text>
-          <Heading level="h2" variant="section">Life at Our School</Heading>
+    <section className={panelClass} aria-labelledby="gallery-heading">
+      <div id="gallery-heading" className={styles.galleryHeader}>
+        <Text variant="eyebrow" as="p">Experience St. Elizabeth</Text>
+        <Heading level="h2" variant="section">Life at Our School</Heading>
+      </div>
+      <GalleryFilter
+        active={activeFilter}
+        onChange={setFilter}
+      />
+      <div className={gridClass}>
+        {filteredImages.map((img, visibleIdx) => (
+          <GalleryCardWithReveal
+            key={`${activeFilter}-${img._originalIndex}`}
+            activeFilter={activeFilter}
+            image={`/images/${img.filename}`}
+            imageAlt={img.alt}
+            title={img.category.charAt(0).toUpperCase() + img.category.slice(1)}
+            subCategory={img.subCategory}
+            date={img.date}
+            span={img.isHero ? "hero" : "standard"}
+            index={img._originalIndex}
+            onSelect={() => openLightbox(visibleIdx)}
+          />
+        ))}
+      </div>
+      <GalleryLightbox
+        images={lightboxImages}
+        currentIndex={lightboxIndex ?? -1}
+        onClose={closeLightbox}
+        onPrev={prevImage}
+        onNext={nextImage}
+      />
+    </section>
+  );
+}
+
+export function GalleryPanel({ layout = "horizontal" }: GalleryPanelProps): ReactNode {
+  const isVertical = layout === "vertical";
+
+  return (
+    <>
+      {isVertical ? (
+        <div className={shared.panel}>
+          <GalleryPanelContent layout={layout} />
         </div>
-        <GalleryFilter
-          active={activeFilter}
-          onChange={setFilter}
-        />
-        <div className={styles.galleryGrid}>
-          {filteredImages.map((img, visibleIdx) => (
-            <GalleryCardWithReveal
-              key={`${activeFilter}-${img._originalIndex}`}
-              activeFilter={activeFilter}
-              image={`/images/${img.filename}`}
-              imageAlt={img.alt}
-              title={img.category.charAt(0).toUpperCase() + img.category.slice(1)}
-              subCategory={img.subCategory}
-              date={img.date}
-              span={img.isHero ? "hero" : "standard"}
-              index={img._originalIndex}
-              onSelect={() => openLightbox(visibleIdx)}
-            />
-          ))}
-        </div>
-        <GalleryLightbox
-          images={lightboxImages}
-          currentIndex={lightboxIndex ?? -1}
-          onClose={closeLightbox}
-          onPrev={prevImage}
-          onNext={nextImage}
-        />
-      </section>
-    </HorizontalPage>
+      ) : (
+        <HorizontalPage
+          width="auto"
+          headerTheme="dark"
+          className={shared.panel}
+          ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
+        >
+          <GalleryPanelContent layout={layout} />
+        </HorizontalPage>
+      )}
+    </>
   );
 }

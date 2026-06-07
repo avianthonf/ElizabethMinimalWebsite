@@ -10,18 +10,13 @@ import { VALUES_IMAGES } from "@/data/images";
 import shared from "./shared.module.css";
 import styles from "./ValuesPanel.module.css";
 
-export function ValuesPanel(): ReactNode {
+interface ValuesPanelProps {
+  layout?: "horizontal" | "vertical";
+}
+
+function ValuesPanelContent(): ReactNode {
   return (
-    <HorizontalPage
-      width="clamp(960px, 85vw, 1400px)"
-      tabletWidth="min(1040px, 110vw)"
-      mobileWidth="max(760px, 180vw)"
-      smallMobileWidth="max(720px, 200vw)"
-      landscapeWidth="max(960px, 125vw)"
-      headerTheme="dark"
-      className={`${shared.panel} ${styles.valuesPanel}`}
-      ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
-    >
+    <>
       <div className={styles.valuesIntro}>
         <Text variant="eyebrow" as="p">We Believe</Text>
         <Heading level="h2" variant="section">Values That Shape Our Community</Heading>
@@ -46,6 +41,34 @@ export function ValuesPanel(): ReactNode {
           );
         })}
       </div>
-    </HorizontalPage>
+    </>
+  );
+}
+
+export function ValuesPanel({ layout = "horizontal" }: ValuesPanelProps): ReactNode {
+  return (
+    <>
+      {layout === "vertical" ? (
+        <section
+          className={`${shared.panel} ${styles.valuesPanel}`}
+          aria-label="St. Elizabeth values — Faith, Excellence, Community"
+        >
+          <ValuesPanelContent />
+        </section>
+      ) : (
+        <HorizontalPage
+          width="clamp(960px, 85vw, 1400px)"
+          tabletWidth="min(1040px, 110vw)"
+          mobileWidth="max(760px, 180vw)"
+          smallMobileWidth="max(720px, 200vw)"
+          landscapeWidth="max(960px, 125vw)"
+          headerTheme="dark"
+          className={`${shared.panel} ${styles.valuesPanel}`}
+          ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
+        >
+          <ValuesPanelContent />
+        </HorizontalPage>
+      )}
+    </>
   );
 }
