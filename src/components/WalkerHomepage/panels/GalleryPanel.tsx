@@ -22,6 +22,7 @@ type GalleryCardWithRevealProps = Omit<GalleryCardProps, "isVisible" | "filterAc
 };
 
 function GalleryCardWithReveal({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   activeFilter,
   ...cardProps
 }: GalleryCardWithRevealProps) {

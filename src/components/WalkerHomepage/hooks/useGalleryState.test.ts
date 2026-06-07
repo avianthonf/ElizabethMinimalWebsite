@@ -1,19 +1,8 @@
-import { describe, it, expect, vi, beforeAll } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useGalleryState } from "./useGalleryState";
 
 // Mock the data/images module so we control the input
-const MOCK_GRID_IMAGES = [
-  { filename: "img1.jpg", alt: "Image 1", category: "academics", section: "homepage-grid" },
-  { filename: "img2.jpg", alt: "Image 2", category: "athletics", section: "homepage-grid" },
-  { filename: "img3.jpg", alt: "Image 3", category: "community", section: "homepage-grid" },
-  { filename: "img4.jpg", alt: "Image 4", category: "student-life", section: "homepage-grid" },
-  { filename: "img5.jpg", alt: "Image 5", category: "general", section: "homepage-grid" },
-  { filename: "img6.jpg", alt: "Image 6", category: "academics", section: "homepage-grid" },
-];
-
-const MOCK_HERO_FILENAMES = ["img1.jpg", "img2.jpg"];
-
 vi.mock("@/data/images", () => ({
   HOMEPAGE_GRID_IMAGES: [
     { filename: "img1.jpg", alt: "Image 1", category: "academics", section: "homepage-grid" },

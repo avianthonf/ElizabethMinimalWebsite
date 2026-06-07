@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useRef } from "react";
+import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import type { GalleryCategory } from "@/components/content/GalleryFilter/GalleryFilter";
 import type { LightboxImage } from "@/components/content/GalleryLightbox/GalleryLightbox";
 import type { ImageAsset } from "@/data/images";
@@ -124,9 +124,12 @@ export function useGalleryState(): UseGalleryStateReturn {
     }));
   }, [filteredImages]);
 
-  // Keep ref current each render so nav callbacks always have
-  // the latest count (stale-closure safety).
-  countRef.current = lightboxImages.length;
+  // Keep ref current in an effect so nav callbacks always have
+  // the latest count (stale-closure safety) without mutating
+  // during render.
+  useEffect(() => {
+    countRef.current = lightboxImages.length;
+  }, [lightboxImages.length]);
 
   return {
     activeFilter,

@@ -16,7 +16,7 @@ const MOCK_GRID = vi.hoisted(() => [
 
 vi.mock("next/image", () => ({
   default: (props: Record<string, unknown>) => {
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+    // eslint-disable-next-line @next/next/no-img-element
     return <img alt={props.alt as string} src={props.src as string} />;
   },
 }));

@@ -21,9 +21,9 @@ export function TestimonialCard({
   return (
     <article className={composedClassName}>
       <blockquote className={styles.quote} cite={attribution}>
-        <span className={styles.quoteMark} aria-hidden>"</span>
+        <span className={styles.quoteMark} aria-hidden>&ldquo;</span>
         {quote}
-        <span className={styles.quoteMark} aria-hidden>"</span>
+        <span className={styles.quoteMark} aria-hidden>&rdquo;</span>
       </blockquote>
       <footer className={styles.footer}>
         <div className={styles.attribution}>{attribution}</div>

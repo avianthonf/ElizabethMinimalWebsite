@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { CLUBS, STUDENT_LIFE_INTRO, type Club } from "../student-life";
+import { CLUBS, STUDENT_LIFE_INTRO } from "../student-life";
 
 describe("Student Life Data", () => {
   describe("CLUBS", () => {

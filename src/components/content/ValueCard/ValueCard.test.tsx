@@ -4,19 +4,7 @@ import { ValueCard } from "./ValueCard";
 
 // next/image returns an img element in tests
 vi.mock("next/image", () => ({
-  default: ({
-    src,
-    alt,
-    fill: _fill,
-    sizes: _sizes,
-    className: _className,
-  }: {
-    src: string;
-    alt: string;
-    fill?: boolean;
-    sizes?: string;
-    className?: string;
-  }) => (
+  default: ({ src, alt }: { src: string; alt: string }) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img src={src} alt={alt} />
   ),

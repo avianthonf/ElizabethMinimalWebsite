@@ -3,7 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 import { CTASection } from "./CTASection";
 
 vi.mock("next/image", () => ({
-  default: (props: Record<string, unknown>) => <img {...props} />,
+  // eslint-disable-next-line @next/next/no-img-element
+  default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={String(alt ?? "")} />,
 }));
 
 describe("CTASection", () => {

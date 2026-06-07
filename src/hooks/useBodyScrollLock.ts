@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 /**
  * Locks document body scroll when `isLocked` is true, and restores it
@@ -12,18 +12,13 @@ import { useEffect, useRef } from "react";
  * - Storing original inline styles and restoring them exactly on unlock
  */
 export function useBodyScrollLock(isLocked: boolean): void {
-  const originalStyleRef = useRef<{ overflow: string; paddingRight: string }>({
-    overflow: "",
-    paddingRight: "",
-  });
-
   useEffect(() => {
     if (!isLocked) return;
 
-    // ── Store original inline styles ──────────────────────────────
+    // ── Store original inline styles (read once at lock time) ───
 
-    originalStyleRef.current.overflow = document.body.style.overflow;
-    originalStyleRef.current.paddingRight = document.body.style.paddingRight;
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
 
     // ── Calculate scrollbar width ─────────────────────────────────
 
@@ -43,9 +38,8 @@ export function useBodyScrollLock(isLocked: boolean): void {
     // ── Restore on unlock or unmount ──────────────────────────────
 
     return () => {
-      document.body.style.overflow = originalStyleRef.current.overflow;
-      document.body.style.paddingRight =
-        originalStyleRef.current.paddingRight;
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
     };
   }, [isLocked]);
 }

@@ -19,7 +19,8 @@ export const heroPanelClass = `${shared.panel} ${styles.heroPanel}`;
 const HERO_IMAGE = HERO_IMAGES[0] as ImageAsset;
 
 /** Hero section content. Wrapping HorizontalPage is applied by the orchestrator. */
-export function HeroPanel(_props: HeroPanelProps): ReactNode {
+export function HeroPanel(props: HeroPanelProps): ReactNode {
+  void props;
   return (
     <>
       <Image

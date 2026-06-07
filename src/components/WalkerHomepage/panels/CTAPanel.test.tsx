@@ -4,6 +4,7 @@ import { CTAPanel, ctaPanelClass } from "./CTAPanel";
 import React from "react";
 
 vi.mock("next/image", () => ({
+  // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
   default: (props: Record<string, unknown>) => <img {...props} />,
 }));
 
