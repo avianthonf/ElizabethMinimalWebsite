@@ -1,5 +1,5 @@
 /**
- * Academics content for St. Elizabeth High School.
+ * Academics content for St. Elizabeth's High School.
  */
 
 export interface Department {

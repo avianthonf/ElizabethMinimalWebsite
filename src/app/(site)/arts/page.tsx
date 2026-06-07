@@ -12,7 +12,7 @@ import { ARTS_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Arts",
-  "Explore the visual and performing arts at St. Elizabeth High School — drawing, painting, sculpture, music, dance, and drama.",
+  "Explore the visual and performing arts at St. Elizabeth's High School — drawing, painting, sculpture, music, dance, and drama.",
 );
 
 export default function ArtsPage() {
@@ -48,7 +48,7 @@ export default function ArtsPage() {
             <Grid columns={2} gap="large" responsive>
               <ImageCard
                 image={`/images/${ARTS_IMAGES[1].filename}`}
-                imageAlt="Visual Arts at St. Elizabeth High School"
+                imageAlt="Visual Arts at St. Elizabeth's High School"
                 title="Visual Arts"
                 description="Drawing, painting, sculpture, and art history — explore your creative voice through hands-on practice and study."
                 aspectRatio="4:3"
@@ -56,7 +56,7 @@ export default function ArtsPage() {
               />
               <ImageCard
                 image={`/images/${ARTS_IMAGES[2]?.filename ?? ARTS_IMAGES[1].filename}`}
-                imageAlt="Performing Arts at St. Elizabeth High School"
+                imageAlt="Performing Arts at St. Elizabeth's High School"
                 title="Performing Arts"
                 description="Music, dance, and drama — develop confidence and collaboration skills on stage and in the spotlight."
                 aspectRatio="4:3"

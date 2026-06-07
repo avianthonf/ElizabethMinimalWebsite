@@ -1,5 +1,5 @@
 /**
- * Shared visit data for St. Elizabeth High School.
+ * Shared visit data for St. Elizabeth's High School.
  *
  * Central source of truth for visit-related types, address, contact info,
  * map configuration, and visit type definitions. Both admissions/visit and

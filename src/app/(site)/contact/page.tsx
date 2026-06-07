@@ -13,7 +13,7 @@ import { CONTACT_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Contact",
-  "Get in touch with St. Elizabeth High School in Pomburpa, Goa. Find our address, phone number, email, and location on Google Maps.",
+  "Get in touch with St. Elizabeth's High School in Pomburpa, Goa. Find our address, phone number, email, and location on Google Maps.",
 );
 
 export default function ContactPage() {
@@ -23,7 +23,7 @@ export default function ContactPage() {
         <Hero
           eyebrow="Connect"
           heading="Contact Us"
-          description="We'd love to hear from you. Reach out to St. Elizabeth High School in Pomburpa, Bardez, Goa."
+          description="We'd love to hear from you. Reach out to St. Elizabeth's High School in Pomburpa, Bardez, Goa."
           backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
         />
       }
@@ -99,7 +99,7 @@ export default function ContactPage() {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="St. Elizabeth High School on Google Maps"
+                    title="St. Elizabeth's High School on Google Maps"
                   />
                 </div>
               </Stack>

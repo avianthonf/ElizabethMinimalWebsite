@@ -18,7 +18,7 @@ import { COMMUNITY_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "How to Help",
-  "Support St. Elizabeth High School through donations, sponsorship, or volunteering. Your contribution makes a difference in students' lives.",
+  "Support St. Elizabeth's High School through donations, sponsorship, or volunteering. Your contribution makes a difference in students' lives.",
 );
 
 export default function HowToHelpPage() {

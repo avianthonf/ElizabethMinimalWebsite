@@ -1,5 +1,5 @@
 /**
- * Alumni content for St. Elizabeth High School.
+ * Alumni content for St. Elizabeth's High School.
  */
 
 export const NOTABLE_ALUMNI = [
@@ -40,7 +40,7 @@ export const ALUMNI_EVENTS = [
     title: "Annual Alumni Reunion",
     date: "December 28, 2026",
     description: "Join fellow alumni for an evening of nostalgia, networking, and celebration on the St. Elizabeth campus in Pomburpa.",
-    location: "St. Elizabeth High School Campus",
+    location: "St. Elizabeth's High School Campus",
   },
   {
     title: "Alumni Career Day",
@@ -51,14 +51,14 @@ export const ALUMNI_EVENTS = [
   {
     title: "Founder's Day Alumni Dinner",
     date: "July 2027",
-    description: "A special gathering to honour the founding of St. Elizabeth High School and celebrate the achievements of our alumni community.",
+    description: "A special gathering to honour the founding of St. Elizabeth's High School and celebrate the achievements of our alumni community.",
     location: "Pomburpa Community Hall",
   },
 ] as const;
 
 export const ALUMNI_INTRO = {
   heading: "Once a St. Elizabeth Student, Always Family",
-  body: "The bonds formed at St. Elizabeth High School last a lifetime. Our alumni community spans generations and continents, united by shared values of Truth, Honesty, and service. Stay connected, give back, and help shape the future of the school that shaped you.",
+  body: "The bonds formed at St. Elizabeth's High School last a lifetime. Our alumni community spans generations and continents, united by shared values of Truth, Honesty, and service. Stay connected, give back, and help shape the future of the school that shaped you.",
 } as const;
 
 // ── Async data getter (CMS-ready) ─────────────────────────────────────

@@ -13,7 +13,7 @@ import { COLLEGE_COUNSELING_STEPS } from "@/data/academics";
 
 export const metadata = createPageMetadata(
   "College Counseling",
-  "Our college counseling programme at St. Elizabeth High School guides students and families through university selection, applications, and career exploration.",
+  "Our college counseling programme at St. Elizabeth's High School guides students and families through university selection, applications, and career exploration.",
 );
 
 export default function CollegeCounselingPage() {

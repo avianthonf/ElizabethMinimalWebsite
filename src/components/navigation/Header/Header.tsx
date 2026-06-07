@@ -24,7 +24,7 @@ export interface HeaderProps {
 }
 
 /**
- * Default primary navigation for St. Elizabeth High School.
+ * Default primary navigation for St. Elizabeth's High School.
  * Can be overridden per-page via the `navLinks` prop.
  *
  * Note: The original Walker School defaults (Inquire, Visit, Summer, St. Elizabeth)
@@ -43,7 +43,7 @@ const DEFAULT_NAV: HeaderNavLink[] = [
 ];
 
 export function Header({
-  brandText = "St. Elizabeth High School",
+  brandText = "St. Elizabeth's High School",
   brandHref = "/",
   navLinks = DEFAULT_NAV,
   showMenu = true,

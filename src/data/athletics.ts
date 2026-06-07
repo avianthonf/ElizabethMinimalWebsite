@@ -1,5 +1,5 @@
 /**
- * Athletics content for St. Elizabeth High School.
+ * Athletics content for St. Elizabeth's High School.
  */
 
 export interface Sport {

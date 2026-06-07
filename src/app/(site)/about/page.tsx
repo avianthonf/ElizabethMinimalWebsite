@@ -16,7 +16,7 @@ import { HERO_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "About",
-  "Learn about St. Elizabeth High School's mission, history, and values in Pomburpa, Goa.",
+  "Learn about St. Elizabeth's High School's mission, history, and values in Pomburpa, Goa.",
 );
 
 export default function AboutPage() {
@@ -28,7 +28,7 @@ export default function AboutPage() {
         <Hero
           eyebrow="Discover"
           heading="About St. Elizabeth"
-          description="Guided by our motto 'Truth and Honesty,' St. Elizabeth High School has been nurturing young minds in Pomburpa, Goa since 1949."
+          description="Guided by our motto 'Truth and Honesty,' St. Elizabeth's High School has been nurturing young minds in Pomburpa, Goa since 1949."
           backgroundImage={`/images/${heroImage.filename}`}
         />
       }
@@ -49,7 +49,7 @@ export default function AboutPage() {
                     Educating the Whole Person
                   </Heading>
                   <Text variant="muted" size="medium">
-                    St. Elizabeth High School is a nurturing Catholic school
+                    St. Elizabeth&apos;s High School is a nurturing Catholic school
                     community where students are known, challenged, and
                     supported. Our commitment to Truth and Honesty shapes
                     every aspect of school life — from academic excellence to
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 <MediaBlock
                   mediaType="image"
                   mediaSrc={`/images/${HERO_IMAGES[2]?.filename ?? HERO_IMAGES[0].filename}`}
-                  mediaAlt="St. Elizabeth High School campus"
+                  mediaAlt="St. Elizabeth's High School campus"
                   heading="A Tradition of Excellence"
                   description="For over seven decades, St. Elizabeth has provided quality education to students from across North Goa."
                   mediaPosition="left"

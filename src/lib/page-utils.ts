@@ -4,7 +4,7 @@ import { HERO_IMAGES, type ImageAsset, type ImageSection } from "@/data/images";
 /**
  * Creates a Next.js Metadata object with consistent formatting.
  *
- * @param title - The page title (appended with " | St. Elizabeth High School")
+ * @param title - The page title (appended with " | St. Elizabeth's High School")
  * @param description - The page description for SEO
  * @param options.ogImage - Optional Open Graph image URL
  * @param options.noIndex - If true, sets robots to noindex
@@ -15,7 +15,7 @@ export function createPageMetadata(
   options?: { ogImage?: string; noIndex?: boolean },
 ): Metadata {
   const metadata: Metadata = {
-    title: `${title} | St. Elizabeth High School`,
+    title: `${title} | St. Elizabeth's High School`,
     description,
   };
 

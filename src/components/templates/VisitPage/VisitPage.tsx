@@ -113,7 +113,7 @@ export function VisitPage({
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="St. Elizabeth High School on Google Maps"
+                    title="St. Elizabeth's High School on Google Maps"
                   />
                 </div>
               </Stack>

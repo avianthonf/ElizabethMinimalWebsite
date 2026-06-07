@@ -13,7 +13,7 @@ import { STUDENT_LIFE_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Student Life",
-  "Discover student life at St. Elizabeth High School — clubs, organizations, traditions, and a vibrant community beyond the classroom.",
+  "Discover student life at St. Elizabeth's High School — clubs, organizations, traditions, and a vibrant community beyond the classroom.",
 );
 
 export default function StudentLifePage() {

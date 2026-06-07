@@ -30,7 +30,7 @@ export function WalkerHomepage(): React.ReactNode {
 
       {!showOverlay && (
         <Header
-          brandText="St. Elizabeth High School"
+          brandText="St. Elizabeth's High School"
           navLinks={HEADER_NAV_LINKS}
           transparent
           fixed
@@ -54,7 +54,7 @@ export function WalkerHomepage(): React.ReactNode {
           width="100vw"
           headerTheme="light"
           className={heroPanelClass}
-          ariaLabel="St. Elizabeth High School — introduction"
+          ariaLabel="St. Elizabeth's High School — introduction"
         >
           <HeroPanel onMenuOpen={menu.open} />
         </HorizontalPage>

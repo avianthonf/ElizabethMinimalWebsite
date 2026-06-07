@@ -1,5 +1,5 @@
 /**
- * Navigation structure for St. Elizabeth High School.
+ * Navigation structure for St. Elizabeth's High School.
  * Used by Header, Footer, and full-screen menu overlay components.
  */
 
@@ -159,7 +159,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
 ];
 
 export const FOOTER_INTRO = {
-  heading: "St. Elizabeth High School",
+  heading: "St. Elizabeth's High School",
   body: `Guiding Minds, Nurturing Hearts, Building Futures. A nurturing Catholic school in Pomburpa, Goa, rooted in Truth and Honesty since 1949.
 
 Ven. Fr. Hilario Gonsalves Rd
@@ -174,4 +174,4 @@ export const FOOTER_SOCIAL_LINKS = [
   { platform: "instagram" as const, href: "https://instagram.com/stelizabethhighschool" },
 ];
 
-export const FOOTER_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth High School, Pomburpa, Goa. All Rights Reserved.`;
+export const FOOTER_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth's High School, Pomburpa, Goa. All Rights Reserved.`;

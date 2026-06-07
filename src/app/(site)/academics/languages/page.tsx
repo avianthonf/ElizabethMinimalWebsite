@@ -13,7 +13,7 @@ import { LANGUAGE_PROGRAMS } from "@/data/academics";
 
 export const metadata = createPageMetadata(
   "World Languages",
-  "Explore the World Languages programme at St. Elizabeth High School — Hindi, Konkani, and Sanskrit, connecting students to India's rich linguistic heritage.",
+  "Explore the World Languages programme at St. Elizabeth's High School — Hindi, Konkani, and Sanskrit, connecting students to India's rich linguistic heritage.",
 );
 
 export default function LanguagesPage() {

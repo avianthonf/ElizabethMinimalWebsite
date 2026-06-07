@@ -11,7 +11,7 @@ import { TUITION_INFO } from "@/data/admissions";
 
 export const metadata = createPageMetadata(
   "Tuition & Financial Assistance",
-  "Learn about tuition fees and financial assistance at St. Elizabeth High School. We are committed to making quality education accessible to all families.",
+  "Learn about tuition fees and financial assistance at St. Elizabeth's High School. We are committed to making quality education accessible to all families.",
 );
 
 export default function TuitionPage() {
@@ -23,7 +23,7 @@ export default function TuitionPage() {
         <Hero
           eyebrow="Invest"
           heading="Tuition & Financial Assistance"
-          description="St. Elizabeth High School is committed to making quality education accessible to families across North Goa."
+          description="St. Elizabeth's High School is committed to making quality education accessible to families across North Goa."
           backgroundImage={`/images/${heroImage.filename}`}
         />
       }

@@ -13,7 +13,7 @@ import { WHY_ST_ELIZABETH_POINTS } from "@/data/admissions";
 
 export const metadata = createPageMetadata(
   "Why St. Elizabeth?",
-  "Discover what makes St. Elizabeth High School special — academic excellence, values-based education, holistic development, and a nurturing community.",
+  "Discover what makes St. Elizabeth's High School special — academic excellence, values-based education, holistic development, and a nurturing community.",
 );
 
 export default function WhyPage() {
@@ -25,7 +25,7 @@ export default function WhyPage() {
         <Hero
           eyebrow="Discover"
           heading="Why St. Elizabeth?"
-          description="Find out why families across North Goa choose St. Elizabeth High School for their children's education."
+          description="Find out why families across North Goa choose St. Elizabeth's High School for their children's education."
           backgroundImage={`/images/${heroImage.filename}`}
         />
       }

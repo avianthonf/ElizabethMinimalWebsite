@@ -44,7 +44,7 @@ vi.mock("next/image", () => ({
 // Mock data modules
 vi.mock("@/data/homepage", () => ({
   HERO_CONTENT: {
-    statement: "St. Elizabeth High School inspires transformative learning...",
+    statement: "St. Elizabeth's High School inspires transformative learning...",
     heading: "Nurturing Hearts",
     loadOverlayText: "WE BELIEVE",
   },
@@ -91,9 +91,9 @@ vi.mock("@/data/navigation", () => ({
   FOOTER_SECTIONS: [
     { title: "About", links: [{ text: "Mission", href: "/about/mission" }] },
   ],
-  FOOTER_INTRO: { heading: "St. Elizabeth High School", body: "Guiding Minds..." },
+  FOOTER_INTRO: { heading: "St. Elizabeth's High School", body: "Guiding Minds..." },
   FOOTER_SOCIAL_LINKS: [],
-  FOOTER_COPYRIGHT: "© 2026 St. Elizabeth High School",
+  FOOTER_COPYRIGHT: "© 2026 St. Elizabeth's High School",
   MENU_CATEGORIES: [
     { title: "ABOUT", links: [{ text: "Mission & Values", href: "/about/mission" }] },
   ],

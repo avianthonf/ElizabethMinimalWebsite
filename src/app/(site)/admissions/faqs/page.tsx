@@ -11,7 +11,7 @@ import { FAQS } from "@/data/admissions";
 
 export const metadata = createPageMetadata(
   "FAQs",
-  "Find answers to frequently asked questions about admissions, curriculum, transportation, financial assistance, and more at St. Elizabeth High School.",
+  "Find answers to frequently asked questions about admissions, curriculum, transportation, financial assistance, and more at St. Elizabeth's High School.",
 );
 
 export default function FAQsPage() {
@@ -23,7 +23,7 @@ export default function FAQsPage() {
         <Hero
           eyebrow="Questions"
           heading="Frequently Asked Questions"
-          description="Find answers to the most common questions about St. Elizabeth High School and the admissions process."
+          description="Find answers to the most common questions about St. Elizabeth's High School and the admissions process."
           backgroundImage={`/images/${heroImage.filename}`}
         />
       }

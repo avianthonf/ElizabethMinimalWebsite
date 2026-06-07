@@ -1,5 +1,5 @@
 /**
- * How to Help / Giving content for St. Elizabeth High School.
+ * How to Help / Giving content for St. Elizabeth's High School.
  */
 
 export interface GivingOption {
