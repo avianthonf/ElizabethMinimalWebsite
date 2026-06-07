@@ -1,31 +1,38 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import { HorizontalScroll } from "./HorizontalScroll";
 import { HorizontalPage } from "./HorizontalPage";
-import React from "react";
 
-// Mock ResizeObserver for test environment
-let resizeObserverInstance: {
-  observe: ReturnType<typeof vi.fn>;
-  unobserve: ReturnType<typeof vi.fn>;
-  disconnect: ReturnType<typeof vi.fn>;
-} | null = null;
+/**
+ * List of ResizeObserverMock instances created during a test.
+ * Using an array avoids both "no-this-alias" and "no-explicit-any"
+ * because we never have to cast the global assignment.
+ */
+const resizeInstances: ResizeObserverMock[] = [];
 
-class ResizeObserverMock {
+class ResizeObserverMock implements ResizeObserver {
   observe = vi.fn();
   unobserve = vi.fn();
   disconnect = vi.fn();
 
-  constructor(callback: ResizeObserverCallback) {
-    resizeObserverInstance = this;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(_callback: ResizeObserverCallback) {
+    resizeInstances.push(this);
   }
 }
 
-global.ResizeObserver = ResizeObserverMock as any;
+global.ResizeObserver = ResizeObserverMock;
+
+type MockInstance = Pick<ResizeObserverMock, "observe" | "unobserve" | "disconnect"> | null;
+
+/** Return the last created (or current) mock instance, or null if none. */
+function getLastInstance(): MockInstance {
+  return resizeInstances.at(-1) ?? null;
+}
 
 describe("HorizontalScroll", () => {
   beforeEach(() => {
-    resizeObserverInstance = null;
+    resizeInstances.length = 0;
   });
   it("applies pinned stage CSS variables", () => {
     render(
@@ -219,7 +226,7 @@ describe("HorizontalScroll + HorizontalPage composition", () => {
 
 describe("HorizontalScroll ResizeObserver behavior", () => {
   beforeEach(() => {
-    resizeObserverInstance = null;
+    resizeInstances.length = 0;
   });
 
   it("should observe track element for dimension changes", () => {
@@ -233,8 +240,8 @@ describe("HorizontalScroll ResizeObserver behavior", () => {
     const viewport = stage.firstElementChild as HTMLDivElement;
     const track = viewport.firstElementChild as HTMLDivElement;
 
-    expect(resizeObserverInstance).not.toBeNull();
-    expect(resizeObserverInstance!.observe).toHaveBeenCalledWith(track);
+    expect(getLastInstance()).not.toBeNull();
+    expect(getLastInstance()!.observe).toHaveBeenCalledWith(track);
   });
 
   it("should disconnect observer on unmount", () => {
@@ -244,8 +251,8 @@ describe("HorizontalScroll ResizeObserver behavior", () => {
       </HorizontalScroll>,
     );
 
-    expect(resizeObserverInstance).not.toBeNull();
-    const instance = resizeObserverInstance!;
+    expect(getLastInstance()).not.toBeNull();
+    const instance = getLastInstance()!;
 
     unmount();
 
@@ -259,7 +266,7 @@ describe("HorizontalScroll ResizeObserver behavior", () => {
       </HorizontalScroll>,
     );
 
-    expect(resizeObserverInstance).not.toBeNull();
-    expect(resizeObserverInstance!.observe).toHaveBeenCalledTimes(1);
+    expect(getLastInstance()).not.toBeNull();
+    expect(getLastInstance()!.observe).toHaveBeenCalledTimes(1);
   });
 });

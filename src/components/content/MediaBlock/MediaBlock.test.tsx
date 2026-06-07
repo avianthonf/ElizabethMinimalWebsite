@@ -4,6 +4,7 @@ import { MediaBlock } from "./MediaBlock";
 
 vi.mock("next/image", () => ({
   default: ({ src, alt, className }: Record<string, unknown>) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img src={String(src)} alt={String(alt ?? "")} className={String(className ?? "")} />
   ),
 }));

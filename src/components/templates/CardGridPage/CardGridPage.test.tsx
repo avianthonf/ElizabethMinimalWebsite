@@ -111,7 +111,7 @@ const TEST_ITEMS: TestItem[] = [
   { id: "3", name: "Item Three" },
 ];
 
-function renderItem(item: TestItem, _index: number) {
+function renderItem(item: TestItem) {
   return <div key={item.id} data-testid={`card-${item.id}`}>{item.name}</div>;
 }
 

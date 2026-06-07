@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { NEWS_ARTICLES, UPCOMING_EVENTS, getNewsData, type NewsArticle } from "../news";
+import { NEWS_ARTICLES, UPCOMING_EVENTS, getNewsData } from "../news";
 
 describe("News Data", () => {
   it("getNewsData() returns all news content", async () => {

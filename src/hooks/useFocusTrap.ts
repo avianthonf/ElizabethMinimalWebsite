@@ -42,7 +42,10 @@ export function useFocusTrap({
   // Keep a stable ref for the escape callback so the keydown effect
   // doesn't re-attach the listener every time the callback identity changes.
   const onEscapeRef = useRef(onEscape);
-  onEscapeRef.current = onEscape;
+
+  useEffect(() => {
+    onEscapeRef.current = onEscape;
+  }, [onEscape]);
 
   // ── Activate: save focus + focus first element ──────────────────
 

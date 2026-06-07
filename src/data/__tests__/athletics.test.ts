@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { SPORTS, ATHLETICS_STATS, type Sport } from "../athletics";
+import { SPORTS, ATHLETICS_STATS } from "../athletics";
 
 describe("Athletics Data", () => {
   describe("SPORTS", () => {

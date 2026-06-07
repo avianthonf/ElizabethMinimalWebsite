@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { DEPARTMENTS, LANGUAGE_PROGRAMS, LIBRARY_RESOURCES, COLLEGE_COUNSELING_STEPS, type Department, type LanguageProgram, type LibraryResource, type CollegeCounselingStep } from "../academics";
+import { DEPARTMENTS, LANGUAGE_PROGRAMS, LIBRARY_RESOURCES, COLLEGE_COUNSELING_STEPS } from "../academics";
 
 describe("Academics Data", () => {
   describe("DEPARTMENTS", () => {

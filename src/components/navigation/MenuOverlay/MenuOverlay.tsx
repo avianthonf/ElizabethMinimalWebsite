@@ -74,6 +74,7 @@ export function MenuOverlay({
   // ── Open / Close lifecycle ────────────────────────────────────────
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     if (isOpen) {
       // 1. Insert into DOM
       setShouldRender(true);
@@ -101,6 +102,7 @@ export function MenuOverlay({
     }, 220); // 200ms exit + 20ms buffer
 
     return () => clearTimeout(exitTimer);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [isOpen]);
 
   // ── Handlers ──────────────────────────────────────────────────────
