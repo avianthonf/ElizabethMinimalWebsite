@@ -11,7 +11,7 @@ describe("Footer", () => {
 
   it("renders default intro content", () => {
     render(<Footer />);
-    expect(screen.getByText("St. Elizabeth High School")).toBeInTheDocument();
+    expect(screen.getByText("St. Elizabeth's High School")).toBeInTheDocument();
     expect(screen.getByText(/Guiding Minds, Nurturing Hearts, Building Futures/)).toBeInTheDocument();
   });
 
@@ -49,8 +49,8 @@ describe("Footer", () => {
   });
 
   it("renders copyright", () => {
-    render(<Footer copyright="© 2026 St. Elizabeth High School" />);
-    expect(screen.getByText("© 2026 St. Elizabeth High School")).toBeInTheDocument();
+    render(<Footer copyright="© 2026 St. Elizabeth's High School" />);
+    expect(screen.getByText("© 2026 St. Elizabeth's High School")).toBeInTheDocument();
   });
 
   it("renders social media links with accessible labels", () => {
@@ -62,8 +62,8 @@ describe("Footer", () => {
         ]}
       />,
     );
-    expect(screen.getByLabelText("St. Elizabeth High School on facebook")).toBeInTheDocument();
-    expect(screen.getByLabelText("St. Elizabeth High School on instagram")).toBeInTheDocument();
+    expect(screen.getByLabelText("St. Elizabeth's High School on facebook")).toBeInTheDocument();
+    expect(screen.getByLabelText("St. Elizabeth's High School on instagram")).toBeInTheDocument();
   });
 
   it("uses primary background by default", () => {

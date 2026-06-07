@@ -11,7 +11,7 @@ import { ADMISSION_STEPS } from "@/data/admissions";
 
 export const metadata = createPageMetadata(
   "Apply",
-  "Learn about the admission process at St. Elizabeth High School — from inquiry to enrollment. Six clear steps to join our school community.",
+  "Learn about the admission process at St. Elizabeth's High School — from inquiry to enrollment. Six clear steps to join our school community.",
 );
 
 export default function ApplyPage() {

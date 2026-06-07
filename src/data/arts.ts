@@ -1,5 +1,5 @@
 /**
- * Arts content for St. Elizabeth High School.
+ * Arts content for St. Elizabeth's High School.
  */
 
 export interface ArtsProgram {
@@ -30,7 +30,7 @@ export const VISUAL_ARTS_PROGRAMS = [
 export const VISUAL_ARTS_PAGE = {
   metaTitle: "Visual Arts",
   metaDescription:
-    "Explore the visual arts programme at St. Elizabeth High School — drawing, painting, sculpture, 3D design, and art history.",
+    "Explore the visual arts programme at St. Elizabeth's High School — drawing, painting, sculpture, 3D design, and art history.",
   heroEyebrow: "Create",
   heroHeading: "Visual Arts",
   heroDescription:
@@ -42,7 +42,7 @@ export const VISUAL_ARTS_PAGE = {
 export const PERFORMING_ARTS_PAGE = {
   metaTitle: "Performing Arts",
   metaDescription:
-    "Explore the performing arts programme at St. Elizabeth High School — music, dance, drama, and our annual arts festival.",
+    "Explore the performing arts programme at St. Elizabeth's High School — music, dance, drama, and our annual arts festival.",
   heroEyebrow: "Perform",
   heroHeading: "Performing Arts",
   heroDescription:

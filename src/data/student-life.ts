@@ -1,5 +1,5 @@
 /**
- * Student Life content for St. Elizabeth High School.
+ * Student Life content for St. Elizabeth's High School.
  */
 
 export interface Club {
@@ -59,20 +59,20 @@ export const CLUBS: Club[] = [
 export const CLUBS_PAGE = {
   metaTitle: "Clubs & Organizations",
   metaDescription:
-    "Explore the clubs and organizations at St. Elizabeth High School — from debate and drama to eco club, student council, and community service.",
+    "Explore the clubs and organizations at St. Elizabeth's High School — from debate and drama to eco club, student council, and community service.",
   heroEyebrow: "Get Involved",
   heroHeading: "Clubs & Organizations",
   heroDescription:
     "Discover your passion, develop leadership skills, and build lifelong friendships through our diverse range of student clubs and organizations.",
   sectionHeading: "Explore Our Clubs",
   sectionDescription:
-    "With clubs spanning academics, arts, athletics, service, and leadership, there's something for every student at St. Elizabeth High School.",
+    "With clubs spanning academics, arts, athletics, service, and leadership, there's something for every student at St. Elizabeth's High School.",
   sectionAriaLabel: "Clubs and organizations",
 } as const;
 
 export const STUDENT_LIFE_INTRO = {
   heading: "Beyond the Classroom",
-  body: "At St. Elizabeth High School, student life extends far beyond academics. Our clubs, organizations, and traditions create a vibrant community where every student can explore their passions, develop leadership skills, and build lifelong friendships.",
+  body: "At St. Elizabeth's High School, student life extends far beyond academics. Our clubs, organizations, and traditions create a vibrant community where every student can explore their passions, develop leadership skills, and build lifelong friendships.",
 } as const;
 
 // ── Async data getter (CMS-ready) ─────────────────────────────────────

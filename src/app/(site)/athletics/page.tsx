@@ -16,7 +16,7 @@ import { ATHLETICS_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Athletics",
-  "Discover athletics at St. Elizabeth High School — basketball, football, cricket, volleyball, athletics, swimming, tennis, and more.",
+  "Discover athletics at St. Elizabeth's High School — basketball, football, cricket, volleyball, athletics, swimming, tennis, and more.",
 );
 
 export default function AthleticsPage() {

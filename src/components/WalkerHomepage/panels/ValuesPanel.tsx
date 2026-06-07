@@ -26,7 +26,7 @@ export function ValuesPanel(): ReactNode {
         <Text variant="eyebrow" as="p">We Believe</Text>
         <Heading level="h2" variant="section">Values That Shape Our Community</Heading>
         <Text variant="muted" as="p" size="medium">
-          At St. Elizabeth High School, we are guided by our motto &lsquo;Truth and Honesty&rsquo;
+          At St. Elizabeth&apos;s High School, we are guided by our motto &lsquo;Truth and Honesty&rsquo;
           and the principle of &lsquo;Guiding Minds, Nurturing Hearts, Building Futures.&rsquo;
         </Text>
       </div>

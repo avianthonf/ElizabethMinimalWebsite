@@ -68,7 +68,7 @@ const DEFAULT_SECTIONS: FooterSection[] = [
 ];
 
 const DEFAULT_INTRO = {
-  heading: "St. Elizabeth High School",
+  heading: "St. Elizabeth's High School",
   body: `Guiding Minds, Nurturing Hearts, Building Futures. A nurturing Catholic school in Pomburpa, Goa, rooted in Truth and Honesty since 1949.
 
 Ven. Fr. Hilario Gonsalves Rd
@@ -83,7 +83,7 @@ const DEFAULT_SOCIAL: FooterSocialLink[] = [
   { platform: "instagram", href: "https://instagram.com/stelizabethhighschool" },
 ];
 
-const DEFAULT_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth High School, Pomburpa, Goa. All Rights Reserved.`;
+const DEFAULT_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth's High School, Pomburpa, Goa. All Rights Reserved.`;
 
 const SOCIAL_ICONS: Record<string, ReactNode> = {
   facebook: (
@@ -173,7 +173,7 @@ export function Footer({
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`St. Elizabeth High School on ${link.platform}`}
+                    aria-label={`St. Elizabeth's High School on ${link.platform}`}
                     className={styles.socialLink}
                   >
                     {SOCIAL_ICONS[link.platform] ?? link.platform}

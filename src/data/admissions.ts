@@ -1,15 +1,15 @@
 /**
- * Admissions content for St. Elizabeth High School.
+ * Admissions content for St. Elizabeth's High School.
  */
 
 export const ADMISSIONS_VISIT_PAGE = {
   metaTitle: "Plan Your Visit",
   metaDescription:
-    "Plan your visit to St. Elizabeth High School in Pomburpa, Goa. Tour our campus, meet our faculty, and experience our community firsthand.",
+    "Plan your visit to St. Elizabeth's High School in Pomburpa, Goa. Tour our campus, meet our faculty, and experience our community firsthand.",
   heroEyebrow: "Visit Us",
   heroHeading: "Plan Your Visit",
   heroDescription:
-    "Experience St. Elizabeth High School firsthand — walk our campus, meet our faculty, and discover what makes our community special.",
+    "Experience St. Elizabeth's High School firsthand — walk our campus, meet our faculty, and discover what makes our community special.",
   sectionHeading: "Schedule a Campus Tour",
   introText:
     "We welcome families to visit our campus and experience the St. Elizabeth difference. Tours are available Monday through Friday by appointment. During your visit, you'll tour our facilities, observe classes in session, and meet with our admissions team.",
@@ -43,7 +43,7 @@ export const ADMISSION_STEPS = [
   {
     step: 1,
     title: "Inquire",
-    description: "Complete our inquiry form or call our admissions office to express interest and receive an information packet about St. Elizabeth High School.",
+    description: "Complete our inquiry form or call our admissions office to express interest and receive an information packet about St. Elizabeth's High School.",
   },
   {
     step: 2,
@@ -75,7 +75,7 @@ export const ADMISSION_STEPS = [
 export const FAQS = [
   {
     question: "What curriculum does St. Elizabeth follow?",
-    answer: "St. Elizabeth High School follows the Central Board of Secondary Education (CBSE) curriculum, one of India's most respected national education boards.",
+    answer: "St. Elizabeth's High School follows the Central Board of Secondary Education (CBSE) curriculum, one of India's most respected national education boards.",
   },
   {
     question: "What are the school hours?",
@@ -105,7 +105,7 @@ export const FAQS = [
 
 export const TUITION_INFO = {
   heading: "Tuition & Financial Assistance",
-  body: "St. Elizabeth High School is committed to making quality education accessible. We offer competitive tuition rates and a range of financial assistance options to support families in our community.",
+  body: "St. Elizabeth's High School is committed to making quality education accessible. We offer competitive tuition rates and a range of financial assistance options to support families in our community.",
   assistanceIntro: "Our financial assistance program is designed to ensure that qualified students can attend St. Elizabeth regardless of their family's financial circumstances. Applications are reviewed confidentially.",
 } as const;
 

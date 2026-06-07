@@ -12,7 +12,7 @@ import { ATHLETICS_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Teams & Schedules",
-  "Explore team schedules and programmes across seven sports at St. Elizabeth High School — basketball, football, cricket, volleyball, athletics, swimming, and tennis.",
+  "Explore team schedules and programmes across seven sports at St. Elizabeth's High School — basketball, football, cricket, volleyball, athletics, swimming, and tennis.",
 );
 
 export default function TeamsPage() {

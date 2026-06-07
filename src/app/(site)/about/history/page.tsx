@@ -14,7 +14,7 @@ import styles from "./history.module.css";
 
 export const metadata = createPageMetadata(
   "History",
-  "Explore the history of St. Elizabeth High School — from its founding in 1949 to a thriving community of 1200+ students in Pomburpa, Goa.",
+  "Explore the history of St. Elizabeth's High School — from its founding in 1949 to a thriving community of 1200+ students in Pomburpa, Goa.",
 );
 
 export default function HistoryPage() {
@@ -40,7 +40,7 @@ export default function HistoryPage() {
           <Hero
             eyebrow="Our Story"
             heading="School History"
-            description="Since 1949, St. Elizabeth High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
+            description="Since 1949, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
             backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
           />
         </>

@@ -13,7 +13,7 @@ import { COMMUNITY_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Alumni",
-  "Connect with the St. Elizabeth High School alumni community. Stay involved, attend events, and support the school that shaped you.",
+  "Connect with the St. Elizabeth's High School alumni community. Stay involved, attend events, and support the school that shaped you.",
 );
 
 export default function AlumniPage() {

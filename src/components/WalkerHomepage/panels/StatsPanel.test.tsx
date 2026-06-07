@@ -70,14 +70,14 @@ describe("StatsPanel", () => {
   it("has an aria-label describing the panel purpose", () => {
     render(<StatsPanel />);
     expect(
-      screen.getByLabelText("St. Elizabeth High School — key statistics"),
+      screen.getByLabelText("St. Elizabeth's High School — key statistics"),
     ).toBeDefined();
   });
 
   it("sets data-header-theme to dark", () => {
     render(<StatsPanel />);
     const container = screen.getByLabelText(
-      "St. Elizabeth High School — key statistics",
+      "St. Elizabeth's High School — key statistics",
     );
     expect(container.getAttribute("data-header-theme")).toBe("dark");
   });

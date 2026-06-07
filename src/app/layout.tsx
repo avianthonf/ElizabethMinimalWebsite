@@ -3,8 +3,8 @@ import { HeaderThemeController } from "@/components/HeaderThemeController";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "St. Elizabeth High School",
-  description: "Horizontal homepage prototype for St. Elizabeth High School.",
+  title: "St. Elizabeth's High School",
+  description: "Horizontal homepage prototype for St. Elizabeth's High School.",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",

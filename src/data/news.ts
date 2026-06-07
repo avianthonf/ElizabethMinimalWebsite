@@ -1,5 +1,5 @@
 /**
- * News content for St. Elizabeth High School.
+ * News content for St. Elizabeth's High School.
  */
 
 export interface NewsArticle {
@@ -15,7 +15,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
   {
     title: "Annual Day Celebration 2024",
     date: "November 15, 2024",
-    excerpt: "Students, staff, and families gathered to celebrate another year of academic and co-curricular achievement at St. Elizabeth High School. The evening featured cultural performances, award presentations, and a keynote address celebrating our school community.",
+    excerpt: "Students, staff, and families gathered to celebrate another year of academic and co-curricular achievement at St. Elizabeth's High School. The evening featured cultural performances, award presentations, and a keynote address celebrating our school community.",
     imageFilename: "DSC07504.jpg",
     category: "Events",
     href: "/news/annual-day-2024",
@@ -39,7 +39,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
   {
     title: "Students Excel in CBSE Board Examinations",
     date: "May 2024",
-    excerpt: "St. Elizabeth High School students achieved outstanding results in the CBSE Class X and XII board examinations, with several students scoring above 95% and the school achieving a 100% pass rate.",
+    excerpt: "St. Elizabeth's High School students achieved outstanding results in the CBSE Class X and XII board examinations, with several students scoring above 95% and the school achieving a 100% pass rate.",
     imageFilename: "DSC07576.jpg",
     category: "Academics",
     href: "/news/cbse-results-2024",

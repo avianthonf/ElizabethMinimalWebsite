@@ -1,10 +1,10 @@
 /**
- * About page content for St. Elizabeth High School.
+ * About page content for St. Elizabeth's High School.
  */
 
 export const MISSION_STATEMENT = {
   heading: "Our Mission",
-  body: "St. Elizabeth High School is a nurturing Catholic school community dedicated to academic excellence, character formation, and service to others. Guided by our motto 'Truth and Honesty,' we inspire students to become compassionate leaders who make a positive difference in the world.",
+  body: "St. Elizabeth's High School is a nurturing Catholic school community dedicated to academic excellence, character formation, and service to others. Guided by our motto 'Truth and Honesty,' we inspire students to become compassionate leaders who make a positive difference in the world.",
   values: [
     {
       title: "Truth and Honesty",
@@ -28,7 +28,7 @@ export const MISSION_STATEMENT = {
 export const HISTORY_TIMELINE = [
   {
     year: "1949",
-    event: "St. Elizabeth High School founded in Pomburpa, Bardez, Goa, with a mission to provide quality Catholic education to the local community.",
+    event: "St. Elizabeth's High School founded in Pomburpa, Bardez, Goa, with a mission to provide quality Catholic education to the local community.",
   },
   {
     year: "1960s",
@@ -95,7 +95,7 @@ export const STRATEGIC_PLAN_POINTS = [
 export const MISSION_PAGE = {
   metaTitle: "Mission & Values",
   metaDescription:
-    "Discover the mission and values that guide St. Elizabeth High School — Truth, Honesty, academic excellence, and faith in action.",
+    "Discover the mission and values that guide St. Elizabeth's High School — Truth, Honesty, academic excellence, and faith in action.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Mission & Values" },
   heroEyebrow: "Our Purpose",
   heroHeading: "Mission & Values",
@@ -107,12 +107,12 @@ export const MISSION_PAGE = {
 export const STRATEGIC_PLAN_PAGE = {
   metaTitle: "Strategic Plan",
   metaDescription:
-    "Explore the strategic plan for St. Elizabeth High School — academic innovation, campus development, community engagement, and sustainability.",
+    "Explore the strategic plan for St. Elizabeth's High School — academic innovation, campus development, community engagement, and sustainability.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Strategic Plan" },
   heroEyebrow: "Our Future",
   heroHeading: "Strategic Plan",
   heroDescription:
-    "Charting the course for St. Elizabeth High School's next chapter — building on our legacy while embracing the opportunities ahead.",
+    "Charting the course for St. Elizabeth's High School's next chapter — building on our legacy while embracing the opportunities ahead.",
   sectionHeading: "Priorities for the Future",
   sectionAriaLabel: "Strategic plan",
 } as const;
@@ -120,12 +120,12 @@ export const STRATEGIC_PLAN_PAGE = {
 export const STAFF_PAGE = {
   metaTitle: "Staff & Leadership",
   metaDescription:
-    "Meet the leadership team at St. Elizabeth High School — dedicated educators and administrators committed to Truth and Honesty.",
+    "Meet the leadership team at St. Elizabeth's High School — dedicated educators and administrators committed to Truth and Honesty.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Staff & Leadership" },
   heroEyebrow: "Our Leaders",
   heroHeading: "Staff & Leadership",
   heroDescription:
-    "The dedicated educators and administrators who bring the mission of St. Elizabeth High School to life every day.",
+    "The dedicated educators and administrators who bring the mission of St. Elizabeth's High School to life every day.",
   sectionHeading: "Leadership Team",
   sectionAriaLabel: "Staff and leadership",
 } as const;

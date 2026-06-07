@@ -6,7 +6,7 @@ import React from "react";
 // Mock next/image
 vi.mock("next/image", () => ({
   default: (props: Record<string, unknown>) => {
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+    // eslint-disable-next-line @next/next/no-img-element
     return <img alt={props.alt as string} src={props.src as string} />;
   },
 }));
@@ -25,7 +25,7 @@ vi.mock("@/data/images", () => ({
 // Mock data/homepage
 vi.mock("@/data/homepage", () => ({
   HERO_CONTENT: {
-    statement: "St. Elizabeth High School inspires transformative learning...",
+    statement: "St. Elizabeth's High School inspires transformative learning...",
     heading: "Nurturing Hearts",
     loadOverlayText: "WE BELIEVE",
   },

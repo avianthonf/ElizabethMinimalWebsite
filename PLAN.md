@@ -147,7 +147,7 @@ Barrel re-export of all three templates.
 ```typescript
 export const VISUAL_ARTS_PAGE = {
   metaTitle: "Visual Arts",
-  metaDescription: "Explore the visual arts programme at St. Elizabeth High School — drawing, painting, sculpture, 3D design, and art history.",
+  metaDescription: "Explore the visual arts programme at St. Elizabeth's High School — drawing, painting, sculpture, 3D design, and art history.",
   heroEyebrow: "Create",
   heroHeading: "Visual Arts",
   heroDescription: "Develop your artistic voice through hands-on practice in drawing, painting, sculpture, and art appreciation.",
@@ -157,7 +157,7 @@ export const VISUAL_ARTS_PAGE = {
 
 export const PERFORMING_ARTS_PAGE = {
   metaTitle: "Performing Arts",
-  metaDescription: "Explore the performing arts programme at St. Elizabeth High School — music, dance, drama, and our annual arts festival.",
+  metaDescription: "Explore the performing arts programme at St. Elizabeth's High School — music, dance, drama, and our annual arts festival.",
   heroEyebrow: "Perform",
   heroHeading: "Performing Arts",
   heroDescription: "Find your voice on stage — through music, dance, and drama — and celebrate Goa's rich performance traditions.",
@@ -170,7 +170,7 @@ export const PERFORMING_ARTS_PAGE = {
 ```typescript
 export const MISSION_PAGE = {
   metaTitle: "Mission & Values",
-  metaDescription: "Discover the mission and values that guide St. Elizabeth High School — Truth, Honesty, academic excellence, and faith in action.",
+  metaDescription: "Discover the mission and values that guide St. Elizabeth's High School — Truth, Honesty, academic excellence, and faith in action.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Mission & Values" },
   heroEyebrow: "Our Purpose",
   heroHeading: "Mission & Values",
@@ -180,22 +180,22 @@ export const MISSION_PAGE = {
 
 export const STRATEGIC_PLAN_PAGE = {
   metaTitle: "Strategic Plan",
-  metaDescription: "Explore the strategic plan for St. Elizabeth High School — academic innovation, campus development, community engagement, and sustainability.",
+  metaDescription: "Explore the strategic plan for St. Elizabeth's High School — academic innovation, campus development, community engagement, and sustainability.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Strategic Plan" },
   heroEyebrow: "Our Future",
   heroHeading: "Strategic Plan",
-  heroDescription: "Charting the course for St. Elizabeth High School's next chapter — building on our legacy while embracing the opportunities ahead.",
+  heroDescription: "Charting the course for St. Elizabeth's High School's next chapter — building on our legacy while embracing the opportunities ahead.",
   sectionHeading: "Priorities for the Future",
   sectionAriaLabel: "Strategic plan",
 } as const;
 
 export const STAFF_PAGE = {
   metaTitle: "Staff & Leadership",
-  metaDescription: "Meet the leadership team at St. Elizabeth High School — dedicated educators and administrators committed to Truth and Honesty.",
+  metaDescription: "Meet the leadership team at St. Elizabeth's High School — dedicated educators and administrators committed to Truth and Honesty.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Staff & Leadership" },
   heroEyebrow: "Our Leaders",
   heroHeading: "Staff & Leadership",
-  heroDescription: "The dedicated educators and administrators who bring the mission of St. Elizabeth High School to life every day.",
+  heroDescription: "The dedicated educators and administrators who bring the mission of St. Elizabeth's High School to life every day.",
   sectionHeading: "Leadership Team",
   sectionAriaLabel: "Staff and leadership",
 } as const;
@@ -205,12 +205,12 @@ export const STAFF_PAGE = {
 ```typescript
 export const CLUBS_PAGE = {
   metaTitle: "Clubs & Organizations",
-  metaDescription: "Explore the clubs and organizations at St. Elizabeth High School — from debate and drama to eco club, student council, and community service.",
+  metaDescription: "Explore the clubs and organizations at St. Elizabeth's High School — from debate and drama to eco club, student council, and community service.",
   heroEyebrow: "Get Involved",
   heroHeading: "Clubs & Organizations",
   heroDescription: "Discover your passion, develop leadership skills, and build lifelong friendships through our diverse range of student clubs and organizations.",
   sectionHeading: "Explore Our Clubs",
-  sectionDescription: "With clubs spanning academics, arts, athletics, service, and leadership, there's something for every student at St. Elizabeth High School.",
+  sectionDescription: "With clubs spanning academics, arts, athletics, service, and leadership, there's something for every student at St. Elizabeth's High School.",
   sectionAriaLabel: "Clubs and organizations",
 } as const;
 ```
@@ -219,10 +219,10 @@ export const CLUBS_PAGE = {
 ```typescript
 export const ADMISSIONS_VISIT_PAGE = {
   metaTitle: "Plan Your Visit",
-  metaDescription: "Plan your visit to St. Elizabeth High School in Pomburpa, Goa. Tour our campus, meet our faculty, and experience our community firsthand.",
+  metaDescription: "Plan your visit to St. Elizabeth's High School in Pomburpa, Goa. Tour our campus, meet our faculty, and experience our community firsthand.",
   heroEyebrow: "Visit Us",
   heroHeading: "Plan Your Visit",
-  heroDescription: "Experience St. Elizabeth High School firsthand — walk our campus, meet our faculty, and discover what makes our community special.",
+  heroDescription: "Experience St. Elizabeth's High School firsthand — walk our campus, meet our faculty, and discover what makes our community special.",
   sectionHeading: "Schedule a Campus Tour",
   introText: "We welcome families to visit our campus and experience the St. Elizabeth difference. Tours are available Monday through Friday by appointment. During your visit, you'll tour our facilities, observe classes in session, and meet with our admissions team.",
   sectionAriaLabel: "Visit information",
@@ -233,12 +233,12 @@ export const ADMISSIONS_VISIT_PAGE = {
 ```typescript
 export const CONTACT_VISIT_PAGE = {
   metaTitle: "Visit St. Elizabeth",
-  metaDescription: "Visit St. Elizabeth High School in Pomburpa, Goa. Get directions, schedule a campus tour, and find our address and contact information.",
+  metaDescription: "Visit St. Elizabeth's High School in Pomburpa, Goa. Get directions, schedule a campus tour, and find our address and contact information.",
   heroEyebrow: "Welcome",
   heroHeading: "Visit St. Elizabeth",
-  heroDescription: "We invite you to experience our campus, meet our community, and discover what makes St. Elizabeth High School special.",
+  heroDescription: "We invite you to experience our campus, meet our community, and discover what makes St. Elizabeth's High School special.",
   sectionHeading: "Directions",
-  introText: "St. Elizabeth High School is located in the village of Pomburpa in Bardez taluka, North Goa. We're easily accessible from Panjim (approximately 15 km), Mapusa (approximately 10 km), and Calangute (approximately 12 km).",
+  introText: "St. Elizabeth's High School is located in the village of Pomburpa in Bardez taluka, North Goa. We're easily accessible from Panjim (approximately 15 km), Mapusa (approximately 10 km), and Calangute (approximately 12 km).",
   sectionAriaLabel: "Visit information and directions",
 } as const;
 ```

@@ -13,7 +13,7 @@ import { HERO_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "News & Events",
-  "Stay informed with the latest news, events, and achievements from St. Elizabeth High School in Pomburpa, Goa.",
+  "Stay informed with the latest news, events, and achievements from St. Elizabeth's High School in Pomburpa, Goa.",
 );
 
 export default function NewsPage() {
@@ -23,7 +23,7 @@ export default function NewsPage() {
         <Hero
           eyebrow="Stay Informed"
           heading="News & Events"
-          description="The latest updates, achievements, and happenings from the St. Elizabeth High School community."
+          description="The latest updates, achievements, and happenings from the St. Elizabeth's High School community."
           backgroundImage={`/images/${HERO_IMAGES[0].filename}`}
         />
       }

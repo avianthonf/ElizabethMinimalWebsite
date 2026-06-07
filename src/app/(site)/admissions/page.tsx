@@ -16,7 +16,7 @@ import { createPageMetadata, getHeroImage } from "@/lib/page-utils";
 
 export const metadata = createPageMetadata(
   "Admissions",
-  "Begin your journey at St. Elizabeth High School. Learn about admissions, tuition, and how to apply.",
+  "Begin your journey at St. Elizabeth's High School. Learn about admissions, tuition, and how to apply.",
 );
 
 export default function AdmissionsPage() {
@@ -50,7 +50,7 @@ export default function AdmissionsPage() {
                   </Heading>
                   <Text variant="muted" size="medium">
                     Choosing the right school is one of the most important
-                    decisions a family makes. At St. Elizabeth High School,
+                    decisions a family makes. At St. Elizabeth&apos;s High School,
                     we&apos;re here to guide you through every step of the
                     admissions process.
                   </Text>

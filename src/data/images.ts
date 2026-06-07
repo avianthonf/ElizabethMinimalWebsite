@@ -1,5 +1,5 @@
 /**
- * Centralized image registry for St. Elizabeth High School.
+ * Centralized image registry for St. Elizabeth's High School.
  *
  * All 71 photographs were shot on a Sony ILCE-7RM5 (28-105mm F2.8)
  * on April 28, 2026, during morning hours (~8:45–9:30 AM IST).
@@ -79,7 +79,7 @@ export interface ImageAsset {
 export const HERO_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07580.jpg",
-    alt: "St. Elizabeth High School students engaged in a dynamic outdoor activity on campus grounds, morning sunlight",
+    alt: "St. Elizabeth's High School students engaged in a dynamic outdoor activity on campus grounds, morning sunlight",
     category: "hero",
     section: "homepage-hero",
     profile: {
@@ -92,7 +92,7 @@ export const HERO_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07548.jpg",
-    alt: "Students participating in a school event at St. Elizabeth High School, warm morning atmosphere",
+    alt: "Students participating in a school event at St. Elizabeth's High School, warm morning atmosphere",
     category: "hero",
     section: "about-hero",
     profile: {
@@ -105,7 +105,7 @@ export const HERO_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07360.jpg",
-    alt: "St. Elizabeth High School campus view with natural daylight, balanced composition for text overlay",
+    alt: "St. Elizabeth's High School campus view with natural daylight, balanced composition for text overlay",
     category: "hero",
     section: "admissions-hero",
     profile: {
@@ -118,7 +118,7 @@ export const HERO_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07495.jpg",
-    alt: "Bright campus activity at St. Elizabeth High School, students in natural daylight",
+    alt: "Bright campus activity at St. Elizabeth's High School, students in natural daylight",
     category: "hero",
     section: "athletics-hero",
     profile: {
@@ -131,7 +131,7 @@ export const HERO_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07504.jpg",
-    alt: "Dynamic school event at St. Elizabeth High School, students engaged in group activity",
+    alt: "Dynamic school event at St. Elizabeth's High School, students engaged in group activity",
     category: "hero",
     section: "student-life-hero",
     profile: {
@@ -148,7 +148,7 @@ export const HERO_IMAGES: ImageAsset[] = [
 
 export const ACADEMICS_HERO: ImageAsset = {
   filename: "DSC07576.jpg",
-  alt: "Academic setting at St. Elizabeth High School, contemplative atmosphere with natural cool tones",
+  alt: "Academic setting at St. Elizabeth's High School, contemplative atmosphere with natural cool tones",
   category: "academics",
   section: "academics-hero",
   profile: {
@@ -176,7 +176,7 @@ export const HOMEPAGE_GRID_HERO_FILENAMES: string[] = [
 export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07290.jpg",
-    alt: "Cozy community gathering at St. Elizabeth High School, warm intimate atmosphere",
+    alt: "Cozy community gathering at St. Elizabeth's High School, warm intimate atmosphere",
     category: "community",
     section: "homepage-grid",
     subCategory: "Gathering",
@@ -188,7 +188,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07292.jpg",
-    alt: "Students interacting during a school activity at St. Elizabeth High School",
+    alt: "Students interacting during a school activity at St. Elizabeth's High School",
     category: "student-life",
     section: "homepage-grid",
     subCategory: "Campus Life",
@@ -200,7 +200,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07294.jpg",
-    alt: "Engaging school event at St. Elizabeth High School with students and staff",
+    alt: "Engaging school event at St. Elizabeth's High School with students and staff",
     category: "student-life",
     section: "homepage-grid",
     subCategory: "School Event",
@@ -212,7 +212,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07300.jpg",
-    alt: "Intimate school community moment at St. Elizabeth High School",
+    alt: "Intimate school community moment at St. Elizabeth's High School",
     category: "community",
     section: "homepage-grid",
     subCategory: "Community Outreach",
@@ -224,7 +224,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07301.jpg",
-    alt: "Dynamic indoor school activity at St. Elizabeth High School, high energy atmosphere",
+    alt: "Dynamic indoor school activity at St. Elizabeth's High School, high energy atmosphere",
     category: "athletics",
     section: "homepage-grid",
     subCategory: "Inter-House",
@@ -236,7 +236,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07305.jpg",
-    alt: "Bold action scene at St. Elizabeth High School, students participating in event",
+    alt: "Bold action scene at St. Elizabeth's High School, students participating in event",
     category: "athletics",
     section: "homepage-grid",
     subCategory: "Sports Day",
@@ -248,7 +248,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07317.jpg",
-    alt: "Campus grounds at St. Elizabeth High School in medium daylight, natural setting",
+    alt: "Campus grounds at St. Elizabeth's High School in medium daylight, natural setting",
     category: "general",
     section: "homepage-grid",
     subCategory: "Campus",
@@ -260,7 +260,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07328.jpg",
-    alt: "Students engaged in learning activity at St. Elizabeth High School",
+    alt: "Students engaged in learning activity at St. Elizabeth's High School",
     category: "academics",
     section: "homepage-grid",
     subCategory: "Classroom",
@@ -272,7 +272,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07335.jpg",
-    alt: "Bright school activity at St. Elizabeth High School, students in daylight",
+    alt: "Bright school activity at St. Elizabeth's High School, students in daylight",
     category: "student-life",
     section: "homepage-grid",
     subCategory: "Activities",
@@ -284,7 +284,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07346.jpg",
-    alt: "School campus life at St. Elizabeth High School, natural warm daylight",
+    alt: "School campus life at St. Elizabeth's High School, natural warm daylight",
     category: "student-life",
     section: "homepage-grid",
     subCategory: "Friendship",
@@ -296,7 +296,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07351.jpg",
-    alt: "Students at St. Elizabeth High School engaged in group activity, medium daylight",
+    alt: "Students at St. Elizabeth's High School engaged in group activity, medium daylight",
     category: "student-life",
     section: "homepage-grid",
     subCategory: "Group Work",
@@ -308,7 +308,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07370.jpg",
-    alt: "Story-rich school moment at St. Elizabeth High School, warm atmosphere",
+    alt: "Story-rich school moment at St. Elizabeth's High School, warm atmosphere",
     category: "community",
     section: "homepage-grid",
     subCategory: "Celebration",
@@ -325,7 +325,7 @@ export const HOMEPAGE_GRID_IMAGES: ImageAsset[] = [
 export const VALUES_IMAGES: Record<string, ImageAsset> = {
   faith: {
     filename: "DSC07463.jpg",
-    alt: "Heritage and faith tradition at St. Elizabeth High School, warm intimate lighting",
+    alt: "Heritage and faith tradition at St. Elizabeth's High School, warm intimate lighting",
     category: "heritage",
     section: "homepage-values",
     profile: {
@@ -335,7 +335,7 @@ export const VALUES_IMAGES: Record<string, ImageAsset> = {
   },
   excellence: {
     filename: "DSC07497.jpg",
-    alt: "Academic excellence in action at St. Elizabeth High School, bright engaged learning",
+    alt: "Academic excellence in action at St. Elizabeth's High School, bright engaged learning",
     category: "academics",
     section: "homepage-values",
     profile: {
@@ -345,7 +345,7 @@ export const VALUES_IMAGES: Record<string, ImageAsset> = {
   },
   community: {
     filename: "DSC07378.jpg",
-    alt: "Community gathering at St. Elizabeth High School, warm inclusive atmosphere",
+    alt: "Community gathering at St. Elizabeth's High School, warm inclusive atmosphere",
     category: "community",
     section: "homepage-values",
     profile: {
@@ -360,7 +360,7 @@ export const VALUES_IMAGES: Record<string, ImageAsset> = {
 export const STATS_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07632.jpg",
-    alt: "Heritage photo representing St. Elizabeth High School's founding in 1949",
+    alt: "Heritage photo representing St. Elizabeth's High School's founding in 1949",
     category: "heritage",
     section: "homepage-stats",
     profile: {
@@ -370,7 +370,7 @@ export const STATS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07420.jpg",
-    alt: "Student body at St. Elizabeth High School, dynamic group atmosphere",
+    alt: "Student body at St. Elizabeth's High School, dynamic group atmosphere",
     category: "student-life",
     section: "homepage-stats",
     profile: {
@@ -380,7 +380,7 @@ export const STATS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07428.jpg",
-    alt: "Campus view at St. Elizabeth High School, representing CBSE affiliation",
+    alt: "Campus view at St. Elizabeth's High School, representing CBSE affiliation",
     category: "general",
     section: "homepage-stats",
     profile: {
@@ -395,7 +395,7 @@ export const STATS_IMAGES: ImageAsset[] = [
 export const TESTIMONIAL_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07400.jpg",
-    alt: "Alumni community moment at St. Elizabeth High School",
+    alt: "Alumni community moment at St. Elizabeth's High School",
     category: "community",
     section: "homepage-testimonials",
     profile: {
@@ -405,7 +405,7 @@ export const TESTIMONIAL_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07437.jpg",
-    alt: "Student life at St. Elizabeth High School, balanced natural scene",
+    alt: "Student life at St. Elizabeth's High School, balanced natural scene",
     category: "student-life",
     section: "homepage-testimonials",
     profile: {
@@ -415,7 +415,7 @@ export const TESTIMONIAL_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07477.jpg",
-    alt: "Parent and community engagement at St. Elizabeth High School",
+    alt: "Parent and community engagement at St. Elizabeth's High School",
     category: "community",
     section: "homepage-testimonials",
     profile: {
@@ -430,7 +430,7 @@ export const TESTIMONIAL_IMAGES: ImageAsset[] = [
 export const NEWS_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07504.jpg",
-    alt: "Annual Day Celebration 2024 at St. Elizabeth High School",
+    alt: "Annual Day Celebration 2024 at St. Elizabeth's High School",
     category: "gallery",
     section: "homepage-news",
     profile: {
@@ -440,7 +440,7 @@ export const NEWS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07546.jpg",
-    alt: "Sports Meet XXII at St. Elizabeth High School, athletic competition",
+    alt: "Sports Meet XXII at St. Elizabeth's High School, athletic competition",
     category: "athletics",
     section: "homepage-news",
     profile: {
@@ -450,7 +450,7 @@ export const NEWS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07555.jpg",
-    alt: "Feast Day celebration at St. Elizabeth High School",
+    alt: "Feast Day celebration at St. Elizabeth's High School",
     category: "community",
     section: "homepage-news",
     profile: {
@@ -466,7 +466,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   ACADEMICS_HERO,
   {
     filename: "DSC07502.jpg",
-    alt: "Academic learning environment at St. Elizabeth High School, neutral balanced tones",
+    alt: "Academic learning environment at St. Elizabeth's High School, neutral balanced tones",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -476,7 +476,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07431.jpg",
-    alt: "Classroom setting at St. Elizabeth High School, focused learning atmosphere",
+    alt: "Classroom setting at St. Elizabeth's High School, focused learning atmosphere",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -486,7 +486,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07510.jpg",
-    alt: "Academic activity at St. Elizabeth High School, engaged students",
+    alt: "Academic activity at St. Elizabeth's High School, engaged students",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -496,7 +496,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07518.jpg",
-    alt: "Learning environment at St. Elizabeth High School",
+    alt: "Learning environment at St. Elizabeth's High School",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -506,7 +506,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07522.jpg",
-    alt: "Students learning at St. Elizabeth High School",
+    alt: "Students learning at St. Elizabeth's High School",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -516,7 +516,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07584.jpg",
-    alt: "Academic pursuit at St. Elizabeth High School, warm learning atmosphere",
+    alt: "Academic pursuit at St. Elizabeth's High School, warm learning atmosphere",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -526,7 +526,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07590.jpg",
-    alt: "Bright academic setting at St. Elizabeth High School, medium daylight",
+    alt: "Bright academic setting at St. Elizabeth's High School, medium daylight",
     category: "academics",
     section: "academics-departments",
     profile: {
@@ -541,7 +541,7 @@ export const ACADEMICS_IMAGES: ImageAsset[] = [
 export const ATHLETICS_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07495.jpg",
-    alt: "Athletics at St. Elizabeth High School, bright dynamic sports activity",
+    alt: "Athletics at St. Elizabeth's High School, bright dynamic sports activity",
     category: "athletics",
     section: "athletics-hero",
     profile: {
@@ -551,7 +551,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07580.jpg",
-    alt: "Dynamic athletic event at St. Elizabeth High School, highest energy capture",
+    alt: "Dynamic athletic event at St. Elizabeth's High School, highest energy capture",
     category: "athletics",
     section: "athletics-teams",
     profile: {
@@ -561,7 +561,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07504.jpg",
-    alt: "Sports competition at St. Elizabeth High School, bold action",
+    alt: "Sports competition at St. Elizabeth's High School, bold action",
     category: "athletics",
     section: "athletics-teams",
     profile: {
@@ -571,7 +571,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07546.jpg",
-    alt: "Athletic team activity at St. Elizabeth High School",
+    alt: "Athletic team activity at St. Elizabeth's High School",
     category: "athletics",
     section: "athletics-teams",
     profile: {
@@ -581,7 +581,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07548.jpg",
-    alt: "Sports event at St. Elizabeth High School, dynamic crowd energy",
+    alt: "Sports event at St. Elizabeth's High School, dynamic crowd energy",
     category: "athletics",
     section: "athletics-teams",
     profile: {
@@ -591,7 +591,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07555.jpg",
-    alt: "Athletic competition at St. Elizabeth High School",
+    alt: "Athletic competition at St. Elizabeth's High School",
     category: "athletics",
     section: "athletics-teams",
     profile: {
@@ -601,7 +601,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07301.jpg",
-    alt: "Indoor sports activity at St. Elizabeth High School, lively atmosphere",
+    alt: "Indoor sports activity at St. Elizabeth's High School, lively atmosphere",
     category: "athletics",
     section: "athletics-teams",
     profile: {
@@ -616,7 +616,7 @@ export const ATHLETICS_IMAGES: ImageAsset[] = [
 export const ARTS_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07565.jpg",
-    alt: "Arts program at St. Elizabeth High School, warm creative atmosphere with rosy tones",
+    alt: "Arts program at St. Elizabeth's High School, warm creative atmosphere with rosy tones",
     category: "arts",
     section: "arts-hero",
     profile: {
@@ -626,7 +626,7 @@ export const ARTS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07575.jpg",
-    alt: "Outdoor arts activity at St. Elizabeth High School, natural setting with greenery",
+    alt: "Outdoor arts activity at St. Elizabeth's High School, natural setting with greenery",
     category: "arts",
     section: "arts-visual",
     profile: {
@@ -636,7 +636,7 @@ export const ARTS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07597.jpg",
-    alt: "Creative arts at St. Elizabeth High School, medium daylight balanced scene",
+    alt: "Creative arts at St. Elizabeth's High School, medium daylight balanced scene",
     category: "arts",
     section: "arts-performing",
     profile: {
@@ -646,7 +646,7 @@ export const ARTS_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07610.jpg",
-    alt: "Unique flash-lit arts moment at St. Elizabeth High School, golden wood tones",
+    alt: "Unique flash-lit arts moment at St. Elizabeth's High School, golden wood tones",
     category: "arts",
     section: "arts-visual",
     profile: {
@@ -661,7 +661,7 @@ export const ARTS_IMAGES: ImageAsset[] = [
 export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07504.jpg",
-    alt: "Vibrant student life at St. Elizabeth High School",
+    alt: "Vibrant student life at St. Elizabeth's High School",
     category: "student-life",
     section: "student-life-hero",
     profile: {
@@ -671,7 +671,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07306.jpg",
-    alt: "Student community at St. Elizabeth High School, medium daylight",
+    alt: "Student community at St. Elizabeth's High School, medium daylight",
     category: "student-life",
     section: "student-life-clubs",
     profile: {
@@ -681,7 +681,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07349.jpg",
-    alt: "Club activities at St. Elizabeth High School",
+    alt: "Club activities at St. Elizabeth's High School",
     category: "student-life",
     section: "student-life-clubs",
     profile: {
@@ -691,7 +691,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07373.jpg",
-    alt: "Student organizations at St. Elizabeth High School",
+    alt: "Student organizations at St. Elizabeth's High School",
     category: "student-life",
     section: "student-life-clubs",
     profile: {
@@ -701,7 +701,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07381.jpg",
-    alt: "Student community engagement at St. Elizabeth High School",
+    alt: "Student community engagement at St. Elizabeth's High School",
     category: "student-life",
     section: "student-life-clubs",
     profile: {
@@ -711,7 +711,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07404.jpg",
-    alt: "Student life moment at St. Elizabeth High School",
+    alt: "Student life moment at St. Elizabeth's High School",
     category: "student-life",
     section: "student-life-clubs",
     profile: {
@@ -721,7 +721,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07411.jpg",
-    alt: "Student activity at St. Elizabeth High School",
+    alt: "Student activity at St. Elizabeth's High School",
     category: "student-life",
     section: "student-life-clubs",
     profile: {
@@ -736,7 +736,7 @@ export const STUDENT_LIFE_IMAGES: ImageAsset[] = [
 export const COMMUNITY_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07619.jpg",
-    alt: "Intimate heritage moment at St. Elizabeth High School, warm nostalgic flash-lit scene",
+    alt: "Intimate heritage moment at St. Elizabeth's High School, warm nostalgic flash-lit scene",
     category: "heritage",
     section: "about-history",
     profile: {
@@ -746,7 +746,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07469.jpg",
-    alt: "Royal blue heritage accent at St. Elizabeth High School, low-key intimate lighting",
+    alt: "Royal blue heritage accent at St. Elizabeth's High School, low-key intimate lighting",
     category: "heritage",
     section: "about-history",
     profile: {
@@ -756,7 +756,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07296.jpg",
-    alt: "Community heritage at St. Elizabeth High School, dim warm earth tones",
+    alt: "Community heritage at St. Elizabeth's High School, dim warm earth tones",
     category: "heritage",
     section: "about-mission",
     profile: {
@@ -766,7 +766,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07380.jpg",
-    alt: "Cozy community gathering at St. Elizabeth High School",
+    alt: "Cozy community gathering at St. Elizabeth's High School",
     category: "community",
     section: "about-mission",
     profile: {
@@ -776,7 +776,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07401.jpg",
-    alt: "Intimate school community moment at St. Elizabeth High School",
+    alt: "Intimate school community moment at St. Elizabeth's High School",
     category: "community",
     section: "about-mission",
     profile: {
@@ -786,7 +786,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07463.jpg",
-    alt: "Heritage tradition at St. Elizabeth High School, cozy dim lighting",
+    alt: "Heritage tradition at St. Elizabeth's High School, cozy dim lighting",
     category: "heritage",
     section: "about-history",
     profile: {
@@ -796,7 +796,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07632.jpg",
-    alt: "Historical moment at St. Elizabeth High School, unique exposure capture",
+    alt: "Historical moment at St. Elizabeth's High School, unique exposure capture",
     category: "heritage",
     section: "about-history",
     profile: {
@@ -811,7 +811,7 @@ export const COMMUNITY_IMAGES: ImageAsset[] = [
 export const CTA_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07306.jpg",
-    alt: "Students engaged in a group activity at St. Elizabeth High School, warm and welcoming community atmosphere",
+    alt: "Students engaged in a group activity at St. Elizabeth's High School, warm and welcoming community atmosphere",
     category: "student-life",
     section: "homepage-cta",
     profile: {
@@ -829,7 +829,7 @@ export const CTA_IMAGES: ImageAsset[] = [
 export const CONTACT_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07557.jpg",
-    alt: "Welcome to St. Elizabeth High School, bright medium daylight campus view",
+    alt: "Welcome to St. Elizabeth's High School, bright medium daylight campus view",
     category: "general",
     section: "contact-hero",
     profile: {
@@ -839,7 +839,7 @@ export const CONTACT_IMAGES: ImageAsset[] = [
   },
   {
     filename: "DSC07394.jpg",
-    alt: "Campus welcome scene at St. Elizabeth High School, medium daylight",
+    alt: "Campus welcome scene at St. Elizabeth's High School, medium daylight",
     category: "general",
     section: "contact-hero",
     profile: {
@@ -856,133 +856,133 @@ export const CONTACT_IMAGES: ImageAsset[] = [
 export const OVERFLOW_IMAGES: ImageAsset[] = [
   {
     filename: "DSC07299.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 104.2, contrast: 62.8, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07394.jpg",
-    alt: "Campus activity at St. Elizabeth High School",
+    alt: "Campus activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 124.4, contrast: 68.5, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07416.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 109.2, contrast: 60.0, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07455.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 110.6, contrast: 68.0, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07489.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 106.8, contrast: 64.0, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07524.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 107.3, contrast: 62.7, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07525.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 103.8, contrast: 63.4, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07528.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 119.8, contrast: 65.1, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07533.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 117.5, contrast: 60.9, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07538.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 102.3, contrast: 59.3, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07541.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 101.5, contrast: 57.6, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07543.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 102.7, contrast: 51.8, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07557.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 122.3, contrast: 67.0, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07561.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 112.7, contrast: 66.2, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07570.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 114.7, contrast: 61.9, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07590.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 123.3, contrast: 63.7, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07592.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 109.6, contrast: 60.4, complexity: "high", temperature: "neutral-warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07597.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 133.2, contrast: 59.2, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07616.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 108.2, contrast: 63.6, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07622.jpg",
-    alt: "School activity at St. Elizabeth High School",
+    alt: "School activity at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 103.5, contrast: 64.4, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07629-HDR.jpg",
-    alt: "HDR school scene at St. Elizabeth High School",
+    alt: "HDR school scene at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 105.1, contrast: 65.5, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },
   {
     filename: "DSC07634.jpg",
-    alt: "School event at St. Elizabeth High School",
+    alt: "School event at St. Elizabeth's High School",
     category: "gallery", section: "overflow",
     profile: { brightness: 113.6, contrast: 60.4, complexity: "high", temperature: "warm", moodTags: ["balanced", "natural", "authentic"] },
   },

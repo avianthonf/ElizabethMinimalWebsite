@@ -15,7 +15,7 @@ import { ACADEMICS_HERO } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Academics",
-  "Explore the academic departments at St. Elizabeth High School — from Science and Mathematics to World Languages and College Counseling.",
+  "Explore the academic departments at St. Elizabeth's High School — from Science and Mathematics to World Languages and College Counseling.",
 );
 
 export default function AcademicsPage() {

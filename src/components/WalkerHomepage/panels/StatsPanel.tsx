@@ -49,7 +49,7 @@ export function StatsPanel(): ReactNode {
       smallMobileWidth="max(720px, 200vw)"
       headerTheme="dark"
       className={`${shared.panel} ${styles.statsPanel}`}
-      ariaLabel="St. Elizabeth High School — key statistics"
+      ariaLabel="St. Elizabeth's High School — key statistics"
     >
       <div className={styles.statsIntro}>
         <Text variant="eyebrow" as="p">By the Numbers</Text>

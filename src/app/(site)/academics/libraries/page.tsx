@@ -13,7 +13,7 @@ import { LIBRARY_RESOURCES } from "@/data/academics";
 
 export const metadata = createPageMetadata(
   "Libraries",
-  "Explore the library and digital resource centre at St. Elizabeth High School — supporting research, reading, and lifelong learning.",
+  "Explore the library and digital resource centre at St. Elizabeth's High School — supporting research, reading, and lifelong learning.",
 );
 
 export default function LibrariesPage() {

@@ -23,9 +23,9 @@ vi.mock("@/data/navigation", () => ({
     { text: "Admissions", href: "/admissions" },
   ],
   FOOTER_SECTIONS: [{ title: "About", links: [{ text: "Mission", href: "/about/mission" }] }],
-  FOOTER_INTRO: { heading: "St. Elizabeth High School", body: "Guiding Minds..." },
+  FOOTER_INTRO: { heading: "St. Elizabeth's High School", body: "Guiding Minds..." },
   FOOTER_SOCIAL_LINKS: [],
-  FOOTER_COPYRIGHT: "© 2026 St. Elizabeth High School",
+  FOOTER_COPYRIGHT: "© 2026 St. Elizabeth's High School",
 }));
 
 describe("PageShell", () => {

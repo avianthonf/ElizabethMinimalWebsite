@@ -14,7 +14,7 @@ import { COMMUNITY_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
   "Donations & Sponsorship",
-  "Support St. Elizabeth High School through donations, sponsorship, or volunteering. Explore giving levels and see the impact of your contribution.",
+  "Support St. Elizabeth's High School through donations, sponsorship, or volunteering. Explore giving levels and see the impact of your contribution.",
 );
 
 export default function GivePage() {
@@ -24,7 +24,7 @@ export default function GivePage() {
         <Hero
           eyebrow="Give"
           heading="Donations & Sponsorship"
-          description="Your generosity transforms lives. Every contribution to St. Elizabeth High School directly supports our students and strengthens our community."
+          description="Your generosity transforms lives. Every contribution to St. Elizabeth's High School directly supports our students and strengthens our community."
           backgroundImage={`/images/${COMMUNITY_IMAGES[2]?.filename ?? COMMUNITY_IMAGES[0].filename}`}
         />
       }

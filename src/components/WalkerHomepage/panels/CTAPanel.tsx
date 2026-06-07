@@ -20,7 +20,7 @@ export function CTAPanel(): ReactNode {
       secondaryCTA={CTA_CONTENT.secondaryCTA}
       image={{
         src: "/images/DSC07306.jpg",
-        alt: "Students engaged in a group activity at St. Elizabeth High School, warm and welcoming community atmosphere",
+        alt: "Students engaged in a group activity at St. Elizabeth's High School, warm and welcoming community atmosphere",
       }}
       background="blue"
       centered={false}

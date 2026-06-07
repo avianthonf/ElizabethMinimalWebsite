@@ -1,5 +1,5 @@
 /**
- * Content for the St. Elizabeth High School homepage.
+ * Content for the St. Elizabeth's High School homepage.
  * 8-panel horizontal scroll layout per PAGE_ELEMENT_HIERARCHY.md
  */
 
@@ -7,7 +7,7 @@
 
 export const HERO_CONTENT = {
   statement:
-    "St. Elizabeth High School inspires transformative learning through meaningful relationships, academic excellence and unique opportunities. With an average class size of 15 students, each student is challenged, supported and most of all...",
+    "St. Elizabeth's High School inspires transformative learning through meaningful relationships, academic excellence and unique opportunities. With an average class size of 15 students, each student is challenged, supported and most of all...",
   heading: "Nurturing Hearts",
   loadOverlayText: "WE BELIEVE",
 } as const;
@@ -114,7 +114,7 @@ export const LATEST_NEWS: NewsItemData[] = [
   {
     title: "Annual Day Celebration 2024",
     date: "November 15, 2024",
-    excerpt: "Students, staff, and families gathered to celebrate another year of academic and co-curricular achievement at St. Elizabeth High School.",
+    excerpt: "Students, staff, and families gathered to celebrate another year of academic and co-curricular achievement at St. Elizabeth's High School.",
     imageFilename: "DSC07504.jpg",
     href: "/news/annual-day-2024",
   },
