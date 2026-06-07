@@ -40,7 +40,7 @@ describe("HeroPanel", () => {
   it("renders the hero statement text", () => {
     render(<HeroPanel />);
     expect(
-      screen.getByText(/St\. Elizabeth High School inspires transformative learning/),
+      screen.getByText(/St\. Elizabeth's High School inspires transformative learning/)
     ).toBeDefined();
   });
 

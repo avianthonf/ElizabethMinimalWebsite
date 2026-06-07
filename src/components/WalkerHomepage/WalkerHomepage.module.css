@@ -10,3 +10,16 @@
   min-height: 100vh;
   background: var(--s-color-surface);
 }
+
+/* ── Vertical Layout (< 1100px) ──────────────────────────────────────── */
+
+.verticalPage {
+  min-height: 100vh;
+  background: var(--s-color-surface);
+}
+
+.verticalHero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
