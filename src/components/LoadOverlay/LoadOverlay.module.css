@@ -5,21 +5,26 @@
   overflow: hidden;
   pointer-events: none;
   animation: revealOverlay 4.5s var(--ease-standard) forwards;
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
-/* ── Phase 3: SVG mask (rendered first → underneath heritage) ── */
+/* ── Phase 3: SVG mask wrapper + stage ── */
+
+.maskWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 
 .maskStage {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  /* Zoom starts at 60 % (2.7 s) — gives a clear 0.36 s beat of
-     "WE BELIEVE" at full size after heritage fades at 52 % (2.34 s). */
-  /* transform-origin set by JS via getExtentOfChar() — see LoadOverlay.tsx */
+  /* transform-origin set by JS via getExtentOfChar() — see LoadOverlay.tsx
+     Zoom starts at 63 % (2.84 s) — 0.5 s beat of "WE BELIEVE" at full size. */
   animation:
-    expandMaskOuter 1.5s cubic-bezier(0.25, 0.1, 0.0, 1.0) 2.7s forwards;
+    expandMaskOuter 1.4s cubic-bezier(0.25, 0.1, 0.0, 1.0) 2.84s forwards;
   will-change: transform;
 }
 
@@ -43,7 +48,6 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  animation: heritageFadeOut 4.5s var(--ease-standard) forwards;
 }
 
 .heritageMotto {
@@ -54,7 +58,6 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--s-color-primary);
-  animation: mottoSequence 4.5s var(--ease-standard) forwards;
 }
 
 .heritageYear {
@@ -65,7 +68,6 @@
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--s-color-primary);
-  animation: yearSequence 4.5s var(--ease-standard) forwards;
 }
 
 .screenReaderText {
@@ -81,73 +83,6 @@
 }
 
 /* ── Keyframes ── */
-
-@keyframes mottoSequence {
-  0%,
-  4% {
-    opacity: 0;
-  }
-
-  13% {
-    opacity: 1;
-  }
-
-  44%,
-  47% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Year appears alongside motto — same timing */
-@keyframes yearSequence {
-  0%,
-  4% {
-    opacity: 0;
-  }
-
-  13% {
-    opacity: 1;
-  }
-
-  44%,
-  47% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Heritage background fades out after the text is gone.
-   At this point the mask underneath (same white) is mid-zoom,
-   so there's a smooth handoff — no hero leak, no flicker. */
-@keyframes heritageFadeOut {
-  0%,
-  47% {
-    opacity: 1;
-  }
-
-  52% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
 
 @keyframes revealOverlay {
   0%,
@@ -175,14 +110,7 @@
 @media (max-width: 760px) {
   .maskStage {
     animation:
-      expandMaskOuter 0.95s cubic-bezier(0.25, 0.1, 0.0, 1.0) 1.68s forwards;
-  }
-
-  .overlay,
-  .heritageContainer,
-  .heritageMotto,
-  .heritageYear {
-    animation-duration: 2.8s;
+      expandMaskOuter 0.7s cubic-bezier(0.25, 0.1, 0.0, 1.0) 1.96s forwards;
   }
 
   .heritageMotto {
@@ -203,9 +131,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .overlay,
-  .heritageContainer,
-  .heritageMotto,
-  .heritageYear,
   .maskStage {
     animation-duration: 0.01ms !important;
     animation-delay: 0s !important;

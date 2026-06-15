@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useEffect, useRef, useState, type AnimationEvent, type ReactNode } from "react";
+import { motion, type Target, type Transition } from "framer-motion";
 import styles from "./LoadOverlay.module.css";
 
 const LOAD_MESSAGE = "WE BELIEVE";
@@ -26,6 +27,13 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
   const [isVisible, setIsVisible] = useState(true);
   const svgRef = useRef<SVGSVGElement>(null);
   const textRef = useRef<SVGTextElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 760);
+  }, []);
+
+  const totalDuration = isMobile ? 2.8 : 4.5;
 
   /* Measure the target gap after fonts load and pin transform-origin to its
      exact screen position.  Scaling the entire SVG element (not just mask
@@ -55,7 +63,7 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
       const pctX = (screenX / vW) * 100;
       const pctY = (screenY / vH) * 100;
 
-      // Scale factor so the gap fills the viewport (+10 % overshoot for safety)
+      // Scale factor so the gap fills the viewport
       const gapScreenW = gapW * s;
       const gapScreenH = gapH * s;
       const scaleFactor = Math.max(vW / gapScreenW, vH / gapScreenH);
@@ -82,6 +90,21 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
     }
   };
 
+  /* ── Shared keyframe definitions ── */
+
+  const heritageTextAnimate: Target = {
+    opacity: [0, 1, 1, 0, 0],
+    y: [8, 0, 0, -8, -8],
+    filter: ["blur(3px)", "blur(0px)", "blur(0px)", "blur(3px)", "blur(3px)"],
+    scale: [0.98, 1.0, 1.0, 0.98, 0.98],
+  };
+
+  const heritageTextTransition: Transition = {
+    duration: totalDuration,
+    times: [0, 0.04, 0.13, 0.42, 0.50, 1.0],
+    ease: ["linear", "easeOut", "linear", "easeIn", "linear"],
+  };
+
   return (
     <div
       className={styles.overlay}
@@ -90,37 +113,77 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
       onAnimationEnd={handleAnimationEnd}
     >
       {/* Phase 3: SVG mask — always visible, underneath heritage white bg */}
-      <svg
-        ref={svgRef}
-        className={styles.maskStage}
-        viewBox="0 0 100 100"
-        preserveAspectRatio="xMidYMid slice"
+      <motion.div
+        className={styles.maskWrap}
+        initial={{ filter: "blur(2px)", scale: 1.02 }}
+        animate={{ filter: "blur(0px)", scale: 1.0 }}
+        transition={{
+          delay: totalDuration * 0.47,
+          duration: totalDuration * 0.05,
+          ease: [0.25, 1, 0.5, 1],
+        }}
+      >
+        <svg
+          ref={svgRef}
+          className={styles.maskStage}
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <defs>
+            <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+              <rect width="100" height="100" fill="white" />
+              <text
+                ref={textRef}
+                className={styles.maskText}
+                x="50"
+                y="50"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                vectorEffect="non-scaling-stroke"
+              >
+                {LOAD_MESSAGE}
+              </text>
+            </mask>
+          </defs>
+          <rect width="100" height="100" fill="white" mask={`url(#${maskId})`} />
+        </svg>
+      </motion.div>
+
+      {/* Phase 1 & 2: Heritage text on white background — covers the mask until the crossfade */}
+      <motion.div
+        className={styles.heritageContainer}
+        initial={{ opacity: 1, filter: "blur(0px)", scale: 1.0 }}
+        animate={{
+          opacity: [1, 1, 0, 0],
+          filter: ["blur(0px)", "blur(0px)", "blur(4px)", "blur(4px)"],
+          scale: [1.0, 1.0, 1.01, 1.01],
+        }}
+        transition={{
+          duration: totalDuration,
+          times: [0, 0.47, 0.52, 1.0],
+          ease: ["linear", "easeOut", "linear"],
+        }}
         aria-hidden="true"
       >
-        <defs>
-          <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
-            <rect width="100" height="100" fill="white" />
-            <text
-              ref={textRef}
-              className={styles.maskText}
-              x="50"
-              y="50"
-              dominantBaseline="middle"
-              textAnchor="middle"
-              vectorEffect="non-scaling-stroke"
-            >
-              {LOAD_MESSAGE}
-            </text>
-          </mask>
-        </defs>
-        <rect width="100" height="100" fill="white" mask={`url(#${maskId})`} />
-      </svg>
+        <motion.p
+          className={styles.heritageMotto}
+          initial={{ opacity: 0, y: 8, filter: "blur(3px)", scale: 0.98 }}
+          animate={heritageTextAnimate}
+          transition={heritageTextTransition}
+        >
+          Truth and Honesty
+        </motion.p>
 
-      {/* Phase 1 & 2: Heritage text on white background — covers the mask until the cut */}
-      <div className={styles.heritageContainer} aria-hidden="true">
-        <p className={styles.heritageMotto}>Truth and Honesty</p>
-        <p className={styles.heritageYear}>Est. 1949</p>
-      </div>
+        <motion.p
+          className={styles.heritageYear}
+          initial={{ opacity: 0, y: 8, filter: "blur(3px)", scale: 0.98 }}
+          animate={heritageTextAnimate}
+          transition={heritageTextTransition}
+        >
+          Est. 1949
+        </motion.p>
+      </motion.div>
 
       <span className={styles.screenReaderText}>{LOAD_MESSAGE}</span>
     </div>
