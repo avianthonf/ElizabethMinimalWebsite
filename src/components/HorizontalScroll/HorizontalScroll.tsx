@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties, KeyboardEvent, ReactNode } from "react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./HorizontalScroll.module.css";
 
@@ -37,10 +37,13 @@ export function HorizontalScroll({
   const frameRef = useRef<number | null>(null);
   const measurementsRef = useRef(DEFAULT_MEASUREMENTS);
   const [spacerHeight, setSpacerHeight] = useState("100vh");
+  const mountedRef = useRef(true);
   const pendingMeasure = useRef(false);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
   const measure = useCallback(() => {
+    if (!mountedRef.current) return;
+
     const viewport = viewportRef.current;
     const track = trackRef.current;
 
@@ -89,6 +92,8 @@ export function HorizontalScroll({
 
   const updateTransform = useCallback(() => {
     frameRef.current = null;
+
+    if (!mountedRef.current) return;
 
     const stage = stageRef.current;
     const track = trackRef.current;
@@ -139,6 +144,7 @@ export function HorizontalScroll({
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
+      mountedRef.current = false;
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
 
@@ -175,6 +181,19 @@ export function HorizontalScroll({
     "--horizontal-scroll-spacer-height": spacerHeight,
   } as CSSProperties;
 
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollByPanel("prev");
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollByPanel("next");
+      }
+    },
+    [scrollByPanel],
+  );
+
   return (
     <section
       ref={stageRef}
@@ -184,7 +203,7 @@ export function HorizontalScroll({
       role="region"
       aria-roledescription="carousel"
     >
-      <div ref={viewportRef} className={styles.viewport} tabIndex={0}>
+      <div ref={viewportRef} className={styles.viewport} tabIndex={0} onKeyDown={handleKeyDown}>
         <div ref={trackRef} className={trackClassNames} role="list">
           {children}
         </div>

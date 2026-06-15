@@ -1,20 +1,25 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { HorizontalPage } from "@/components/HorizontalScroll";
 import { ValueCard } from "@/components/content/ValueCard";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { VALUES } from "@/data/homepage";
 import { VALUES_IMAGES } from "@/data/images";
-import shared from "./shared.module.css";
 import styles from "./ValuesPanel.module.css";
 
-interface ValuesPanelProps {
-  layout?: "horizontal" | "vertical";
-}
+/**
+ * Composed className for the orchestrator to use when wrapping
+ * this panel (e.g. in a HorizontalPage or vertical section).
+ */
+export const valuesPanelClass = styles.valuesPanel;
 
-function ValuesPanelContent(): ReactNode {
+/**
+ * ValuesPanel — pure content component.
+ * Layout wrapping (HorizontalPage on desktop, section on mobile)
+ * is handled by the orchestrator.
+ */
+export function ValuesPanel(): ReactNode {
   return (
     <>
       <div className={styles.valuesIntro}>
@@ -41,34 +46,6 @@ function ValuesPanelContent(): ReactNode {
           );
         })}
       </div>
-    </>
-  );
-}
-
-export function ValuesPanel({ layout = "horizontal" }: ValuesPanelProps): ReactNode {
-  return (
-    <>
-      {layout === "vertical" ? (
-        <section
-          className={`${shared.panel} ${styles.valuesPanel}`}
-          aria-label="St. Elizabeth values — Faith, Excellence, Community"
-        >
-          <ValuesPanelContent />
-        </section>
-      ) : (
-        <HorizontalPage
-          width="clamp(960px, 85vw, 1400px)"
-          tabletWidth="min(1040px, 110vw)"
-          mobileWidth="max(760px, 180vw)"
-          smallMobileWidth="max(720px, 200vw)"
-          landscapeWidth="max(960px, 125vw)"
-          headerTheme="dark"
-          className={`${shared.panel} ${styles.valuesPanel}`}
-          ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
-        >
-          <ValuesPanelContent />
-        </HorizontalPage>
-      )}
     </>
   );
 }

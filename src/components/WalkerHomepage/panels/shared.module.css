@@ -4,6 +4,6 @@
   position: relative;
   display: grid;
   height: 100%;
-  overflow: hidden;
+  /* overflow is controlled per-panel — viewport clips via HorizontalScroll */
   background: var(--s-color-surface);
 }

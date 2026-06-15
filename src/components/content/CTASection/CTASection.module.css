@@ -74,7 +74,7 @@
   border-radius: 4px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   .splitLayout {
     flex-direction: column;
   }
@@ -86,5 +86,11 @@
 
   .textCol {
     width: 100%;
+  }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .image {
+    max-height: 50vh;
   }
 }

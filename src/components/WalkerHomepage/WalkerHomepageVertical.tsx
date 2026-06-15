@@ -1,33 +1,42 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { LoadOverlay } from "@/components/LoadOverlay";
-import { HeaderThemeController } from "@/components/HeaderThemeController";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
-import { useMenuState } from "./hooks/useMenuState";
+import type { UseMenuStateReturn } from "./hooks/useMenuState";
 import { HeroPanel } from "./panels/HeroPanel";
-import { ValuesPanel } from "./panels/ValuesPanel";
-import { StatsPanel } from "./panels/StatsPanel";
-import { GalleryPanel } from "./panels/GalleryPanel";
-import { TestimonialsPanel } from "./panels/TestimonialsPanel";
+import { ValuesPanel, valuesPanelClass } from "./panels/ValuesPanel";
+import { StatsPanel, statsPanelClass } from "./panels/StatsPanel";
+import {
+  GalleryPanel,
+  verticalGalleryPanelClass,
+} from "./panels/GalleryPanel";
+import { TestimonialsPanel, testimonialsPanelClass } from "./panels/TestimonialsPanel";
 import { CTAPanel, ctaPanelClass } from "./panels/CTAPanel";
 import { NewsPanel, newsPanelClass } from "./panels/NewsPanel";
 import { HEADER_NAV_LINKS } from "@/data/navigation";
+import shared from "./panels/shared.module.css";
 
 import styles from "./WalkerHomepage.module.css";
+
+interface WalkerHomepageVerticalProps {
+  menu: UseMenuStateReturn;
+}
 
 /**
  * WalkerHomepageVertical — stacks all homepage panels vertically
  * with natural scroll for mobile/tablet (< 1100px).
  *
+ * The orchestrator owns ALL layout wrapping. Panels are pure content
+ * — no layout awareness or self-wrapping.
+ *
  * @see WalkerHomepage for the orchestrator and the desktop version.
  */
-export function WalkerHomepageVertical(): React.ReactNode {
-  const menu = useMenuState();
-
+export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): ReactNode {
   return (
-    <main id="main-content" className={styles.verticalPage}>
+    <main id="main-content" className={styles.verticalPage} suppressHydrationWarning>
       <LoadOverlay />
 
       <Header
@@ -42,8 +51,6 @@ export function WalkerHomepageVertical(): React.ReactNode {
 
       <MenuOverlay isOpen={menu.isOpen} onClose={menu.close} />
 
-      <HeaderThemeController />
-
       {/* ── Panel 1: Hero (full viewport) ────────────────────────────── */}
       <section
         className={styles.verticalHero}
@@ -54,39 +61,67 @@ export function WalkerHomepageVertical(): React.ReactNode {
       </section>
 
       {/* ── Panel 2: Values ────────────────────────────────────────────── */}
-      <div data-header-theme="dark">
-        <ValuesPanel layout="vertical" />
-      </div>
+      <section
+        className={`${shared.panel} ${valuesPanelClass}`}
+        data-header-theme="dark"
+        aria-label="St. Elizabeth values — Faith, Excellence, Community"
+      >
+        <ValuesPanel />
+      </section>
 
       {/* ── Panel 3: Stats ─────────────────────────────────────────────── */}
-      <div data-header-theme="dark">
-        <StatsPanel layout="vertical" />
-      </div>
+      <section
+        className={`${shared.panel} ${statsPanelClass}`}
+        data-header-theme="dark"
+        aria-label="St. Elizabeth's High School — key statistics"
+      >
+        <StatsPanel />
+      </section>
 
       {/* ── Panel 4: Gallery ───────────────────────────────────────────── */}
-      <div data-header-theme="dark">
-        <GalleryPanel layout="vertical" />
-      </div>
+      <section
+        className={shared.panel}
+        data-header-theme="dark"
+        aria-label="Photo gallery — Academics, Athletics, Arts, Student Life"
+      >
+        <GalleryPanel className={verticalGalleryPanelClass} />
+      </section>
 
       {/* ── Panel 5: Testimonials ───────────────────────────────────────── */}
-      <div data-header-theme="dark">
-        <TestimonialsPanel layout="vertical" />
-      </div>
+      <section
+        className={`${shared.panel} ${testimonialsPanelClass}`}
+        data-header-theme="dark"
+        aria-label="Testimonials from students, alumni, and parents"
+      >
+        <TestimonialsPanel />
+      </section>
 
       {/* ── Panel 6: CTA ───────────────────────────────────────────────── */}
-      <section className={ctaPanelClass} data-header-theme="light" aria-label="Call to action — Join our community">
+      <section
+        className={`${shared.panel} ${ctaPanelClass}`}
+        data-header-theme="light"
+        aria-label="Call to action — Join our community"
+      >
         <CTAPanel />
       </section>
 
       {/* ── Panel 7: Latest News ────────────────────────────────────────── */}
-      <section className={newsPanelClass} data-header-theme="dark" aria-label="Latest news and events">
+      <section
+        className={`${shared.panel} ${newsPanelClass}`}
+        data-header-theme="dark"
+        aria-label="Latest news and events"
+      >
         <NewsPanel />
       </section>
 
       {/* ── Panel 8: Footer ────────────────────────────────────────────── */}
-      <div data-header-theme="light">
+      <section
+        className={shared.panel}
+        data-header-theme="light"
+        aria-label="Site footer with contact information and links"
+      >
         <Footer background="primary" />
-      </div>
+      </section>
     </main>
   );
 }

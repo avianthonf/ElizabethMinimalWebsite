@@ -1,36 +1,41 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { LoadOverlay } from "@/components/LoadOverlay";
-import { HeaderThemeController } from "@/components/HeaderThemeController";
 import { HorizontalScroll } from "@/components/HorizontalScroll";
 import { HorizontalPage } from "@/components/HorizontalScroll";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
-import { useMenuState } from "./hooks/useMenuState";
+import type { UseMenuStateReturn } from "./hooks/useMenuState";
 import { HeroPanel, heroPanelClass } from "./panels/HeroPanel";
-import { ValuesPanel } from "./panels/ValuesPanel";
-import { StatsPanel } from "./panels/StatsPanel";
-import { GalleryPanel } from "./panels/GalleryPanel";
-import { TestimonialsPanel } from "./panels/TestimonialsPanel";
+import { ValuesPanel, valuesPanelClass } from "./panels/ValuesPanel";
+import { StatsPanel, statsPanelClass } from "./panels/StatsPanel";
+import { GalleryPanel, galleryPanelClass } from "./panels/GalleryPanel";
+import { TestimonialsPanel, testimonialsPanelClass } from "./panels/TestimonialsPanel";
 import { CTAPanel, ctaPanelClass } from "./panels/CTAPanel";
 import { NewsPanel, newsPanelClass } from "./panels/NewsPanel";
 import { HEADER_NAV_LINKS } from "@/data/navigation";
+import shared from "./panels/shared.module.css";
 
 import styles from "./WalkerHomepage.module.css";
 
+interface WalkerHomepageDesktopProps {
+  menu: UseMenuStateReturn;
+}
+
 /**
- * WalkerHomepageDesktop — preserves the existing horizontal scroll
- * experience exactly as it was before the mobile split.
+ * WalkerHomepageDesktop — horizontal scroll experience.
+ *
+ * The orchestrator owns ALL layout wrapping (HorizontalPage
+ * configuration). Panels are pure content — no layout awareness.
  *
  * @see WalkerHomepage for the orchestrator that routes between
  * this component and the vertical mobile layout.
  */
-export function WalkerHomepageDesktop(): React.ReactNode {
-  const menu = useMenuState();
-
+export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): ReactNode {
   return (
-    <main id="main-content" className={styles.page}>
+    <main id="main-content" className={styles.page} suppressHydrationWarning>
       <LoadOverlay />
 
       <Header
@@ -45,8 +50,6 @@ export function WalkerHomepageDesktop(): React.ReactNode {
 
       <MenuOverlay isOpen={menu.isOpen} onClose={menu.close} />
 
-      <HeaderThemeController />
-
       <HorizontalScroll
         height="100vh"
         gap="0px"
@@ -55,6 +58,7 @@ export function WalkerHomepageDesktop(): React.ReactNode {
         {/* ── Panel 1: Photo Hero (100vw) ─────────────────────────────── */}
         <HorizontalPage
           width="100vw"
+          screen
           headerTheme="light"
           className={heroPanelClass}
           ariaLabel="St. Elizabeth's High School — introduction"
@@ -63,20 +67,60 @@ export function WalkerHomepageDesktop(): React.ReactNode {
         </HorizontalPage>
 
         {/* ── Panel 2: "We Believe" Values ────────────────────────────── */}
-        <ValuesPanel />
+        <HorizontalPage
+          width="clamp(960px, 85vw, 1400px)"
+          tabletWidth="min(1040px, 110vw)"
+          mobileWidth="max(760px, 180vw)"
+          smallMobileWidth="max(720px, 200vw)"
+          landscapeWidth="max(960px, 125vw)"
+          headerTheme="dark"
+          className={`${shared.panel} ${valuesPanelClass}`}
+          ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
+        >
+          <ValuesPanel />
+        </HorizontalPage>
 
         {/* ── Panel 3: School Stats ───────────────────────────────────── */}
-        <StatsPanel />
+        <HorizontalPage
+          width="clamp(960px, 85vw, 1400px)"
+          tabletWidth="min(1040px, 110vw)"
+          mobileWidth="max(760px, 180vw)"
+          smallMobileWidth="max(720px, 200vw)"
+          headerTheme="dark"
+          className={`${shared.panel} ${statsPanelClass}`}
+          ariaLabel="St. Elizabeth's High School — key statistics"
+        >
+          <StatsPanel />
+        </HorizontalPage>
 
         {/* ── Panel 4: Masonry Mosaic Gallery ─────────────────────────── */}
-        <GalleryPanel />
+        <HorizontalPage
+          width="auto"
+          headerTheme="dark"
+          className={shared.panel}
+          ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
+        >
+          <GalleryPanel className={galleryPanelClass} />
+        </HorizontalPage>
 
         {/* ── Panel 5: Testimonials ───────────────────────────────────── */}
-        <TestimonialsPanel />
+        <HorizontalPage
+          width="clamp(960px, 80vw, 1400px)"
+          tabletWidth="min(900px, 110vw)"
+          mobileWidth="max(760px, 200vw)"
+          smallMobileWidth="max(720px, 220vw)"
+          landscapeWidth="max(1000px, 130vw)"
+          headerTheme="dark"
+          className={`${shared.panel} ${testimonialsPanelClass}`}
+          ariaLabel="Testimonials from students, alumni, and parents"
+        >
+          <TestimonialsPanel />
+        </HorizontalPage>
 
         {/* ── Panel 6: CTA Banner (100vw) ─────────────────────────────── */}
         <HorizontalPage
           width="100vw"
+          screen
           headerTheme="light"
           className={ctaPanelClass}
           ariaLabel="Call to action — Join our community"
@@ -87,6 +131,7 @@ export function WalkerHomepageDesktop(): React.ReactNode {
         {/* ── Panel 7: Latest News (100vw) ────────────────────────────── */}
         <HorizontalPage
           width="100vw"
+          screen
           headerTheme="dark"
           className={newsPanelClass}
           ariaLabel="Latest news and events"
@@ -97,6 +142,7 @@ export function WalkerHomepageDesktop(): React.ReactNode {
         {/* ── Panel 8: Footer (100vw) ─────────────────────────────────── */}
         <HorizontalPage
           width="100vw"
+          screen
           headerTheme="light"
           ariaLabel="Site footer with contact information and links"
         >

@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { HorizontalPage } from "@/components/HorizontalScroll";
 import { GalleryCard } from "@/components/content/GalleryCard/GalleryCard";
 import { GalleryFilter } from "@/components/content/GalleryFilter/GalleryFilter";
 import { GalleryLightbox } from "@/components/content/GalleryLightbox/GalleryLightbox";
@@ -10,7 +9,6 @@ import { Text } from "@/components/primitives/Text";
 import { useGalleryState } from "../hooks/useGalleryState";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import type { GalleryCardProps } from "@/components/content/GalleryCard/GalleryCard";
-import shared from "./shared.module.css";
 import styles from "./GalleryPanel.module.css";
 
 // ── Per-card scroll reveal wrapper ──────────────────────────────────
@@ -38,11 +36,22 @@ function GalleryCardWithReveal({
   );
 }
 
-interface GalleryPanelProps {
-  layout?: "horizontal" | "vertical";
-}
+/** CSS classes for the orchestrator — desktop uses .galleryPanel, mobile uses .verticalGalleryPanel */
+export const galleryPanelClass = styles.galleryPanel;
+export const verticalGalleryPanelClass = styles.verticalGalleryPanel;
 
-function GalleryPanelContent({ layout = "horizontal" }: GalleryPanelProps): ReactNode {
+/**
+ * GalleryPanel — pure content component.
+ *
+ * The orchestrator is responsible for choosing the wrapper CSS class
+ * (.galleryPanel for horizontal scroll, .verticalGalleryPanel for
+ * vertical stack) and passing it via `className`.
+ */
+export function GalleryPanel({ className }: { className?: string }): ReactNode {
+  const panelClass = className ?? styles.galleryPanel;
+  const isVertical = className === styles.verticalGalleryPanel;
+  const gridClass = isVertical ? styles.verticalGalleryGrid : styles.galleryGrid;
+
   const {
     activeFilter,
     lightboxIndex,
@@ -54,14 +63,6 @@ function GalleryPanelContent({ layout = "horizontal" }: GalleryPanelProps): Reac
     nextImage,
     prevImage,
   } = useGalleryState();
-
-  const isVertical = layout === "vertical";
-  const panelClass = isVertical
-    ? `${styles.verticalGalleryPanel}`
-    : `${styles.galleryPanel}`;
-  const gridClass = isVertical
-    ? `${styles.verticalGalleryGrid}`
-    : `${styles.galleryGrid}`;
 
   return (
     <section className={panelClass} aria-labelledby="gallery-heading">
@@ -97,28 +98,5 @@ function GalleryPanelContent({ layout = "horizontal" }: GalleryPanelProps): Reac
         onNext={nextImage}
       />
     </section>
-  );
-}
-
-export function GalleryPanel({ layout = "horizontal" }: GalleryPanelProps): ReactNode {
-  const isVertical = layout === "vertical";
-
-  return (
-    <>
-      {isVertical ? (
-        <div className={shared.panel}>
-          <GalleryPanelContent layout={layout} />
-        </div>
-      ) : (
-        <HorizontalPage
-          width="auto"
-          headerTheme="dark"
-          className={shared.panel}
-          ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
-        >
-          <GalleryPanelContent layout={layout} />
-        </HorizontalPage>
-      )}
-    </>
   );
 }

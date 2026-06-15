@@ -1,12 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { HorizontalPage } from "@/components/HorizontalScroll";
 import { Icon } from "@/components/primitives/Icon";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { STATS } from "@/data/homepage";
-import shared from "./shared.module.css";
 import styles from "./StatsPanel.module.css";
 
 const STATS_ICONS: Record<string, ReactNode> = {
@@ -40,14 +38,18 @@ const STATS_ICONS: Record<string, ReactNode> = {
   ),
 };
 
-interface StatsPanelProps {
-  layout?: "horizontal" | "vertical";
-}
+/**
+ * Composed className for the orchestrator to use when wrapping
+ * this panel (e.g. in a HorizontalPage or vertical section).
+ */
+export const statsPanelClass = styles.statsPanel;
 
-function StatsPanelContent({ layout = "horizontal" }: StatsPanelProps): ReactNode {
-  const isVertical = layout === "vertical";
-  const cardsClass = isVertical ? styles.verticalStatsCards : styles.statsCards;
-
+/**
+ * StatsPanel — pure content component.
+ * Layout wrapping (HorizontalPage on desktop, section on mobile)
+ * is handled by the orchestrator.
+ */
+export function StatsPanel(): ReactNode {
   return (
     <>
       <div className={styles.statsIntro}>
@@ -57,7 +59,7 @@ function StatsPanelContent({ layout = "horizontal" }: StatsPanelProps): ReactNod
           Seven decades of shaping young minds — here&rsquo;s what makes St. Elizabeth special.
         </Text>
       </div>
-      <div className={cardsClass}>
+      <div className={styles.statsCards}>
         {STATS.map((stat) => (
           <article key={stat.label} className={styles.statsCard} aria-label={`${stat.label}: ${stat.value}`}>
             <div className={styles.statIcon}>{STATS_ICONS[stat.value]}</div>
@@ -71,33 +73,6 @@ function StatsPanelContent({ layout = "horizontal" }: StatsPanelProps): ReactNod
           </article>
         ))}
       </div>
-    </>
-  );
-}
-
-export function StatsPanel({ layout = "horizontal" }: StatsPanelProps): ReactNode {
-  return (
-    <>
-      {layout === "vertical" ? (
-        <section
-          className={`${shared.panel} ${styles.statsPanel}`}
-          aria-label="St. Elizabeth's High School — key statistics"
-        >
-          <StatsPanelContent layout={layout} />
-        </section>
-      ) : (
-        <HorizontalPage
-          width="clamp(960px, 85vw, 1400px)"
-          tabletWidth="min(1040px, 110vw)"
-          mobileWidth="max(760px, 180vw)"
-          smallMobileWidth="max(720px, 200vw)"
-          headerTheme="dark"
-          className={shared.panel}
-          ariaLabel="St. Elizabeth's High School — key statistics"
-        >
-          <StatsPanelContent layout={layout} />
-        </HorizontalPage>
-      )}
     </>
   );
 }
