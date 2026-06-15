@@ -51,23 +51,20 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  animation: maskFadeIn 4.5s var(--ease-standard) forwards;
-}
-
-.maskGroup {
-  transform-origin: center;
-  animation: expandMaskOuter 1.8s cubic-bezier(0.25, 0.1, 0.0, 1.0) 2.5s forwards;
+  /* transform-origin set by JS via getExtentOfChar() — see LoadOverlay.tsx */
+  animation:
+    maskFadeIn 4.5s var(--ease-standard) forwards,
+    expandMaskOuter 1.8s cubic-bezier(0.25, 0.1, 0.0, 1.0) 2.5s forwards;
+  will-change: transform, opacity;
 }
 
 .maskText {
   fill: black;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: calc(var(--text-scale) * 14px);
+  font-size: calc(var(--text-scale) * 28px);
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transform-box: view-box;
-  transform-origin: center;
 }
 
 .screenReaderText {
@@ -179,7 +176,7 @@
   }
 
   to {
-    transform: scale(300);
+    transform: scale(var(--expand-scale, 150));
   }
 }
 
@@ -194,9 +191,11 @@
     animation-duration: 2.8s;
   }
 
-  .maskGroup {
-    animation-duration: 1.55s;
-    animation-delay: 1.55s;
+  /* The .maskStage has two animations; the second (expand) needs its own duration/delay */
+  .maskStage {
+    animation:
+      maskFadeIn 2.8s var(--ease-standard) forwards,
+      expandMaskOuter 1.55s cubic-bezier(0.25, 0.1, 0.0, 1.0) 1.55s forwards;
   }
 
   .heritageMotto {
@@ -208,7 +207,7 @@
   }
 
   .maskText {
-    font-size: calc(var(--text-scale) * 11px);
+    font-size: calc(var(--text-scale) * 22px);
     letter-spacing: 0.025em;
   }
 }
@@ -220,9 +219,7 @@
   .heritageContainer,
   .heritageMotto,
   .heritageYear,
-  .maskStage,
-  .maskGroup,
-  .maskText {
+  .maskStage {
     animation-duration: 0.01ms !important;
     animation-delay: 0s !important;
   }
