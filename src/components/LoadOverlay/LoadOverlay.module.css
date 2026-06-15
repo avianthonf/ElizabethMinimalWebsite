@@ -31,7 +31,7 @@
 .maskText {
   fill: black;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: calc(var(--text-scale) * 28px);
+  font-size: calc(var(--text-scale) * 28px * 0.7);
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -122,7 +122,7 @@
   }
 
   .maskText {
-    font-size: calc(var(--text-scale) * 22px);
+    font-size: calc(var(--text-scale) * 22px * 0.7);
     letter-spacing: 0.025em;
   }
 }
