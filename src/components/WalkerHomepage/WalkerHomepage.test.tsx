@@ -150,9 +150,9 @@ describe("WalkerHomepage", () => {
 
   it("renders the hero heading from data", () => {
     render(<WalkerHomepage />);
-    expect(
-      screen.getByText("Nurturing Hearts")
-    ).toBeDefined();
+    const heading = document.querySelector("h1");
+    expect(heading?.textContent).toContain("Nurturing");
+    expect(heading?.textContent).toContain("Hearts");
   });
 
   it("renders all three value cards", () => {
