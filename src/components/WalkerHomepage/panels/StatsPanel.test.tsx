@@ -3,25 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { StatsPanel } from "./StatsPanel";
 import React from "react";
 
-// Mock HorizontalPage
-vi.mock("@/components/HorizontalScroll", () => ({
-  HorizontalPage: ({
-    children,
-    ariaLabel,
-    headerTheme,
-    className,
-  }: {
-    children: React.ReactNode;
-    ariaLabel?: string;
-    headerTheme?: string;
-    className?: string;
-  }) => (
-    <div data-header-theme={headerTheme} aria-label={ariaLabel} className={className}>
-      {children}
-    </div>
-  ),
-}));
-
 // Mock data
 vi.mock("@/data/homepage", () => ({
   STATS: [
@@ -65,20 +46,5 @@ describe("StatsPanel", () => {
     render(<StatsPanel />);
     expect(screen.getByText("Over seven decades of educational excellence.")).toBeDefined();
     expect(screen.getByText("A vibrant student body.")).toBeDefined();
-  });
-
-  it("has an aria-label describing the panel purpose", () => {
-    render(<StatsPanel />);
-    expect(
-      screen.getByLabelText("St. Elizabeth's High School — key statistics"),
-    ).toBeDefined();
-  });
-
-  it("sets data-header-theme to dark", () => {
-    render(<StatsPanel />);
-    const container = screen.getByLabelText(
-      "St. Elizabeth's High School — key statistics",
-    );
-    expect(container.getAttribute("data-header-theme")).toBe("dark");
   });
 });

@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { HorizontalPage } from "@/components/HorizontalScroll";
 import { TestimonialCard } from "@/components/content/TestimonialCard";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -10,14 +9,20 @@ import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { TESTIMONIALS } from "@/data/homepage";
-import shared from "./shared.module.css";
 import styles from "./TestimonialsPanel.module.css";
 
-interface TestimonialsPanelProps {
-  layout?: "horizontal" | "vertical";
-}
+/**
+ * Composed className for the orchestrator to use when wrapping
+ * this panel (e.g. in a HorizontalPage or vertical section).
+ */
+export const testimonialsPanelClass = styles.testimonialsPanel;
 
-function TestimonialsPanelContent(): ReactNode {
+/**
+ * TestimonialsPanel — pure content component.
+ * Layout wrapping (HorizontalPage on desktop, section on mobile)
+ * is handled by the orchestrator.
+ */
+export function TestimonialsPanel(): ReactNode {
   return (
     <Section background="soft" padding="xlarge" className={styles.testimonialsSection}>
       <Container>
@@ -39,30 +44,5 @@ function TestimonialsPanelContent(): ReactNode {
         </Stack>
       </Container>
     </Section>
-  );
-}
-
-export function TestimonialsPanel({ layout = "horizontal" }: TestimonialsPanelProps): ReactNode {
-  return (
-    <>
-      {layout === "vertical" ? (
-        <div className={`${shared.panel} ${styles.testimonialsPanel}`}>
-          <TestimonialsPanelContent />
-        </div>
-      ) : (
-        <HorizontalPage
-          width="clamp(960px, 80vw, 1400px)"
-          tabletWidth="min(900px, 110vw)"
-          mobileWidth="max(760px, 200vw)"
-          smallMobileWidth="max(720px, 220vw)"
-          landscapeWidth="max(1000px, 130vw)"
-          headerTheme="dark"
-          className={`${shared.panel} ${styles.testimonialsPanel}`}
-          ariaLabel="Testimonials from students, alumni, and parents"
-        >
-          <TestimonialsPanelContent />
-        </HorizontalPage>
-      )}
-    </>
   );
 }

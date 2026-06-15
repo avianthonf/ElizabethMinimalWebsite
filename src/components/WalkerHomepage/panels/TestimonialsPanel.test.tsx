@@ -3,25 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { TestimonialsPanel } from "./TestimonialsPanel";
 import React from "react";
 
-// Mock HorizontalPage
-vi.mock("@/components/HorizontalScroll", () => ({
-  HorizontalPage: ({
-    children,
-    ariaLabel,
-    headerTheme,
-    className,
-  }: {
-    children: React.ReactNode;
-    ariaLabel?: string;
-    headerTheme?: string;
-    className?: string;
-  }) => (
-    <div data-header-theme={headerTheme} aria-label={ariaLabel} className={className}>
-      {children}
-    </div>
-  ),
-}));
-
 // Mock data
 vi.mock("@/data/homepage", () => ({
   TESTIMONIALS: [
@@ -75,12 +56,5 @@ describe("TestimonialsPanel", () => {
     expect(screen.getByText("Alumni, Class of 2020")).toBeDefined();
     expect(screen.getByText("Current Student, Class XII")).toBeDefined();
     expect(screen.getByText("Parent of Class VIII Student")).toBeDefined();
-  });
-
-  it("has an aria-label describing the panel purpose", () => {
-    render(<TestimonialsPanel />);
-    expect(
-      screen.getByLabelText("Testimonials from students, alumni, and parents"),
-    ).toBeDefined();
   });
 });

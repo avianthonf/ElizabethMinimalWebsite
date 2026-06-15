@@ -78,7 +78,14 @@
   --font-sans: Arial, Helvetica, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
 
-  /* ── Typography Scale ──────────────────────────────── */
+  /* ── Typography Scale ────────────────────────────────
+     --text-scale: 0.85 globally scales all font-size
+     calculations down by 15%. This produces a refined,
+     editorial typographic rhythm suited to the school's brand.
+     Individual components can override by omitting the
+     calc(var(--text-scale) * ...) wrapper for full-size text.
+     At mobile breakpoints, clamp() minimums ensure readability
+     is preserved despite the 0.85 multiplier. */
   --text-scale: 0.85;
 
   /* ── Motion ────────────────────────────────────────── */
@@ -159,5 +166,55 @@
 
   #main-content {
     scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+
+  /* ── Print styles ────────────────────────────────── */
+
+  @media print {
+    header[data-header],
+    .skipLink,
+    .scrollBtn,
+    video {
+      display: none !important;
+    }
+
+    .viewport,
+    .stage {
+      position: static !important;
+      height: auto !important;
+      overflow: visible !important;
+      transform: none !important;
+    }
+
+    .track {
+      display: block !important;
+      width: auto !important;
+      transform: none !important;
+    }
+
+    * {
+      background: white !important;
+      color: black !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      animation: none !important;
+      transition: none !important;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      break-after: avoid;
+    }
+
+    section,
+    article {
+      break-inside: avoid;
+    }
   }
 }

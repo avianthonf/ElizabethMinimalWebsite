@@ -27,17 +27,27 @@
   border: 1px solid var(--s-color-primary);
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.newsCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+@media (hover: hover) {
+  .newsCard {
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .newsCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .newsCard {
     transition: none;
+  }
+
+  .newsCard:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 }
 

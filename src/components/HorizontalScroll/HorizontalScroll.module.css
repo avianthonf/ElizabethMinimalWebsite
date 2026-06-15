@@ -52,6 +52,17 @@
   outline-offset: 2px;
 }
 
+@media (hover: hover) {
+  .viewport:hover .scrollBtn {
+    opacity: 0.6;
+  }
+
+  .scrollBtn:hover {
+    opacity: 1;
+    background: rgba(23, 23, 23, 0.85);
+  }
+}
+
 .scrollBtnLeft {
   left: 16px;
 }

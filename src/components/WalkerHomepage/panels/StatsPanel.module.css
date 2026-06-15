@@ -24,9 +24,15 @@
   color: var(--s-color-text-muted);
 }
 
+/* ── Cards row — always flex-wrap so cards flow naturally at any width ──
+   Desktop: 3 cards fit one row (panel is ≥960px with 72px padding =
+   ~816px content; 3 × 260px + 2 × 24px gap = 828px → with flex-grow
+   and max-width 320px they distribute evenly and stay in one row).
+   Mobile: container narrows → cards wrap automatically (2/1 per row). */
+
 .statsCards {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
   gap: clamp(16px, 2vw, 24px);
@@ -35,10 +41,11 @@
 
 .statsCard {
   display: flex;
-  flex: 0 0 clamp(250px, 24vw, 320px);
+  flex: 1 1 260px;
+  max-width: 320px;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
-  min-width: 0;
   padding: clamp(18px, 2.4vw, 34px);
   text-align: center;
   background: var(--s-color-surface);
@@ -119,7 +126,6 @@
   }
 
   .statsCard {
-    flex-basis: 220px;
     padding: 20px 18px;
   }
 
@@ -138,23 +144,6 @@
   }
 }
 
-/* ── Vertical layout (mobile/tablet) ─────────────────────────────── */
-
-.verticalStatsCards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: center;
-  gap: clamp(16px, 2vw, 24px);
-  min-width: 0;
-}
-
-.verticalStatsCards .statsCard {
-  flex: 1 1 260px;
-  max-width: 320px;
-  min-width: 0;
-}
-
 /* ── Small Mobile: ≤420px ───────────────────────────────────────────── */
 
 @media (max-width: 420px) {
@@ -167,7 +156,6 @@
   }
 
   .statsCard {
-    flex-basis: 210px;
     padding: 18px 16px;
   }
 }

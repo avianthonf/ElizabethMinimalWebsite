@@ -11,25 +11,6 @@ vi.mock("next/image", () => ({
   },
 }));
 
-// Mock HorizontalPage — ValuesPanel wraps itself in one
-vi.mock("@/components/HorizontalScroll", () => ({
-  HorizontalPage: ({
-    children,
-    ariaLabel,
-    headerTheme,
-    className,
-  }: {
-    children: React.ReactNode;
-    ariaLabel?: string;
-    headerTheme?: string;
-    className?: string;
-  }) => (
-    <div data-header-theme={headerTheme} aria-label={ariaLabel} className={className}>
-      {children}
-    </div>
-  ),
-}));
-
 // Mock data
 vi.mock("@/data/homepage", () => ({
   VALUES: [
@@ -71,22 +52,5 @@ describe("ValuesPanel", () => {
     expect(screen.getByText("01")).toBeDefined();
     expect(screen.getByText("02")).toBeDefined();
     expect(screen.getByText("03")).toBeDefined();
-  });
-
-  it("has an aria-label describing the panel purpose", () => {
-    render(<ValuesPanel />);
-    expect(
-      screen.getByLabelText(
-        "St. Elizabeth values — Faith, Excellence, Community",
-      ),
-    ).toBeDefined();
-  });
-
-  it("sets data-header-theme to dark", () => {
-    render(<ValuesPanel />);
-    const container = screen.getByLabelText(
-      "St. Elizabeth values — Faith, Excellence, Community",
-    );
-    expect(container.getAttribute("data-header-theme")).toBe("dark");
   });
 });

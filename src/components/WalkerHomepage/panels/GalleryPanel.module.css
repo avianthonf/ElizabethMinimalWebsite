@@ -22,8 +22,8 @@
   width: max-content;
   min-width: 100vw;
   height: 100%;
-  overflow-x: visible !important;
-  overflow-y: hidden !important;
+  overflow-x: visible;
+  overflow-y: hidden;
   display: flex !important;
   flex-direction: column;
   background: var(--s-color-gallery-bg);
