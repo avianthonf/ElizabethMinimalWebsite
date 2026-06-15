@@ -32,6 +32,13 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
       aria-live="polite"
       onAnimationEnd={handleAnimationEnd}
     >
+      {/* Phase 1 & 2: Heritage text on dark background */}
+      <div className={styles.heritageContainer} aria-hidden="true">
+        <p className={styles.heritageMotto}>Truth and Honesty</p>
+        <p className={styles.heritageYear}>Est. 1949</p>
+      </div>
+
+      {/* Phase 3: SVG mask that expands to reveal hero image */}
       <svg className={styles.maskStage} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
           <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
@@ -52,6 +59,7 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
         </defs>
         <rect width="100" height="100" fill="white" mask={`url(#${maskId})`} />
       </svg>
+
       <span className={styles.screenReaderText}>{LOAD_MESSAGE}</span>
     </div>
   );

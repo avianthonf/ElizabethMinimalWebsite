@@ -4,20 +4,59 @@
   z-index: 1000;
   overflow: hidden;
   pointer-events: none;
-  animation: revealOverlay 1s var(--ease-standard) 0.76s forwards;
+  animation: revealOverlay 4.5s var(--ease-standard) forwards;
   will-change: opacity, transform;
 }
+
+/* ── Phase 1 & 2: Heritage text on dark background ── */
+
+.heritageContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--s-color-primary-dark);
+  animation: heritageFadeOut 4.5s var(--ease-standard) forwards;
+}
+
+.heritageMotto {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2.8rem));
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  animation: mottoSequence 4.5s var(--ease-standard) forwards;
+}
+
+.heritageYear {
+  margin: 0.5em 0 0;
+  font-family: var(--font-serif);
+  font-size: calc(var(--text-scale) * clamp(0.75rem, 1.8vw, 1.1rem));
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ffffff;
+  animation: yearSequence 4.5s var(--ease-standard) forwards;
+}
+
+/* ── Phase 3: SVG mask that expands to reveal hero image ── */
 
 .maskStage {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  animation: maskFadeIn 4.5s var(--ease-standard) forwards;
 }
 
 .maskGroup {
   transform-origin: center;
-  animation: expandMaskOuter 1s cubic-bezier(0.25, 0.1, 0.0, 1.0) 0.76s forwards;
+  animation: expandMaskOuter 1.8s cubic-bezier(0.25, 0.1, 0.0, 1.0) 2.5s forwards;
 }
 
 .maskText {
@@ -29,7 +68,6 @@
   text-transform: uppercase;
   transform-box: view-box;
   transform-origin: center;
-  animation: expandMaskInner 1s cubic-bezier(0.25, 0.1, 0.0, 1.0) 0.76s forwards;
 }
 
 .screenReaderText {
@@ -44,23 +82,83 @@
   border: 0;
 }
 
-@keyframes expandMaskOuter {
-  from {
-    transform: scale(1);
+/* ── Keyframes ── */
+
+@keyframes mottoSequence {
+  0%,
+  4% {
+    opacity: 0;
   }
 
-  to {
-    transform: scale(17.32);
+  13% {
+    opacity: 1;
+  }
+
+  27%,
+  33% {
+    opacity: 1;
+  }
+
+  36% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
-@keyframes expandMaskInner {
-  from {
-    transform: scale(1);
+@keyframes yearSequence {
+  0%,
+  35% {
+    opacity: 0;
   }
 
-  to {
-    transform: scale(17.32);
+  44% {
+    opacity: 1;
+  }
+
+  51%,
+  56% {
+    opacity: 1;
+  }
+
+  59% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes heritageFadeOut {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  56% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes maskFadeIn {
+  0%,
+  49% {
+    opacity: 0;
+  }
+
+  53% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
@@ -75,11 +173,38 @@
   }
 }
 
+@keyframes expandMaskOuter {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(300);
+  }
+}
+
+/* ── Mobile ── */
+
 @media (max-width: 760px) {
   .overlay,
-  .maskGroup,
-  .maskText {
+  .heritageContainer,
+  .heritageMotto,
+  .heritageYear,
+  .maskStage {
+    animation-duration: 2.8s;
+  }
+
+  .maskGroup {
     animation-duration: 1.55s;
+    animation-delay: 1.55s;
+  }
+
+  .heritageMotto {
+    font-size: calc(var(--text-scale) * clamp(1.1rem, 3.8vw, 2rem));
+  }
+
+  .heritageYear {
+    font-size: calc(var(--text-scale) * clamp(0.65rem, 1.6vw, 0.9rem));
   }
 
   .maskText {
@@ -88,11 +213,17 @@
   }
 }
 
+/* ── Reduced motion ── */
+
 @media (prefers-reduced-motion: reduce) {
   .overlay,
+  .heritageContainer,
+  .heritageMotto,
+  .heritageYear,
+  .maskStage,
   .maskGroup,
   .maskText {
-    animation-duration: 0.01ms;
-    animation-delay: 0s;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
   }
 }
