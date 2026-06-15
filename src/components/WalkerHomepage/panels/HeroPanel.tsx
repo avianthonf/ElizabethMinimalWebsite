@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { HERO_CONTENT } from "@/data/homepage";
 import shared from "./shared.module.css";
 import styles from "./HeroPanel.module.css";
@@ -16,10 +16,19 @@ export const heroPanelClass = `${shared.panel} ${styles.heroPanel}`;
 /** Hero section content. Wrapping HorizontalPage is applied by the orchestrator. */
 export function HeroPanel(props: HeroPanelProps): ReactNode {
   void props;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 2.7;
+    }
+  }, []);
+
   return (
     <>
       {/* Looping hero video — plays immediately, muted for autoplay policies */}
       <video
+        ref={videoRef}
         className={styles.heroVideo}
         src="/videos/hero-video.mp4"
         autoPlay
