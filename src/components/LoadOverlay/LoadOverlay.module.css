@@ -108,6 +108,10 @@
 /* ── Mobile ── */
 
 @media (max-width: 760px) {
+  .overlay {
+    animation-duration: 2.8s;
+  }
+
   .maskStage {
     animation:
       expandMaskOuter 0.7s cubic-bezier(0.25, 0.1, 0.0, 1.0) 1.96s forwards;

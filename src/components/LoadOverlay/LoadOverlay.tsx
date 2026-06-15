@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useEffect, useRef, useState, type AnimationEvent, type ReactNode } from "react";
+import { useId, useEffect, useLayoutEffect, useRef, useState, type AnimationEvent, type ReactNode } from "react";
 import { motion, type Target, type Transition } from "framer-motion";
 import styles from "./LoadOverlay.module.css";
 
@@ -29,7 +29,10 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
   const textRef = useRef<SVGTextElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
+  // useLayoutEffect so the isMobile correction runs before the
+  // browser paints — prevents framer-motion from starting with
+  // the wrong (4.5s) duration and then recomputing mid-flight.
+  useLayoutEffect(() => {
     setIsMobile(window.innerWidth <= 760);
   }, []);
 
