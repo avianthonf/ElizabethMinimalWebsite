@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { LoadOverlay } from "@/components/LoadOverlay";
 import { HeaderThemeController } from "@/components/HeaderThemeController";
 import { HorizontalScroll } from "@/components/HorizontalScroll";
@@ -28,24 +27,21 @@ import styles from "./WalkerHomepage.module.css";
  * this component and the vertical mobile layout.
  */
 export function WalkerHomepageDesktop(): React.ReactNode {
-  const [showOverlay, setShowOverlay] = useState(true);
   const menu = useMenuState();
 
   return (
     <main id="main-content" className={styles.page}>
-      <LoadOverlay onComplete={() => setShowOverlay(false)} />
+      <LoadOverlay />
 
-      {!showOverlay && (
-        <Header
-          brandText="St. Elizabeth's High School"
-          navLinks={HEADER_NAV_LINKS}
-          transparent
-          fixed
-          onMenuClick={menu.open}
-          isMenuOpen={menu.isOpen}
-          menuButtonRef={menu.triggerRef}
-        />
-      )}
+      <Header
+        brandText="St. Elizabeth's High School"
+        navLinks={HEADER_NAV_LINKS}
+        transparent
+        fixed
+        onMenuClick={menu.open}
+        isMenuOpen={menu.isOpen}
+        menuButtonRef={menu.triggerRef}
+      />
 
       <MenuOverlay isOpen={menu.isOpen} onClose={menu.close} />
 
