@@ -3,25 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { HeroPanel, heroPanelClass } from "./HeroPanel";
 import React from "react";
 
-// Mock next/image
-vi.mock("next/image", () => ({
-  default: (props: Record<string, unknown>) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img alt={props.alt as string} src={props.src as string} />;
-  },
-}));
-
-// Mock data/images
-vi.mock("@/data/images", () => ({
-  HERO_IMAGES: [
-    {
-      filename: "hero-bg.jpg",
-      alt: "Hero background image showing students on campus",
-      section: "homepage-hero",
-    },
-  ],
-}));
-
 // Mock data/homepage
 vi.mock("@/data/homepage", () => ({
   HERO_CONTENT: {
@@ -44,11 +25,15 @@ describe("HeroPanel", () => {
     ).toBeDefined();
   });
 
-  it("renders a background image with the hero alt text", () => {
+  it("renders a looping video background", () => {
     render(<HeroPanel />);
-    const img = screen.getByAltText("Hero background image showing students on campus");
-    expect(img).toBeDefined();
-    expect(img.getAttribute("src")).toBe("/images/hero-bg.jpg");
+    const video = document.querySelector("video") as HTMLVideoElement;
+    expect(video).toBeDefined();
+    expect(video.getAttribute("src")).toBe("/videos/hero-video.mp4");
+    expect(video.loop).toBe(true);
+    expect(video.muted).toBe(true);
+    expect(video.autoplay).toBe(true);
+    expect(video.hasAttribute("playsinline")).toBe(true);
   });
 
   it("exports heroPanelClass for the orchestrator", () => {
