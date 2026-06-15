@@ -89,13 +89,7 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
       aria-live="polite"
       onAnimationEnd={handleAnimationEnd}
     >
-      {/* Phase 1 & 2: Heritage text on dark background */}
-      <div className={styles.heritageContainer} aria-hidden="true">
-        <p className={styles.heritageMotto}>Truth and Honesty</p>
-        <p className={styles.heritageYear}>Est. 1949</p>
-      </div>
-
-      {/* Phase 3: SVG mask — entire element scales to zoom through the target gap */}
+      {/* Phase 3: SVG mask — always visible, underneath heritage white bg */}
       <svg
         ref={svgRef}
         className={styles.maskStage}
@@ -121,6 +115,12 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
         </defs>
         <rect width="100" height="100" fill="white" mask={`url(#${maskId})`} />
       </svg>
+
+      {/* Phase 1 & 2: Heritage text on white background — covers the mask until the cut */}
+      <div className={styles.heritageContainer} aria-hidden="true">
+        <p className={styles.heritageMotto}>Truth and Honesty</p>
+        <p className={styles.heritageYear}>Est. 1949</p>
+      </div>
 
       <span className={styles.screenReaderText}>{LOAD_MESSAGE}</span>
     </div>
