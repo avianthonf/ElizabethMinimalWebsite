@@ -30,7 +30,14 @@ export function HeroPanel(props: HeroPanelProps): ReactNode {
       />
       <div className={styles.heroOverlay}>
         <p className={styles.heroStatement}>{HERO_CONTENT.statement}</p>
-        <h1 className={styles.heroHeading}>{HERO_CONTENT.heading}</h1>
+        <h1 className={styles.heroHeading}>
+          {HERO_CONTENT.heading.split(" ").map((word, i, arr) => (
+            <span key={word}>
+              {word}
+              {i < arr.length - 1 && <br />}
+            </span>
+          ))}
+        </h1>
       </div>
     </>
   );
