@@ -32,9 +32,10 @@
   font-family: var(--font-serif);
   font-size: calc(var(--text-scale) * clamp(4.2rem, 10vw, 10.5rem));
   font-weight: 900;
-  line-height: 0.72;
+  line-height: 0.85;
   letter-spacing: -0.07em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--s-color-surface);
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }
