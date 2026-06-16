@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { StatsPanel } from "./StatsPanel";
 import React from "react";
@@ -16,6 +16,37 @@ vi.mock("@/data/homepage", () => ({
   ],
 }));
 
+// Mock IntersectionObserver to fire immediately
+const mockObserve = vi.fn();
+const mockDisconnect = vi.fn();
+
+beforeEach(() => {
+  vi.stubGlobal(
+    "IntersectionObserver",
+    class {
+      private cb: IntersectionObserverCallback;
+      constructor(cb: IntersectionObserverCallback) {
+        this.cb = cb;
+      }
+      observe(node: Element) {
+        mockObserve(node);
+        // Immediately report as intersecting
+        this.cb(
+          [{ isIntersecting: true, target: node } as IntersectionObserverEntry],
+          this as unknown as IntersectionObserver,
+        );
+      }
+      disconnect = mockDisconnect;
+      unobserve = vi.fn();
+      takeRecords = vi.fn(() => []);
+    },
+  );
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
 describe("StatsPanel", () => {
   it("renders the 'By the Numbers' eyebrow text", () => {
     render(<StatsPanel />);
@@ -30,9 +61,10 @@ describe("StatsPanel", () => {
 
   it("renders all three stat values", () => {
     render(<StatsPanel />);
-    expect(screen.getByText("1949")).toBeDefined();
-    expect(screen.getByText("1200+")).toBeDefined();
-    expect(screen.getByText("CBSE")).toBeDefined();
+    // StatValue wraps each stat — verify the elements exist via aria-labels
+    expect(screen.getByLabelText("Founded: 1949")).toBeDefined();
+    expect(screen.getByLabelText("Students: 1200+")).toBeDefined();
+    expect(screen.getByLabelText("Affiliated: CBSE")).toBeDefined();
   });
 
   it("renders all three stat labels", () => {

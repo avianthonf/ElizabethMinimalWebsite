@@ -7,6 +7,7 @@ import { Text } from "@/components/primitives/Text";
 import { VALUES } from "@/data/homepage";
 import { VALUES_IMAGES } from "@/data/images";
 import styles from "./ValuesPanel.module.css";
+import { AnimatedCard } from "./AnimatedCard";
 
 /**
  * Composed className for the orchestrator to use when wrapping
@@ -31,18 +32,19 @@ export function ValuesPanel(): ReactNode {
         </Text>
       </div>
       <div className={styles.valuesCards}>
-        {VALUES.map((value) => {
+        {VALUES.map((value, i) => {
           const imageKey = value.title.toLowerCase() as keyof typeof VALUES_IMAGES;
           const asset = VALUES_IMAGES[imageKey];
           return (
-            <ValueCard
-              key={value.number}
-              number={value.number}
-              title={value.title}
-              body={value.body}
-              image={`/images/${asset.filename}`}
-              imageAlt={asset.alt}
-            />
+            <AnimatedCard key={value.number} index={i} total={VALUES.length}>
+              <ValueCard
+                number={value.number}
+                title={value.title}
+                body={value.body}
+                image={`/images/${asset.filename}`}
+                imageAlt={asset.alt}
+              />
+            </AnimatedCard>
           );
         })}
       </div>

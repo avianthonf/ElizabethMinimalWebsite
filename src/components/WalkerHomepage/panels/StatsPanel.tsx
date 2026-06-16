@@ -6,6 +6,8 @@ import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { STATS } from "@/data/homepage";
 import styles from "./StatsPanel.module.css";
+import { StatValue } from "./StatValue";
+import { AnimatedCard } from "./AnimatedCard";
 
 const STATS_ICONS: Record<string, ReactNode> = {
   "1949": (
@@ -60,17 +62,19 @@ export function StatsPanel(): ReactNode {
         </Text>
       </div>
       <div className={styles.statsCards}>
-        {STATS.map((stat) => (
-          <article key={stat.label} className={styles.statsCard} aria-label={`${stat.label}: ${stat.value}`}>
-            <div className={styles.statIcon}>{STATS_ICONS[stat.value]}</div>
-            <p className={styles.statValue}>{stat.value}</p>
-            <Heading level="h3" variant="card" className={styles.statLabel}>
-              {stat.label}
-            </Heading>
-            <Text variant="muted" size="small" className={styles.statDescription}>
-              {stat.description}
-            </Text>
-          </article>
+        {STATS.map((stat, i) => (
+          <AnimatedCard key={stat.label} index={i} total={STATS.length}>
+            <article className={styles.statsCard} aria-label={`${stat.label}: ${stat.value}`}>
+              <div className={styles.statIcon}>{STATS_ICONS[stat.value]}</div>
+              <StatValue value={stat.value} className={styles.statValue} />
+              <Heading level="h3" variant="card" className={styles.statLabel}>
+                {stat.label}
+              </Heading>
+              <Text variant="muted" size="small" className={styles.statDescription}>
+                {stat.description}
+              </Text>
+            </article>
+          </AnimatedCard>
         ))}
       </div>
     </>

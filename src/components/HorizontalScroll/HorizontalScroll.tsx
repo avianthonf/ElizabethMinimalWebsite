@@ -109,6 +109,7 @@ export function HorizontalScroll({
 
     track.style.transform = `translate3d(${-progress * travelDistance}px, 0, 0)`;
     stage.style.setProperty("--scroll-progress", String(progress));
+    document.documentElement.style.setProperty("--scroll-progress", String(progress));
   }, []);
 
   const scheduleMeasure = useCallback(() => {
