@@ -26,6 +26,11 @@
   align-items: end;
   gap: clamp(28px, 5vw, 76px);
   padding: 0 clamp(22px, 7vw, 84px) clamp(18px, 2.6vw, 38px);
+  transform: translate3d(
+    calc((var(--scroll-progress, 0) - 0.5) * -20px),
+    calc((var(--scroll-progress, 0) - 0.5) * 12px),
+    0
+  );
 }
 
 .heroHeading {
@@ -93,5 +98,15 @@
   .heroStatement {
     font-size: calc(var(--text-scale) * 0.63rem);
     line-height: 1.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroVideo {
+    transform: none !important;
+  }
+
+  .heroOverlay {
+    transform: none !important;
   }
 }

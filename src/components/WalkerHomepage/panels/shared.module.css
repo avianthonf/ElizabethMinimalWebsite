@@ -7,3 +7,29 @@
   /* overflow is controlled per-panel — viewport clips via HorizontalScroll */
   background: var(--s-color-surface);
 }
+
+/* ── Scroll-reveal card wrapper ──────────────────────────── */
+
+.animated-card {
+  flex: 1 1 280px;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 600ms var(--ease-standard),
+    transform 600ms var(--ease-standard);
+  transition-delay: calc(var(--stagger-index, 0) * 120ms);
+}
+
+.animated-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-card {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
