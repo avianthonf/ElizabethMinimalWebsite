@@ -108,16 +108,57 @@
 /* ── Responsive ───────────────────────────────────── */
 
 @media (max-width: 760px) {
+  .footer {
+    padding: var(--spacing-xl) var(--padding-page);
+    padding-bottom: calc(var(--spacing-xl) + env(safe-area-inset-bottom, 0px));
+  }
+
   .topRow {
     grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
 
   .intro {
     max-width: none;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .linkGroup {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .linkList {
+    gap: var(--spacing-sm);
+  }
+
+  .linkList a {
+    min-height: var(--touch-target-min);
+    display: flex;
+    align-items: center;
   }
 
   .bottomRow {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .socialLinks {
+    gap: var(--spacing-lg);
+  }
+
+  .socialLink {
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer {
+    padding: var(--spacing-lg) var(--padding-page);
+    padding-bottom: calc(var(--spacing-lg) + env(safe-area-inset-bottom, 0px));
   }
 }

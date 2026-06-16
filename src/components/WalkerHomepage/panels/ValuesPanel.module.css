@@ -49,21 +49,23 @@
 
 @media (max-width: 760px) {
   .valuesPanel {
-    padding: 48px 20px 28px;
-    gap: 28px;
+    padding: var(--spacing-xl) var(--padding-page) var(--spacing-lg);
+    gap: var(--spacing-lg);
   }
 
   .valuesIntro {
     max-width: 100%;
+    text-align: left;
   }
 
   .valuesIntro h2 {
-    font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
+    font-size: var(--type-section-heading);
+    line-height: var(--line-height-tight);
   }
 
   .valuesCards {
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-md);
   }
 }
 
@@ -71,11 +73,12 @@
 
 @media (max-width: 420px) {
   .valuesPanel {
-    padding: 40px 16px 24px;
+    padding: var(--spacing-lg) var(--padding-page) var(--spacing-md);
+    gap: var(--spacing-md);
   }
 
   .valuesCards {
-    gap: 16px;
+    gap: var(--spacing-sm);
   }
 }
 

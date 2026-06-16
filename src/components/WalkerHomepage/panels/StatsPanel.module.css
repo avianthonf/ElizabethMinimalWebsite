@@ -109,42 +109,52 @@
 
 @media (max-width: 760px) {
   .statsPanel {
-    padding: 48px 20px 28px;
-    gap: 28px;
+    padding: var(--spacing-xl) var(--padding-page) var(--spacing-lg);
+    gap: var(--spacing-lg);
   }
 
   .statsIntro {
     max-width: 100%;
+    text-align: left;
   }
 
   .statsIntro h2 {
-    font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
+    font-size: var(--type-section-heading);
+    line-height: var(--line-height-tight);
   }
 
   .statsCards {
     flex-direction: column;
-    gap: 18px;
+    gap: var(--spacing-md);
   }
 
   .statsCard {
     flex: none;
     width: 100%;
     max-width: none;
-    padding: 20px 18px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-radius: var(--radius-card);
+    min-height: var(--touch-target-min);
   }
 
   .statIcon {
-    width: 58px;
-    height: 58px;
-    margin-bottom: 14px;
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--spacing-md);
   }
 
   .statValue {
-    font-size: calc(var(--text-scale) * clamp(2rem, 9vw, 2.7rem));
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: 4px;
+  }
+
+  .statLabel {
+    margin-bottom: var(--spacing-sm);
   }
 
   .statDescription {
-    max-width: 22ch;
+    max-width: 28ch;
+    font-size: var(--type-small);
   }
 }
 
@@ -152,14 +162,16 @@
 
 @media (max-width: 420px) {
   .statsPanel {
-    padding: 40px 16px 24px;
-  }
-
-  .statsCards {
-    gap: 16px;
+    padding: var(--spacing-lg) var(--padding-page) var(--spacing-md);
+    gap: var(--spacing-md);
   }
 
   .statsCard {
-    padding: 18px 16px;
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .statIcon {
+    width: 48px;
+    height: 48px;
   }
 }

@@ -111,27 +111,25 @@
 /* ── Mobile: ≤760px ───────────────────────────────────────────────────── */
 
 @media (max-width: 760px) {
-  /* Mobile: single-row of full-width cards flowing right */
-  .galleryGrid {
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .galleryPanel {
-    padding: 36px 16px 28px;
-  }
-
   .galleryHeader h2 {
-    font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2rem));
+    font-size: var(--type-section-heading);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-md);
   }
 
-  /* Vertical layout: smaller min cards, tighter padding */
   .verticalGalleryGrid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-sm);
   }
 
   .verticalGalleryPanel {
-    padding: 36px 16px 28px;
+    padding: var(--spacing-xl) var(--padding-page) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 420px) {
+  .verticalGalleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
   }
 }

@@ -26,6 +26,16 @@
 
 @media (max-width: 760px) {
   .testimonialsSection {
-    padding: 48px 20px;
+    padding: var(--spacing-xl) var(--padding-page);
+  }
+
+  .testimonialsHeader {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+@media (max-width: 420px) {
+  .testimonialsSection {
+    padding: var(--spacing-lg) var(--padding-page);
   }
 }
