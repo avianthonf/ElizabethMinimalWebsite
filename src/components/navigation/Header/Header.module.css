@@ -166,12 +166,18 @@
 @media (max-width: 760px) {
   .titleBar {
     grid-template-columns: 1fr auto auto;
-    padding: clamp(14px, 2.4vw, 28px) clamp(14px, 2.5vw, 24px);
-    gap: clamp(8px, 1.2vw, 16px);
+    padding: var(--spacing-md) var(--padding-page);
+    gap: var(--spacing-sm);
   }
 
   .brand span:last-child {
-    font-size: calc(var(--text-scale) * clamp(1.1rem, 2.4vw, 2rem));
+    font-size: var(--type-card-heading);
+  }
+}
+
+@media (max-width: 420px) {
+  .titleBar {
+    padding: var(--spacing-sm) var(--padding-page);
   }
 }
 
