@@ -97,7 +97,7 @@ export function Header({
           onClick={onMenuClick}
         >
           <span>Menu</span>
-          <span className={styles.menuIcon} aria-hidden="true">
+          <span className={`${styles.menuIcon} ${isMenuOpen ? styles.menuOpen : ""}`} aria-hidden="true">
             <span />
             <span />
             <span />

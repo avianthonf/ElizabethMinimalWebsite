@@ -122,10 +122,14 @@
   }
 
   .statsCards {
+    flex-direction: column;
     gap: 18px;
   }
 
   .statsCard {
+    flex: none;
+    width: 100%;
+    max-width: none;
     padding: 20px 18px;
   }
 

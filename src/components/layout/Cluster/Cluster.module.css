@@ -26,3 +26,9 @@
 .wrap {
   flex-wrap: wrap;
 }
+
+/* ── Gap ─────────────────────────────────────────── */
+
+.gapSmall  { gap: var(--spacing-sm); }
+.gapMedium { gap: var(--spacing-md); }
+.gapLarge  { gap: var(--spacing-lg); }

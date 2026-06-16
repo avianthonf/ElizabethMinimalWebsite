@@ -7,6 +7,7 @@
   padding: clamp(11px, 1.5vw, 22px) clamp(18px, 3.5vw, 48px);
   z-index: 20;
   pointer-events: none;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 .titleBar a,
@@ -123,6 +124,19 @@
   height: 2px;
   background: currentColor;
   border-radius: 999px;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.menuOpen span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menuOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuOpen span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ── Responsive ───────────────────────────────────── */
