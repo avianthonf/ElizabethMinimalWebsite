@@ -19,6 +19,12 @@ const alignClass: Record<ClusterAlign, string> = {
   "space-between": styles.alignSpaceBetween,
 };
 
+const gapClass: Record<ClusterGap, string> = {
+  small: styles.gapSmall,
+  medium: styles.gapMedium,
+  large: styles.gapLarge,
+};
+
 export function Cluster({
   children,
   align = "start",
@@ -29,6 +35,7 @@ export function Cluster({
   const composedClassName = [
     styles.cluster,
     alignClass[align],
+    gapClass[gap],
     wrap && styles.wrap,
     className,
   ]
@@ -36,7 +43,7 @@ export function Cluster({
     .join(" ");
 
   return (
-    <div className={composedClassName} style={{ gap: `var(--spacing-${gap})` }}>
+    <div className={composedClassName}>
       {children}
     </div>
   );

@@ -34,8 +34,8 @@
   /* Scroll reveal: hidden → visible (slides in from left as
      the horizontal scroll reveals cards to the right) */
   opacity: 0;
-  transform: translateX(-30px);
-  transition-delay: calc(var(--stagger-index, 0) * var(--animation-stagger) * 2);
+  transform: translateX(30px);
+  transition-delay: calc(var(--stagger-index, 0) * var(--animation-stagger));
 }
 
 .card:hover,

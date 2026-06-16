@@ -87,6 +87,19 @@
   .textCol {
     width: 100%;
   }
+
+  .lightText {
+    opacity: 1;
+  }
+
+  .ctas {
+    flex-direction: column;
+  }
+
+  .ctas > * {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-height: 520px) and (orientation: landscape) {

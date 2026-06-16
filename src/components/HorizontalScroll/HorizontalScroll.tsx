@@ -108,6 +108,7 @@ export function HorizontalScroll({
     const progress = Math.min(1, Math.max(0, -rect.top / scrollableDistance));
 
     track.style.transform = `translate3d(${-progress * travelDistance}px, 0, 0)`;
+    stage.style.setProperty("--scroll-progress", String(progress));
   }, []);
 
   const scheduleMeasure = useCallback(() => {

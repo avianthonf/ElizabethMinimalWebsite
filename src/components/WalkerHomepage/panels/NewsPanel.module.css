@@ -89,3 +89,21 @@
     text-align: left;
   }
 }
+
+@media (max-width: 760px) {
+  .newsContent {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .newsCard {
+    border-color: var(--s-color-border);
+  }
+
+  .newsCtaLink {
+    padding: 14px 24px;
+    font-size: calc(var(--text-scale) * 1rem);
+    width: 100%;
+    text-align: center;
+  }
+}

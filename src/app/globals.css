@@ -95,6 +95,12 @@
   --animation-stagger: 50ms;
 }
 
+@media (max-width: 760px) {
+  :root {
+    --text-scale: 1;
+  }
+}
+
 /* ── Reset Layer ────────────────────────────────────── */
 
 @layer reset {
