@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { HERO_CONTENT } from "@/data/homepage";
 import shared from "./shared.module.css";
 import styles from "./HeroPanel.module.css";
@@ -17,12 +17,19 @@ export const heroPanelClass = `${shared.panel} ${styles.heroPanel}`;
 export function HeroPanel(props: HeroPanelProps): ReactNode {
   void props;
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [seekTime, setSeekTime] = useState(2.7);
+
+  // SSR-safe mobile detection — matches the 760px breakpoint
+  // used by LoadOverlayMobile
+  useLayoutEffect(() => {
+    setSeekTime(window.innerWidth <= 760 ? 1.0 : 2.7);
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.currentTime = 2.7;
+      videoRef.current.currentTime = seekTime;
     }
-  }, []);
+  }, [seekTime]);
 
   return (
     <>
