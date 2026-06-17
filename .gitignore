@@ -15,3 +15,7 @@ pnpm-debug.log*
 next-env.d.ts
 tsconfig.tsbuildinfo
 .claude/
+graphify-out/
+.graphify_python
+.graphify_root
+.graphify_labels.json

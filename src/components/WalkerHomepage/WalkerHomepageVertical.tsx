@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { LoadOverlay } from "@/components/LoadOverlay";
+import { LoadOverlayMobile } from "@/components/LoadOverlay";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
@@ -50,7 +50,7 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
 
   return (
     <main id="main-content" className={styles.verticalPage} suppressHydrationWarning>
-      <LoadOverlay />
+      <LoadOverlayMobile />
 
       <Header
         brandText="St. Elizabeth's High School"

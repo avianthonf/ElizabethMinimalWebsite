@@ -16,6 +16,7 @@ vi.mock("@/components/HorizontalScroll", () => ({
 // by checking that content behind the overlay gate still renders
 vi.mock("@/components/LoadOverlay", () => ({
   LoadOverlay: () => <div data-testid="load-overlay" />,
+  LoadOverlayMobile: () => <div data-testid="load-overlay-mobile" />,
 }));
 
 // Mock MenuOverlay (uses browser APIs)
