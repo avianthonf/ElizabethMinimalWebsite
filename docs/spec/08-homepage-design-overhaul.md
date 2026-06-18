@@ -416,3 +416,39 @@ Note: `gap="0px"` on `HorizontalScroll` — panels butt together. White panels (
 ---
 
 _This specification is directly implementable. Every value is exact. Every treatment is justified._
+
+---
+
+## Part 7: Grilling Decision Implementation Audit
+
+| #   | Decision                                        | Status                                                                                              |
+| --- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| 1   | All content panels pure white (#ffffff)         | ✅ Values, Testimonials: `--s-color-surface`                                                        |
+| 2   | Header offset padding-top on panels 2,3,5,7     | ✅ via `--panel-top-offset`                                                                         |
+| 3   | Mobile Hero bottom-aligned (not center)         | ✅ `align-self: end` at ≤760px                                                                      |
+| 4   | CTA centered, no image, spotlight, crest        | ✅ radial gradient + noise + SVG crest watermark                                                    |
+| 5   | Gallery dark room — deep navy #060f45 + noise   | ✅ radial-gradient + SVG noise filter                                                               |
+| 6   | All section headers centered                    | ✅ text-align: center on panels 2-7                                                                 |
+| 7   | Gallery width=auto (masonry natural width)      | ✅ `width="auto"`                                                                                   |
+| 8   | Each panel tuned to content width               | ✅ 78vw, 73vw, auto, per-spec Part 6                                                                |
+| 9   | Vertical centering after header offset          | ✅ `justify-content: center` on 2,3,5; CTA `place-items: center`                                    |
+| 10  | No inter-panel gaps                             | ✅ `gap="0px"`                                                                                      |
+| 11  | Gallery sharp transition from white             | ✅ intentional, not gradual                                                                         |
+| 12  | CTA noise 2.5%, crest 3% opacity                | ✅ SVG noise overlay + positioned crest                                                             |
+| 13  | Mobile Hero statement left-aligned              | ✅ `text-align: left` at ≤760px                                                                     |
+| 14  | Gallery filter dark ghost pills                 | ✅ white-translucent borders + hover                                                                |
+| 15  | Gallery photos 2px white borders                | ✅ `2px solid rgba(255,255,255,0.25)`                                                               |
+| 16  | Testimonial oversized background quotemark      | ✅ `::before` " 6rem, `opacity: 0.1`                                                                |
+| 17  | Unified card border/shadow/hover lift           | ✅ `--card-border`, `--shadow-card-rest/hover`, `--card-hover-lift`                                 |
+| 18  | Section header typography scale                 | ✅ `--type-eyebrow`, `--type-section-h2`, `--description-max-width`                                 |
+| 19  | prefers-reduced-motion on all animations        | ✅ Hero, shared, Stats, TestimonialCard, GalleryCard, GalleryFilter, ImageCard, CTAPanel, NewsPanel |
+| 20  | Focus-visible ring on all interactive cards     | ✅ shared(AnimatedCard), StatsCard, TestimonialCard, NewsCard                                       |
+| 21  | Role badges get gradient backgrounds            | ✅ `linear-gradient(135deg,...)` on alumni, student, parent, teacher                                |
+| 22  | Panel width calculations from Part 6            | ✅                                                                                                  |
+| 23  | CTA button slide-fill hover animation           | ✅ `::before translateY(100%)→0` on hover                                                           |
+| 24  | Stats icon circle gradient + inset + hover lift | ✅ gradient fill, inset shadow, `translateY(-4px)`                                                  |
+| 25  | Hero text fade-up entrance animation            | ✅ `fadeUpReveal` 0.8s, gated on `no-preference`                                                    |
+| 26  | AnimatedCard CSS Module import fix              | ✅ imports `shared.module.css`, hashed class names                                                  |
+| 27  | NewsPanel `.newsSection` wrapper restored       | ✅ flex + center + header offset active                                                             |
+
+**Result**: 27/27 decisions implemented. Zero gaps.
