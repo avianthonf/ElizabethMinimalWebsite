@@ -11,10 +11,7 @@ import { useReducedMotion } from "./hooks/useReducedMotion";
 import { HeroPanel } from "./panels/HeroPanel";
 import { ValuesPanel, valuesPanelClass } from "./panels/ValuesPanel";
 import { StatsPanel, statsPanelClass } from "./panels/StatsPanel";
-import {
-  GalleryPanel,
-  verticalGalleryPanelClass,
-} from "./panels/GalleryPanel";
+import { GalleryPanel, verticalGalleryPanelClass } from "./panels/GalleryPanel";
 import { TestimonialsPanel, testimonialsPanelClass } from "./panels/TestimonialsPanel";
 import { CTAPanel, ctaPanelClass } from "./panels/CTAPanel";
 import { NewsPanel, newsPanelClass } from "./panels/NewsPanel";
@@ -57,6 +54,7 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
         navLinks={HEADER_NAV_LINKS}
         transparent
         fixed
+        noScrollBar
         onMenuClick={menu.open}
         isMenuOpen={menu.isOpen}
         menuButtonRef={menu.triggerRef}
