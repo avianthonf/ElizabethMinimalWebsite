@@ -43,6 +43,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
         navLinks={HEADER_NAV_LINKS}
         transparent
         fixed
+        noScrollBar
         onMenuClick={menu.open}
         isMenuOpen={menu.isOpen}
         menuButtonRef={menu.triggerRef}

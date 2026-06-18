@@ -24,6 +24,8 @@ export interface HeaderProps {
   isMenuOpen?: boolean;
   /** Ref to attach to the menu button for focus restoration on overlay close */
   menuButtonRef?: RefObject<HTMLButtonElement | null>;
+  /** Suppress the scroll-driven white bar background (used on homepage) */
+  noScrollBar?: boolean;
 }
 
 /**
@@ -52,6 +54,7 @@ export function Header({
   showMenu = true,
   fixed = true,
   transparent = true,
+  noScrollBar = false,
   className,
   onMenuClick,
   isMenuOpen = false,
@@ -69,6 +72,7 @@ export function Header({
     styles.titleBar,
     fixed && styles.fixed,
     transparent ? styles.transparent : styles.solid,
+    noScrollBar && styles.noScrollBar,
     className,
   ]
     .filter(Boolean)
