@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import { ImageCard } from "@/components/content/ImageCard";
-import { Section } from "@/components/layout/Section";
 import { Grid } from "@/components/layout/Grid";
 import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
@@ -18,33 +17,35 @@ export const newsPanelClass = `${shared.panel} ${styles.newsPanel}`;
 /** News section content. Wrapping HorizontalPage is applied by the orchestrator. */
 export function NewsPanel(): ReactNode {
   return (
-    <Section background="soft" padding="xlarge" className={styles.newsSection}>
-      <div className={styles.newsContent}>
-        <Stack gap="xlarge">
-          <div className={styles.newsHeader}>
-            <Text variant="eyebrow">Latest News &amp; Events</Text>
-            <Heading level="h2" variant="section">What&rsquo;s Happening</Heading>
-          </div>
-          <Grid columns={3} gap="large" responsive>
-            {LATEST_NEWS.map((item) => (
-              <ImageCard
-                key={item.href}
-                image={`/images/${item.imageFilename}`}
-                imageAlt={item.title}
-                title={item.title}
-                description={`${item.date} — ${item.excerpt}`}
-                descriptionVariant="body"
-                aspectRatio="16:9"
-                href={item.href}
-                className={styles.newsCard}
-              />
-            ))}
-          </Grid>
-          <div className={styles.newsCta}>
-            <Link href="/news" className={styles.newsCtaLink}>View All News</Link>
-          </div>
-        </Stack>
-      </div>
-    </Section>
+    <div className={styles.newsContent}>
+      <Stack gap="xlarge">
+        <div className={styles.newsHeader}>
+          <Text variant="eyebrow">Latest News &amp; Events</Text>
+          <Heading level="h2" variant="section">
+            What&rsquo;s Happening
+          </Heading>
+        </div>
+        <Grid columns={3} gap="large" responsive>
+          {LATEST_NEWS.map((item) => (
+            <ImageCard
+              key={item.href}
+              image={`/images/${item.imageFilename}`}
+              imageAlt={item.title}
+              title={item.title}
+              description={`${item.date} — ${item.excerpt}`}
+              descriptionVariant="body"
+              aspectRatio="16:9"
+              href={item.href}
+              className={styles.newsCard}
+            />
+          ))}
+        </Grid>
+        <div className={styles.newsCta}>
+          <Link href="/news" className={styles.newsCtaLink}>
+            View All News
+          </Link>
+        </div>
+      </Stack>
+    </div>
   );
 }

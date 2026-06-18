@@ -5,19 +5,24 @@
   flex-direction: column;
   justify-content: center;
   gap: clamp(18px, 3vw, 36px);
-  padding: clamp(28px, 5vw, 72px);
-  background: var(--s-color-surface-alt);
+  padding-top: var(--panel-top-offset);
+  padding-bottom: clamp(28px, 5vw, 72px);
+  padding-left: clamp(28px, 5vw, 72px);
+  padding-right: clamp(28px, 5vw, 72px);
+  background: var(--s-color-surface);
 }
 
 .valuesIntro {
-  max-width: 720px;
+  max-width: var(--description-max-width);
   text-align: center;
   margin: 0 auto;
 }
 
 .valuesIntro h2 {
-  font-size: calc(var(--text-scale) * clamp(1.6rem, 3vw, 2.5rem));
-  line-height: 1.08;
+  font-size: var(--type-section-h2);
+  font-weight: var(--section-h2-weight);
+  line-height: var(--section-h2-line-height);
+  letter-spacing: var(--section-h2-letter-spacing);
 }
 
 .valuesIntro p {
@@ -49,7 +54,10 @@
 
 @media (max-width: 760px) {
   .valuesPanel {
-    padding: var(--spacing-xl) var(--padding-page) var(--spacing-lg);
+    padding-top: calc(var(--header-height) + var(--spacing-xl));
+    padding-bottom: var(--spacing-lg);
+    padding-left: var(--padding-page);
+    padding-right: var(--padding-page);
     gap: var(--spacing-lg);
   }
 

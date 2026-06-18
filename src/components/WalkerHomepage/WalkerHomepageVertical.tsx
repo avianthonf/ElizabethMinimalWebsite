@@ -99,8 +99,8 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
 
       {/* ── Panel 4: Gallery ───────────────────────────────────────────── */}
       <motion.section
-        className={shared.panel}
-        data-header-theme="dark"
+        className={`${shared.panel} ${verticalGalleryPanelClass}`}
+        data-header-theme="light"
         aria-label="Photo gallery — Academics, Athletics, Arts, Student Life"
         initial={prefersReduced ? "visible" : "hidden"}
         whileInView="visible"

@@ -25,7 +25,7 @@
   border-radius: 6px;
   cursor: pointer;
   background: var(--s-color-text);
-  border: 2px solid transparent;
+  border: 2px solid rgba(255, 255, 255, 0.25);
   transition:
     opacity 600ms var(--ease-standard),
     transform 600ms var(--ease-standard),
@@ -41,7 +41,7 @@
 .card:hover,
 .card:focus-visible {
   transform: scale(1.02);
-  border-color: var(--s-color-accent);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 .visible:hover,
@@ -50,7 +50,7 @@
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--s-color-accent);
+  outline: 2px solid rgba(255, 255, 255, 0.85);
   outline-offset: 2px;
 }
 

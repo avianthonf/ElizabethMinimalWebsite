@@ -13,12 +13,24 @@
 .animated-card {
   flex: 1 1 280px;
   min-width: 0;
-  opacity: 0;
-  transform: translateY(24px);
+  border-radius: var(--card-radius);
+  border: var(--card-border);
+  box-shadow: var(--shadow-card-rest);
   transition:
     opacity 600ms var(--ease-standard),
-    transform 600ms var(--ease-standard);
+    transform 600ms var(--ease-standard),
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+  opacity: 0;
+  transform: translateY(24px);
   transition-delay: calc(var(--stagger-index, 0) * 120ms);
+  overflow: hidden;
+}
+
+.animated-card:hover {
+  transform: translateY(var(--card-hover-lift));
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--card-border-hover);
 }
 
 .animated-card--visible {
@@ -26,10 +38,20 @@
   transform: translateY(0);
 }
 
+.animated-card--visible:hover {
+  transform: translateY(var(--card-hover-lift));
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--card-border-hover);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animated-card {
     transition: none;
     transform: none;
     opacity: 1;
+  }
+
+  .animated-card:hover {
+    transform: none;
   }
 }

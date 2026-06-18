@@ -1,17 +1,30 @@
 /* ── Panel 4: Testimonials ──────────────────────────────────────────── */
 
 .testimonialsPanel {
-  background: var(--s-color-surface-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 36px);
+  padding-top: var(--panel-top-offset);
+  padding-bottom: clamp(28px, 5vw, 72px);
+  padding-left: clamp(28px, 5vw, 72px);
+  padding-right: clamp(28px, 5vw, 72px);
+  background: var(--s-color-surface);
 }
 
 .testimonialsSection {
   display: flex;
   align-items: center;
   height: 100%;
+  padding: 0;
+  background: transparent;
+  width: 100%;
 }
 
 .testimonialsHeader {
-  text-align: left;
+  text-align: center;
+  max-width: var(--description-max-width);
+  margin: 0 auto;
 }
 
 /* ── Tablet: ≤1100px ────────────────────────────────────────────────── */
@@ -25,12 +38,20 @@
 /* ── Mobile: ≤760px ─────────────────────────────────────────────────── */
 
 @media (max-width: 760px) {
+  .testimonialsPanel {
+    padding-top: calc(var(--header-height) + var(--spacing-xl));
+    padding-bottom: var(--spacing-lg);
+    padding-left: var(--padding-page);
+    padding-right: var(--padding-page);
+  }
+
   .testimonialsSection {
-    padding: var(--spacing-xl) var(--padding-page);
+    padding: 0;
   }
 
   .testimonialsHeader {
-    margin-bottom: var(--spacing-md);
+    text-align: left;
+    max-width: 100%;
   }
 }
 
