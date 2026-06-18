@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import { TestimonialCard } from "@/components/content/TestimonialCard";
 import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
 import { Grid } from "@/components/layout/Grid";
 import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
@@ -24,12 +23,16 @@ export const testimonialsPanelClass = styles.testimonialsPanel;
  */
 export function TestimonialsPanel(): ReactNode {
   return (
-    <Section background="soft" padding="xlarge" className={styles.testimonialsSection}>
+    <div className={styles.testimonialsSection}>
       <Container>
         <Stack gap="xlarge">
           <div className={styles.testimonialsHeader}>
-            <Text variant="eyebrow">Voices of Our Community</Text>
-            <Heading level="h2" variant="section">What They Say</Heading>
+            <Text variant="eyebrow" as="p">
+              Voices of Our Community
+            </Text>
+            <Heading level="h2" variant="section">
+              What They Say
+            </Heading>
           </div>
           <Grid columns={3} gap="large" responsive>
             {TESTIMONIALS.map((t) => (
@@ -43,6 +46,6 @@ export function TestimonialsPanel(): ReactNode {
           </Grid>
         </Stack>
       </Container>
-    </Section>
+    </div>
   );
 }

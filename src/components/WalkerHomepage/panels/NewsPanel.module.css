@@ -8,35 +8,49 @@
   display: flex;
   align-items: center;
   height: 100%;
+  padding-top: var(--panel-top-offset);
+  padding-bottom: clamp(28px, 5vw, 72px);
+  padding-left: clamp(28px, 5vw, 72px);
+  padding-right: clamp(28px, 5vw, 72px);
 }
 
 .newsContent {
   width: 100%;
   max-width: none;
-  padding-left: clamp(20px, 5vw, 72px);
-  padding-right: clamp(20px, 5vw, 72px);
+  padding: 0;
 }
 
 .newsHeader {
-  text-align: left;
+  text-align: center;
+  max-width: var(--description-max-width);
+  margin: 0 auto;
 }
 
 /* ── Card elevation and hover ─────────────────────── */
 
 .newsCard {
-  border: 1px solid var(--s-color-primary);
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-card-rest);
 }
 
 @media (hover: hover) {
   .newsCard {
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition:
+      transform var(--transition-normal),
+      box-shadow var(--transition-normal),
+      border-color var(--transition-normal);
   }
 
   .newsCard:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(var(--card-hover-lift));
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--card-border-hover);
+  }
+
+  .newsCard:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-card-rest), var(--focus-ring-shadow);
   }
 }
 
@@ -54,26 +68,40 @@
 /* ── CTA area ────────────────────────────────────── */
 
 .newsCta {
-  text-align: left;
+  text-align: center;
 }
 
 .newsCtaLink {
   display: inline-block;
-  padding: 10px 18px;
-  background: var(--s-color-primary);
-  color: var(--s-color-surface);
-  font-weight: 700;
-  font-size: calc(var(--text-scale) * 0.9rem);
-  letter-spacing: 0.04em;
+  padding: 0.75rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: 1.5px solid var(--s-color-primary);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--s-color-primary);
   text-decoration: none !important;
-  border-radius: 4px;
-  border: 2px solid var(--s-color-primary);
-  transition: transform var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
+  transition:
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-fast);
+  min-height: 44px;
+  cursor: pointer;
 }
 
 .newsCtaLink:hover {
-  background: transparent;
-  color: var(--s-color-primary);
+  background: var(--s-color-surface-alt);
+  border-color: var(--s-color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.newsCtaLink:active {
+  transform: translateY(0);
+}
+
+.newsCtaLink:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -91,13 +119,16 @@
 }
 
 @media (max-width: 760px) {
-  .newsContent {
+  .newsSection {
+    padding-top: calc(var(--header-height) + var(--spacing-xl));
+    padding-bottom: var(--spacing-lg);
     padding-left: var(--padding-page);
     padding-right: var(--padding-page);
   }
 
   .newsHeader {
-    margin-bottom: var(--spacing-md);
+    text-align: left;
+    max-width: 100%;
   }
 
   .newsCard {

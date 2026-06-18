@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { CTASection } from "@/components/content/CTASection";
 import { CTA_CONTENT } from "@/data/homepage";
 import shared from "./shared.module.css";
 import styles from "./CTAPanel.module.css";
@@ -9,21 +8,44 @@ import styles from "./CTAPanel.module.css";
 /** Composed className for the orchestrator's wrapping HorizontalPage. */
 export const ctaPanelClass = `${shared.panel} ${styles.ctaPanel}`;
 
-/** CTA section content. Wrapping HorizontalPage is applied by the orchestrator. */
+/** CTA section with radial spotlight, noise texture, and crest watermark. */
 export function CTAPanel(): ReactNode {
   return (
-    <CTASection
-      heading={CTA_CONTENT.heading}
-      description={CTA_CONTENT.description}
-      eyebrow={CTA_CONTENT.eyebrow}
-      primaryCTA={CTA_CONTENT.primaryCTA}
-      secondaryCTA={CTA_CONTENT.secondaryCTA}
-      image={{
-        src: "/images/DSC07306.jpg",
-        alt: "Students engaged in a group activity at St. Elizabeth's High School, warm and welcoming community atmosphere",
-      }}
-      background="blue"
-      centered={false}
-    />
+    <>
+      {/* School crest watermark */}
+      <div className={styles.ctaCrest} aria-hidden="true">
+        <svg
+          viewBox="0 0 100 114"
+          width="100%"
+          height="100%"
+          fill="white"
+          opacity="1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Simplified school crest silhouette for watermark */}
+          <path d="M50 2 L2 30 V84 L50 112 L98 84 V30 Z" fill="white" />
+        </svg>
+      </div>
+
+      <div className={styles.ctaContent}>
+        <p className={styles.ctaEyebrow}>{CTA_CONTENT.eyebrow}</p>
+        <h2 className={styles.ctaHeading}>{CTA_CONTENT.heading}</h2>
+        <p className={styles.ctaDescription}>{CTA_CONTENT.description}</p>
+        <div className={styles.ctaButtons}>
+          <a
+            href={CTA_CONTENT.primaryCTA.href}
+            className={`${styles.ctaButton} ${styles.ctaButtonFilled}`}
+          >
+            {CTA_CONTENT.primaryCTA.text}
+          </a>
+          <a
+            href={CTA_CONTENT.secondaryCTA.href}
+            className={`${styles.ctaButton} ${styles.ctaButtonGhost}`}
+          >
+            {CTA_CONTENT.secondaryCTA.text}
+          </a>
+        </div>
+      </div>
+    </>
   );
 }

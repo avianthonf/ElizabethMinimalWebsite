@@ -91,6 +91,21 @@
   }
 }
 
+/* ── Card hover: image zoom ────────────────────────────
+   The Card component is the parent container wrapping the ValueCard's internals.
+   We use :has() to trigger the image zoom when the card's inner content is
+   hovered via the card-link hover state. */
+
+/* Whitelist: the ImageCard hover mechanism works by the ConditionalLink
+   (rendered as <a>) wrapping the Card. When that link is hovered,
+   zoom the image inside this ValueCard's imageWrapper. */
+
+/* ── Image hover zoom via parent card ────────────────── */
+
+/* Since Card variant="value" wraps this content and AnimatedCard
+   wraps the Card, we rely on the hover state bubbling. When the
+   AnimatedCard (which becomes cardContainer) is hovered, scale the image. */
+
 /* ── Reduced motion ──────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {

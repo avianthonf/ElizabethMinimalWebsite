@@ -69,7 +69,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 2: "We Believe" Values ────────────────────────────── */}
         <HorizontalPage
-          width="clamp(960px, 85vw, 1400px)"
+          width="clamp(960px, 78vw, 1200px)"
           tabletWidth="min(1040px, 110vw)"
           mobileWidth="max(760px, 180vw)"
           smallMobileWidth="max(720px, 200vw)"
@@ -83,7 +83,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 3: School Stats ───────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(960px, 85vw, 1400px)"
+          width="clamp(900px, 73vw, 1150px)"
           tabletWidth="min(1040px, 110vw)"
           mobileWidth="max(760px, 180vw)"
           smallMobileWidth="max(720px, 200vw)"
@@ -97,8 +97,8 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
         {/* ── Panel 4: Masonry Mosaic Gallery ─────────────────────────── */}
         <HorizontalPage
           width="auto"
-          headerTheme="dark"
-          className={shared.panel}
+          headerTheme="light"
+          className={`${shared.panel} ${galleryPanelClass}`}
           ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"
         >
           <GalleryPanel className={galleryPanelClass} />
@@ -106,7 +106,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 5: Testimonials ───────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(960px, 80vw, 1400px)"
+          width="clamp(900px, 73vw, 1150px)"
           tabletWidth="min(900px, 110vw)"
           mobileWidth="max(760px, 200vw)"
           smallMobileWidth="max(720px, 220vw)"
@@ -118,10 +118,9 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
           <TestimonialsPanel />
         </HorizontalPage>
 
-        {/* ── Panel 6: CTA Banner (100vw) ─────────────────────────────── */}
+        {/* ── Panel 6: CTA Banner ─────────────────────────────────────── */}
         <HorizontalPage
-          width="100vw"
-          screen
+          width="clamp(900px, 73vw, 1200px)"
           headerTheme="light"
           className={ctaPanelClass}
           ariaLabel="Call to action — Join our community"
@@ -129,10 +128,9 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
           <CTAPanel />
         </HorizontalPage>
 
-        {/* ── Panel 7: Latest News (100vw) ────────────────────────────── */}
+        {/* ── Panel 7: Latest News ────────────────────────────────────── */}
         <HorizontalPage
-          width="100vw"
-          screen
+          width="clamp(960px, 78vw, 1200px)"
           headerTheme="dark"
           className={newsPanelClass}
           ariaLabel="Latest news and events"

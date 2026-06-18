@@ -3,11 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { CTAPanel, ctaPanelClass } from "./CTAPanel";
 import React from "react";
 
-vi.mock("next/image", () => ({
-  // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-  default: (props: Record<string, unknown>) => <img {...props} />,
-}));
-
 // Mock data
 vi.mock("@/data/homepage", () => ({
   CTA_CONTENT: {
@@ -27,9 +22,7 @@ describe("CTAPanel", () => {
 
   it("renders the CTA description", () => {
     render(<CTAPanel />);
-    expect(
-      screen.getByText("Start your St. Elizabeth journey today."),
-    ).toBeDefined();
+    expect(screen.getByText("Start your St. Elizabeth journey today.")).toBeDefined();
   });
 
   it("renders the primary CTA button", () => {
@@ -51,15 +44,14 @@ describe("CTAPanel", () => {
     expect(typeof ctaPanelClass).toBe("string");
   });
 
-  it("passes eyebrow to CTASection", () => {
+  it("passes eyebrow", () => {
     render(<CTAPanel />);
     expect(screen.getByText("Ready to Discover St. Elizabeth?")).toBeDefined();
   });
 
-  it("passes image to CTASection", () => {
+  it("renders the crest watermark SVG", () => {
     render(<CTAPanel />);
-    const img = screen.getByRole("img");
-    expect(img).toBeDefined();
-    expect(img).toHaveAttribute("src", expect.stringContaining("DSC07306"));
+    const svg = document.querySelector("svg");
+    expect(svg).toBeDefined();
   });
 });

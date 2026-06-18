@@ -1,5 +1,180 @@
-/* ── Panel 5: CTA ───────────────────────────────────────────────────── */
+/* ── Panel 6: CTA Spotlight ──────────────────────────────────────────── */
 
 .ctaPanel {
-  background: var(--s-color-cta-bg);
+  position: relative;
+  display: grid;
+  height: 100%;
+  place-items: center;
+  background:
+    radial-gradient(
+      ellipse 800px 600px at center,
+      var(--bg-dark-gradient-start) 0%,
+      var(--bg-dark-gradient-mid) 45%,
+      var(--bg-dark-gradient-end) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-blend-mode: overlay;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 72px);
+}
+
+/* School crest watermark */
+.ctaCrest {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(300px, 40vw, 600px);
+  height: clamp(300px, 40vw, 600px);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: var(--description-max-width);
+  margin: 0 auto;
+}
+
+.ctaEyebrow {
+  font-size: var(--type-eyebrow);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-spacing);
+  text-transform: var(--eyebrow-transform);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1rem;
+}
+
+.ctaHeading {
+  font-size: var(--type-section-h2);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-on-dark-primary);
+  text-shadow: 0 2px 24px rgba(255, 255, 255, 0.12);
+  margin-bottom: 1.5rem;
+}
+
+.ctaDescription {
+  font-size: var(--type-description);
+  line-height: 1.65;
+  color: var(--text-on-dark-secondary);
+  margin-bottom: 2.5rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  position: relative;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 44px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctaButtonFilled {
+  background: white;
+  color: var(--bg-dark-gradient-end);
+}
+
+.ctaButtonFilled::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f1f5f9;
+  transform: translateY(100%);
+  transition: transform 0.3s var(--ease-out);
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.ctaButtonFilled:hover::before {
+  transform: translateY(0);
+}
+
+.ctaButtonFilled:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.ctaButtonGhost {
+  background: transparent;
+  color: white;
+}
+
+.ctaButtonGhost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s var(--ease-out);
+  z-index: -1;
+  border-radius: 4px;
+}
+
+.ctaButtonGhost:hover::before {
+  transform: translateY(0);
+}
+
+.ctaButtonGhost:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.ctaButton:focus-visible {
+  outline: 3px solid var(--s-color-accent);
+  outline-offset: 3px;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 760px) {
+  .ctaButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ctaButton {
+    width: 100%;
+    text-align: center;
+    min-height: var(--touch-target-min);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaButton {
+    transition: none;
+  }
+
+  .ctaButton:hover {
+    transform: none;
+  }
+
+  .ctaButtonFilled::before,
+  .ctaButtonGhost::before {
+    transition: none;
+  }
 }
