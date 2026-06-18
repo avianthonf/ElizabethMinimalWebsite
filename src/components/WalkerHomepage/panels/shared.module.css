@@ -33,6 +33,11 @@
   border-color: var(--card-border-hover);
 }
 
+.animated-card:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-card-rest), var(--focus-ring-shadow);
+}
+
 .animated-card--visible {
   opacity: 1;
   transform: translateY(0);

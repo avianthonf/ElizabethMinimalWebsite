@@ -60,3 +60,17 @@
 .cardLink:hover article {
   border-color: var(--s-color-primary);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .cardLink {
+    transition: none;
+  }
+
+  .cardLink:hover {
+    opacity: 1;
+  }
+
+  .image {
+    transition: none;
+  }
+}
