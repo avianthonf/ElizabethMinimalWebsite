@@ -1,5 +1,5 @@
 import { Card } from "@/components/content/Card";
-import { ListPage } from "@/components/templates";
+import { ContentPage } from "@/components/templates";
 import { Heading } from "@/components/primitives/Heading";
 import { Stack } from "@/components/layout/Stack";
 import { Text } from "@/components/primitives/Text";
@@ -7,14 +7,11 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { STAFF_PAGE, STAFF_MEMBERS } from "@/data/about";
 import { COMMUNITY_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(
-  STAFF_PAGE.metaTitle,
-  STAFF_PAGE.metaDescription,
-);
+export const metadata = createPageMetadata(STAFF_PAGE.metaTitle, STAFF_PAGE.metaDescription);
 
 export default function StaffPage() {
   return (
-    <ListPage
+    <ContentPage
       breadcrumb={STAFF_PAGE.breadcrumb}
       heroEyebrow={STAFF_PAGE.heroEyebrow}
       heroHeading={STAFF_PAGE.heroHeading}

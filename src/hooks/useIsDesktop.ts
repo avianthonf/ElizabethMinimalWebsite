@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useLayoutEffect } from "react";
 
 const DESKTOP_BREAKPOINT = 1100;

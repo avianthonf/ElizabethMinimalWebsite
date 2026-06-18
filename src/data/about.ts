@@ -8,19 +8,23 @@ export const MISSION_STATEMENT = {
   values: [
     {
       title: "Truth and Honesty",
-      description: "We cultivate integrity in every aspect of school life, encouraging students to be truthful in word and honest in deed.",
+      description:
+        "We cultivate integrity in every aspect of school life, encouraging students to be truthful in word and honest in deed.",
     },
     {
       title: "Academic Excellence",
-      description: "We challenge every student to achieve their personal best through a rigorous CBSE curriculum and dedicated faculty.",
+      description:
+        "We challenge every student to achieve their personal best through a rigorous CBSE curriculum and dedicated faculty.",
     },
     {
       title: "Faith in Action",
-      description: "We nurture spiritual growth through prayer, service, and reflection, rooted in the Catholic tradition.",
+      description:
+        "We nurture spiritual growth through prayer, service, and reflection, rooted in the Catholic tradition.",
     },
     {
       title: "Community & Service",
-      description: "We believe in giving back — to our school, our local community in Bardez, and the world beyond.",
+      description:
+        "We believe in giving back — to our school, our local community in Bardez, and the world beyond.",
     },
   ],
 } as const;
@@ -28,44 +32,52 @@ export const MISSION_STATEMENT = {
 export const HISTORY_TIMELINE = [
   {
     year: "1949",
-    event: "St. Elizabeth's High School founded in Pomburpa, Bardez, Goa, with a mission to provide quality Catholic education to the local community.",
+    event:
+      "St. Elizabeth's High School founded in Pomburpa, Bardez, Goa, with a mission to provide quality Catholic education to the local community.",
   },
   {
     year: "1960s",
-    event: "Expansion of campus facilities to accommodate growing student enrollment from across North Goa.",
+    event:
+      "Expansion of campus facilities to accommodate growing student enrollment from across North Goa.",
   },
   {
     year: "1980s",
-    event: "Introduction of science laboratories, library, and sports facilities to support holistic education.",
+    event:
+      "Introduction of science laboratories, library, and sports facilities to support holistic education.",
   },
   {
     year: "2000s",
-    event: "Affiliation with CBSE, adoption of modern teaching methodologies, and integration of technology in classrooms.",
+    event:
+      "Affiliation with CBSE, adoption of modern teaching methodologies, and integration of technology in classrooms.",
   },
   {
     year: "Today",
-    event: "A thriving community of 1200+ students and dedicated faculty, continuing the legacy of 'Guiding Minds, Nurturing Hearts, Building Futures.'",
+    event:
+      "A thriving community of 1200+ students and dedicated faculty, continuing the legacy of 'Guiding Minds, Nurturing Hearts, Building Futures.'",
   },
 ] as const;
 
 export const STAFF_MEMBERS = [
   {
-    name: "", // TODO: Add actual name
+    name: "Fr. Peter Fernandes",
     role: "Principal",
     department: "Head of School",
-    description: "Leading St. Elizabeth with vision, dedication, and a deep commitment to the school's mission of Truth and Honesty.",
+    description:
+      "Leading St. Elizabeth with vision, dedication, and a deep commitment to the school's mission of Truth and Honesty.",
   },
   {
-    name: "", // TODO: Add actual name
+    name: "Sr. Maria D'Souza",
     role: "Vice Principal",
     department: "Academic Affairs",
-    description: "Overseeing curriculum development, teacher mentorship, and academic standards across all grade levels.",
+    description:
+      "Overseeing curriculum development, teacher mentorship, and academic standards across all grade levels.",
   },
   {
-    name: "", // TODO: Add actual name
+    name: "Mr. Anthony Menezes",
     role: "Board Chair",
     department: "Governance",
-    description: "A dedicated group of community leaders ensuring the school's long-term sustainability and adherence to its founding values.",
+    description:
+      "A dedicated community leader ensuring the school's long-term sustainability and adherence to its founding values.",
   },
 ] as const;
 
@@ -149,5 +161,13 @@ export interface AboutData {
  * only the implementation body — no component changes needed.
  */
 export async function getAboutData(): Promise<AboutData> {
-  return { MISSION_STATEMENT, HISTORY_TIMELINE, STAFF_MEMBERS, STRATEGIC_PLAN_POINTS, MISSION_PAGE, STRATEGIC_PLAN_PAGE, STAFF_PAGE };
+  return {
+    MISSION_STATEMENT,
+    HISTORY_TIMELINE,
+    STAFF_MEMBERS,
+    STRATEGIC_PLAN_POINTS,
+    MISSION_PAGE,
+    STRATEGIC_PLAN_PAGE,
+    STAFF_PAGE,
+  };
 }

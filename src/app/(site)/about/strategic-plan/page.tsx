@@ -1,5 +1,5 @@
 import { Card } from "@/components/content/Card";
-import { CardGridPage } from "@/components/templates";
+import { ContentPage } from "@/components/templates";
 import { Heading } from "@/components/primitives/Heading";
 import { Stack } from "@/components/layout/Stack";
 import { Text } from "@/components/primitives/Text";
@@ -14,7 +14,7 @@ export const metadata = createPageMetadata(
 
 export default function StrategicPlanPage() {
   return (
-    <CardGridPage
+    <ContentPage
       breadcrumb={STRATEGIC_PLAN_PAGE.breadcrumb}
       heroEyebrow={STRATEGIC_PLAN_PAGE.heroEyebrow}
       heroHeading={STRATEGIC_PLAN_PAGE.heroHeading}
@@ -23,7 +23,7 @@ export default function StrategicPlanPage() {
       sectionHeading={STRATEGIC_PLAN_PAGE.sectionHeading}
       items={STRATEGIC_PLAN_POINTS}
       columns={2}
-      renderCard={(point) => (
+      renderItem={(point) => (
         <Card key={point.title} variant="default" padding="medium">
           <Stack gap="small">
             <Heading level="h3" variant="card">

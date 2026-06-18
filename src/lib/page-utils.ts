@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HERO_IMAGES, type ImageAsset, type ImageSection } from "@/data/images";
+import { HERO_IMAGES, IMAGE_BY_SECTION, type ImageAsset, type ImageSection } from "@/data/images";
 
 /**
  * Creates a Next.js Metadata object with consistent formatting.
@@ -35,14 +35,14 @@ export function createPageMetadata(
 /**
  * Finds a hero image by its section identifier.
  *
- * Wraps the common pattern:
- *   HERO_IMAGES.find((i) => i.section === section) ?? HERO_IMAGES[0]
+ * Uses the O(1) IMAGE_BY_SECTION record for fast lookups.
+ * Falls back to the first hero image if the section is not found.
  *
  * @param section - The ImageSection value to look up
  * @returns The matching ImageAsset, or the first hero image as fallback
  */
 export function getHeroImage(section: ImageSection): ImageAsset {
-  return HERO_IMAGES.find((i) => i.section === section) ?? HERO_IMAGES[0];
+  return IMAGE_BY_SECTION[section] ?? HERO_IMAGES[0]!;
 }
 
 /**

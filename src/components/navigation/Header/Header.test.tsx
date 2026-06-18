@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { Header } from "./Header";
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/about",
+}));
 
 describe("Header", () => {
   it("renders brand text", () => {

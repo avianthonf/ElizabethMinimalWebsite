@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import styles from "./Heading.module.css";
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -10,16 +10,57 @@ export interface HeadingProps {
   children: ReactNode;
   className?: string;
   uppercase?: boolean;
+  ref?: Ref<HTMLHeadingElement>;
 }
 
-const HeadingTag = ({ level, children, className }: { level: HeadingLevel; children: ReactNode; className?: string }) => {
+const HeadingTag = ({
+  level,
+  children,
+  className,
+  ref,
+}: {
+  level: HeadingLevel;
+  children: ReactNode;
+  className?: string;
+  ref?: Ref<HTMLHeadingElement>;
+}) => {
   switch (level) {
-    case "h1": return <h1 className={className}>{children}</h1>;
-    case "h2": return <h2 className={className}>{children}</h2>;
-    case "h3": return <h3 className={className}>{children}</h3>;
-    case "h4": return <h4 className={className}>{children}</h4>;
-    case "h5": return <h5 className={className}>{children}</h5>;
-    case "h6": return <h6 className={className}>{children}</h6>;
+    case "h1":
+      return (
+        <h1 ref={ref} className={className}>
+          {children}
+        </h1>
+      );
+    case "h2":
+      return (
+        <h2 ref={ref} className={className}>
+          {children}
+        </h2>
+      );
+    case "h3":
+      return (
+        <h3 ref={ref} className={className}>
+          {children}
+        </h3>
+      );
+    case "h4":
+      return (
+        <h4 ref={ref} className={className}>
+          {children}
+        </h4>
+      );
+    case "h5":
+      return (
+        <h5 ref={ref} className={className}>
+          {children}
+        </h5>
+      );
+    case "h6":
+      return (
+        <h6 ref={ref} className={className}>
+          {children}
+        </h6>
+      );
   }
 };
 
@@ -29,6 +70,7 @@ export function Heading({
   children,
   className,
   uppercase = false,
+  ref,
 }: HeadingProps): ReactNode {
   const composedClassName = [
     styles.heading,
@@ -40,5 +82,9 @@ export function Heading({
     .filter(Boolean)
     .join(" ");
 
-  return <HeadingTag level={level} className={composedClassName}>{children}</HeadingTag>;
+  return (
+    <HeadingTag level={level} className={composedClassName} ref={ref}>
+      {children}
+    </HeadingTag>
+  );
 }

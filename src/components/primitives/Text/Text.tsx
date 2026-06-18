@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import styles from "./Text.module.css";
 
 export type TextVariant = "body" | "eyebrow" | "caption" | "muted";
@@ -10,6 +10,7 @@ export interface TextProps {
   children: ReactNode;
   className?: string;
   as?: "p" | "span" | "div";
+  ref?: Ref<HTMLElement>;
 }
 
 const sizeClass: Record<TextSize, string> = {
@@ -24,10 +25,15 @@ export function Text({
   children,
   className,
   as: Tag = "p",
+  ref,
 }: TextProps): ReactNode {
   const composedClassName = [styles.text, styles[variant], sizeClass[size], className]
     .filter(Boolean)
     .join(" ");
 
-  return <Tag className={composedClassName}>{children}</Tag>;
+  return (
+    <Tag ref={ref as Ref<HTMLParagraphElement>} className={composedClassName}>
+      {children}
+    </Tag>
+  );
 }

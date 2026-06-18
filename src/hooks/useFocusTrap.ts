@@ -1,13 +1,10 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 
 /**
  * CSS selector that matches all focusable elements within a container.
  * Mirrors the existing getFocusableElements() function in MenuOverlay.
  */
-const FOCUSABLE_SELECTOR =
-  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export interface UseFocusTrapOptions {
   /** Whether the focus trap is currently active */
@@ -31,11 +28,7 @@ export interface UseFocusTrapOptions {
  *
  * @returns a ref to attach to the container element
  */
-export function useFocusTrap({
-  isActive,
-  onEscape,
-  restoreFocus = true,
-}: UseFocusTrapOptions) {
+export function useFocusTrap({ isActive, onEscape, restoreFocus = true }: UseFocusTrapOptions) {
   const containerRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -59,8 +52,7 @@ export function useFocusTrap({
       const container = containerRef.current;
       if (!container) return;
 
-      const focusable =
-        container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+      const focusable = container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
       if (focusable.length > 0) {
         focusable[0].focus();
       }
@@ -95,8 +87,7 @@ export function useFocusTrap({
         const container = containerRef.current;
         if (!container) return;
 
-        const focusable =
-          container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+        const focusable = container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
         if (focusable.length === 0) return;
 
         const first = focusable[0];

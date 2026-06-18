@@ -1,4 +1,7 @@
-import type { ReactNode, RefObject } from "react";
+"use client";
+
+import { type ReactNode, type RefObject } from "react";
+import { usePathname } from "next/navigation";
 import { Link } from "@/components/primitives/Link";
 import styles from "./Header.module.css";
 
@@ -54,6 +57,14 @@ export function Header({
   isMenuOpen = false,
   menuButtonRef,
 }: HeaderProps): ReactNode {
+  const pathname = usePathname();
+
+  /** Check if a nav link's href matches the current pathname (top-level section match). */
+  const isActive = (href: string): boolean => {
+    if (!pathname) return false;
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(href + "/");
+  };
   const composedClassName = [
     styles.titleBar,
     fixed && styles.fixed,
@@ -71,16 +82,18 @@ export function Header({
         variant="default"
         ariaLabel={`${brandText} home`}
       >
-        <span
-          className={styles.crest}
-          aria-hidden="true"
-        />
+        <span className={styles.crest} aria-hidden="true" />
         <span>{brandText}</span>
       </Link>
 
       <nav className={styles.navLinks} aria-label="Audience navigation">
         {navLinks.map((link) => (
-          <Link key={link.href} href={link.href} variant="nav">
+          <Link
+            key={link.href}
+            href={link.href}
+            variant="nav"
+            aria-current={isActive(link.href) ? "page" : undefined}
+          >
             {link.text}
           </Link>
         ))}
@@ -97,7 +110,10 @@ export function Header({
           onClick={onMenuClick}
         >
           <span>Menu</span>
-          <span className={`${styles.menuIcon} ${isMenuOpen ? styles.menuOpen : ""}`} aria-hidden="true">
+          <span
+            className={`${styles.menuIcon} ${isMenuOpen ? styles.menuOpen : ""}`}
+            aria-hidden="true"
+          >
             <span />
             <span />
             <span />

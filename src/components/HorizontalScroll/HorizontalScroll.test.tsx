@@ -77,7 +77,8 @@ describe("HorizontalScroll", () => {
     );
 
     const stage = screen.getByLabelText("Measured stage");
-    const viewport = stage.firstElementChild as HTMLDivElement;
+    // Skip the sr-only live region span (index 0) to reach the viewport div
+    const viewport = stage.children[1] as HTMLDivElement;
     const track = viewport.firstElementChild as HTMLDivElement;
 
     Object.defineProperty(viewport, "clientWidth", { configurable: true, value: 1000 });
@@ -190,7 +191,8 @@ describe("HorizontalScroll + HorizontalPage composition", () => {
     );
 
     const stage = screen.getByLabelText("Nav scroll section");
-    const viewport = stage.firstElementChild as HTMLDivElement;
+    // Skip the sr-only live region span (index 0) to reach the viewport div
+    const viewport = stage.children[1] as HTMLDivElement;
     const track = viewport.firstElementChild as HTMLDivElement;
 
     Object.defineProperty(viewport, "clientWidth", { configurable: true, value: 1000 });
@@ -237,7 +239,8 @@ describe("HorizontalScroll ResizeObserver behavior", () => {
     );
 
     const stage = screen.getByLabelText("Observed scroller");
-    const viewport = stage.firstElementChild as HTMLDivElement;
+    // Skip the sr-only live region span (index 0) to reach the viewport div
+    const viewport = stage.children[1] as HTMLDivElement;
     const track = viewport.firstElementChild as HTMLDivElement;
 
     expect(getLastInstance()).not.toBeNull();

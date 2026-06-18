@@ -23,7 +23,7 @@
 .nav {
   font-family: var(--font-sans);
   font-weight: 900;
-  font-size: calc(var(--text-scale) * clamp(0.78rem, 1.0vw, 0.98rem));
+  font-size: calc(var(--text-scale) * clamp(0.78rem, 1vw, 0.98rem));
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: inherit;
@@ -32,6 +32,14 @@
 
 .nav:hover {
   opacity: 0.78;
+}
+
+/* Active state for nav links (matched by aria-current="page") */
+.nav[aria-current="page"] {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .footer {

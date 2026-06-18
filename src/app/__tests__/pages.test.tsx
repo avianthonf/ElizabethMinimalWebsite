@@ -27,6 +27,12 @@ vi.mock("@/components/navigation/MenuOverlay", () => ({
   MenuOverlay: () => <div data-testid="menu-overlay" />,
 }));
 
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+  useRouter: () => ({ push: vi.fn(), back: vi.fn(), refresh: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
+}));
+
 vi.mock("@/components/HeaderThemeController", () => ({
   HeaderThemeController: () => null,
 }));
@@ -112,14 +118,14 @@ describe("Page Smoke Tests", () => {
   describe("About '/about/staff'", () => {
     it("renders Staff & Leadership heading", () => {
       render(<AboutStaffPage />);
-      expect(screen.getByText("Staff & Leadership")).toBeDefined();
+      expect(screen.getByRole("heading", { level: 1, name: "Staff & Leadership" })).toBeDefined();
     });
   });
 
   describe("About '/about/strategic-plan'", () => {
     it("renders Strategic Plan heading", () => {
       render(<AboutStrategicPlanPage />);
-      expect(screen.getByText("Strategic Plan")).toBeDefined();
+      expect(screen.getByRole("heading", { level: 1, name: "Strategic Plan" })).toBeDefined();
     });
   });
 
@@ -156,7 +162,9 @@ describe("Page Smoke Tests", () => {
   describe("Admissions '/admissions/tuition'", () => {
     it("renders Tuition & Financial Assistance heading", () => {
       render(<AdmissionsTuitionPage />);
-      expect(screen.getByRole("heading", { level: 1, name: "Tuition & Financial Assistance" })).toBeDefined();
+      expect(
+        screen.getByRole("heading", { level: 1, name: "Tuition & Financial Assistance" }),
+      ).toBeDefined();
     });
   });
 

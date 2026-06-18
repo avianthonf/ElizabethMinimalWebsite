@@ -4,3 +4,5 @@ export { Footer } from "./Footer";
 export type { FooterProps, FooterSection } from "./Footer";
 export { MenuOverlay } from "./MenuOverlay";
 export type { MenuOverlayProps } from "./MenuOverlay";
+export { Breadcrumb } from "./Breadcrumb";
+export type { BreadcrumbProps } from "./Breadcrumb";

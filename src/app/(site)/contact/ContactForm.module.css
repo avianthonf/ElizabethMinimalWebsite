@@ -1,0 +1,112 @@
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-scale) * 0.875rem);
+  font-weight: 600;
+  color: var(--s-color-text);
+}
+
+.required {
+  color: #dc2626;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--s-color-text-muted);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-scale) * 0.95rem);
+  color: var(--s-color-text);
+  background: var(--s-color-surface);
+  border: 1px solid var(--s-color-border);
+  border-radius: 6px;
+  transition: border-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: 2px solid var(--s-color-primary);
+  outline-offset: 1px;
+  border-color: var(--s-color-primary);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.error {
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-scale) * 0.8rem);
+  color: #dc2626;
+}
+
+.success {
+  padding: var(--spacing-md);
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  color: #166534;
+}
+
+.submit {
+  align-self: flex-start;
+  padding: 12px 32px;
+  font-family: var(--font-sans);
+  font-size: calc(var(--text-scale) * 0.95rem);
+  font-weight: 600;
+  color: var(--s-color-surface);
+  background: var(--s-color-primary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--s-color-primary-dark);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit:focus-visible {
+  outline: 2px solid var(--s-color-primary);
+  outline-offset: 2px;
+}
+
+/* Honeypot — hidden from humans, visible to bots */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}

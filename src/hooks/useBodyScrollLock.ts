@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect } from "react";
 
 /**
@@ -22,16 +20,14 @@ export function useBodyScrollLock(isLocked: boolean): void {
 
     // ── Calculate scrollbar width ─────────────────────────────────
 
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
     // ── Lock body scroll ──────────────────────────────────────────
 
     document.body.style.overflow = "hidden";
 
     if (scrollbarWidth > 0) {
-      const currentPadding =
-        parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+      const currentPadding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
       document.body.style.paddingRight = `${currentPadding + scrollbarWidth}px`;
     }
 

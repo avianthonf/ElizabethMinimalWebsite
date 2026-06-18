@@ -1,6 +1,17 @@
 export { Button } from "./Button";
+export type { ButtonProps, ButtonVariant, ButtonSize } from "./Button";
 export { Heading } from "./Heading";
+export type { HeadingProps, HeadingLevel, HeadingVariant } from "./Heading";
 export { Text } from "./Text";
+export type { TextProps, TextVariant, TextSize } from "./Text";
 export { Icon } from "./Icon";
+export type { IconProps, IconSize } from "./Icon";
 export { Badge } from "./Badge";
 export { Link } from "./Link";
+export type { LinkProps, LinkVariant } from "./Link";
+export { ConditionalLink } from "./ConditionalLink";
+export type { ConditionalLinkProps } from "./ConditionalLink";
+export { VisuallyHidden } from "./VisuallyHidden";
+export type { VisuallyHiddenProps } from "./VisuallyHidden";
+export { Box } from "./Box";
+export type { BoxProps } from "./Box";

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type CSSProperties, type ReactNode } from "react";
+import type { CSSProperties, ReactNode, Ref } from "react";
 import Image from "next/image";
 import styles from "./GalleryCard.module.css";
 
@@ -16,24 +16,23 @@ export interface GalleryCardProps {
   isVisible: boolean;
   filterActive: boolean;
   className?: string;
+  ref?: Ref<HTMLDivElement>;
 }
 
-export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(function GalleryCard(
-  {
-    image,
-    imageAlt,
-    title,
-    subCategory,
-    date,
-    span = "standard",
-    index,
-    onSelect,
-    isVisible,
-    filterActive,
-    className,
-  },
+export function GalleryCard({
+  image,
+  imageAlt,
+  title,
+  subCategory,
+  date,
+  span = "standard",
+  index,
+  onSelect,
+  isVisible,
+  filterActive,
+  className,
   ref,
-): ReactNode {
+}: GalleryCardProps): ReactNode {
   const handleClick = () => onSelect(index);
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -106,4 +105,4 @@ export const GalleryCard = forwardRef<HTMLDivElement, GalleryCardProps>(function
       )}
     </div>
   );
-});
+}

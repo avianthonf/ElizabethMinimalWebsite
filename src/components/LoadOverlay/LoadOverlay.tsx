@@ -1,6 +1,14 @@
 "use client";
 
-import { useId, useEffect, useLayoutEffect, useRef, useState, type AnimationEvent, type ReactNode } from "react";
+import {
+  useId,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type AnimationEvent,
+  type ReactNode,
+} from "react";
 import { motion, type Target, type Transition } from "framer-motion";
 import styles from "./LoadOverlay.module.css";
 
@@ -11,10 +19,10 @@ const LOAD_MESSAGE = "WE BELIEVE";
    Offsets are fractions of the character's bbox — tuned for Impact/Haettenschweiler. */
 const GAP_TARGET = {
   charIndex: 3, // first B in BELIEVE — upper counter
-  ox: 0.55,     // horizontal offset within char (0.55 = just right of vertical center)
-  oy: 0.28,     // vertical offset within char (0.28 = upper third)
-  cw: 0.35,     // counter width as fraction of char width
-  ch: 0.30,     // counter height as fraction of char height
+  ox: 0.55, // horizontal offset within char (0.55 = just right of vertical center)
+  oy: 0.28, // vertical offset within char (0.28 = upper third)
+  cw: 0.35, // counter width as fraction of char width
+  ch: 0.3, // counter height as fraction of char height
 } as const;
 
 export interface LoadOverlayProps {
@@ -33,6 +41,7 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
   // browser paints — prevents framer-motion from starting with
   // the wrong (4.5s) duration and then recomputing mid-flight.
   useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- must read window width before paint to avoid animation glitch
     setIsMobile(window.innerWidth <= 760);
   }, []);
 
@@ -104,7 +113,7 @@ export function LoadOverlay({ onComplete }: LoadOverlayProps): ReactNode {
 
   const heritageTextTransition: Transition = {
     duration: totalDuration,
-    times: [0, 0.04, 0.13, 0.42, 0.50, 1.0],
+    times: [0, 0.04, 0.13, 0.42, 0.5, 1.0],
     ease: ["linear", "easeOut", "linear", "easeIn", "linear"],
   };
 

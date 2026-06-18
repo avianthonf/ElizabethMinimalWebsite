@@ -70,15 +70,6 @@ describe("PageShell", () => {
     expect(skipLink.className).toContain("skipLink");
   });
 
-  it("does not render skip link when skipLink=false", () => {
-    render(
-      <PageShell skipLink={false}>
-        <p>Content</p>
-      </PageShell>,
-    );
-    expect(screen.queryByText("Skip to main content")).toBeNull();
-  });
-
   it("renders main with id='main-content' and tabIndex=-1", () => {
     render(
       <PageShell>

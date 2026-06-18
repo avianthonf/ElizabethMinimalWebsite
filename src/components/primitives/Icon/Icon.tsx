@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import styles from "./Icon.module.css";
 
 export type IconSize = "small" | "medium" | "large" | "xlarge";
@@ -10,6 +10,7 @@ export interface IconProps {
   className?: string;
   ariaLabel?: string;
   decorative?: boolean;
+  ref?: Ref<HTMLSpanElement>;
 }
 
 const sizeClass: Record<IconSize, string> = {
@@ -26,15 +27,15 @@ export function Icon({
   className,
   ariaLabel,
   decorative = false,
+  ref,
 }: IconProps): ReactNode {
-  const composedClassName = [styles.icon, sizeClass[size], className]
-    .filter(Boolean)
-    .join(" ");
+  const composedClassName = [styles.icon, sizeClass[size], className].filter(Boolean).join(" ");
 
   const style = color ? { color: `var(${color}, ${color})` } : undefined;
 
   return (
     <span
+      ref={ref}
       className={composedClassName}
       style={style}
       aria-label={ariaLabel}

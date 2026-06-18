@@ -9,6 +9,7 @@ import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import type { MapConfig } from "@/data/visits";
+import styles from "./VisitPage.module.css";
 
 export interface VisitInfoCard {
   /** Small eyebrow label (renders as "eyebrow" variant) */
@@ -98,18 +99,10 @@ export function VisitPage({
                   {mapConfig.title}
                 </Heading>
                 {mapConfig.addressLines}
-                <div
-                  style={{
-                    width: "100%",
-                    aspectRatio: "4/3",
-                    border: "1px solid var(--s-color-border)",
-                  }}
-                >
+                <div className={styles.mapWrapper}>
                   <iframe
                     src={mapConfig.embedUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
+                    className={styles.mapIframe}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

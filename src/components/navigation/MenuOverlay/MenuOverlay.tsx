@@ -1,8 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useState, type ReactNode, type MouseEvent } from "react";
+import Image from "next/image";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { useAnimatedPresence } from "@/hooks/useAnimatedPresence";
 import { Link } from "@/components/primitives/Link";
 import { Text } from "@/components/primitives/Text";
 import type { NavCategory } from "@/data/navigation";
@@ -59,50 +61,22 @@ export function MenuOverlay({
   const overlayRef = useFocusTrap({ isActive: isOpen, onEscape: onClose });
   useBodyScrollLock(isOpen);
 
-  // ── Animation lifecycle state ─────────────────────────────────────
+  // ── Animation lifecycle ─────────────────────────────────────────
 
-  const [shouldRender, setShouldRender] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-  // mountKey increments each time the overlay opens, forcing React to
-  // remount the categories grid so that stagger animations replay.
-  const [mountKey, setMountKey] = useState(0);
+  // mountKey forces remount of the categories grid on each open so that
+  // CSS stagger animations replay from the start.
+  const { shouldRender, isAnimating, mountKey } = useAnimatedPresence(isOpen);
 
   // ── Hover/focus image preview ─────────────────────────────────────
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  // ── Open / Close lifecycle ────────────────────────────────────────
-
+  // Clear hovered category preview when overlay closes
   useEffect(() => {
-    /* eslint-disable react-hooks/set-state-in-effect */
-    if (isOpen) {
-      // 1. Insert into DOM
-      setShouldRender(true);
-      setMountKey((prev) => prev + 1);
-
-      // 2. Trigger entrance animation on next paint
-      const raf1 = requestAnimationFrame(() => {
-        const raf2 = requestAnimationFrame(() => {
-          setIsAnimating(true);
-        });
-        return () => cancelAnimationFrame(raf2);
-      });
-
-      return () => cancelAnimationFrame(raf1);
-    }
-
-    // ── Close sequence ────────────────────────────────────────────
-    // 1. Start exit animation
-    setIsAnimating(false);
-
-    // 2. Remove from DOM after exit animation completes (200ms)
-    const exitTimer = setTimeout(() => {
-      setShouldRender(false);
+    if (!isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- clearing local UI state when overlay closes is standard
       setActiveCategory(null);
-    }, 220); // 200ms exit + 20ms buffer
-
-    return () => clearTimeout(exitTimer);
-    /* eslint-enable react-hooks/set-state-in-effect */
+    }
   }, [isOpen]);
 
   // ── Handlers ──────────────────────────────────────────────────────
@@ -130,15 +104,11 @@ export function MenuOverlay({
     return null;
   }
 
-  const overlayClassName = [
-    styles.overlay,
-    isAnimating ? styles.overlayOpen : styles.overlayClosed,
-  ]
+  const overlayClassName = [styles.overlay, isAnimating ? styles.overlayOpen : styles.overlayClosed]
     .filter(Boolean)
     .join(" ");
 
-  const currentPreviewImage =
-    activeCategory ? previewImages[activeCategory] : null;
+  const currentPreviewImage = activeCategory ? previewImages[activeCategory] : null;
 
   return (
     <div
@@ -211,11 +181,12 @@ export function MenuOverlay({
       {/* Image preview panel (desktop only) */}
       {currentPreviewImage && (
         <div className={styles.previewPanel} aria-hidden="true">
-          <div
+          <Image
+            src={`/images/${currentPreviewImage}`}
+            alt=""
+            fill
             className={styles.previewImage}
-            style={{
-              backgroundImage: `url('/images/${currentPreviewImage}')`,
-            }}
+            sizes="(min-width: 1100px) 300px, 0px"
           />
         </div>
       )}

@@ -22,6 +22,7 @@ export function HeroPanel(props: HeroPanelProps): ReactNode {
   // SSR-safe mobile detection — matches the 760px breakpoint
   // used by LoadOverlayMobile
   useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- must read window width before paint to sync video seek time
     setSeekTime(window.innerWidth <= 760 ? 1.0 : 2.7);
   }, []);
 

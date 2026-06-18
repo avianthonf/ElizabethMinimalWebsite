@@ -13,8 +13,6 @@ export interface PageShellProps {
   children: ReactNode;
   /** Optional hero content rendered between the header/skip-link and the main content wrapper */
   hero?: ReactNode;
-  /** Renders a visually-hidden skip-to-content link when true (default: true) */
-  skipLink?: boolean;
   /** Header background theme: 'light' = solid background, 'dark' = transparent (default: 'light') */
   headerTheme?: "light" | "dark";
 }
@@ -26,24 +24,13 @@ export interface PageShellProps {
  * Pages should wrap their content inside PageShell and pass any hero
  * (and breadcrumb navigation above the hero) via the `hero` prop.
  */
-export function PageShell({
-  children,
-  hero,
-  skipLink = true,
-  headerTheme = "light",
-}: PageShellProps): ReactNode {
+export function PageShell({ children, hero, headerTheme = "light" }: PageShellProps): ReactNode {
   return (
     <>
-      <Header
-        navLinks={HEADER_NAV_LINKS}
-        transparent={headerTheme === "dark"}
-        fixed
-      />
-      {skipLink && (
-        <a href="#main-content" className="skipLink">
-          Skip to main content
-        </a>
-      )}
+      <Header navLinks={HEADER_NAV_LINKS} transparent={headerTheme === "dark"} fixed />
+      <a href="#main-content" className="skipLink">
+        Skip to main content
+      </a>
       {hero}
       <main id="main-content" tabIndex={-1} style={{ outline: "none" }}>
         {children}
