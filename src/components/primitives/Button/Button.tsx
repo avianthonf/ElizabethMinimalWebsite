@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode, MouseEvent } from "react";
+import type { ReactNode, MouseEvent, Ref } from "react";
 import { ConditionalLink } from "@/components/primitives/ConditionalLink/ConditionalLink";
 import styles from "./Button.module.css";
 
@@ -18,6 +18,7 @@ export interface ButtonProps {
   ariaLabel?: string;
   icon?: ReactNode;
   iconPosition?: "left" | "right";
+  ref?: Ref<HTMLAnchorElement>;
 }
 
 const sizeClass: Record<ButtonSize, string> = {
@@ -37,13 +38,9 @@ export function Button({
   ariaLabel,
   icon,
   iconPosition = "left",
+  ref,
 }: ButtonProps): ReactNode {
-  const composedClassName = [
-    styles.button,
-    styles[variant],
-    sizeClass[size],
-    className,
-  ]
+  const composedClassName = [styles.button, styles[variant], sizeClass[size], className]
     .filter(Boolean)
     .join(" ");
 
@@ -57,6 +54,7 @@ export function Button({
 
   return (
     <ConditionalLink
+      ref={ref}
       href={href}
       className={composedClassName}
       as="button"

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 interface StatValueProps {
   /** Raw stat value string, e.g. "1949", "1200+", "CBSE" */
@@ -18,6 +19,7 @@ function parseStatValue(value: string): { num: number | null; suffix: string } {
 
 export function StatValue({ value, className }: StatValueProps): ReactNode {
   const { ref, isVisible } = useScrollReveal(0.3);
+  const prefersReducedMotion = useReducedMotion();
   const { num, suffix } = parseStatValue(value);
   const [display, setDisplay] = useState(num !== null ? `0${suffix}` : value);
   const hasAnimated = useRef(false);
@@ -25,6 +27,13 @@ export function StatValue({ value, className }: StatValueProps): ReactNode {
   useEffect(() => {
     if (!isVisible || num === null || hasAnimated.current) return;
     hasAnimated.current = true;
+
+    // Skip animation when user prefers reduced motion
+    if (prefersReducedMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- skipping RAF animation for reduced-motion users
+      setDisplay(`${num.toLocaleString()}${suffix}`);
+      return;
+    }
 
     const target = num;
     const duration = 1500;
@@ -40,7 +49,7 @@ export function StatValue({ value, className }: StatValueProps): ReactNode {
     }
 
     requestAnimationFrame(tick);
-  }, [isVisible, num, suffix]);
+  }, [isVisible, num, suffix, prefersReducedMotion]);
 
   return (
     <span ref={ref} className={className}>

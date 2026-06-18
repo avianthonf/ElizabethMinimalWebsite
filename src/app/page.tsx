@@ -1,5 +1,11 @@
 import { WalkerHomepage } from "@/components/WalkerHomepage";
+import { HeaderThemeController } from "@/components/HeaderThemeController";
 
 export default function Home() {
-  return <WalkerHomepage />;
+  return (
+    <>
+      <HeaderThemeController />
+      <WalkerHomepage />
+    </>
+  );
 }

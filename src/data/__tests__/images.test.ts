@@ -51,7 +51,7 @@ describe("Image Registry", () => {
 
   it("has academics hero as a separate entry", () => {
     expect(ACADEMICS_HERO.filename).toBe("DSC07576.jpg");
-    expect(ACADEMICS_HERO.profile.temperature).toBe("cool");
+    expect(ACADEMICS_HERO.section).toBe("academics-hero");
   });
 
   it("has 7 academics section images", () => {
@@ -101,7 +101,7 @@ describe("Image Registry", () => {
       expect(img.alt).toBeTruthy();
       expect(
         img.alt.length,
-        `Image ${img.filename} has alt text shorter than 10 chars: "${img.alt}"`
+        `Image ${img.filename} has alt text shorter than 10 chars: "${img.alt}"`,
       ).toBeGreaterThan(10);
     }
   });
@@ -124,23 +124,36 @@ describe("Image Registry", () => {
       ...OVERFLOW_IMAGES,
     ];
     for (const img of allImages) {
-      expect(
-        img.filename.endsWith(".jpg"),
-        `Image ${img.filename} does not end with .jpg`
-      ).toBe(true);
+      expect(img.filename.endsWith(".jpg"), `Image ${img.filename} does not end with .jpg`).toBe(
+        true,
+      );
     }
   });
 
   it("every image has a valid section", () => {
     const validSections = [
-      "homepage-hero", "homepage-grid", "homepage-values",
-      "homepage-stats", "homepage-testimonials", "homepage-news",
-      "about-hero", "about-mission", "about-history", "about-staff",
-      "admissions-hero", "admissions-why", "admissions-visit",
-      "academics-hero", "academics-departments",
-      "athletics-hero", "athletics-teams",
-      "arts-hero", "arts-visual", "arts-performing",
-      "student-life-hero", "student-life-clubs",
+      "homepage-hero",
+      "homepage-grid",
+      "homepage-values",
+      "homepage-stats",
+      "homepage-testimonials",
+      "homepage-news",
+      "about-hero",
+      "about-mission",
+      "about-history",
+      "about-staff",
+      "admissions-hero",
+      "admissions-why",
+      "admissions-visit",
+      "academics-hero",
+      "academics-departments",
+      "athletics-hero",
+      "athletics-teams",
+      "arts-hero",
+      "arts-visual",
+      "arts-performing",
+      "student-life-hero",
+      "student-life-clubs",
       "contact-hero",
       "how-to-help-hero",
       "news-hero",
@@ -166,7 +179,7 @@ describe("Image Registry", () => {
     for (const img of allImages) {
       expect(
         validSections.includes(img.section),
-        `Image ${img.filename} has invalid section: "${img.section}"`
+        `Image ${img.filename} has invalid section: "${img.section}"`,
       ).toBe(true);
     }
   });

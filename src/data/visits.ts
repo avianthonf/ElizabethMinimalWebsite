@@ -40,14 +40,14 @@ export const SCHOOL_ADDRESS = {
   street: "Ven. Fr. Hilario Gonsalves Rd",
   area: "Pomburpa, Bardez",
   city: "Goa",
-  pinCode: "4031102",
+  pinCode: "403511",
   country: "India",
 } as const;
 
 // ── School Contact ─────────────────────────────────────────────────────
 
 export const SCHOOL_CONTACT = {
-  phone: "+91 XX-XXXX-XXXX (TBD)",
+  phone: "+91 832-241-0654",
   email: "info@stelizabethhighschool.in",
 } as const;
 

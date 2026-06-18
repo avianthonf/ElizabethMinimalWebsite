@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import type { GalleryCategory } from "@/components/content/GalleryFilter/GalleryFilter";
 import type { LightboxImage } from "@/components/content/GalleryLightbox/GalleryLightbox";

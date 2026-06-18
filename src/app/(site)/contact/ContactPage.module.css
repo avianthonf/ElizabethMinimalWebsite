@@ -1,0 +1,11 @@
+.mapWrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--s-color-border);
+}
+
+.mapIframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { Hero } from "@/components/content/Hero";
 import { Container } from "@/components/layout/Container";
@@ -6,10 +5,12 @@ import { Grid, type GridColumns } from "@/components/layout/Grid";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
 import { Stack } from "@/components/layout/Stack";
+import { Breadcrumb } from "@/components/navigation/Breadcrumb";
+import { BreadcrumbJsonLd } from "@/components/navigation/Breadcrumb/BreadcrumbJsonLd";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 
-export interface CardGridPageProps<T> {
+export interface ContentPageProps<T> {
   /** Hero eyebrow text (optional — when omitted, no eyebrow renders) */
   heroEyebrow?: string;
   /** Hero heading (h1) text */
@@ -24,11 +25,13 @@ export interface CardGridPageProps<T> {
   sectionHeading?: string;
   /** Optional descriptive paragraph below the section heading */
   sectionDescription?: string;
-  /** Items to render as cards */
+  /** Items to render */
   items: readonly T[];
-  /** Render function for each card — receives item and index */
-  renderCard: (item: T, index: number) => ReactNode;
-  /** Grid columns (2 | 3 | 4). When omitted, falls back to a vertical Stack. */
+  /** Render function for each item — receives item and index */
+  renderItem: (item: T, index: number) => ReactNode;
+  /** Layout mode: "grid" (default) or "list" */
+  layout?: "grid" | "list";
+  /** Grid columns when layout="grid" (default: 2) */
   columns?: GridColumns;
   /** Container width constraint (default: "narrow") */
   containerWidth?: "narrow" | "default" | "wide";
@@ -37,11 +40,10 @@ export interface CardGridPageProps<T> {
 }
 
 /**
- * Generic template for pages that display a grid (or stack) of cards
- * behind a Hero banner. Handles PageShell, optional breadcrumb, section
- * heading, and the card layout automatically.
+ * Unified template for pages that display a grid or list of items
+ * behind a Hero banner. Replaces both CardGridPage and ListPage.
  */
-export function CardGridPage<T>({
+export function ContentPage<T>({
   heroEyebrow,
   heroHeading,
   heroDescription,
@@ -50,37 +52,31 @@ export function CardGridPage<T>({
   sectionHeading,
   sectionDescription,
   items,
-  renderCard,
-  columns,
+  renderItem,
+  layout = "grid",
+  columns = 2,
   containerWidth = "narrow",
   sectionAriaLabel,
-}: CardGridPageProps<T>): ReactNode {
+}: ContentPageProps<T>): ReactNode {
   return (
     <PageShell
       hero={
         <>
           {breadcrumb && (
-            <nav
-              aria-label="Breadcrumb"
-              style={{
-                padding: "var(--spacing-md) 0 0",
-                fontSize: "calc(var(--text-scale) * 0.85rem)",
-                color: "var(--s-color-text-muted)",
-              }}
-            >
-              <Container width="narrow">
-                <Link
-                  href={breadcrumb.href}
-                  style={{
-                    color: "var(--s-color-text-muted)",
-                    textDecoration: "underline",
-                  }}
-                >
-                  {breadcrumb.label}
-                </Link>
-                {` / ${breadcrumb.currentLabel}`}
-              </Container>
-            </nav>
+            <>
+              <BreadcrumbJsonLd
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: breadcrumb.label, href: breadcrumb.href },
+                  { label: breadcrumb.currentLabel, href: "#" },
+                ]}
+              />
+              <Breadcrumb
+                href={breadcrumb.href}
+                label={breadcrumb.label}
+                currentLabel={breadcrumb.currentLabel}
+              />
+            </>
           )}
           <Hero
             eyebrow={heroEyebrow}
@@ -93,7 +89,7 @@ export function CardGridPage<T>({
     >
       <Section background="paper" padding="xlarge" ariaLabel={sectionAriaLabel}>
         <Container width={containerWidth}>
-          <Stack gap="large">
+          <Stack gap={layout === "grid" ? "large" : "xlarge"}>
             {(sectionHeading || sectionDescription) && (
               <Stack gap="medium">
                 {sectionHeading && (
@@ -108,14 +104,12 @@ export function CardGridPage<T>({
                 )}
               </Stack>
             )}
-            {columns ? (
+            {layout === "grid" ? (
               <Grid columns={columns} gap="medium" responsive>
-                {items.map((item, index) => renderCard(item, index))}
+                {items.map((item, index) => renderItem(item, index))}
               </Grid>
             ) : (
-              <Stack gap="medium">
-                {items.map((item, index) => renderCard(item, index))}
-              </Stack>
+              <Stack gap="medium">{items.map((item, index) => renderItem(item, index))}</Stack>
             )}
           </Stack>
         </Container>

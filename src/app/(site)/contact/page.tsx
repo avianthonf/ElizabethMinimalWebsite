@@ -1,5 +1,4 @@
 import { Hero } from "@/components/content/Hero";
-import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Stack } from "@/components/layout/Stack";
@@ -10,6 +9,8 @@ import { Text } from "@/components/primitives/Text";
 import { createPageMetadata } from "@/lib/page-utils";
 import { SCHOOL_ADDRESS, SCHOOL_CONTACT, GOOGLE_MAPS_EMBED_URL } from "@/data/visits";
 import { CONTACT_IMAGES } from "@/data/images";
+import { ContactForm } from "./ContactForm";
+import styles from "./ContactPage.module.css";
 
 export const metadata = createPageMetadata(
   "Contact",
@@ -28,11 +29,7 @@ export default function ContactPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Contact information"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Contact information">
         <Container width="wide">
           <SplitLayout
             ratio="2-1"
@@ -44,9 +41,8 @@ export default function ContactPage() {
                     We&apos;re Here to Help
                   </Heading>
                   <Text variant="muted" size="medium">
-                    Whether you have questions about admissions, want to
-                    schedule a visit, or simply need directions to our campus,
-                    our team is ready to assist you.
+                    Whether you have questions about admissions, want to schedule a visit, or simply
+                    need directions to our campus, our team is ready to assist you.
                   </Text>
                 </Stack>
                 <Stack gap="medium">
@@ -63,20 +59,10 @@ export default function ContactPage() {
                 </Stack>
                 <Stack gap="medium">
                   <Text variant="eyebrow">Contact</Text>
-                  <Text variant="muted">
-                    Phone: {SCHOOL_CONTACT.phone}
-                  </Text>
-                  <Text variant="muted">
-                    Email: {SCHOOL_CONTACT.email}
-                  </Text>
+                  <Text variant="muted">Phone: {SCHOOL_CONTACT.phone}</Text>
+                  <Text variant="muted">Email: {SCHOOL_CONTACT.email}</Text>
                 </Stack>
-                <Card variant="default" padding="large">
-                  <Text variant="caption">
-                    Inquiry form coming soon. In the meantime, please call or
-                    email us directly — we respond to all inquiries within two
-                    business days.
-                  </Text>
-                </Card>
+                <ContactForm />
               </Stack>
             }
             right={
@@ -84,18 +70,12 @@ export default function ContactPage() {
                 <Heading level="h3" variant="card">
                   Find Us
                 </Heading>
-                <div
-                  style={{
-                    width: "100%",
-                    aspectRatio: "4/3",
-                    border: "1px solid var(--s-color-border)",
-                  }}
-                >
+                <div className={styles.mapWrapper}>
                   <iframe
                     src={GOOGLE_MAPS_EMBED_URL}
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    className={styles.mapIframe}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

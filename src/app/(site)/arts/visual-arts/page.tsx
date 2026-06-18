@@ -1,5 +1,5 @@
 import { Card } from "@/components/content/Card";
-import { CardGridPage } from "@/components/templates";
+import { ContentPage } from "@/components/templates";
 import { Heading } from "@/components/primitives/Heading";
 import { Stack } from "@/components/layout/Stack";
 import { Text } from "@/components/primitives/Text";
@@ -14,14 +14,14 @@ export const metadata = createPageMetadata(
 
 export default function VisualArtsPage() {
   return (
-    <CardGridPage
+    <ContentPage
       heroEyebrow={VISUAL_ARTS_PAGE.heroEyebrow}
       heroHeading={VISUAL_ARTS_PAGE.heroHeading}
       heroDescription={VISUAL_ARTS_PAGE.heroDescription}
       heroBackgroundImage={`/images/${ARTS_IMAGES[1].filename}`}
       sectionHeading={VISUAL_ARTS_PAGE.sectionHeading}
       items={VISUAL_ARTS_PROGRAMS}
-      renderCard={(program) => (
+      renderItem={(program) => (
         <Card key={program.title} variant="default" padding="medium">
           <Stack gap="small">
             <Heading level="h3" variant="card">

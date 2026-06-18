@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
@@ -44,16 +45,8 @@ export function Hero({
     .filter(Boolean)
     .join(" ");
 
-  const mediaBackground = backgroundImage
-    ? { backgroundImage: `url(${backgroundImage})` }
-    : undefined;
-
   return (
-    <section
-      className={composedClassName}
-      style={mediaBackground}
-      {...(hasMedia ? { "data-header-theme": "light" } : {})}
-    >
+    <section className={composedClassName} {...(hasMedia ? { "data-header-theme": "light" } : {})}>
       {backgroundVideo && (
         <video
           className={styles.video}
@@ -63,6 +56,18 @@ export function Hero({
           loop
           playsInline
           preload="metadata"
+          aria-hidden="true"
+        />
+      )}
+
+      {backgroundImage && (
+        <Image
+          src={backgroundImage}
+          alt=""
+          fill
+          priority
+          className={styles.bgImage}
+          sizes="100vw"
           aria-hidden="true"
         />
       )}
@@ -81,12 +86,14 @@ export function Hero({
             {heading}
           </Heading>
 
-          {subheading && (
-            <p className={styles.subheading}>{subheading}</p>
-          )}
+          {subheading && <p className={styles.subheading}>{subheading}</p>}
 
           {description && (
-            <Text variant={hasMedia ? "body" : "muted"} size="large" className={hasMedia ? styles.lightText : undefined}>
+            <Text
+              variant={hasMedia ? "body" : "muted"}
+              size="large"
+              className={hasMedia ? styles.lightText : undefined}
+            >
               {description}
             </Text>
           )}

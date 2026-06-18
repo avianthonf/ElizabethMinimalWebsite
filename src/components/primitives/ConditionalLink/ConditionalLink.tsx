@@ -1,4 +1,4 @@
-import type { ReactNode, ElementType } from "react";
+import type { ReactNode, ElementType, Ref, MouseEventHandler } from "react";
 import { Link } from "@/components/primitives/Link";
 
 export interface ConditionalLinkProps {
@@ -11,6 +11,16 @@ export interface ConditionalLinkProps {
    * @default "span"
    */
   as?: ElementType;
+  /** Ref forwarded to the underlying element (button/link/span). */
+  ref?: Ref<HTMLAnchorElement>;
+  /** Click handler (forwarded to Link when href is present, or native element when absent). */
+  onClick?: MouseEventHandler<HTMLAnchorElement | HTMLElement>;
+  /** Accessible label (forwarded to Link when href is present). */
+  "aria-label"?: string;
+  /** HTML type attribute (forwarded to native element when href is absent). */
+  type?: string;
+  /** Disabled state (forwarded to native element when href is absent). */
+  disabled?: boolean;
 }
 
 /**
@@ -25,32 +35,37 @@ export function ConditionalLink({
   children,
   className,
   as: Component = "span",
-  ...rest
-}: ConditionalLinkProps & { [key: string]: unknown }) {
+  ref,
+  onClick,
+  "aria-label": ariaLabel,
+  type,
+  disabled,
+}: ConditionalLinkProps) {
   if (href) {
-    // Extract props relevant to the Link component; the rest are
-    // silently dropped because Link has a strict interface that
-    // doesn't accept arbitrary HTML attributes.
-    const extra = rest as Record<string, unknown>;
-    const onClick = extra.onClick as (() => void) | undefined;
-    const ariaLabel = extra["aria-label"] as string | undefined;
-
     return (
       <Link
         href={href}
         className={className}
-        onClick={onClick}
+        onClick={onClick as () => void}
         ariaLabel={ariaLabel}
+        ref={ref}
       >
         {children}
       </Link>
     );
   }
 
-  // No href — render as a plain element, forwarding all props.
+  // No href — render as a plain element, forwarding relevant props.
   const Tag = Component as ElementType;
   return (
-    <Tag className={className} {...rest}>
+    <Tag
+      ref={ref as Ref<HTMLElement>}
+      className={className}
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      aria-label={ariaLabel}
+    >
       {children}
     </Tag>
   );

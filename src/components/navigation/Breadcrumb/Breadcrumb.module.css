@@ -1,0 +1,24 @@
+.breadcrumb {
+  padding: var(--spacing-md) 0 0;
+  font-size: calc(var(--text-scale) * 0.85rem);
+  color: var(--s-color-text-muted);
+}
+
+.link {
+  color: var(--s-color-text-muted);
+  text-decoration: underline;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--s-color-primary);
+}
+
+.separator {
+  color: var(--s-color-text-muted);
+}
+
+.current {
+  color: var(--s-color-text);
+  font-weight: 600;
+}

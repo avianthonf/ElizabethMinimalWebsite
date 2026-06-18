@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -7,6 +6,7 @@ import { Stack } from "@/components/layout/Stack";
 import { PageShell } from "@/components/layout";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
+import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { createPageMetadata } from "@/lib/page-utils";
 import { HISTORY_TIMELINE } from "@/data/about";
 import { COMMUNITY_IMAGES } from "@/data/images";
@@ -22,21 +22,7 @@ export default function HistoryPage() {
     <PageShell
       hero={
         <>
-          <nav
-            aria-label="Breadcrumb"
-            style={{
-              padding: "var(--spacing-md) 0 0",
-              fontSize: "calc(var(--text-scale) * 0.85rem)",
-              color: "var(--s-color-text-muted)",
-            }}
-          >
-            <Container width="narrow">
-              <Link href="/about" style={{ color: "var(--s-color-text-muted)", textDecoration: "underline" }}>
-                About
-              </Link>
-              {" / History"}
-            </Container>
-          </nav>
+          <Breadcrumb href="/about" label="About" currentLabel="History" />
           <Hero
             eyebrow="Our Story"
             heading="School History"
@@ -46,11 +32,7 @@ export default function HistoryPage() {
         </>
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="School history timeline"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="School history timeline">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">

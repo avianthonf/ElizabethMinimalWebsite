@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import NextLink from "next/link";
 import styles from "./Link.module.css";
 
@@ -11,7 +11,9 @@ export interface LinkProps {
   external?: boolean;
   className?: string;
   ariaLabel?: string;
+  ariaCurrent?: "page" | "step" | "location" | "date" | "time" | "true";
   onClick?: () => void;
+  ref?: Ref<HTMLAnchorElement>;
 }
 
 const variantClass: Record<LinkVariant, string> = {
@@ -27,7 +29,9 @@ export function Link({
   external,
   className,
   ariaLabel,
+  ariaCurrent,
   onClick,
+  ref,
 }: LinkProps): ReactNode {
   const isExternal = external ?? /^https?:\/\//.test(href);
 
@@ -38,11 +42,13 @@ export function Link({
   if (isExternal) {
     return (
       <a
+        ref={ref}
         href={href}
         className={composedClassName}
         rel="noopener noreferrer"
         target="_blank"
         aria-label={ariaLabel}
+        aria-current={ariaCurrent}
         onClick={onClick}
       >
         {children}
@@ -51,7 +57,14 @@ export function Link({
   }
 
   return (
-    <NextLink href={href} className={composedClassName} aria-label={ariaLabel} onClick={onClick}>
+    <NextLink
+      ref={ref}
+      href={href}
+      className={composedClassName}
+      aria-label={ariaLabel}
+      aria-current={ariaCurrent}
+      onClick={onClick}
+    >
       {children}
     </NextLink>
   );

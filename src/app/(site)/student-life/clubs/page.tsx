@@ -1,5 +1,5 @@
 import { Card } from "@/components/content/Card";
-import { ListPage } from "@/components/templates";
+import { ContentPage } from "@/components/templates";
 import { Heading } from "@/components/primitives/Heading";
 import { Stack } from "@/components/layout/Stack";
 import { Text } from "@/components/primitives/Text";
@@ -7,14 +7,11 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { CLUBS_PAGE, CLUBS } from "@/data/student-life";
 import { STUDENT_LIFE_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(
-  CLUBS_PAGE.metaTitle,
-  CLUBS_PAGE.metaDescription,
-);
+export const metadata = createPageMetadata(CLUBS_PAGE.metaTitle, CLUBS_PAGE.metaDescription);
 
 export default function ClubsPage() {
   return (
-    <ListPage
+    <ContentPage
       heroEyebrow={CLUBS_PAGE.heroEyebrow}
       heroHeading={CLUBS_PAGE.heroHeading}
       heroDescription={CLUBS_PAGE.heroDescription}
