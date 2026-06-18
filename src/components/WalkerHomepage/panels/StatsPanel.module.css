@@ -218,3 +218,26 @@
     height: 48px;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .statsCard {
+    transition: none;
+  }
+
+  .statsCard:hover {
+    transform: none;
+  }
+
+  .statIcon,
+  .statIcon svg {
+    transition: none;
+  }
+
+  .statsCard:hover .statIcon {
+    transform: none;
+  }
+
+  .statsCard:hover .statIcon svg {
+    transform: none;
+  }
+}
