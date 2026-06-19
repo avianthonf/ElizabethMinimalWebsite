@@ -7,14 +7,14 @@
 
 .imageWrapper.imageTop {
   width: 100%;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 4.5px;
+  border-top-right-radius: 4.5px;
 }
 
 .imageWrapper.imageLeft {
   flex-shrink: 0;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+  border-top-left-radius: 4.5px;
+  border-bottom-left-radius: 4.5px;
 }
 
 .image {
@@ -38,10 +38,10 @@
 /* ── Text ─────────────────────────────────────────── */
 
 .textContent {
-  padding: clamp(12px, 2vw, 24px);
+  padding: clamp(9px, 1.5vw, 18px);
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.8vw, 10px);
+  gap: clamp(3px, 0.6vw, 7.5px);
 }
 
 /* ── Link ─────────────────────────────────────────── */

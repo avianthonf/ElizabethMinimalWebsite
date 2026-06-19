@@ -17,22 +17,26 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ── Close Button ──────────────────────────────────────── */
 
 .closeButton {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.1);
@@ -68,7 +72,9 @@
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
   transform: translateY(-50%);
-  transition: background 200ms var(--ease-standard), color 200ms var(--ease-standard);
+  transition:
+    background 200ms var(--ease-standard),
+    color 200ms var(--ease-standard);
 }
 
 .arrow:hover,
@@ -82,8 +88,12 @@
   outline-offset: 2px;
 }
 
-.arrowLeft  { left:  16px; }
-.arrowRight { right: 16px; }
+.arrowLeft {
+  left: 12px;
+}
+.arrowRight {
+  right: 12px;
+}
 
 /* ── Image Container ───────────────────────────────────── */
 
@@ -94,7 +104,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 80px 20px;
+  padding: 45px 60px 15px;
 }
 
 .image {
@@ -107,21 +117,21 @@
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 16px;
-  padding: 16px 24px 28px;
+  gap: 12px;
+  padding: 12px 18px 21px;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .caption {
   font-family: var(--font-serif);
-  font-size: calc(var(--text-scale) * 1.05rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.7875rem));
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
 .subCaption {
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.78rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.585rem));
   color: rgba(255, 255, 255, 0.62);
   font-weight: 400;
 }
@@ -129,7 +139,7 @@
 .counter {
   margin-left: auto;
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.72rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.54rem));
   color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -139,7 +149,7 @@
 
 @media (max-width: 760px) {
   .imageContainer {
-    padding: 52px 16px 12px;
+    padding: 39px 12px 9px;
   }
 
   .arrow {
@@ -147,13 +157,17 @@
     height: 40px;
   }
 
-  .arrowLeft  { left:  6px; }
-  .arrowRight { right: 6px; }
+  .arrowLeft {
+    left: 4.5px;
+  }
+  .arrowRight {
+    right: 4.5px;
+  }
 
   .captionBar {
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px 20px 22px;
+    gap: 6px;
+    padding: 7.5px 15px 16.5px;
     text-align: center;
     justify-content: center;
   }

@@ -64,31 +64,31 @@
 }
 
 .scrollBtnLeft {
-  left: 16px;
+  left: 12px;
 }
 
 .scrollBtnRight {
-  right: 16px;
+  right: 12px;
 }
 
 /* Arrow via pseudo-element */
 .scrollBtn::after {
   content: "";
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 7.5px;
+  height: 7.5px;
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
 }
 
 .scrollBtnLeft::after {
   transform: rotate(135deg);
-  margin-left: 3px;
+  margin-left: 2.25px;
 }
 
 .scrollBtnRight::after {
   transform: rotate(-45deg);
-  margin-right: 3px;
+  margin-right: 2.25px;
 }
 
 @media (prefers-reduced-motion: reduce) {

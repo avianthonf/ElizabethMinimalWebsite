@@ -1,5 +1,5 @@
 .content {
-  max-width: 780px;
+  max-width: 585px;
 }
 
 .centered {
@@ -25,7 +25,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-  margin-top: clamp(8px, 1.5vw, 20px);
+  margin-top: clamp(6px, 1.125vw, 15px);
 }
 
 .ctasCentered {
@@ -63,15 +63,15 @@
 }
 
 .bodyText {
-  max-width: 780px;
+  max-width: 585px;
 }
 
 .image {
   width: 100%;
   height: auto;
-  max-height: 70vh;
+  max-height: 52.5vh;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 @media (max-width: 760px) {
@@ -115,6 +115,6 @@
 
 @media (max-height: 520px) and (orientation: landscape) {
   .image {
-    max-height: 50vh;
+    max-height: 37.5vh;
   }
 }

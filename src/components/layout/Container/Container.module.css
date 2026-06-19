@@ -1,19 +1,19 @@
 .container {
   margin: 0 auto;
-  padding-left: clamp(20px, 5vw, 72px);
-  padding-right: clamp(20px, 5vw, 72px);
+  padding-left: clamp(15px, 3.75vw, 54px);
+  padding-right: clamp(15px, 3.75vw, 54px);
 }
 
 .widthNarrow {
-  max-width: 780px;
+  max-width: 585px;
 }
 
 .widthDefault {
-  max-width: 1180px;
+  max-width: 885px;
 }
 
 .widthWide {
-  max-width: 1440px;
+  max-width: 1080px;
 }
 
 .widthFull {
@@ -22,7 +22,7 @@
 
 @media (max-width: 760px) {
   .container {
-    padding-left: clamp(14px, 3vw, 28px);
-    padding-right: clamp(14px, 3vw, 28px);
+    padding-left: clamp(10.5px, 2.25vw, 21px);
+    padding-right: clamp(10.5px, 2.25vw, 21px);
   }
 }

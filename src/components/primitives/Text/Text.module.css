@@ -6,17 +6,17 @@
 /* ── Sizes ────────────────────────────────────────── */
 
 .sizeSmall {
-  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.525rem, 0.7613vw, 0.7613rem)));
   line-height: 1.45;
 }
 
 .sizeMedium {
-  font-size: calc(var(--text-scale) * clamp(0.94rem, 1.6vw, 1.35rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.705rem, 1.2vw, 1.0125rem)));
   line-height: 1.55;
 }
 
 .sizeLarge {
-  font-size: calc(var(--text-scale) * clamp(1.05rem, 1.8vw, 1.55rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.7875rem, 1.35vw, 1.1625rem)));
   line-height: 1.62;
 }
 
@@ -29,7 +29,7 @@
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.78rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.585rem));
   font-weight: 800;
   color: var(--s-color-primary);
   text-transform: uppercase;
@@ -39,7 +39,7 @@
 
 .caption {
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * clamp(0.7rem, 1.015vw, 1.015rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.525rem, 0.7613vw, 0.7613rem)));
   color: var(--s-color-text-muted);
   line-height: 1.4;
 }

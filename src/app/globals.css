@@ -69,10 +69,10 @@
   --header-height: clamp(52px, 6vw, 78px);
 
   /* ── Spacing ───────────────────────────────────────── */
-  --spacing-sm: clamp(0.5rem, 2vw, 1rem);
-  --spacing-md: clamp(1rem, 3vw, 2rem);
-  --spacing-lg: clamp(2rem, 5vw, 4rem);
-  --spacing-xl: clamp(3rem, 7vw, 6rem);
+  --spacing-sm: clamp(0.375rem, 1.5vw, 0.75rem);
+  --spacing-md: clamp(0.75rem, 2.25vw, 1.5rem);
+  --spacing-lg: clamp(1.5rem, 3.75vw, 3rem);
+  --spacing-xl: clamp(2.25rem, 5.25vw, 4.5rem);
 
   /* ── Typography ───────────────────────────────────── */
   --font-sans: Arial, Helvetica, sans-serif;
@@ -88,6 +88,13 @@
      is preserved despite the 0.85 multiplier. */
   --text-scale: 0.85;
 
+  /* ── Readability Floor ───────────────────────────────
+     Absolute minimum font-size enforced on small text via
+     max(var(--text-floor), …) wrappers. Protects readability
+     after the global 0.75× resize compounded with --text-scale.
+     0.75rem = 12px, a widely-accepted minimum for secondary text. */
+  --text-floor: 0.75rem;
+
   /* ── Motion ────────────────────────────────────────── */
   --ease-standard: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -97,7 +104,7 @@
   --animation-stagger: 50ms;
 
   /* ── Card System ──────────────────────────────────── */
-  --card-radius: 8px;
+  --card-radius: 6px;
   --card-border: 1px solid rgba(0, 0, 0, 0.08);
   --card-border-hover: 1px solid rgba(12, 33, 124, 0.12);
   --shadow-card-rest: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -115,15 +122,15 @@
   --bg-dark-gradient-end: #082f49;
 
   /* ── Section Header Typography ─────────────────────── */
-  --type-eyebrow: 0.8125rem;
-  --type-description: 1.0625rem;
-  --type-section-h2: clamp(2rem, 4vw, 2.75rem);
+  --type-eyebrow: 0.6094rem;
+  --type-description: 0.7969rem;
+  --type-section-h2: clamp(1.5rem, 3vw, 2.0625rem);
   --eyebrow-weight: 600;
   --eyebrow-spacing: 0.1em;
   --section-h2-weight: 700;
   --section-h2-line-height: 1.2;
   --section-h2-letter-spacing: -0.02em;
-  --description-max-width: 38rem;
+  --description-max-width: 28.5rem;
 
   /* ── Text on Dark ──────────────────────────────────── */
   --text-on-dark-primary: #ffffff;
@@ -131,7 +138,7 @@
   --text-on-dark-muted: rgba(255, 255, 255, 0.82);
 
   /* ── Header Offset for Panels ──────────────────────── */
-  --panel-top-offset: calc(var(--header-height) + clamp(32px, 5vw, 72px));
+  --panel-top-offset: calc(var(--header-height) + clamp(24px, 3.75vw, 54px));
 }
 
 @media (max-width: 760px) {
@@ -139,21 +146,21 @@
     --text-scale: 1;
 
     /* Mobile spacing (fixed values for portrait screens) */
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
+    --spacing-sm: 6px;
+    --spacing-md: 12px;
+    --spacing-lg: 18px;
+    --spacing-xl: 24px;
 
     /* Mobile padding */
-    --padding-page: 20px;
+    --padding-page: 15px;
 
     /* Mobile typography */
-    --type-hero-heading: clamp(2.5rem, 12vw, 4rem);
-    --type-hero-statement: clamp(0.9375rem, 2.8vw, 1.0625rem);
-    --type-section-heading: clamp(1.5rem, 4vw, 2rem);
-    --type-card-heading: clamp(1.0625rem, 3vw, 1.25rem);
-    --type-body: clamp(0.9375rem, 2.5vw, 1rem);
-    --type-small: clamp(0.8125rem, 2.2vw, 0.875rem);
+    --type-hero-heading: clamp(1.875rem, 9vw, 3rem);
+    --type-hero-statement: clamp(0.7031rem, 2.1vw, 0.7969rem);
+    --type-section-heading: clamp(1.125rem, 3vw, 1.5rem);
+    --type-card-heading: clamp(0.7969rem, 2.25vw, 0.9375rem);
+    --type-body: clamp(0.7031rem, 1.875vw, 0.75rem);
+    --type-small: clamp(0.6094rem, 1.65vw, 0.6563rem);
 
     /* Touch targets (WCAG 2.5.8) */
     --touch-target-min: 44px;
@@ -163,17 +170,17 @@
     --line-height-normal: 1.5;
 
     /* Mobile radii */
-    --radius-card: 8px;
-    --radius-button: 6px;
+    --radius-card: 6px;
+    --radius-button: 4.5px;
   }
 }
 
 @media (max-width: 420px) {
   :root {
-    --padding-page: 16px;
-    --type-hero-heading: clamp(2.25rem, 11vw, 3.5rem);
-    --type-hero-statement: clamp(0.875rem, 2.6vw, 1rem);
-    --type-section-heading: clamp(1.375rem, 3.8vw, 1.75rem);
+    --padding-page: 12px;
+    --type-hero-heading: clamp(1.6875rem, 8.25vw, 2.625rem);
+    --type-hero-statement: clamp(0.6563rem, 1.95vw, 0.75rem);
+    --type-section-heading: clamp(1.0313rem, 2.85vw, 1.3125rem);
   }
 }
 
@@ -226,18 +233,18 @@
     top: -100%;
     left: 0;
     z-index: 9999;
-    padding: 12px 24px;
+    padding: 9px 18px;
     background: var(--s-color-primary);
     color: var(--s-color-surface);
     font-weight: 700;
-    font-size: calc(var(--text-scale) * 1rem);
+    font-size: max(var(--text-floor), calc(var(--text-scale) * 0.75rem));
     text-decoration: none;
-    border-radius: 0 0 4px 0;
+    border-radius: 0 0 3px 0;
   }
 
   .skipLink:focus {
-    top: 8px;
-    left: 8px;
+    top: 6px;
+    left: 6px;
   }
 
   /* Screen-reader-only content — visually hidden but accessible to AT */
@@ -267,7 +274,7 @@
   /* ── Fixed header offset ──────────────────────────── */
 
   #main-content {
-    scroll-padding-top: calc(var(--header-height) + 16px);
+    scroll-padding-top: calc(var(--header-height) + 12px);
   }
 
   /* ── Print styles ────────────────────────────────── */

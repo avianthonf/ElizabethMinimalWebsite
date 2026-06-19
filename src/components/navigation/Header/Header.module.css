@@ -4,8 +4,8 @@
   width: 100%;
   grid-template-columns: minmax(180px, 1fr) minmax(160px, auto) auto auto;
   align-items: center;
-  gap: clamp(12px, 1.6vw, 22px);
-  padding: clamp(11px, 1.5vw, 22px) clamp(18px, 3.5vw, 48px);
+  gap: clamp(9px, 1.2vw, 16.5px);
+  padding: clamp(8.25px, 1.125vw, 16.5px) clamp(13.5px, 2.625vw, 36px);
   z-index: 20;
   pointer-events: none;
   transition:
@@ -63,7 +63,7 @@
   align-items: center;
   width: fit-content;
   min-width: max-content;
-  gap: clamp(8px, 1.2vw, 14px);
+  gap: clamp(6px, 0.9vw, 10.5px);
   color: currentColor;
   text-decoration: none;
   flex-shrink: 0;
@@ -71,7 +71,7 @@
 
 .brand span:last-child {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: calc(var(--text-scale) * clamp(1.45rem, 3vw, 3.35rem));
+  font-size: calc(var(--text-scale) * clamp(1.0875rem, 2.25vw, 2.5125rem));
   line-height: 1;
   letter-spacing: -0.05em;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
@@ -86,7 +86,7 @@
 
 .crest {
   display: block;
-  width: clamp(28px, 2.8vw, 44px);
+  width: clamp(21px, 2.1vw, 33px);
   aspect-ratio: 0.876;
   background-color: currentColor;
   mask-image: url(/logo.png);
@@ -98,7 +98,7 @@
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   border: 2px solid currentColor;
-  border-radius: 2px 2px 12px 12px;
+  border-radius: 1.5px 1.5px 9px 9px;
 }
 
 /* ── Nav Links ─────────────────────────────────────── */
@@ -106,7 +106,7 @@
 .navLinks {
   display: flex;
   justify-content: end;
-  gap: clamp(10px, 1.4vw, 20px);
+  gap: clamp(7.5px, 1.05vw, 15px);
 }
 
 /* ── Buttons ───────────────────────────────────────── */
@@ -118,12 +118,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4.5px;
 }
 
 .menuButton span:first-child {
   color: currentColor;
-  font-size: calc(var(--text-scale) * clamp(0.8rem, 1.05vw, 0.98rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.6rem, 0.7875vw, 0.735rem)));
   font-weight: 900;
   letter-spacing: 0.06em;
   text-decoration: none;
@@ -134,13 +134,13 @@
 .menuIcon {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .menuIcon span {
   display: block;
-  width: 22px;
-  height: 2px;
+  width: 16.5px;
+  height: 1.5px;
   background: currentColor;
   border-radius: 999px;
   transition:
