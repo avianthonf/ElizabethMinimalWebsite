@@ -22,7 +22,7 @@
 .card {
   position: relative;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 4.5px;
   cursor: pointer;
   background: var(--s-color-text);
   border: 2px solid rgba(255, 255, 255, 0.25);
@@ -85,13 +85,13 @@
    Standard = 1 row tall. Hero = 2 rows tall + gap between them. */
 
 .standard {
-  height: calc((100% - 48px) / 3);
+  height: calc((100% - 36px) / 3);
   aspect-ratio: 4 / 3;
   /* width auto-computed from height × (4/3) */
 }
 
 .hero {
-  height: calc((100% - 48px) * 2 / 3 + 24px);
+  height: calc((100% - 36px) * 2 / 3 + 18px);
   aspect-ratio: 4 / 3;
   /* width auto-computed: 2 rows worth of height × (4/3) */
   /* The hero naturally spans 2 standard rows + the gap between */
@@ -152,13 +152,13 @@
   right: 0;
   bottom: 0;
   z-index: 3;
-  padding: clamp(16px, 2vw, 28px);
+  padding: clamp(12px, 1.5vw, 21px);
   pointer-events: none;
 }
 
 .titleText {
   font-family: var(--font-serif);
-  font-size: calc(var(--text-scale) * clamp(0.9rem, 1.1vw, 1.25rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.675rem, 0.825vw, 0.9375rem)));
   font-weight: 600;
   color: #ffffff;
   letter-spacing: 0.02em;
@@ -167,24 +167,24 @@
 }
 
 .hero .titleText {
-  font-size: calc(var(--text-scale) * clamp(1.1rem, 1.4vw, 1.6rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.825rem, 1.05vw, 1.2rem)));
 }
 
 /* ── Pill (z-4) ───────────────────────────────────────── */
 
 .pillContainer {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 9px;
+  right: 9px;
   z-index: 4;
   pointer-events: none;
 }
 
 .pill {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 3px 7.5px;
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.65rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.4875rem));
   font-weight: 600;
   color: rgba(255, 255, 255, 0.92);
   background: rgba(23, 23, 23, 0.48);
@@ -203,7 +203,7 @@
 
 @media (max-width: 1100px) {
   .standard {
-    height: calc((100% - 24px) / 2);
+    height: calc((100% - 18px) / 2);
   }
 
   .hero {

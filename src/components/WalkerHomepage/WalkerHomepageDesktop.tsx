@@ -69,11 +69,11 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 2: "We Believe" Values ────────────────────────────── */}
         <HorizontalPage
-          width="clamp(960px, 78vw, 1200px)"
-          tabletWidth="min(1040px, 110vw)"
-          mobileWidth="max(760px, 180vw)"
-          smallMobileWidth="max(720px, 200vw)"
-          landscapeWidth="max(960px, 125vw)"
+          width="clamp(795px, 66vw, 1050px)"
+          tabletWidth="min(780px, 82.5vw)"
+          mobileWidth="max(570px, 135vw)"
+          smallMobileWidth="max(540px, 150vw)"
+          landscapeWidth="max(720px, 93.75vw)"
           headerTheme="dark"
           className={`${shared.panel} ${valuesPanelClass}`}
           ariaLabel="St. Elizabeth values — Faith, Excellence, Community"
@@ -83,10 +83,10 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 3: School Stats ───────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(900px, 73vw, 1150px)"
-          tabletWidth="min(1040px, 110vw)"
-          mobileWidth="max(760px, 180vw)"
-          smallMobileWidth="max(720px, 200vw)"
+          width="clamp(675px, 54.75vw, 862.5px)"
+          tabletWidth="min(780px, 82.5vw)"
+          mobileWidth="max(570px, 135vw)"
+          smallMobileWidth="max(540px, 150vw)"
           headerTheme="dark"
           className={`${shared.panel} ${statsPanelClass}`}
           ariaLabel="St. Elizabeth's High School — key statistics"
@@ -106,11 +106,11 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 5: Testimonials ───────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(900px, 73vw, 1150px)"
-          tabletWidth="min(900px, 110vw)"
-          mobileWidth="max(760px, 200vw)"
-          smallMobileWidth="max(720px, 220vw)"
-          landscapeWidth="max(1000px, 130vw)"
+          width="clamp(675px, 54.75vw, 862.5px)"
+          tabletWidth="min(675px, 82.5vw)"
+          mobileWidth="max(570px, 150vw)"
+          smallMobileWidth="max(540px, 165vw)"
+          landscapeWidth="max(750px, 97.5vw)"
           headerTheme="dark"
           className={`${shared.panel} ${testimonialsPanelClass}`}
           ariaLabel="Testimonials from students, alumni, and parents"
@@ -120,7 +120,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 6: CTA Banner ─────────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(900px, 73vw, 1200px)"
+          width="clamp(675px, 54.75vw, 900px)"
           headerTheme="light"
           className={ctaPanelClass}
           ariaLabel="Call to action — Join our community"
@@ -130,7 +130,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 7: Latest News ────────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(960px, 78vw, 1200px)"
+          width="clamp(720px, 58.5vw, 900px)"
           headerTheme="dark"
           className={newsPanelClass}
           ariaLabel="Latest news and events"

@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
+    "lucide-react": "^1.21.0",
     "next": "~16.2.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -50,6 +51,7 @@
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.7",
     "playwright": "^1.59.1",
+    "postcss-value-parser": "^4.2.0",
     "prettier": "^3.8.4",
     "sharp": "^0.35.1",
     "typescript": "^5",

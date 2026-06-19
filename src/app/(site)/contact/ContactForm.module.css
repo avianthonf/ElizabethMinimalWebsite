@@ -14,12 +14,12 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4.5px;
 }
 
 .label {
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.875rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.6563rem));
   font-weight: 600;
   color: var(--s-color-text);
 }
@@ -36,13 +36,13 @@
 .input,
 .textarea {
   width: 100%;
-  padding: 10px 14px;
+  padding: 7.5px 10.5px;
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.95rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.7125rem));
   color: var(--s-color-text);
   background: var(--s-color-surface);
   border: 1px solid var(--s-color-border);
-  border-radius: 6px;
+  border-radius: 4.5px;
   transition: border-color var(--transition-fast);
   box-sizing: border-box;
 }
@@ -56,12 +56,12 @@
 
 .textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 90px;
 }
 
 .error {
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.8rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.6rem));
   color: #dc2626;
 }
 
@@ -69,20 +69,20 @@
   padding: var(--spacing-md);
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
-  border-radius: 6px;
+  border-radius: 4.5px;
   color: #166534;
 }
 
 .submit {
   align-self: flex-start;
-  padding: 12px 32px;
+  padding: 9px 24px;
   font-family: var(--font-sans);
-  font-size: calc(var(--text-scale) * 0.95rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.7125rem));
   font-weight: 600;
   color: var(--s-color-surface);
   background: var(--s-color-primary);
   border: none;
-  border-radius: 6px;
+  border-radius: 4.5px;
   cursor: pointer;
   transition: background var(--transition-fast);
 }

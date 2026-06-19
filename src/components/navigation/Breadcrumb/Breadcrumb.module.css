@@ -1,6 +1,6 @@
 .breadcrumb {
   padding: var(--spacing-md) 0 0;
-  font-size: calc(var(--text-scale) * 0.85rem);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.6375rem));
   color: var(--s-color-text-muted);
 }
 

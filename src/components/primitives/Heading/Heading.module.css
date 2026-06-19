@@ -9,32 +9,32 @@
 /* ── Levels (base sizing) ─────────────────────────── */
 
 .h1 {
-  font-size: calc(var(--text-scale) * var(--heading-h1-size, clamp(3.92rem, 11.9vw, 9.8rem)));
+  font-size: calc(var(--text-scale) * var(--heading-h1-size, clamp(2.94rem, 8.925vw, 7.35rem)));
   line-height: 0.88;
 }
 
 .h2 {
-  font-size: calc(var(--text-scale) * var(--heading-h2-size, clamp(2.15rem, 7vw, 7.5rem)));
+  font-size: calc(var(--text-scale) * var(--heading-h2-size, clamp(1.6125rem, 5.25vw, 5.625rem)));
   line-height: 0.9;
 }
 
 .h3 {
-  font-size: calc(var(--text-scale) * var(--heading-h3-size, clamp(1rem, 1.4vw, 1.35rem)));
+  font-size: calc(var(--text-scale) * var(--heading-h3-size, clamp(0.75rem, 1.05vw, 1.0125rem)));
   line-height: 1.15;
 }
 
 .h4 {
-  font-size: calc(var(--text-scale) * var(--heading-h4-size, clamp(0.95rem, 1.3vw, 1.2rem)));
+  font-size: calc(var(--text-scale) * var(--heading-h4-size, clamp(0.7125rem, 0.975vw, 0.9rem)));
   line-height: 1.2;
 }
 
 .h5 {
-  font-size: calc(var(--text-scale) * var(--heading-h5-size, clamp(0.85rem, 1.1vw, 1rem)));
+  font-size: calc(var(--text-scale) * var(--heading-h5-size, clamp(0.6375rem, 0.825vw, 0.75rem)));
   line-height: 1.25;
 }
 
 .h6 {
-  font-size: calc(var(--text-scale) * var(--heading-h6-size, clamp(0.75rem, 0.95vw, 0.9rem)));
+  font-size: calc(var(--text-scale) * var(--heading-h6-size, clamp(0.5625rem, 0.7125vw, 0.675rem)));
   line-height: 1.3;
 }
 

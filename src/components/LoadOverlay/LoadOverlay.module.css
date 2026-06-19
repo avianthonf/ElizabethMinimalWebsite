@@ -23,15 +23,14 @@
   height: 100%;
   /* transform-origin set by JS via getExtentOfChar() — see LoadOverlay.tsx
      Zoom starts at 63 % (2.84 s) — 0.5 s beat of "WE BELIEVE" at full size. */
-  animation:
-    expandMaskOuter 1.4s cubic-bezier(0.25, 0.1, 0.0, 1.0) 2.84s forwards;
+  animation: expandMaskOuter 1.4s cubic-bezier(0.25, 0.1, 0, 1) 2.84s forwards;
   will-change: transform;
 }
 
 .maskText {
   fill: black;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: calc(var(--text-scale) * 28px * 0.7);
+  font-size: calc(var(--text-scale) * 21px * 0.7);
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -55,7 +54,7 @@
   width: 100%;
   text-align: center;
   font-family: var(--font-serif);
-  font-size: calc(var(--text-scale) * clamp(1.4rem, 3.5vw, 2.8rem));
+  font-size: calc(var(--text-scale) * clamp(1.05rem, 2.625vw, 2.1rem));
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -67,7 +66,7 @@
   width: 100%;
   text-align: center;
   font-family: var(--font-serif);
-  font-size: calc(var(--text-scale) * clamp(0.75rem, 1.8vw, 1.1rem));
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.5625rem, 1.35vw, 0.825rem)));
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -117,20 +116,19 @@
   }
 
   .maskStage {
-    animation:
-      expandMaskOuter 0.7s cubic-bezier(0.25, 0.1, 0.0, 1.0) 1.96s forwards;
+    animation: expandMaskOuter 0.7s cubic-bezier(0.25, 0.1, 0, 1) 1.96s forwards;
   }
 
   .heritageMotto {
-    font-size: calc(var(--text-scale) * clamp(1.1rem, 3.8vw, 2rem));
+    font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.825rem, 2.85vw, 1.5rem)));
   }
 
   .heritageYear {
-    font-size: calc(var(--text-scale) * clamp(0.65rem, 1.6vw, 0.9rem));
+    font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.4875rem, 1.2vw, 0.675rem)));
   }
 
   .maskText {
-    font-size: calc(var(--text-scale) * 22px * 0.7);
+    font-size: calc(var(--text-scale) * 16.5px * 0.7);
     letter-spacing: 0.025em;
   }
 }
