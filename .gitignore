@@ -19,3 +19,7 @@ graphify-out/
 .graphify_python
 .graphify_root
 .graphify_labels.json
+
+# Playwright transient output (screenshot baselines under e2e/screenshots/ ARE tracked)
+test-results/
+playwright-report/
