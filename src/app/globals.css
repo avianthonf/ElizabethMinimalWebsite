@@ -172,6 +172,14 @@
     /* Mobile radii */
     --radius-card: 6px;
     --radius-button: 4.5px;
+
+    /* ── Mobile panel layout tokens ──────────────── */
+    --mobile-panel-padding: 20px;
+    --mobile-card-gap: 16px;
+    --mobile-section-gap: 48px;
+    --mobile-carousel-height: clamp(280px, 65vh, 380px);
+    --mobile-stat-number-size: clamp(2rem, 8vw, 3rem);
+    --mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
 
