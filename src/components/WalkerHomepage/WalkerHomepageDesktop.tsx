@@ -69,11 +69,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 2: "We Believe" Values ────────────────────────────── */}
         <HorizontalPage
-          width="clamp(795px, 66vw, 1050px)"
-          tabletWidth="min(780px, 82.5vw)"
-          mobileWidth="max(570px, 135vw)"
-          smallMobileWidth="max(540px, 150vw)"
-          landscapeWidth="max(720px, 93.75vw)"
+          width="clamp(1600px, 115vw, 2400px)"
           headerTheme="dark"
           className={`${shared.panel} ${valuesPanelClass}`}
           ariaLabel="St. Elizabeth values — Faith, Excellence, Community"

@@ -207,24 +207,12 @@ export function ValuesPanel(): ReactNode {
       <AmbientBackground />
       <FloatingParticles />
 
-      {/* Header */}
-      <motion.header
-        className={styles.valuesHeader}
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: easings.silk }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div className={styles.brandDot} />
-          <span className={styles.headerLabel}>St. Elizabeth&apos;s</span>
-        </div>
-        <span className={styles.headerCounter}>Values — 01 / 03</span>
-      </motion.header>
+      {/* Text column — left */}
+      <div className={styles.text}>
+        <KineticTitle />
+      </div>
 
-      {/* Kinetic Title */}
-      <KineticTitle />
-
-      {/* Card row */}
+      {/* Card row — right */}
       <div className={styles.cardTrack}>
         {values.map((v, i) => {
           const imageKey = v.title.toLowerCase() as keyof typeof VALUES_IMAGES;
