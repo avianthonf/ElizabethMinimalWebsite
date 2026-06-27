@@ -1,10 +1,12 @@
-/* ── Panel 6: CTA Spotlight ──────────────────────────────────────────── */
+/* ── Panel 6: CTA Spotlight — horizontal row layout ──────────────────── */
 
 .ctaPanel {
   position: relative;
-  display: grid;
-  height: 100%;
-  place-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+  padding: clamp(21px, 3.75vw, 54px);
   background:
     radial-gradient(
       ellipse 800px 600px at center,
@@ -15,28 +17,19 @@
     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   background-blend-mode: overlay;
   overflow: hidden;
-  padding: clamp(21px, 3.75vw, 54px);
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
 }
 
-/* School crest watermark */
-.ctaCrest {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(225px, 30vw, 450px);
-  height: clamp(225px, 30vw, 450px);
-  opacity: 0.03;
-  pointer-events: none;
-  z-index: 0;
-}
+/* ── Text column — left ────────────────────────────────────────────────── */
 
-.ctaContent {
+.ctaText {
+  flex: 0 0 60%;
+  min-width: 300px;
   position: relative;
   z-index: 2;
-  text-align: center;
-  max-width: var(--description-max-width);
-  margin: 0 auto;
+  text-align: left;
 }
 
 .ctaEyebrow {
@@ -65,10 +58,29 @@
   margin-bottom: 1.875rem;
 }
 
+/* ── Visual column — right: crest watermark ────────────────────────────── */
+
+.ctaVisual {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ctaCrest {
+  width: clamp(180px, 20vw, 360px);
+  height: clamp(180px, 20vw, 360px);
+  opacity: 0.08;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+
 .ctaButtons {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -151,7 +163,47 @@
   transform: translateY(0);
 }
 
+/* ── Responsive ───────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .ctaText {
+    flex: 0 0 55%;
+    min-width: 260px;
+  }
+
+  .ctaVisual {
+    flex: 0 0 45%;
+  }
+}
+
 @media (max-width: 760px) {
+  .ctaPanel {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    padding: calc(var(--header-height) + var(--spacing-xl)) var(--padding-page) var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+
+  .ctaText {
+    flex: 0 0 auto;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .ctaVisual {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .ctaCrest {
+    width: clamp(120px, 30vw, 200px);
+    height: clamp(120px, 30vw, 200px);
+    opacity: 0.06;
+  }
+
   .ctaButtons {
     flex-direction: column;
     width: 100%;
@@ -161,6 +213,13 @@
     width: 100%;
     text-align: center;
     min-height: var(--touch-target-min);
+  }
+}
+
+@media (max-width: 420px) {
+  .ctaPanel {
+    padding: var(--spacing-lg) var(--padding-page);
+    gap: var(--spacing-md);
   }
 }
 

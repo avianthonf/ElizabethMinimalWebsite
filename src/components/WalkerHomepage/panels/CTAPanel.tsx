@@ -12,22 +12,8 @@ export const ctaPanelClass = `${shared.panel} ${styles.ctaPanel}`;
 export function CTAPanel(): ReactNode {
   return (
     <>
-      {/* School crest watermark */}
-      <div className={styles.ctaCrest} aria-hidden="true">
-        <svg
-          viewBox="0 0 100 114"
-          width="100%"
-          height="100%"
-          fill="white"
-          opacity="1"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Simplified school crest silhouette for watermark */}
-          <path d="M50 2 L2 30 V84 L50 112 L98 84 V30 Z" fill="white" />
-        </svg>
-      </div>
-
-      <div className={styles.ctaContent}>
+      {/* Text column — left */}
+      <div className={styles.ctaText}>
         <p className={styles.ctaEyebrow}>{CTA_CONTENT.eyebrow}</p>
         <h2 className={styles.ctaHeading}>{CTA_CONTENT.heading}</h2>
         <p className={styles.ctaDescription}>{CTA_CONTENT.description}</p>
@@ -44,6 +30,22 @@ export function CTAPanel(): ReactNode {
           >
             {CTA_CONTENT.secondaryCTA.text}
           </a>
+        </div>
+      </div>
+
+      {/* Crest watermark — right column */}
+      <div className={styles.ctaVisual} aria-hidden="true">
+        <div className={styles.ctaCrest}>
+          <svg
+            viewBox="0 0 100 114"
+            width="100%"
+            height="100%"
+            fill="white"
+            opacity="1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M50 2 L2 30 V84 L50 112 L98 84 V30 Z" fill="white" />
+          </svg>
         </div>
       </div>
     </>
