@@ -1,459 +1,535 @@
-# Horizontal Redesign — Math-Validated Specification v2
+# Dynamic Layout Specification v3
 
-> **Status:** All values below are computed and verified for 1440px and 1920px screens. Minimums work at baseline 1100px with flexible card widths.
+> **Status:** Living document. Governs all layout behavior across Desktop (≥1100px), Tablet (760–1099px), and Mobile (<760px).
 
 ---
 
-## 🔴 Root Cause Analysis: Why Every Panel Is Broken
+## Design Philosophy
 
-### Problem 1: Panels Are Too Narrow
+### The Core Insight
 
-On a 1440px screen, as measured via `node`:
+HTML is inherently fluid. A page with only HTML and no CSS reflows text to fit any viewport. CSS constrains this natural behavior. **Responsive design is about restoring fluidity, not adding it.**
 
-- **ValuesPanel** (1320px): 3 cards need 932px, only 687px available → **245px clipped** by `overflow: hidden`
-- **StatsPanel** (788px): 3 cards need 816px, only 680px available → **136px overflow → wraps**
-- **TestimonialsPanel** (788px): need 948px → **268px overflow → wraps**
-- **NewsPanel** (843px): need 1068px → **333px overflow → wraps**
+This site has TWO fundamentally different interaction paradigms — not one layout that shrinks:
 
-### Problem 2: Hidden Vertical Splits
+| Tier        | Viewport   | Interaction Model                                     | Layout System                         |
+| ----------- | ---------- | ----------------------------------------------------- | ------------------------------------- |
+| **Desktop** | ≥1100px    | Horizontal scroll carousel — panels scroll left/right | `HorizontalScroll` + `HorizontalPage` |
+| **Tablet**  | 760–1099px | Vertical stack — panels scroll up/down, wider cards   | `WalkerHomepageVertical`              |
+| **Mobile**  | <760px     | Vertical stack — swipeable carousels, touch-optimized | `WalkerHomepageVertical`              |
 
-Every panel has a vertical split — a header/bar sitting **ABOVE** the body:
+Desktop and mobile are **not the same layout at different sizes**. They are different interaction paradigms that share the same content.
 
+### Three Laws of Dynamic Layout
+
+**Law 1: Content dictates the breakpoint.**
+Breakpoints exist where _content_ starts to look wrong — not where a specific device ends. Devices change; content proportions don't.
+
+**Law 2: Fluid over fixed.**
+Use `clamp()`, `fr` units, and `%` widths. Never use fixed `px` widths for layout containers. Fluid values eliminate the "uncanny valley" between breakpoints.
+
+**Law 3: Progressive enhancement.**
+Base CSS works everywhere. Enhancements (animations, scroll-snap, container queries) layer on via `@supports` and `@media`. The accessible version is the default.
+
+---
+
+## Viewport Meta
+
+```typescript
+// layout.tsx
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover", // Enables env(safe-area-inset-*) for notched phones
+};
 ```
-.valuesPanel (flex-direction: COLUMN ← HIDDEN VERTICAL SPLIT)
-  ├── .valuesHeader           ← ABOVE
-  └── .body                   ← BELOW
-```
-
-This violates the core requirement: **nothing above or below anything else**.
-
-### Problem 3: Fixed Card Widths Don't Scale
-
-Cards use fixed `width` values that don't shrink when the panel is at its minimum. Solution: all visual elements use `flex-grow` with `min-width`/`max-width` ranges.
 
 ---
 
-## The Design Philosophy (4 Laws, Revised)
+## Design Token System
 
-### Law 1: ONE Row Per Panel — No Exceptions
-
-Every panel's root container uses `flex-direction: row`. The entire content is a single horizontal line. No headers, no footers, no stacked elements. NOTHING above or below.
-
-### Law 2: Text Left, Content Right
-
-Left column: text (eyebrow, heading, description). Right column: visual elements (cards, gallery, buttons). Text takes 25-30% of content width. Content takes the rest.
-
-### Law 3: Element Widths Are Flexible
-
-Every card/visual element uses `flex: 1 1 0; min-width: X; max-width: Y;` so they scale gracefully with the panel width. No fixed `width` values.
-
-### Law 4: Math-Validated Panel Widths
-
-Panel widths computed to guarantee every element fits at all viewports. Minimum panel widths ensure no overflow.
-
----
-
-## Math-Validated Panel Specifications
-
-### Panel 1: HeroPanel — NO CHANGES
-
-- Width: `100vw` (screen)
-- Layout: Full-bleed video background with text overlay at bottom
-- Justification: The hero is a cinematic intro. Full-bleed video is correct here.
-
----
-
-### Panel 2: ValuesPanel — HEAVY REFACTOR
-
-**Problem:** `.valuesHeader` sits ABOVE `.body` (vertical split). Cards overflow by 245px.
-
-**Fix:**
-
-1. ELIMINATE `.valuesHeader` entirely. The header is a vertical split. Merge the counter info or drop it.
-2. Panel width: `clamp(1600px, 115vw, 2400px)` ← math validated
-3. Cards become flexible: `flex: 1 1 0; min-width: 260px; max-width: 380px;`
-4. Gap between text/cards: `clamp(36px, 6vw, 96px)`
-
-**Verified at 1440px:**
-
-- Panel: 1656px → content: 1548px → text (28%): 433px → gap: 86px → cards avail: 1029px
-- 3 cards need: 932px → **✓ FITS with 97px buffer**
-
-**CSS structure (ValuesPanel.module.css):**
+### Existing Tokens (DO NOT CHANGE)
 
 ```css
-.valuesPanel {
-  display: flex;
-  flex-direction: row; /* ← WAS column */
-  align-items: center;
-  gap: clamp(36px, 6vw, 96px);
-  padding: clamp(21px, 3.75vw, 54px);
-  height: 100vh;
-  background: #faf8f5;
-  overflow: hidden;
-}
+:root {
+  /* Primitives */
+  --p-color-*;          /* Raw colors */
+  --s-color-*;          /* Semantic: primary, accent, surface, text, border */
 
-.text {
-  flex: 0 0 28%;
-  min-width: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+  /* Typography */
+  --font-serif;
+  --font-sans;
+  --text-scale: 0.85;   /* Global reduction factor */
+  --text-floor: 0.75rem; /* Minimum readable size */
 
-.cardTrack {
-  flex: 1 1 auto;
-  display: flex;
-  gap: clamp(21px, 3vw, 42px);
-  align-items: center;
-  justify-content: center;
-}
+  /* Spacing */
+  --spacing-sm: clamp(6px, 0.9vw, 9px);
+  --spacing-md: clamp(12px, 1.8vw, 18px);
+  --spacing-lg: clamp(18px, 2.7vw, 27px);
+  --spacing-xl: clamp(24px, 3.6vw, 36px);
 
-.valueCard {
-  flex: 1 1 0;
-  min-width: 260px;
-  max-width: 380px;
-  aspect-ratio: 3 / 4;
+  /* Shadows */
+  --shadow-card-rest;
+  --shadow-card-hover;
+  --shadow-elevated;
 }
 ```
 
-**TSX changes (ValuesPanel.tsx):**
-
-- Remove `<motion.header className={styles.valuesHeader}>` wrapper
-- Make `.valuesPanel` the root container with `flex-direction: row`
-- Text become left column, cardTrack becomes right column
-
----
-
-### Panel 3: StatsPanel — FULL REWRITE
-
-**Problem:** `flex-direction: column` — stats intro ABOVE stats cards. Panel too narrow.
-
-**Fix:**
-
-1. Panel width: `clamp(1200px, 95vw, 1800px)` ← math validated
-2. Single row: text left (25%), cards right (75%)
-3. Cards flexible: `flex: 1 1 0; min-width: 200px; max-width: 280px;`
-
-**Verified at 1440px:**
-
-- Panel: 1368px → content: 1260px → text (25%): 315px → gap: 72px → cards avail: 873px
-- 3 cards need: 756px → **✓ FITS with 117px buffer**
-
-**CSS structure (StatsPanel.module.css):**
+### Mobile Tokens (≤760px)
 
 ```css
-.statsPanel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(36px, 5vw, 80px);
-  padding: clamp(21px, 3.75vw, 54px);
-  height: 100vh;
-  background: var(--s-color-surface);
-}
-
-.statsIntro {
-  flex: 0 0 25%;
-  min-width: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.statsCards {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: row;
-  gap: clamp(18px, 3vw, 36px);
-  align-items: stretch;
-}
-
-.statsCard {
-  flex: 1 1 0;
-  min-width: 200px;
-  max-width: 280px;
+@media (max-width: 760px) {
+  :root {
+    --mobile-panel-padding: 20px;
+    --mobile-card-gap: 16px;
+    --mobile-section-gap: 48px;
+    --mobile-carousel-height: clamp(280px, 65vh, 380px);
+    --mobile-stat-number-size: clamp(2rem, 8vw, 3rem);
+    --mobile-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --touch-target-min: 44px;
+  }
 }
 ```
 
-**TSX changes (StatsPanel.tsx):**
+### Fluid Typography
 
-- Restructure: remove `Container`, `Stack`, etc. Make `.statsPanel` a single flex row
-- StatsIntro becomes left column, statsCards becomes right column
+All heading sizes use `clamp()` for continuous scaling across viewports:
+
+| Element         | Desktop                           | Mobile                                | Token                    |
+| --------------- | --------------------------------- | ------------------------------------- | ------------------------ |
+| Hero heading    | `clamp(3.15rem, 7.5vw, 7.875rem)` | `clamp(1.875rem, 9vw, 3rem)`          | `--type-hero-heading`    |
+| Section heading | `clamp(1.5rem, 3vw, 2.25rem)`     | `clamp(1.125rem, 3vw, 1.5rem)`        | `--type-section-heading` |
+| Card heading    | `clamp(1.05rem, 2.25vw, 1.35rem)` | `clamp(0.7969rem, 2.25vw, 0.9375rem)` | `--type-card-heading`    |
+| Body            | `clamp(0.75rem, 1.5vw, 1.125rem)` | `clamp(0.7031rem, 1.875vw, 0.75rem)`  | `--type-body`            |
 
 ---
 
-### Panel 4: GalleryPanel — FULL REWRITE
+## Mobile Design Principles
 
-**Problem:** Header ABOVE masonry grid. Column-wrap creates vertical stacking.
+### Touch-First Interaction
 
-**Fix:**
+| Principle                            | Implementation                                                      | Rationale                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **44px minimum targets**             | `min-height: var(--touch-target-min)` on all interactive elements   | WCAG 2.5.8 AA: dexterity limitations + touchscreen imprecision             |
+| **Safe area padding**                | `env(safe-area-inset-bottom)` on every panel's bottom padding       | Notched phones hide content behind system UI                               |
+| **Dynamic viewport**                 | `min-height: 100dvh` instead of `100vh`                             | `100vh` includes area behind browser chrome; `dvh` tracks visible viewport |
+| **Swipe carousels**                  | `scroll-snap-type: x mandatory` on card containers                  | Native touch swipe + momentum + snap at compositor level (60fps)           |
+| **No horizontal scroll for content** | Card tracks stay horizontal (carousel); all other flex-row → column | Users expect vertical scrolling for content flow                           |
 
-1. Panel width: `clamp(1800px, 180vw, 5000px)` ← math validated, very wide for gallery
-2. Single row: sidebar left (18%), gallery grid right (82%)
-3. Gallery grid: horizontal scrolling row. Cards: fixed height, aspect-ratio 4:3
-4. Sidebar contains: header text + filter pills
+### Scroll-Snap Carousel Pattern
 
-**Verified at 1440px:**
-
-- Panel: 2592px → content: 2484px → sidebar (18%): 447px → gap: 86px → cards avail: 1951px
-- Each card at 4:3 aspect, 100% height: ~180-220px wide → fits 8-10 cards visible before scrolling
-
-**CSS structure (GalleryPanel.module.css):**
+Every panel with multiple cards uses this pattern on mobile:
 
 ```css
-.galleryPanel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(36px, 6vw, 96px);
-  padding: clamp(21px, 3.75vw, 54px);
-  height: 100vh;
-  overflow-x: visible;
-  background: radial-gradient(...) /* keep dark theme */;
-}
+@media (max-width: 760px) {
+  .cardTrack {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--mobile-card-gap, 16px);
+    padding: 0 var(--mobile-panel-padding, 20px);
+    scrollbar-width: none; /* Hide scrollbar, keep scrollable */
+  }
 
-.gallerySidebar {
-  flex: 0 0 18%;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(12px, 2vw, 24px);
+  .cardTrack > * {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
 }
+```
 
+**Why scroll-snap, not JavaScript carousels:**
+
+- Zero JS dependency → no bundle cost, no hydration delay
+- Operates at compositor level → 60fps guaranteed
+- Native touch momentum → feels like system UI
+- `scroll-snap-type: mandatory` ensures clean stops between cards
+
+### Mobile Panel Height Pattern
+
+Every panel on mobile uses:
+
+```css
+@media (max-width: 760px) {
+  .panel {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh; /* Modern browsers */
+    max-height: none;
+    padding-bottom: calc(var(--spacing-lg) + env(safe-area-inset-bottom, 0px));
+  }
+}
+```
+
+**Why `dvh`:** On iOS/Android, the address bar retracts on scroll. `100vh` is the _large_ viewport (address bar hidden) — too tall initially. `100dvh` tracks the _dynamic_ viewport, matching what the user actually sees.
+
+---
+
+## Desktop Design Principles
+
+### Horizontal Scroll Carousel
+
+Desktop uses a continuous horizontal scroll where panels flow left-to-right:
+
+```
+┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+│   Hero   │  Values  │  Stats   │ Gallery  │ Testim.  │   CTA    │   News   │
+│  100vw   │  115vw   │  95vw    │  180vw   │  110vw   │  80vw    │  110vw   │
+└──────────┴──────────┴──────────┴──────────┴──────────┴──────────┴──────────┘
+← ─ ─ ─ ─ ─ ─ ─ ─ ─ horizontal scroll ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ →
+```
+
+**Implementation:** `HorizontalScroll` component uses `requestAnimationFrame` to translate horizontal scroll position into `translateX` on a fixed-width container.
+
+### Desktop Panel Layout
+
+Every content panel (panels 2–7) follows the same pattern:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PANEL (flex-direction: row)                │
+│  ┌──────────────┐   ┌────────────────────────────────────┐  │
+│  │  Text Column  │   │         Card Track                  │  │
+│  │  (25-30%)     │   │  ┌──────┐  ┌──────┐  ┌──────┐     │  │
+│  │               │   │  │ Card │  │ Card │  │ Card │     │  │
+│  │  - Eyebrow    │   │  └──────┘  └──────┘  └──────┘     │  │
+│  │  - Heading    │   │                                    │  │
+│  │  - Description│   │  flex: 1 1 0; min-width; max-width │  │
+│  └──────────────┘   └────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key constraints:**
+
+- Text column: `flex: 0 0 25-30%; min-width: 260-320px`
+- Card track: `flex: 1 1 auto; display: flex; flex-direction: row; flex-wrap: nowrap`
+- Cards: `flex: 1 1 0; min-width: X; max-width: Y` — never fixed `width`
+- Gap: `clamp(36px, 5vw, 96px)` — scales with viewport
+
+---
+
+## Panel Specifications
+
+### Panel 1: HeroPanel
+
+| Tier        | Layout                                                                          | Key Behavior                                   |
+| ----------- | ------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **Desktop** | Full-bleed video, 2-col grid overlay (statement left, heading right)            | Parallax on scroll, video seek at 2.7s         |
+| **Tablet**  | Full-bleed video, single-col overlay at bottom                                  | Same video, adjusted text sizes                |
+| **Mobile**  | Full-bleed video fills `100dvh`, text anchored at bottom with safe-area padding | Video seek at 1.0s (faster start), no parallax |
+
+**Desktop CSS:**
+
+```css
+.heroOverlay {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.48fr) minmax(420px, 0.72fr);
+  align-items: end;
+}
+```
+
+**Mobile CSS:**
+
+```css
+@media (max-width: 760px) {
+  .heroPanel {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .heroOverlay {
+    grid-template-columns: 1fr;
+    padding-bottom: calc(var(--spacing-xl) + env(safe-area-inset-bottom, 0px));
+  }
+}
+```
+
+---
+
+### Panel 2: ValuesPanel
+
+| Tier        | Layout                                                      | Key Behavior                                         |
+| ----------- | ----------------------------------------------------------- | ---------------------------------------------------- |
+| **Desktop** | Row: text (28%) + 3 cards in horizontal track               | 3D tilt cards, parallax particles, aurora background |
+| **Tablet**  | Column: text centered + cards in wider carousel             | Same cards, swipeable                                |
+| **Mobile**  | Column: text centered + swipeable carousel (80% card width) | Cards at 80% width, scroll-snap, dot pagination      |
+
+**Desktop width:** `clamp(1600px, 115vw, 2400px)`
+**Math at 1440px:** Panel 1656px → text 433px → gap 86px → cards 1029px → 3 cards need 932px ✓
+
+**Mobile card carousel:**
+
+```css
+@media (max-width: 760px) {
+  .cardTrack {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .valueCard {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+  }
+}
+```
+
+---
+
+### Panel 3: StatsPanel
+
+| Tier        | Layout                                                  | Key Behavior             |
+| ----------- | ------------------------------------------------------- | ------------------------ |
+| **Desktop** | Row: intro (25%) + 3 stat cards                         | Animated counters, icons |
+| **Tablet**  | Column: intro centered + cards in carousel              | Swipeable cards          |
+| **Mobile**  | Column: intro centered + swipeable carousel (80% width) | Number-first emphasis    |
+
+**Desktop width:** `clamp(1200px, 95vw, 1800px)`
+**Math at 1440px:** Panel 1368px → text 315px → gap 72px → cards 873px → 3 cards need 756px ✓
+
+**Mobile stat number emphasis:**
+
+```css
+@media (max-width: 760px) {
+  .statValue {
+    font-size: var(--mobile-stat-number-size, clamp(2rem, 8vw, 3rem));
+  }
+}
+```
+
+---
+
+### Panel 4: GalleryPanel
+
+| Tier        | Layout                                                  | Key Behavior                           |
+| ----------- | ------------------------------------------------------- | -------------------------------------- |
+| **Desktop** | Row: sidebar (18%) + horizontal scroll of gallery cards | Lightbox, filter pills, scroll-reveal  |
+| **Tablet**  | Column: sidebar + 2-col grid of cards                   | Filter pills scroll horizontally       |
+| **Mobile**  | Column: sidebar + denser 2-col grid                     | Filter pills swipeable, cards at 2-col |
+
+**Desktop width:** `clamp(1800px, 180vw, 5000px)` — widest panel for gallery browsing
+
+**Desktop gallery scroll:**
+
+```css
 .galleryGrid {
   flex: 1 1 auto;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: clamp(12px, 2vw, 24px);
   overflow-x: auto;
-  overflow-y: hidden;
-  height: 100%;
-  align-items: center;
-}
-```
-
-**GalleryCard.module.css changes:**
-
-- Remove column-wrap height calculations (standard/hero)
-- All cards: `height: calc(100% - 8px); aspect-ratio: 4/3; flex: 0 0 auto;`
-
-**TSX changes (GalleryPanel.tsx):**
-
-- Restructure to sidebar + grid as siblings in one flex row
-
----
-
-### Panel 5: TestimonialsPanel — FULL REWRITE
-
-**Problem:** Header ABOVE 3 testimonial cards in grid. Panel too narrow.
-
-**Fix:**
-
-1. Panel width: `clamp(1400px, 110vw, 2200px)` ← math validated
-2. Single row: text left (30%), cards right (70%)
-3. Cards flexible: `flex: 1 1 0; min-width: 240px; max-width: 380px;`
-
-**Verified at 1440px:**
-
-- Panel: 1584px → content: 1476px → text (30%): 443px → gap: 72px → cards avail: 961px
-- 3 cards need: 948px → **✓ FITS with 13px buffer**
-
-**CSS structure (TestimonialsPanel.module.css):**
-
-```css
-.testimonialsPanel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(36px, 5vw, 80px);
-  padding: clamp(21px, 3.75vw, 54px);
-  height: 100vh;
-  background: var(--s-color-surface);
-}
-
-.sidebar {
-  flex: 0 0 30%;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.cardsRow {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: row;
-  gap: clamp(18px, 3vw, 36px);
-  align-items: stretch;
-}
-
-/* Cards are flex items, TestimonialCard component gets className */
-.cardsRow > * {
-  flex: 1 1 0;
-  min-width: 240px;
-  max-width: 380px;
-}
-```
-
----
-
-### Panel 6: CTAPanel — FULL REWRITE
-
-**Problem:** Single centered column. No horizontal split.
-
-**Fix:**
-
-1. Panel width: `clamp(900px, 80vw, 1400px)` ← math validated
-2. Single row: text left (45%), buttons right (55%)
-3. Buttons stacked vertically in right column, centered
-
-**Verified at 1440px:**
-
-- Panel: 1152px → content: 1044px → text (45%): 470px → gap: 58px → buttons avail: 516px
-- **✓ FITS with generous space**
-
-**CSS structure (CTAPanel.module.css):**
-
-```css
-.ctaPanel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(36px, 5vw, 80px);
-  padding: clamp(21px, 3.75vw, 54px);
-  height: 100vh;
-}
-
-.ctaText {
-  flex: 0 0 45%;
-  min-width: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.ctaActions {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: clamp(12px, 2vw, 24px);
 }
 ```
 
----
-
-### Panel 7: NewsPanel — FULL REWRITE
-
-**Problem:** Header ABOVE 3 news cards in grid. Panel too narrow.
-
-**Fix:**
-
-1. Panel width: `clamp(1400px, 110vw, 2200px)` ← math validated
-2. Single row: sidebar left (28%) with header + CTA link, cards right (72%)
-3. Cards flexible: `flex: 1 1 0; min-width: 240px; max-width: 360px;`
-
-**Verified at 1440px:**
-
-- Panel: 1584px → content: 1476px → sidebar (28%): 413px → gap: 72px → cards avail: 991px
-- 3 cards need: 948px → **✓ FITS with 43px buffer**
-
-**CSS structure (NewsPanel.module.css):**
+**Mobile grid:**
 
 ```css
-.newsPanel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(36px, 5vw, 80px);
-  padding: clamp(21px, 3.75vw, 54px);
-  height: 100vh;
-  background: var(--s-color-surface);
-}
-
-.sidebar {
-  flex: 0 0 28%;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(18px, 3vw, 36px);
-}
-
-.cardsRow {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: row;
-  gap: clamp(18px, 3vw, 36px);
-  align-items: stretch;
-}
-
-.cardsRow > * {
-  flex: 1 1 0;
-  min-width: 240px;
-  max-width: 360px;
+@media (max-width: 760px) {
+  .verticalGalleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
 }
 ```
 
----
-
-## Orchestrator Changes (WalkerHomepageDesktop.tsx)
-
-| Panel             | Current Width                    | New Width                      |
-| ----------------- | -------------------------------- | ------------------------------ |
-| HeroPanel         | `100vw` screen                   | `100vw` screen — unchanged     |
-| ValuesPanel       | `clamp(1320px, 90vw, 1600px)`    | `clamp(1600px, 115vw, 2400px)` |
-| StatsPanel        | `clamp(675px, 54.75vw, 862.5px)` | `clamp(1200px, 95vw, 1800px)`  |
-| GalleryPanel      | `auto`                           | `clamp(1800px, 180vw, 5000px)` |
-| TestimonialsPanel | `clamp(675px, 54.75vw, 862.5px)` | `clamp(1400px, 110vw, 2200px)` |
-| CTAPanel          | `clamp(675px, 54.75vw, 900px)`   | `clamp(900px, 80vw, 1400px)`   |
-| NewsPanel         | `clamp(720px, 58.5vw, 900px)`    | `clamp(1400px, 110vw, 2200px)` |
-
-Remove all `tabletWidth`, `mobileWidth`, `smallMobileWidth`, `landscapeWidth` override props from panels 2-7.
+**Note:** GalleryPanel uses **class-swapping** (not media queries). The orchestrator renders `.galleryPanel` on desktop and `.verticalGalleryPanel` on mobile — different CSS classes for different layouts.
 
 ---
 
-## File Change Order (Execution Loop)
+### Panel 5: TestimonialsPanel
 
-| Step | File                           | Type                                               |
-| ---- | ------------------------------ | -------------------------------------------------- |
-| 1    | `WalkerHomepageDesktop.tsx`    | Width update                                       |
-| 2    | `ValuesPanel.module.css`       | Refactor (header elimination + row layout)         |
-| 3    | `ValuesPanel.tsx`              | Refactor (remove header, restructure)              |
-| 4    | `StatsPanel.module.css`        | Full rewrite                                       |
-| 5    | `StatsPanel.tsx`               | Full rewrite                                       |
-| 6    | `GalleryPanel.module.css`      | Full rewrite                                       |
-| 7    | `GalleryPanel.tsx`             | Full rewrite                                       |
-| 8    | `GalleryCard.module.css`       | Remove column-wrap, add horizontal row card sizing |
-| 9    | `TestimonialsPanel.module.css` | Full rewrite                                       |
-| 10   | `TestimonialsPanel.tsx`        | Full rewrite                                       |
-| 11   | `CTAPanel.module.css`          | Full rewrite                                       |
-| 12   | `CTAPanel.tsx`                 | Full rewrite                                       |
-| 13   | `NewsPanel.module.css`         | Full rewrite                                       |
-| 14   | `NewsPanel.tsx`                | Full rewrite                                       |
+| Tier        | Layout                                           | Key Behavior                |
+| ----------- | ------------------------------------------------ | --------------------------- |
+| **Desktop** | Row: sidebar (30%) + 3 testimonial cards         | Quote emphasis, role badges |
+| **Tablet**  | Column: sidebar + cards in carousel              | Swipeable                   |
+| **Mobile**  | Column: sidebar + swipeable carousel (85% width) | Full-width quote emphasis   |
 
-Each step: Edit → lint → format:check → test → typecheck → repeat until clean.
+**Desktop width:** `clamp(1400px, 110vw, 2200px)`
+**Math at 1440px:** Panel 1584px → text 443px → gap 72px → cards 961px → 3 cards need 948px ✓
+
+---
+
+### Panel 6: CTAPanel
+
+| Tier        | Layout                                                | Key Behavior                            |
+| ----------- | ----------------------------------------------------- | --------------------------------------- |
+| **Desktop** | Row: text (45%) + crest watermark (55%) + buttons     | Dark background, dual CTA               |
+| **Tablet**  | Column: text + crest + buttons stacked                | Buttons full-width                      |
+| **Mobile**  | Column: text centered + crest + sticky bottom buttons | Buttons sticky at bottom with safe-area |
+
+**Desktop width:** `clamp(900px, 80vw, 1400px)`
+
+**Mobile sticky CTA:**
+
+```css
+@media (max-width: 760px) {
+  .ctaButtons {
+    position: sticky;
+    bottom: env(safe-area-inset-bottom, 0px);
+    background: linear-gradient(to top, var(--bg-dark-gradient-end) 60%, transparent);
+    flex-direction: column;
+    width: 100%;
+  }
+}
+```
+
+**Why sticky CTA:** On mobile, the primary conversion action (Apply Now, Contact Us) should always be accessible without scrolling. Sticky bottom placement follows the thumb zone pattern.
+
+---
+
+### Panel 7: NewsPanel
+
+| Tier        | Layout                                           | Key Behavior                   |
+| ----------- | ------------------------------------------------ | ------------------------------ |
+| **Desktop** | Row: sidebar (28%) + 3 news cards                | Image cards with hover effects |
+| **Tablet**  | Column: sidebar + cards in carousel              | Swipeable                      |
+| **Mobile**  | Column: sidebar + swipeable carousel (85% width) | Compact cards, relative dates  |
+
+**Desktop width:** `clamp(1400px, 110vw, 2200px)`
+**Math at 1440px:** Panel 1584px → text 413px → gap 72px → cards 991px → 3 cards need 948px ✓
+
+---
+
+## Orchestrator Architecture
+
+### WalkerHomepageDesktop (≥1100px)
+
+```
+HorizontalScroll (sticky viewport, overflow hidden)
+  └── HorizontalPage (flex container, width = sum of all panels)
+        ├── HeroPanel          (width: 100vw)
+        ├── HorizontalPage     (width: clamp(1600px, 115vw, 2400px))
+        │   └── ValuesPanel
+        ├── HorizontalPage     (width: clamp(1200px, 95vw, 1800px))
+        │   └── StatsPanel
+        ├── HorizontalPage     (width: clamp(1800px, 180vw, 5000px))
+        │   └── GalleryPanel
+        ├── HorizontalPage     (width: clamp(1400px, 110vw, 2200px))
+        │   └── TestimonialsPanel
+        ├── HorizontalPage     (width: clamp(900px, 80vw, 1400px))
+        │   └── CTAPanel
+        └── HorizontalPage     (width: clamp(1400px, 110vw, 2200px))
+            └── NewsPanel
+```
+
+### WalkerHomepageVertical (<1100px)
+
+```
+<main>
+  ├── HeroPanel              (section, 100dvh)
+  ├── ValuesPanel            (section, scroll-snap carousel)
+  ├── StatsPanel             (section, scroll-snap carousel)
+  ├── GalleryPanel           (section, 2-col grid)
+  ├── TestimonialsPanel      (section, scroll-snap carousel)
+  ├── CTAPanel               (section, sticky bottom CTA)
+  └── NewsPanel              (section, scroll-snap carousel)
+```
+
+**Key difference:** `WalkerHomepageVertical` does NOT use `HorizontalPage` or `HorizontalScroll`. Each panel is a plain `<section>` with `shared.panel` class. Panel-specific CSS overrides handle the mobile layout.
+
+---
+
+## Component Behavior by Tier
+
+### Card Components
+
+| Component           | Desktop                                  | Mobile                               |
+| ------------------- | ---------------------------------------- | ------------------------------------ |
+| **ValueCard**       | 3D tilt, parallax, fixed aspect ratio    | Scroll-snap carousel item, 80% width |
+| **GalleryCard**     | Horizontal scroll item, 4:3 aspect       | 2-col grid item, 4:3 aspect          |
+| **TestimonialCard** | Flex column (quote + footer), role badge | Same structure, 85% carousel width   |
+| **ImageCard**       | Flex column (image + text), hover lift   | Same structure, carousel item        |
+| **IconCard**        | Flex column (icon + text)                | Same structure, carousel item        |
+
+### Filter Components
+
+| Component         | Desktop                                | Mobile                                   |
+| ----------------- | -------------------------------------- | ---------------------------------------- |
+| **GalleryFilter** | Horizontal pill bar, flex-wrap: nowrap | Horizontal scroll strip with scroll-snap |
+
+### Navigation
+
+| Component  | Desktop                              | Mobile                |
+| ---------- | ------------------------------------ | --------------------- |
+| **Header** | Fixed, transparent → solid on scroll | Fixed, hamburger menu |
+| **Footer** | Multi-column grid                    | Stacked single column |
 
 ---
 
 ## Verification Checklist
 
-After all changes:
+### Desktop (≥1100px)
 
-- [ ] Every panel root uses `display: flex; flex-direction: row;` — no column stacking
+- [ ] Every panel root uses `flex-direction: row`
+- [ ] Text column is left (25-30%), card track is right (70-75%)
 - [ ] No header bars sitting ABOVE body content in any panel
-- [ ] Text appears on the LEFT in every panel (panels 2-7)
-- [ ] Visual content appears on the RIGHT in every panel
-- [ ] All panel widths math-validated (≥100vw, ≥ cards needed + text + gap + padding)
+- [ ] All panel widths math-validated (≥ cards needed + text + gap + padding)
 - [ ] All card elements use `flex: 1 1 0` with `min-width`/`max-width` ranges
-- [ ] No elements overlap on desktop (≥1100px)
 - [ ] Horizontal scrolling is smooth (sticky viewport, translateX)
-- [ ] Dark-themed panels maintain their special backgrounds (Values, Gallery, CTA)
-- [ ] Hover effects still work on cards
 - [ ] Gallery lightbox/filter/scroll-reveal still work
 - [ ] Values expanded view still works
+- [ ] Hover effects work on cards
+
+### Mobile (<760px)
+
+- [ ] Every panel uses `min-height: 100dvh` (not `100vh`)
+- [ ] Every panel has `env(safe-area-inset-bottom)` padding
+- [ ] Card tracks use `scroll-snap-type: x mandatory`
+- [ ] All interactive elements are ≥44px touch targets
+- [ ] CTA buttons are sticky at bottom
+- [ ] Gallery uses 2-column grid (not horizontal scroll)
+- [ ] Filter pills are swipeable
+- [ ] Text columns are centered
+- [ ] `prefers-reduced-motion: reduce` disables all animations
+
+### Cross-Tier
+
+- [ ] `viewport-fit=cover` in layout.tsx
+- [ ] Fluid typography with `clamp()` throughout
+- [ ] No fixed `px` widths on layout containers
 - [ ] Lint passes, typecheck passes, tests pass
+
+---
+
+## File Change Reference
+
+### Current State (what exists)
+
+| File                                    | Status                                    |
+| --------------------------------------- | ----------------------------------------- |
+| `WalkerHomepageDesktop.tsx`             | ✅ Desktop horizontal scroll orchestrator |
+| `WalkerHomepageVertical.tsx`            | ✅ Mobile/tablet vertical orchestrator    |
+| `HeroPanel.tsx` + `.module.css`         | ✅ Both tiers implemented                 |
+| `ValuesPanel.tsx` + `.module.css`       | ✅ Desktop row + mobile carousel          |
+| `StatsPanel.tsx` + `.module.css`        | ✅ Desktop row + mobile carousel          |
+| `GalleryPanel.tsx` + `.module.css`      | ✅ Desktop scroll + mobile 2-col grid     |
+| `TestimonialsPanel.tsx` + `.module.css` | ✅ Desktop row + mobile carousel          |
+| `CTAPanel.tsx` + `.module.css`          | ✅ Desktop row + mobile sticky CTA        |
+| `NewsPanel.tsx` + `.module.css`         | ✅ Desktop row + mobile carousel          |
+| `MobileCarousel.tsx` + `.module.css`    | ✅ Reusable scroll-snap carousel          |
+| `shared.module.css`                     | ✅ Base panel styles                      |
+| `globals.css`                           | ✅ Mobile tokens defined                  |
+| `layout.tsx`                            | ✅ viewport-fit=cover                     |
+
+### Known Gaps (to fix)
+
+| Gap                         | Severity | File                       | Fix                                       |
+| --------------------------- | -------- | -------------------------- | ----------------------------------------- |
+| GalleryFilter scroll hint   | Low      | `GalleryFilter.module.css` | Add gradient fade at right edge on mobile |
+| ExpandedView stats overflow | Medium   | `ValuesPanel.module.css`   | Add `flex-wrap: wrap` at ≤760px           |
+
+---
+
+## Appendix: CSS Feature Support Matrix
+
+| Feature                  | Chrome | Firefox | Safari | Use?                              |
+| ------------------------ | ------ | ------- | ------ | --------------------------------- |
+| `clamp()`                | 79+    | 75+     | 13.1+  | ✅ Yes — fluid typography         |
+| `dvh`/`svh`/`lvh`        | 108+   | 101+    | 15.4+  | ✅ Yes — mobile viewport          |
+| `scroll-snap`            | 69+    | 62+     | 11+    | ✅ Yes — mobile carousels         |
+| `env(safe-area-inset-*)` | 115+   | 117+    | 15+    | ✅ Yes — notched phones           |
+| `container queries`      | 105+   | 110+    | 16+    | ✅ Yes — component responsiveness |
+| `::scroll-marker()`      | 135+   | —       | —      | ⚠️ Progressive enhancement only   |
+| CSS nesting              | 120+   | 117+    | 17.2+  | ✅ Yes — co-located enhancement   |
+| `:has()`                 | 105+   | 121+    | 15.4+  | ✅ Yes — parent styling           |
