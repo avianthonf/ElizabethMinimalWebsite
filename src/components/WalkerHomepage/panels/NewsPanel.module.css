@@ -151,26 +151,45 @@
     align-items: stretch;
     height: auto;
     min-height: 100vh;
+    min-height: 100dvh;
     max-height: none;
-    padding: calc(var(--header-height) + var(--spacing-xl)) var(--padding-page) var(--spacing-lg);
+    padding: calc(var(--header-height) + var(--spacing-xl)) var(--padding-page)
+      calc(var(--spacing-lg) + env(safe-area-inset-bottom, 0px));
     gap: var(--spacing-lg);
   }
 
   .sidebar {
     flex: 0 0 auto;
     min-width: 0;
+    text-align: center;
   }
 
+  /* Swipeable news cards carousel */
   .cardsRow {
-    flex-direction: column;
-    gap: var(--spacing-md);
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--mobile-card-gap, 16px);
+    padding: 0 var(--mobile-panel-padding, 20px);
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .cardsRow::-webkit-scrollbar {
+    display: none;
   }
 
   .cardsRow > * {
-    flex: 0 0 auto;
+    flex: 0 0 85%;
     min-width: 0;
     max-width: none;
-    width: 100%;
+    width: 85%;
+    scroll-snap-align: center;
   }
 
   .newsCard {

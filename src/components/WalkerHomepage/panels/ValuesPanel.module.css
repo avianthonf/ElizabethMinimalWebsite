@@ -600,8 +600,10 @@
   .valuesPanel {
     height: auto;
     min-height: 100vh;
+    min-height: 100dvh;
     max-height: none;
     padding-top: calc(var(--header-height) + 27px);
+    padding-bottom: calc(var(--spacing-xl) + env(safe-area-inset-bottom, 0px));
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -613,6 +615,7 @@
     text-align: center;
     flex: 0 0 auto;
     min-width: 0;
+    padding: 0 var(--mobile-panel-padding, 20px);
   }
 
   .kineticTitle {
@@ -632,19 +635,37 @@
     transform-origin: center;
   }
 
+  /* Swipeable card carousel on mobile */
   .cardTrack {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
     max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding: 0 var(--mobile-panel-padding, 20px);
+    gap: var(--mobile-card-gap, 16px);
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .cardTrack::-webkit-scrollbar {
+    display: none;
   }
 
   .valueCard {
-    flex: 0 0 auto;
-    width: min(337.5px, 90vw);
-    height: clamp(270px, 60vh, 405px);
+    flex: 0 0 80%;
+    width: 80%;
+    height: clamp(280px, 55vh, 380px);
     aspect-ratio: auto;
-    min-width: auto;
+    min-width: 0;
     max-width: none;
+    scroll-snap-align: center;
+    border-radius: 16px;
   }
 
   .expandedCard {
