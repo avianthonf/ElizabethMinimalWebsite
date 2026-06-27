@@ -79,10 +79,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 3: School Stats ───────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(675px, 54.75vw, 862.5px)"
-          tabletWidth="min(780px, 82.5vw)"
-          mobileWidth="max(570px, 135vw)"
-          smallMobileWidth="max(540px, 150vw)"
+          width="clamp(1200px, 95vw, 1800px)"
           headerTheme="dark"
           className={`${shared.panel} ${statsPanelClass}`}
           ariaLabel="St. Elizabeth's High School — key statistics"

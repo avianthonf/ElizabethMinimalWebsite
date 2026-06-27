@@ -2,20 +2,24 @@
 
 .statsPanel {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: clamp(13.5px, 2.25vw, 27px);
-  padding-top: var(--panel-top-offset);
-  padding-bottom: clamp(21px, 3.75vw, 54px);
-  padding-left: clamp(21px, 3.75vw, 54px);
-  padding-right: clamp(21px, 3.75vw, 54px);
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(36px, 5vw, 80px);
+  padding: clamp(21px, 3.75vw, 54px);
   background: var(--s-color-surface);
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .statsIntro {
-  max-width: var(--description-max-width);
-  text-align: center;
-  margin: 0 auto;
+  flex: 0 0 25%;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .statsIntro h2 {
@@ -29,26 +33,24 @@
   color: var(--s-color-text-muted);
 }
 
-/* ── Cards row — always flex-wrap so cards flow naturally at any width ──
-   Desktop: 3 cards fit one row (panel is ≥960px with 72px padding =
-   ~816px content; 3 × 260px + 2 × 24px gap = 828px → with flex-grow
-   and max-width 320px they distribute evenly and stay in one row).
-   Mobile: container narrows → cards wrap automatically (2/1 per row). */
+/* ── Cards row — single horizontal row, no wrapping ──────────────────── */
 
 .statsCards {
+  flex: 1 1 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: stretch;
   justify-content: center;
-  gap: clamp(12px, 1.5vw, 18px);
+  gap: clamp(18px, 3vw, 36px);
   min-width: 0;
 }
 
 .statsCard {
   display: flex;
-  flex: 1 1 260px;
-  max-width: 240px;
-  min-width: 0;
+  flex: 1 1 0;
+  min-width: clamp(180px, 15vw, 220px);
+  max-width: clamp(260px, 22vw, 300px);
   flex-direction: column;
   align-items: center;
   padding: clamp(13.5px, 1.8vw, 25.5px);
@@ -137,11 +139,20 @@
 @media (max-width: 1100px) {
   .statsPanel {
     padding: clamp(21px, 3vw, 42px);
-    gap: clamp(10.5px, 1.875vw, 21px);
+    gap: clamp(24px, 3vw, 48px);
+  }
+
+  .statsIntro {
+    flex: 0 0 28%;
+    min-width: 200px;
   }
 
   .statsIntro h2 {
     font-size: calc(var(--text-scale) * clamp(1.05rem, 2.25vw, 1.5rem));
+  }
+
+  .statsCards {
+    gap: clamp(12px, 2vw, 24px);
   }
 }
 
@@ -149,6 +160,12 @@
 
 @media (max-width: 760px) {
   .statsPanel {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
     padding-top: calc(var(--header-height) + var(--spacing-xl));
     padding-bottom: var(--spacing-lg);
     padding-left: var(--padding-page);
@@ -157,7 +174,8 @@
   }
 
   .statsIntro {
-    max-width: 100%;
+    flex: 0 0 auto;
+    min-width: 0;
     text-align: left;
   }
 
@@ -207,6 +225,11 @@
   .statsPanel {
     padding: var(--spacing-lg) var(--padding-page) var(--spacing-md);
     gap: var(--spacing-md);
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: auto;
+    max-height: none;
   }
 
   .statsCard {
