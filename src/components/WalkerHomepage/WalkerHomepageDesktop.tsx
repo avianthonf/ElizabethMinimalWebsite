@@ -92,7 +92,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 4: Masonry Mosaic Gallery ─────────────────────────── */}
         <HorizontalPage
-          width="auto"
+          width="clamp(1800px, 180vw, 5000px)"
           headerTheme="light"
           className={`${shared.panel} ${galleryPanelClass}`}
           ariaLabel="Photo gallery — Academics, Athletics, Arts, Student Life"

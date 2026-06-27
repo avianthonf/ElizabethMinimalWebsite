@@ -1,31 +1,23 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   GalleryPanel — Masonry Mosaic Gallery Styles
+   GalleryPanel — Horizontal scrolling gallery
+
+   Layout: single row — sidebar (header + filter) on the LEFT,
+   horizontal-scrolling card row on the RIGHT.
+
+   Cards use fixed height + aspect-ratio (4:3), flowing in a
+   single horizontal row with overflow-x: auto on the right column.
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Panel Container ────────────────────────────────────────────────────
-
-   HORIZONTAL-FLOW STRATEGY:
-   - Panel fills 100vh (forced by track) and starts at 100vw width
-   - Cards use flex-column-wrap with explicit heights: fill DOWN first,
-     then wrap RIGHT. Overflow extends beyond panel content-box.
-   - Panel has overflow:visible on x-axis so overflow isn't clipped
-   - HorizontalScroll track.scrollWidth picks up the overflow,
-     creating additional scroll distance automatically
-   - No internal vertical scrollbar — the horizontal scroll IS the navigation
-
-   Card height formula (3 rows, 2 gaps of 24px):
-     standard = (grid_height - 48px) / 3       → 1 row
-     hero     = (grid_height - 48px) * 2/3 + 24px  → 2 rows + gap
-   Card width = card_height × 4/3 (via aspect-ratio)                ── */
+/* ── Panel Container ──────────────────────────────────────────────────── */
 
 .galleryPanel {
-  width: max-content;
-  min-width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(36px, 6vw, 96px);
   height: 100%;
   overflow-x: visible;
   overflow-y: hidden;
-  display: flex !important;
-  flex-direction: column;
   position: relative;
   background:
     radial-gradient(ellipse at center, var(--bg-dark-primary) 0%, #030722 100%),
@@ -42,15 +34,23 @@
   background-blend-mode: overlay;
 }
 
+/* ── Sidebar — left column: header + filter ───────────────────────────── */
+
+.gallerySidebar {
+  flex: 0 0 18%;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(12px, 2vw, 24px);
+  z-index: 2;
+}
+
 /* ── Header ───────────────────────────────────────────────────────────── */
 
 .galleryHeader {
-  text-align: center;
+  text-align: left;
   flex-shrink: 0;
-  margin-bottom: clamp(6px, 0.75vw, 12px);
-  max-width: var(--description-max-width);
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .galleryHeader h2 {
@@ -69,19 +69,22 @@
   color: var(--text-on-dark-secondary);
 }
 
-/* ── Column-wrap masonry grid ─────────────────────────────────────────── */
+/* ── Horizontal scrolling card row — right column ─────────────────────── */
 
 .galleryGrid {
+  flex: 1 1 auto;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 10.5px;
-  flex: 1 1 0;
-  min-height: 0;
-  align-content: flex-start;
-  /* No explicit width — cards determine column width.
-     When columns exceed available horizontal space,
-     they overflow right, extending track.scrollWidth. */
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: clamp(12px, 2vw, 24px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100%;
+  align-items: center;
+  padding-bottom: 8px;
+  /* hide scrollbar visually but keep it scrollable */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 /* ── Vertical layout (mobile/tablet) ──────────────────────────────────── */
@@ -113,17 +116,18 @@
 /* ── Tablet: ≤1100px ──────────────────────────────────────────────────── */
 
 @media (max-width: 1100px) {
-  .galleryHeader {
-    text-align: left;
-  }
-
-  /* Tablet: 2-row masonry */
-  .galleryGrid {
-    gap: 13.5px;
-  }
-
   .galleryPanel {
     padding: clamp(18px, 3vw, 36px);
+    gap: clamp(24px, 4vw, 48px);
+  }
+
+  .gallerySidebar {
+    flex: 0 0 22%;
+    min-width: 220px;
+  }
+
+  .galleryGrid {
+    gap: 10.5px;
   }
 
   /* Vertical layout: slightly larger min cards */

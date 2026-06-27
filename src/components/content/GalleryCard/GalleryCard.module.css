@@ -76,25 +76,19 @@
     width 0ms 300ms;
 }
 
-/* ── Card Sizes for Column-Wrap Flex Layout ───────────
+/* ── Card Sizes for Horizontal Row Layout ─────────────────────
 
-   The parent .galleryGrid uses:
-     display: flex; flex-direction: column; flex-wrap: wrap; gap: 24px;
+   The parent .galleryGrid now uses:
+     display: flex; flex-direction: row; flex-wrap: nowrap;
 
-   Cards fill DOWN in columns, then wrap RIGHT.
-   Standard = 1 row tall. Hero = 2 rows tall + gap between them. */
+   Cards are fixed-height with 4:3 aspect ratio, flowing in
+   a single horizontal row with overflow-x scroll. */
 
-.standard {
-  height: calc((100% - 36px) / 3);
-  aspect-ratio: 4 / 3;
-  /* width auto-computed from height × (4/3) */
-}
-
+.standard,
 .hero {
-  height: calc((100% - 36px) * 2 / 3 + 18px);
+  flex: 0 0 auto;
+  height: calc(100% - 8px);
   aspect-ratio: 4 / 3;
-  /* width auto-computed: 2 rows worth of height × (4/3) */
-  /* The hero naturally spans 2 standard rows + the gap between */
 }
 
 /* ── Image Layer (z-0) ────────────────────────────────── */
@@ -197,24 +191,18 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-/* ── Tablet (≤1100px): 2-row masonry ────────────────────
-   Cards take ~50% height so only 2 rows fit,
-   creating wider columns that scroll faster. ────────── */
+/* ── Tablet (≤1100px): same horizontal row, cards slightly smaller ────── */
 
 @media (max-width: 1100px) {
-  .standard {
-    height: calc((100% - 18px) / 2);
-  }
-
+  .standard,
   .hero {
-    height: 100%;
+    height: calc(100% - 8px);
   }
 }
 
-/* ── Mobile (≤760px): single full-height row ─────────────
-   Each card takes full container height, forming a
-   horizontal strip of full-bleed cards. At this size
-   the HorizontalPage switches to screen-mode scrolling. ── */
+/* ── Mobile (≤760px): full-height cards in horizontal strip ────────────
+   At this size the WalkerHomepageVertical uses the vertical gallery layout
+   so these breakpoints affect the verbose horizontal layout only. */
 
 @media (max-width: 760px) {
   .standard,
