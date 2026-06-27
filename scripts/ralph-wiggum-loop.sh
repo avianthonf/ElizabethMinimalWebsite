@@ -8,10 +8,12 @@
 #   Phase 2 (EXECUTE)  — Fix that one gap, commit, move on
 #
 # Usage:
-#   ./scripts/ralph-wiggum-loop.sh                    # Run with defaults
-#   ./scripts/ralph-wiggum-loop.sh --max-iter 20      # Limit iterations
-#   ./scripts/ralph-wiggum-loop.sh --dry-run           # Audit only, no fixes
-#   ./scripts/ralph-wiggum-loop.sh --spec docs/MY.md  # Custom spec file
+#   ./scripts/ralph-wiggum-loop.sh                          # Run with defaults
+#   ./scripts/ralph-wiggum-loop.sh --max-iter 20            # Limit iterations
+#   ./scripts/ralph-wiggum-loop.sh --dry-run                # Audit only, no fixes
+#   ./scripts/ralph-wiggum-loop.sh --spec docs/MY.md        # Custom spec file
+#   ./scripts/ralph-wiggum-loop.sh --model claude-sonnet-4-20250514   # Use specific model
+#   ./scripts/ralph-wiggum-loop.sh --model openai/gpt-4o    # Use OpenAI model
 #
 # The loop terminates when:
 #   - Phase 1 reports "NO GAPS" (all specs satisfied)
@@ -43,7 +45,23 @@ while [[ $# -gt 0 ]]; do
     --spec)       SPEC_FILE="$2"; shift 2 ;;
     --model)      MODEL="$2"; shift 2 ;;
     -h|--help)
-      head -20 "$0" | tail -15
+      cat << 'HELPEOF'
+Ralph Wiggum Iterative Loop for PI Coding Agent
+
+Usage: ralph-wiggum-loop.sh [OPTIONS]
+
+Options:
+  --max-iter N       Maximum iterations (default: 50)
+  --dry-run          Audit only — find gaps without fixing
+  --spec FILE        Spec file to audit against (default: docs/HORIZONTAL_REDESIGN_SPEC.md)
+  --model MODEL      PI model to use (e.g. claude-sonnet-4-20250514, openai/gpt-4o)
+  -h, --help         Show this help
+
+Examples:
+  ./scripts/ralph-wiggum-loop.sh
+  ./scripts/ralph-wiggum-loop.sh --max-iter 10 --model claude-sonnet-4-20250514
+  ./scripts/ralph-wiggum-loop.sh --dry-run
+HELPEOF
       exit 0
       ;;
     *) echo "Unknown option: $1"; exit 1 ;;
