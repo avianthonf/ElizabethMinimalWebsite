@@ -99,11 +99,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 5: Testimonials ───────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(675px, 54.75vw, 862.5px)"
-          tabletWidth="min(675px, 82.5vw)"
-          mobileWidth="max(570px, 150vw)"
-          smallMobileWidth="max(540px, 165vw)"
-          landscapeWidth="max(750px, 97.5vw)"
+          width="clamp(1400px, 110vw, 2200px)"
           headerTheme="dark"
           className={`${shared.panel} ${testimonialsPanelClass}`}
           ariaLabel="Testimonials from students, alumni, and parents"

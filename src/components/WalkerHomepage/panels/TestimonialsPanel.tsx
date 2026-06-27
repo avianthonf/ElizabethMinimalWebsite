@@ -2,9 +2,6 @@
 
 import type { ReactNode } from "react";
 import { TestimonialCard } from "@/components/content/TestimonialCard";
-import { Container } from "@/components/layout/Container";
-import { Grid } from "@/components/layout/Grid";
-import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { TESTIMONIALS } from "@/data/homepage";
@@ -23,29 +20,28 @@ export const testimonialsPanelClass = styles.testimonialsPanel;
  */
 export function TestimonialsPanel(): ReactNode {
   return (
-    <div className={styles.testimonialsSection}>
-      <Container>
-        <Stack gap="xlarge">
-          <div className={styles.testimonialsHeader}>
-            <Text variant="eyebrow" as="p">
-              Voices of Our Community
-            </Text>
-            <Heading level="h2" variant="section">
-              What They Say
-            </Heading>
-          </div>
-          <Grid columns={3} gap="large" responsive>
-            {TESTIMONIALS.map((t) => (
-              <TestimonialCard
-                key={t.attribution}
-                quote={t.quote}
-                attribution={t.attribution}
-                role={t.role}
-              />
-            ))}
-          </Grid>
-        </Stack>
-      </Container>
-    </div>
+    <>
+      {/* Sidebar — left column */}
+      <div className={styles.sidebar}>
+        <Text variant="eyebrow" as="p">
+          Voices of Our Community
+        </Text>
+        <Heading level="h2" variant="section">
+          What They Say
+        </Heading>
+      </div>
+
+      {/* Card row — right column */}
+      <div className={styles.cardsRow}>
+        {TESTIMONIALS.map((t) => (
+          <TestimonialCard
+            key={t.attribution}
+            quote={t.quote}
+            attribution={t.attribution}
+            role={t.role}
+          />
+        ))}
+      </div>
+    </>
   );
 }
