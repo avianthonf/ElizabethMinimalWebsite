@@ -109,7 +109,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 6: CTA Banner ─────────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(675px, 54.75vw, 900px)"
+          width="clamp(900px, 80vw, 1400px)"
           headerTheme="light"
           className={ctaPanelClass}
           ariaLabel="Call to action — Join our community"
