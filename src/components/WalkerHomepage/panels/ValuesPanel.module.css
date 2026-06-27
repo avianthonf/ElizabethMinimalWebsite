@@ -676,6 +676,16 @@
   .expandedContent {
     padding: 22.5px;
   }
+
+  .expandedStats {
+    flex-wrap: wrap;
+    gap: var(--spacing-md, 12px);
+  }
+
+  .expandedCloseBtn {
+    top: env(safe-area-inset-top, 12px);
+    right: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

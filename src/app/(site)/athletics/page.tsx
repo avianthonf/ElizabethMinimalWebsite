@@ -31,11 +31,7 @@ export default function AthleticsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Sports programs"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Sports programs">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">
@@ -44,9 +40,9 @@ export default function AthleticsPage() {
                 Our Sports Programs
               </Heading>
               <Text variant="muted" size="medium">
-                From the basketball court to the swimming pool, St. Elizabeth
-                offers a diverse range of athletic opportunities that promote
-                physical fitness, sportsmanship, and personal growth.
+                From the basketball court to the swimming pool, St. Elizabeth offers a diverse range
+                of athletic opportunities that promote physical fitness, sportsmanship, and personal
+                growth.
               </Text>
             </Stack>
             <Grid columns={3} gap="large" responsive>
@@ -63,7 +59,7 @@ export default function AthleticsPage() {
               ))}
             </Grid>
 
-            <Grid columns={3} gap="medium">
+            <Grid columns={3} gap="medium" responsive>
               <IconCard
                 icon={
                   <Icon size="medium">
