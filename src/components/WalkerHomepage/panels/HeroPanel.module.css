@@ -115,11 +115,17 @@
 /* ── Mobile: ≤760px ─────────────────────────────────────────────────── */
 
 @media (max-width: 760px) {
+  .heroPanel {
+    /* Use dvh for dynamic viewport — accounts for mobile browser chrome */
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
   .heroOverlay {
     max-width: min(450px, calc(100vw - var(--padding-page) * 2));
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
-    padding: 0 var(--padding-page) var(--spacing-xl);
+    padding: 0 var(--padding-page) calc(var(--spacing-xl) + env(safe-area-inset-bottom, 0px));
     align-self: end;
     align-items: end;
   }
@@ -141,7 +147,7 @@
 
 @media (max-width: 420px) {
   .heroOverlay {
-    padding: 0 var(--padding-page) var(--spacing-lg);
+    padding: 0 var(--padding-page) calc(var(--spacing-lg) + env(safe-area-inset-bottom, 0px));
   }
 
   .heroStatement {

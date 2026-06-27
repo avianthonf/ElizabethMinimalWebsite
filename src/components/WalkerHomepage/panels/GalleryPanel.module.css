@@ -150,13 +150,15 @@
     margin-bottom: var(--spacing-md);
   }
 
+  /* Denser 2-column grid on mobile */
   .verticalGalleryGrid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-sm);
   }
 
   .verticalGalleryPanel {
-    padding: var(--spacing-xl) var(--padding-page) var(--spacing-lg);
+    padding: var(--spacing-xl) var(--padding-page)
+      calc(var(--spacing-lg) + env(safe-area-inset-bottom, 0px));
   }
 }
 

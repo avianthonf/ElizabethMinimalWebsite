@@ -180,10 +180,13 @@
   .ctaPanel {
     flex-direction: column;
     align-items: stretch;
+    justify-content: center;
     height: auto;
     min-height: 100vh;
+    min-height: 100dvh;
     max-height: none;
-    padding: calc(var(--header-height) + var(--spacing-xl)) var(--padding-page) var(--spacing-lg);
+    padding: calc(var(--header-height) + var(--spacing-xl)) var(--padding-page)
+      calc(var(--spacing-lg) + env(safe-area-inset-bottom, 0px));
     gap: var(--spacing-lg);
   }
 
@@ -196,6 +199,8 @@
   .ctaVisual {
     flex: 0 0 auto;
     min-width: 0;
+    display: flex;
+    justify-content: center;
   }
 
   .ctaCrest {
@@ -207,12 +212,21 @@
   .ctaButtons {
     flex-direction: column;
     width: 100%;
+    position: sticky;
+    bottom: env(safe-area-inset-bottom, 0px);
+    background: linear-gradient(to top, var(--bg-dark-gradient-end) 60%, transparent);
+    padding: var(--spacing-lg) 0 0;
+    margin: 0 calc(-1 * var(--padding-page));
+    padding-left: var(--padding-page);
+    padding-right: var(--padding-page);
   }
 
   .ctaButton {
     width: 100%;
     text-align: center;
     min-height: var(--touch-target-min);
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 
