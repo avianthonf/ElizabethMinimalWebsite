@@ -12,17 +12,29 @@
 .valuesPanel {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: clamp(13.5px, 2.25vw, 27px);
-  padding-top: var(--panel-top-offset);
-  padding-bottom: clamp(21px, 3.75vw, 54px);
-  padding-left: clamp(21px, 3.75vw, 54px);
-  padding-right: clamp(21px, 3.75vw, 54px);
+  gap: clamp(36px, 6vw, 96px);
+  padding: clamp(21px, 3.75vw, 54px);
   background: #faf8f5;
   overflow: hidden;
+  height: 100vh;
   min-height: 100vh;
+  max-height: 100vh;
+}
+
+/* ── Text column — left ──────────────────────────────────────────── */
+
+.text {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 28%;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 /* ── Ambient background (aurora + grain + vignette) ───────────────── */
@@ -97,45 +109,6 @@
   will-change: transform;
 }
 
-/* ── Header ──────────────────────────────────────────────────────── */
-
-.valuesHeader {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: var(--values-content-width, 975px);
-  padding: 0 clamp(6px, 0.9vw, 13.5px);
-  margin-bottom: clamp(13.5px, 2vw, 27px);
-}
-
-.headerLabel {
-  font-family: var(--font-serif);
-  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.7875rem));
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #1a1a1a;
-}
-
-.headerCounter {
-  font-family: var(--font-sans);
-  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.675rem));
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(26, 26, 26, 0.5);
-}
-
-.brandDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #c9a96e;
-  box-shadow: 0 0 8px rgba(201, 169, 110, 0.6);
-}
-
 /* ── Kinetic Title ───────────────────────────────────────────────── */
 
 .kineticTitle {
@@ -143,10 +116,10 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: var(--values-content-width, 975px);
-  margin-bottom: clamp(18px, 2.625vw, 36px);
+  align-items: flex-start;
+  text-align: left;
+  max-width: 33rem;
+  margin: 0;
 }
 
 .eyebrow {
@@ -162,7 +135,7 @@
 .titleLine {
   display: inline-block;
   font-family: var(--font-serif);
-  font-size: clamp(1.6875rem, 5.25vw, 4.125rem);
+  font-size: clamp(1.65rem, 4.125vw, 3.375rem);
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -191,32 +164,34 @@
   font-family: var(--font-serif);
   font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.9rem, 1.35vw, 1.1625rem)));
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.55;
   color: rgba(26, 26, 26, 0.7);
-  max-width: 43.5rem;
-  margin: clamp(13.5px, 2vw, 27px) auto 0;
+  max-width: 30rem;
+  margin: clamp(13.5px, 2vw, 27px) 0 0;
 }
 
 .decorativeLine {
-  width: clamp(45px, 6vw, 90px);
+  width: clamp(36px, 5vw, 72px);
   height: 1.5px;
-  margin: clamp(13.5px, 2vw, 27px) auto 0;
+  margin: clamp(11px, 1.5vw, 22.5px) 0 0;
   background: linear-gradient(90deg, transparent 0%, #c9a96e 50%, transparent 100%);
   transform-origin: left;
 }
 
-/* ── Card Track ──────────────────────────────────────────────────── */
+/* ── Card Track — right column ───────────────────────────────────── */
 
 .cardTrack {
   position: relative;
   z-index: 3;
+  flex: 1 1 auto;
   display: flex;
-  gap: clamp(18px, 2.625vw, 36px);
-  width: 100%;
-  max-width: var(--values-content-width, 975px);
+  gap: clamp(21px, 3vw, 42px);
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
   perspective: 1200px;
+  max-height: 100%;
+  min-width: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -225,8 +200,10 @@
 
 .valueCard {
   position: relative;
-  width: clamp(225px, 22vw, 337.5px);
-  height: clamp(337.5px, 33vw, 506.25px);
+  flex: 1 1 0;
+  min-width: clamp(200px, 18vw, 260px);
+  max-width: clamp(320px, 26vw, 380px);
+  aspect-ratio: 3 / 4;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -565,7 +542,7 @@
   display: flex;
   gap: clamp(22.5px, 3.375vw, 45px);
   margin-bottom: clamp(18px, 2.625vw, 36px);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .statValue {
@@ -621,18 +598,53 @@
 
 @media (max-width: 760px) {
   .valuesPanel {
-    min-height: auto;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
     padding-top: calc(var(--header-height) + 27px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: clamp(21px, 3vw, 36px);
+  }
+
+  .text {
+    align-items: center;
+    text-align: center;
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .kineticTitle {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .decorativeLine {
+    margin-left: auto;
+    margin-right: auto;
+    transform-origin: center;
   }
 
   .cardTrack {
     flex-direction: column;
     align-items: center;
+    max-height: none;
   }
 
   .valueCard {
+    flex: 0 0 auto;
     width: min(337.5px, 90vw);
     height: clamp(270px, 60vh, 405px);
+    aspect-ratio: auto;
+    min-width: auto;
+    max-width: none;
   }
 
   .expandedCard {
