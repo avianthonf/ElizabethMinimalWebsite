@@ -26,14 +26,7 @@ function GalleryCardWithReveal({
 }: GalleryCardWithRevealProps) {
   const { ref, isVisible } = useScrollReveal();
 
-  return (
-    <GalleryCard
-      ref={ref}
-      {...cardProps}
-      isVisible={isVisible}
-      filterActive
-    />
-  );
+  return <GalleryCard ref={ref} {...cardProps} isVisible={isVisible} filterActive />;
 }
 
 /** CSS classes for the orchestrator — desktop uses .galleryPanel, mobile uses .verticalGalleryPanel */
@@ -66,14 +59,17 @@ export function GalleryPanel({ className }: { className?: string }): ReactNode {
 
   return (
     <section className={panelClass} aria-labelledby="gallery-heading">
-      <div id="gallery-heading" className={styles.galleryHeader}>
-        <Text variant="eyebrow" as="p">Experience St. Elizabeth</Text>
-        <Heading level="h2" variant="section">Life at Our School</Heading>
+      <div className={styles.gallerySidebar}>
+        <div id="gallery-heading" className={styles.galleryHeader}>
+          <Text variant="eyebrow" as="p">
+            Experience St. Elizabeth
+          </Text>
+          <Heading level="h2" variant="section">
+            Life at Our School
+          </Heading>
+        </div>
+        <GalleryFilter active={activeFilter} onChange={setFilter} />
       </div>
-      <GalleryFilter
-        active={activeFilter}
-        onChange={setFilter}
-      />
       <div className={gridClass}>
         {filteredImages.map((img, visibleIdx) => (
           <GalleryCardWithReveal
