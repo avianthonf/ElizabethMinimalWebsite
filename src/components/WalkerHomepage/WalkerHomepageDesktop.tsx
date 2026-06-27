@@ -87,7 +87,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
           <StatsPanel />
         </HorizontalPage>
 
-        {/* ── Panel 4: Masonry Mosaic Gallery ─────────────────────────── */}
+        {/* ── Panel 4: Horizontal Scroll Gallery ──────────────────────── */}
         <HorizontalPage
           width="clamp(1800px, 180vw, 5000px)"
           headerTheme="light"
