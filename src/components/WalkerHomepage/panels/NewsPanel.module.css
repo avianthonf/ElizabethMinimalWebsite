@@ -1,29 +1,46 @@
-/* ── Panel 7: News ──────────────────────────────────────────────────── */
+/* ── Panel 7: News — horizontal row layout ─────────────────────────────── */
 
 .newsPanel {
-  background: var(--s-color-surface);
-}
-
-.newsSection {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  height: 100%;
-  padding-top: var(--panel-top-offset);
-  padding-bottom: clamp(21px, 3.75vw, 54px);
-  padding-left: clamp(21px, 3.75vw, 54px);
-  padding-right: clamp(21px, 3.75vw, 54px);
+  gap: clamp(36px, 5vw, 80px);
+  padding: clamp(21px, 3.75vw, 54px);
+  background: var(--s-color-surface);
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
-.newsContent {
-  width: 100%;
-  max-width: none;
-  padding: 0;
+/* ── Sidebar — left column: heading + CTA ─────────────────────────────── */
+
+.sidebar {
+  flex: 0 0 25%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: clamp(12px, 1.5vw, 20px);
 }
 
-.newsHeader {
-  text-align: center;
-  max-width: var(--description-max-width);
-  margin: 0 auto;
+/* ── Cards row — right column: 3 news cards ───────────────────────────── */
+
+.cardsRow {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: clamp(18px, 3vw, 36px);
+  align-items: stretch;
+  min-width: 0;
+}
+
+.cardsRow > * {
+  flex: 1 1 0;
+  min-width: clamp(240px, 20vw, 280px);
+  max-width: clamp(340px, 28vw, 400px);
 }
 
 /* ── Card elevation and hover ─────────────────────── */
@@ -68,7 +85,7 @@
 /* ── CTA area ────────────────────────────────────── */
 
 .newsCta {
-  text-align: center;
+  margin-top: clamp(6px, 0.75vw, 12px);
 }
 
 .newsCtaLink {
@@ -113,22 +130,47 @@
 /* ── Responsive tweaks ───────────────────────────── */
 
 @media (max-width: 1100px) {
-  .newsHeader {
-    text-align: left;
+  .sidebar {
+    flex: 0 0 30%;
+    min-width: 220px;
+  }
+
+  .cardsRow {
+    gap: clamp(12px, 2vw, 24px);
+  }
+
+  .cardsRow > * {
+    min-width: clamp(180px, 16vw, 220px);
+    max-width: clamp(260px, 24vw, 320px);
   }
 }
 
 @media (max-width: 760px) {
-  .newsSection {
-    padding-top: calc(var(--header-height) + var(--spacing-xl));
-    padding-bottom: var(--spacing-lg);
-    padding-left: var(--padding-page);
-    padding-right: var(--padding-page);
+  .newsPanel {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    padding: calc(var(--header-height) + var(--spacing-xl)) var(--padding-page) var(--spacing-lg);
+    gap: var(--spacing-lg);
   }
 
-  .newsHeader {
-    text-align: left;
-    max-width: 100%;
+  .sidebar {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .cardsRow {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .cardsRow > * {
+    flex: 0 0 auto;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
   }
 
   .newsCard {
@@ -149,9 +191,9 @@
 }
 
 @media (max-width: 420px) {
-  .newsContent {
-    padding-left: var(--padding-page);
-    padding-right: var(--padding-page);
+  .newsPanel {
+    padding: var(--spacing-lg) var(--padding-page);
+    gap: var(--spacing-md);
   }
 
   .newsCard {

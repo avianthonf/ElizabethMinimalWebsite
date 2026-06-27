@@ -119,7 +119,7 @@ export function WalkerHomepageDesktop({ menu }: WalkerHomepageDesktopProps): Rea
 
         {/* ── Panel 7: Latest News ────────────────────────────────────── */}
         <HorizontalPage
-          width="clamp(720px, 58.5vw, 900px)"
+          width="clamp(1400px, 110vw, 2200px)"
           headerTheme="dark"
           className={newsPanelClass}
           ariaLabel="Latest news and events"
