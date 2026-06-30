@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
+import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnnouncer";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -92,7 +93,10 @@ export default function RootLayout({
       <head>
         <NonceScript nonce={cspNonce} jsonLd={jsonLd} />
       </head>
-      <body>{children}</body>
+      <body>
+        <RouteAnnouncer />
+        {children}
+      </body>
     </html>
   );
 }
