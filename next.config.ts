@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
     ],
   },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["www.stelizabeths.edu.in", "stelizabeths.edu.in"],
+    },
+  },
   async headers() {
     return [
       {
