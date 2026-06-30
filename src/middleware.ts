@@ -1,30 +1,26 @@
 import { NextResponse } from "next/server";
 
 /**
- * Middleware that generates a per-request CSP nonce and attaches it
- * as a request header so that the layout can read it and include it
- * in the Content-Security-Policy header.
+ * Middleware that sets Content-Security-Policy headers.
  *
- * Nonces are base64-encoded random strings generated fresh for each
- * request, making them unpredictable to attackers.
+ * The JSON-LD inline script in the root layout is allowed via a
+ * pre-computed SHA-256 hash (the JSON-LD content is static and
+ * never changes). This avoids `headers()` in the layout which
+ * would force the entire route tree to be dynamically rendered.
  */
-function generateNonce(): string {
-  const array = new Uint8Array(16);
-  crypto.getRandomValues(array);
-  return btoa(String.fromCharCode(...array));
-}
+
+// SHA-256 hash of the static JSON-LD structured data in layout.tsx.
+// Pre-computed so the CSP allows this inline script without a
+// per-request nonce, keeping the layout statically generatable.
+const JSON_LD_HASH = "'sha256-PtS4OwKofW45m8Wor4MzEGGOmcYrfYFVgRdUNXam2/Q='";
 
 export function middleware() {
-  const nonce = generateNonce();
   const response = NextResponse.next();
 
-  // Pass nonce to the layout via request headers
-  response.headers.set("x-nonce", nonce);
-
-  // Build CSP with nonce for scripts, strict policy for everything else
+  // Build CSP with hash for static JSON-LD script
   const cspDirectives = [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    `script-src 'self' ${JSON_LD_HASH}`,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' data: blob: https:`,
     `font-src 'self'`,

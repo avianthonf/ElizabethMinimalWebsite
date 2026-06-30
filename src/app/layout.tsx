@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -80,18 +79,17 @@ const jsonLd = {
   ],
 };
 
-export default async function RootLayout({
+export const dynamic = "force-static";
+
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce = (await headers()).get("x-nonce") ?? "";
-
   return (
     <html lang="en">
       <head>
         <script
-          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
