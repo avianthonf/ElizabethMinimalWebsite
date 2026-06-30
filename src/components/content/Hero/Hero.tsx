@@ -65,7 +65,9 @@ export function Hero({
           src={backgroundImage}
           alt=""
           fill
-          priority
+          preload={true}
+          loading="eager"
+          fetchPriority="high"
           className={styles.bgImage}
           sizes="100vw"
           aria-hidden="true"
