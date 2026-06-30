@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   poweredByHeader: false,
   images: {
     qualities: [75, 85, 90, 95],

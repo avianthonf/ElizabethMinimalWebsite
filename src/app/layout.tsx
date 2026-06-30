@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
+import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -80,21 +80,17 @@ const jsonLd = {
   ],
 };
 
-export default async function RootLayout({
+const cspNonce = process.env.NEXT_PUBLIC_CSP_NONCE ?? "";
+
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce = (await headers()).get("x-nonce") ?? "";
-
   return (
     <html lang="en">
       <head>
-        <script
-          nonce={nonce}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <NonceScript nonce={cspNonce} jsonLd={jsonLd} />
       </head>
       <body>{children}</body>
     </html>

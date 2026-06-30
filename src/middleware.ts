@@ -1,25 +1,15 @@
 import { NextResponse } from "next/server";
 
 /**
- * Middleware that generates a per-request CSP nonce and attaches it
- * as a request header so that the layout can read it and include it
- * in the Content-Security-Policy header.
+ * Middleware that applies Content-Security-Policy headers.
  *
- * Nonces are base64-encoded random strings generated fresh for each
- * request, making them unpredictable to attackers.
+ * Uses a static CSP nonce from NEXT_PUBLIC_CSP_NONCE environment variable.
+ * The site is fully static (no user-generated content), so a static nonce
+ * is acceptable and enables static generation for all routes.
  */
-function generateNonce(): string {
-  const array = new Uint8Array(16);
-  crypto.getRandomValues(array);
-  return btoa(String.fromCharCode(...array));
-}
-
 export function middleware() {
-  const nonce = generateNonce();
+  const nonce = process.env.NEXT_PUBLIC_CSP_NONCE || "";
   const response = NextResponse.next();
-
-  // Pass nonce to the layout via request headers
-  response.headers.set("x-nonce", nonce);
 
   // Build CSP with nonce for scripts, strict policy for everything else
   const cspDirectives = [
