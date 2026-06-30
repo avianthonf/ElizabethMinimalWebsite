@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "www.google.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
     ],
+    qualities: [75, 90],
+    formats: ["image/avif", "image/webp"],
   },
   async headers() {
     return [
