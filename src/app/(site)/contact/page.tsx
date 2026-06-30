@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";

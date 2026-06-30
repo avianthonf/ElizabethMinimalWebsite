@@ -1,3 +1,5 @@
+"use cache";
+
 import { PageShell } from "@/components/layout";
 import { Hero } from "@/components/content/Hero";
 import { Section } from "@/components/layout/Section";

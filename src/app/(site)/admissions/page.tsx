@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { IconCard } from "@/components/content/IconCard";
 import { Card } from "@/components/content/Card";
@@ -33,11 +35,7 @@ export default function AdmissionsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Admissions information"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Admissions information">
         <Container>
           <SplitLayout
             ratio="2-1"
@@ -49,10 +47,9 @@ export default function AdmissionsPage() {
                     Begin Your Journey
                   </Heading>
                   <Text variant="muted" size="medium">
-                    Choosing the right school is one of the most important
-                    decisions a family makes. At St. Elizabeth&apos;s High School,
-                    we&apos;re here to guide you through every step of the
-                    admissions process.
+                    Choosing the right school is one of the most important decisions a family makes.
+                    At St. Elizabeth&apos;s High School, we&apos;re here to guide you through every
+                    step of the admissions process.
                   </Text>
                 </Stack>
                 <Grid columns={2} gap="medium" responsive>
@@ -108,8 +105,7 @@ export default function AdmissionsPage() {
                   <Stack gap="small">
                     <Text variant="eyebrow">Admissions Open</Text>
                     <Text variant="muted" size="small">
-                      Applications open in January for the upcoming academic
-                      year beginning in June.
+                      Applications open in January for the upcoming academic year beginning in June.
                     </Text>
                   </Stack>
                 </Card>
@@ -117,8 +113,7 @@ export default function AdmissionsPage() {
                   <Stack gap="small">
                     <Text variant="eyebrow">Open House</Text>
                     <Text variant="muted" size="small">
-                      Join us for our annual Open House to tour the campus and
-                      meet our faculty.
+                      Join us for our annual Open House to tour the campus and meet our faculty.
                     </Text>
                   </Stack>
                 </Card>

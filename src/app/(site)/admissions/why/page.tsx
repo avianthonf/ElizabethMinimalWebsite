@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { IconCard } from "@/components/content/IconCard";
 import { Container } from "@/components/layout/Container";
@@ -30,11 +32,7 @@ export default function WhyPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Why choose St. Elizabeth"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Why choose St. Elizabeth">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">

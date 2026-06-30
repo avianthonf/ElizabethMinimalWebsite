@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { CTASection } from "@/components/content/CTASection";
 import { IconCard } from "@/components/content/IconCard";
@@ -33,11 +35,7 @@ export default function HowToHelpPage() {
         />
       }
     >
-      <Section
-        background="soft"
-        padding="xlarge"
-        ariaLabel="Ways to support"
-      >
+      <Section background="soft" padding="xlarge" ariaLabel="Ways to support">
         <Container width="wide">
           <SplitLayout
             ratio="2-1"
@@ -49,11 +47,10 @@ export default function HowToHelpPage() {
                     Make a Difference
                   </Heading>
                   <Text variant="muted" size="medium">
-                    Your support helps us continue our mission of guiding
-                    minds, nurturing hearts, and building futures. Whether
-                    through a financial contribution, sponsorship, or
-                    volunteering your time, every act of generosity has a
-                    lasting impact on our students.
+                    Your support helps us continue our mission of guiding minds, nurturing hearts,
+                    and building futures. Whether through a financial contribution, sponsorship, or
+                    volunteering your time, every act of generosity has a lasting impact on our
+                    students.
                   </Text>
                 </Stack>
                 <Grid columns={2} gap="medium" responsive>

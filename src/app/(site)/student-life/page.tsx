@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -28,11 +30,7 @@ export default function StudentLifePage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Clubs and organizations"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Clubs and organizations">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">

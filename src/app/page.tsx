@@ -1,3 +1,5 @@
+"use cache";
+
 import { WalkerHomepage } from "@/components/WalkerHomepage";
 import { HeaderThemeController } from "@/components/HeaderThemeController";
 

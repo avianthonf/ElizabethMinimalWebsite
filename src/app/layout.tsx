@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
+export const dynamic = "force-static";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -80,6 +82,19 @@ const jsonLd = {
   ],
 };
 
+async function CachedHead({ nonce }: { nonce: string }) {
+  "use cache";
+  return (
+    <head>
+      <script
+        nonce={nonce}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </head>
+  );
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -89,13 +104,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <script
-          nonce={nonce}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
+      <CachedHead nonce={nonce} />
       <body>{children}</body>
     </html>
   );

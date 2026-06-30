@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -27,11 +29,7 @@ export default function DepartmentsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="All academic departments"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="All academic departments">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">

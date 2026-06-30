@@ -1,3 +1,5 @@
+"use cache";
+
 import { Card } from "@/components/content/Card";
 import { ContentPage } from "@/components/templates";
 import { Heading } from "@/components/primitives/Heading";

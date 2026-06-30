@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { ImageCard } from "@/components/content/ImageCard";
 import { Container } from "@/components/layout/Container";
@@ -27,11 +29,7 @@ export default function ArtsPage() {
         />
       }
     >
-      <Section
-        background="soft"
-        padding="xlarge"
-        ariaLabel="Arts programmes"
-      >
+      <Section background="soft" padding="xlarge" ariaLabel="Arts programmes">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">
@@ -40,9 +38,8 @@ export default function ArtsPage() {
                 Visual & Performing Arts
               </Heading>
               <Text variant="muted" size="medium">
-                Our arts programmes encourage students to express their
-                individuality, build confidence, and develop an appreciation
-                for the arts that lasts a lifetime.
+                Our arts programmes encourage students to express their individuality, build
+                confidence, and develop an appreciation for the arts that lasts a lifetime.
               </Text>
             </Stack>
             <Grid columns={2} gap="large" responsive>

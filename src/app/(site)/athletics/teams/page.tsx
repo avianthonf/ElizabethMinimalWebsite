@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -27,11 +29,7 @@ export default function TeamsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Sports teams and schedules"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Sports teams and schedules">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">
@@ -39,18 +37,12 @@ export default function TeamsPage() {
             </Heading>
             <Stack gap="medium">
               {SPORTS.map((sport) => (
-                <Card
-                  key={sport.name}
-                  variant="default"
-                  padding="medium"
-                >
+                <Card key={sport.name} variant="default" padding="medium">
                   <Stack gap="small">
                     <Heading level="h3" variant="card">
                       {sport.name}
                     </Heading>
-                    <Text variant="caption">
-                      Season: {sport.seasons.join(", ")}
-                    </Text>
+                    <Text variant="caption">Season: {sport.seasons.join(", ")}</Text>
                     <Text variant="muted" size="medium">
                       {sport.description}
                     </Text>

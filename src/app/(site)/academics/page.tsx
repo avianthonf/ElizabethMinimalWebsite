@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { IconCard } from "@/components/content/IconCard";
 import { Container } from "@/components/layout/Container";
@@ -30,11 +32,7 @@ export default function AcademicsPage() {
         />
       }
     >
-      <Section
-        background="soft"
-        padding="xlarge"
-        ariaLabel="Academic departments"
-      >
+      <Section background="soft" padding="xlarge" ariaLabel="Academic departments">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">
@@ -43,10 +41,9 @@ export default function AcademicsPage() {
                 Our Departments
               </Heading>
               <Text variant="muted" size="medium">
-                St. Elizabeth follows the Central Board of Secondary Education
-                (CBSE) curriculum. Our seven academic departments provide a
-                well-rounded education that prepares students for university
-                and beyond.
+                St. Elizabeth follows the Central Board of Secondary Education (CBSE) curriculum.
+                Our seven academic departments provide a well-rounded education that prepares
+                students for university and beyond.
               </Text>
             </Stack>
             <Grid columns={4} gap="medium" responsive>

@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { ImageCard } from "@/components/content/ImageCard";
 import { Container } from "@/components/layout/Container";
@@ -28,11 +30,7 @@ export default function NewsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="News articles"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="News articles">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">

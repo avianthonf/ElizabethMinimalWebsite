@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { CTASection } from "@/components/content/CTASection";
@@ -29,11 +31,7 @@ export default function GivePage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Giving options"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Giving options">
         <Container width="narrow">
           <Stack gap="xlarge">
             <Stack gap="medium">
@@ -41,9 +39,8 @@ export default function GivePage() {
                 Ways to Give
               </Heading>
               <Text variant="muted" size="medium">
-                Choose the giving option that best fits your capacity and
-                interest. Every contribution, large or small, makes a
-                meaningful difference.
+                Choose the giving option that best fits your capacity and interest. Every
+                contribution, large or small, makes a meaningful difference.
               </Text>
             </Stack>
 
@@ -65,11 +62,7 @@ export default function GivePage() {
         </Container>
       </Section>
 
-      <Section
-        background="soft"
-        padding="xlarge"
-        ariaLabel="Giving levels"
-      >
+      <Section background="soft" padding="xlarge" ariaLabel="Giving levels">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">
@@ -93,11 +86,7 @@ export default function GivePage() {
         </Container>
       </Section>
 
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Impact stories"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Impact stories">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">

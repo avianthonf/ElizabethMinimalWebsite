@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { IconCard } from "@/components/content/IconCard";
 import { ImageCard } from "@/components/content/ImageCard";

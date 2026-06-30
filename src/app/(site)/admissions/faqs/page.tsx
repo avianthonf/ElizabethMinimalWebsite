@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -28,11 +30,7 @@ export default function FAQsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Frequently asked questions"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Frequently asked questions">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">

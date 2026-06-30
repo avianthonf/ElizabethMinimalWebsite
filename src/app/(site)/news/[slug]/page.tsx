@@ -1,3 +1,5 @@
+"use cache";
+
 import { notFound } from "next/navigation";
 import { NEWS_ARTICLES } from "@/data/news";
 import { PageShell } from "@/components/layout";

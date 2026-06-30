@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -28,11 +30,7 @@ export default function TuitionPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Tuition and financial assistance"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Tuition and financial assistance">
         <Container width="narrow">
           <Stack gap="large">
             <Stack gap="medium">
@@ -55,10 +53,9 @@ export default function TuitionPage() {
               <Stack gap="small">
                 <Text variant="eyebrow">How to Apply for Assistance</Text>
                 <Text variant="muted" size="small">
-                  Families interested in financial assistance should indicate
-                  this on their application form. Our admissions team will
-                  guide you through the confidential application process,
-                  which includes a review of your family&apos;s financial
+                  Families interested in financial assistance should indicate this on their
+                  application form. Our admissions team will guide you through the confidential
+                  application process, which includes a review of your family&apos;s financial
                   circumstances.
                 </Text>
               </Stack>

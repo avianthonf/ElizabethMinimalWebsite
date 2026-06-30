@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -28,11 +30,7 @@ export default function AlumniPage() {
         />
       }
     >
-      <Section
-        background="soft"
-        padding="xlarge"
-        ariaLabel="Alumni community"
-      >
+      <Section background="soft" padding="xlarge" ariaLabel="Alumni community">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">
@@ -69,11 +67,7 @@ export default function AlumniPage() {
               </Heading>
               <Grid columns={3} gap="medium" responsive>
                 {ALUMNI_EVENTS.map((event) => (
-                  <Card
-                    key={event.title}
-                    variant="default"
-                    padding="medium"
-                  >
+                  <Card key={event.title} variant="default" padding="medium">
                     <Stack gap="small">
                       <Heading level="h3" variant="card">
                         {event.title}

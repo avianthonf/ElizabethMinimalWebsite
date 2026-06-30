@@ -1,3 +1,5 @@
+"use cache";
+
 import { VisitPage } from "@/components/templates";
 import type { VisitInfoCard, MapConfig } from "@/components/templates";
 import { Text } from "@/components/primitives/Text";
@@ -30,7 +32,9 @@ const visitInfoCards: VisitInfoCard[] = [
     eyebrow: "Getting Here",
     content: (
       <Text variant="muted" size="small">
-        From Panjim: Take the NH66 north towards Mapusa, turn right at the Pomburpa junction, and follow the signs to the school. From Mapusa: Head south on the road to Pomburpa. The school is located on Ven. Fr. Hilario Gonsalves Road, near the Pomburpa church.
+        From Panjim: Take the NH66 north towards Mapusa, turn right at the Pomburpa junction, and
+        follow the signs to the school. From Mapusa: Head south on the road to Pomburpa. The school
+        is located on Ven. Fr. Hilario Gonsalves Road, near the Pomburpa church.
       </Text>
     ),
   },

@@ -1,3 +1,5 @@
+"use cache";
+
 import { Hero } from "@/components/content/Hero";
 import { MediaBlock } from "@/components/content/MediaBlock";
 import { CTASection } from "@/components/content/CTASection";
@@ -33,11 +35,7 @@ export default function AboutPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="About St. Elizabeth"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="About St. Elizabeth">
         <Container>
           <SplitLayout
             ratio="2-1"
@@ -49,10 +47,9 @@ export default function AboutPage() {
                     Educating the Whole Person
                   </Heading>
                   <Text variant="muted" size="medium">
-                    St. Elizabeth&apos;s High School is a nurturing Catholic school
-                    community where students are known, challenged, and
-                    supported. Our commitment to Truth and Honesty shapes
-                    every aspect of school life — from academic excellence to
+                    St. Elizabeth&apos;s High School is a nurturing Catholic school community where
+                    students are known, challenged, and supported. Our commitment to Truth and
+                    Honesty shapes every aspect of school life — from academic excellence to
                     character formation.
                   </Text>
                 </Stack>
