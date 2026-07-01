@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Card } from "@/components/content/Card";
 import { ConditionalLink } from "@/components/primitives/ConditionalLink/ConditionalLink";
 import { Heading } from "@/components/primitives/Heading";
+import { ProximityTiltWrapper } from "@/components/primitives/ProximityTiltWrapper";
 import { Text, type TextVariant } from "@/components/primitives/Text";
 import styles from "./ImageCard.module.css";
 
@@ -43,26 +44,32 @@ export function ImageCard({
 }: ImageCardProps): ReactNode {
   return (
     <ConditionalLink href={href} className={href ? styles.cardLink : undefined}>
-      <Card variant="image" className={className}>
-        <div
-          className={`${styles.imageWrapper} ${imagePosition === "left" ? styles.imageLeft : styles.imageTop} ${aspectRatioClass[aspectRatio]}`}
-        >
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            quality={90}
-            className={styles.image}
-            sizes={imagePosition === "left" ? "(max-width: 760px) 100vw, 50vw" : "100vw"}
-          />
-        </div>
-        <div className={styles.textContent}>
-          <Heading level="h3" variant="card">
-            {title}
-          </Heading>
-          {description && <Text variant={descriptionVariant} size="small">{description}</Text>}
-        </div>
-      </Card>
+      <ProximityTiltWrapper>
+        <Card variant="image" className={className}>
+          <div
+            className={`${styles.imageWrapper} ${imagePosition === "left" ? styles.imageLeft : styles.imageTop} ${aspectRatioClass[aspectRatio]}`}
+          >
+            <Image
+              src={image}
+              alt={imageAlt}
+              fill
+              quality={90}
+              className={styles.image}
+              sizes={imagePosition === "left" ? "(max-width: 760px) 100vw, 50vw" : "100vw"}
+            />
+          </div>
+          <div className={styles.textContent}>
+            <Heading level="h3" variant="card">
+              {title}
+            </Heading>
+            {description && (
+              <Text variant={descriptionVariant} size="small">
+                {description}
+              </Text>
+            )}
+          </div>
+        </Card>
+      </ProximityTiltWrapper>
     </ConditionalLink>
   );
 }

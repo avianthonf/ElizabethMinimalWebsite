@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import styles from "./Card.module.css";
 
-export type CardVariant = "default" | "value" | "icon" | "image";
+export type CardVariant = "default" | "value" | "icon" | "image" | "elevated";
 export type CardPadding = "small" | "medium" | "large";
 
 export interface CardProps {

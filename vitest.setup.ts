@@ -19,3 +19,60 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: vi.fn(),
   })),
 });
+
+// ── ResizeObserver mock ─────────────────────────────────────────────────
+// Required by GSAP / ZProximityEngine to measure element bounds.
+// jsdom does not implement this API, so we provide a no-op stub.
+
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+Object.defineProperty(window, "ResizeObserver", {
+  writable: true,
+  configurable: true,
+  value: ResizeObserverMock,
+});
+
+// ── IntersectionObserver mock ───────────────────────────────────────────
+// Required by GSAP's ScrollTrigger and ZProximityEngine visibility checks.
+// jsdom does not implement this API, so we provide a no-op stub.
+
+class IntersectionObserverMock {
+  readonly root: Element | Document | null = null;
+  readonly rootMargin: string = "0px";
+  readonly thresholds: ReadonlyArray<number> = [0];
+
+  constructor(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _callback: IntersectionObserverCallback,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _options?: IntersectionObserverInit,
+  ) {}
+
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords(): IntersectionObserverEntry[] {
+    return [];
+  }
+}
+
+Object.defineProperty(window, "IntersectionObserver", {
+  writable: true,
+  configurable: true,
+  value: IntersectionObserverMock,
+});
+
+// ── requestAnimationFrame mock ──────────────────────────────────────────
+// GSAP uses rAF internally. Vitest's fake timers may interfere, so we
+// provide a real-ish passthrough that uses setTimeout to keep the event
+// loop running.
+
+if (typeof window.requestAnimationFrame === "undefined") {
+  window.requestAnimationFrame = (cb: FrameRequestCallback) =>
+    window.setTimeout(() => cb(Date.now()), 16);
+  window.cancelAnimationFrame = (id: number) => window.clearTimeout(id);
+}
