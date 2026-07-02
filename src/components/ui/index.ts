@@ -1,12 +1,20 @@
-export { StatsChart } from "./Charts/StatsChart";
-export { CopyButton } from "./CopyButton/CopyButton";
-export { ConfettiButton, fireConfetti } from "./Confetti/ConfettiButton";
-export { QRCodeDisplay } from "./QRCode/QRCodeDisplay";
-export { CountdownTimer } from "./Countdown/CountdownTimer";
-export { MarkdownRenderer } from "./Markdown/MarkdownRenderer";
-export { ErrorBoundary } from "./ErrorBoundary/ErrorBoundary";
-export { DatePicker } from "./DatePicker/DatePicker";
-export { VideoPlayer } from "./VideoPlayer/VideoPlayer";
-export { RichTextEditor } from "./RichText/RichTextEditor";
-export { DataTable } from "./DataTable/DataTable";
-export { SearchSelect } from "./Select/SearchSelect";
+// UI Components
+export { Drawer } from "./Drawer/Drawer";
+export { HoverCard } from "./HoverCard/HoverCard";
+export { Progress } from "./Progress/Progress";
+export { Avatar } from "./Avatar/Avatar";
+export { ScrollArea } from "./ScrollArea/ScrollArea";
+export { Separator } from "./Separator/Separator";
+export { Slider } from "./Slider/Slider";
+export { Switch } from "./Switch/Switch";
+export { Tabs } from "./Tabs/Tabs";
+export { ColorPicker } from "./ColorPicker/ColorPicker";
+export { SortableList } from "./DragDrop/SortableList";
+export { ParallaxSection } from "./Parallax/ParallaxSection";
+export { GestureWrapper } from "./Gesture/GestureWrapper";
+export { FileUpload } from "./FileUpload/FileUpload";
+
+// Feature Components
+export { SchoolDashboard } from "../features/Dashboard/SchoolDashboard";
+export { SocialFeed } from "../features/SocialFeed/SocialFeed";
+export { SchoolBrochure } from "../features/SchoolBrochure/SchoolBrochure";
