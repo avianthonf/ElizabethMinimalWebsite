@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
 import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnnouncer";
+import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
+import { WebVitals } from "@/components/ui/WebVitals/WebVitals";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -95,7 +99,11 @@ export default function RootLayout({
       </head>
       <body>
         <RouteAnnouncer />
+        <ToastProvider />
+        <WebVitals />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
