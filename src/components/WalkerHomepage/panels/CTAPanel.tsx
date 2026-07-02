@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { CTA_CONTENT } from "@/data/homepage";
+import { LottieAnimation } from "@/components/decorations/LottieAnimation";
 import shared from "./shared.module.css";
 import styles from "./CTAPanel.module.css";
 
@@ -33,9 +34,17 @@ export function CTAPanel(): ReactNode {
         </div>
       </div>
 
-      {/* Crest watermark — right column */}
-      <div className={styles.ctaVisual} aria-hidden="true">
-        <div className={styles.ctaCrest}>
+      {/* Visual column — right: Lottie + crest watermark */}
+      <div className={styles.ctaVisual}>
+        <div className={styles.ctaLottie} aria-hidden="true">
+          <LottieAnimation
+            src="/animations/graduation-hat.json"
+            width="clamp(140px, 16vw, 280px)"
+            height="clamp(140px, 16vw, 280px)"
+            ariaLabel="Graduation hat animation"
+          />
+        </div>
+        <div className={styles.ctaCrest} aria-hidden="true">
           <svg
             viewBox="0 0 100 114"
             width="100%"

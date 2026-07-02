@@ -7,6 +7,8 @@ import { Container } from "@/components/layout/Container";
 import { Stack } from "@/components/layout/Stack";
 import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { Text } from "@/components/primitives/Text";
+import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
+import { createNewsArticleSchema } from "@/lib/structured-data";
 import type { Metadata } from "next";
 
 interface NewsArticlePageProps {
@@ -41,33 +43,46 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
     notFound();
   }
 
+  const articleSchema = createNewsArticleSchema({
+    title: article.title,
+    description: article.excerpt,
+    path: `/news/${slug}`,
+    datePublished: article.date,
+    image: `/images/${article.imageFilename}`,
+  });
+
+  const cspNonce = process.env.NEXT_PUBLIC_CSP_NONCE ?? "";
+
   return (
-    <PageShell
-      hero={
-        <>
-          <Breadcrumb href="/news" label="News" currentLabel={article.title} />
-          <Hero
-            eyebrow={article.category}
-            heading={article.title}
-            description={article.date}
-            backgroundImage={`/images/${article.imageFilename}`}
-          />
-        </>
-      }
-    >
-      <Section background="paper" padding="xlarge" ariaLabel={`Article: ${article.title}`}>
-        <Container width="narrow">
-          <Stack gap="large">
-            <Stack gap="small">
-              <Text variant="caption">{article.date}</Text>
-              <Text variant="eyebrow">{article.category}</Text>
+    <>
+      <NonceScript nonce={cspNonce} jsonLd={articleSchema} />
+      <PageShell
+        hero={
+          <>
+            <Breadcrumb href="/news" label="News" currentLabel={article.title} />
+            <Hero
+              eyebrow={article.category}
+              heading={article.title}
+              description={article.date}
+              backgroundImage={`/images/${article.imageFilename}`}
+            />
+          </>
+        }
+      >
+        <Section background="paper" padding="xlarge" ariaLabel={`Article: ${article.title}`}>
+          <Container width="narrow">
+            <Stack gap="large">
+              <Stack gap="small">
+                <Text variant="caption">{article.date}</Text>
+                <Text variant="eyebrow">{article.category}</Text>
+              </Stack>
+              <Text variant="muted" size="large">
+                {article.excerpt}
+              </Text>
             </Stack>
-            <Text variant="muted" size="large">
-              {article.excerpt}
-            </Text>
-          </Stack>
-        </Container>
-      </Section>
-    </PageShell>
+          </Container>
+        </Section>
+      </PageShell>
+    </>
   );
 }

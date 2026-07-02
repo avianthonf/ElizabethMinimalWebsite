@@ -106,7 +106,9 @@ export const visitTypeSchema = z.object({
 
 export const mapConfigSchema = z.object({
   title: z.string().min(1),
-  embedUrl: z.string().url(),
+  lat: z.number().min(-90).max(90).optional(),
+  lng: z.number().min(-180).max(180).optional(),
+  zoom: z.number().min(1).max(20).optional(),
   addressLines: z.custom<React.ReactNode>().optional(),
 });
 

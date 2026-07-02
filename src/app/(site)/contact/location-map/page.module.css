@@ -1,0 +1,47 @@
+.mapSection {
+  width: 100%;
+  border-radius: var(--c-radius-md, 8px);
+  overflow: hidden;
+  border: 1px solid var(--s-color-border, rgba(23, 23, 23, 0.14));
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-lg, 2rem);
+}
+
+.directionsButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 8px 16px;
+  background: var(--s-color-primary, #0c217c);
+  color: var(--s-color-surface, #ffffff);
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.8125rem));
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--c-radius-sm, 4px);
+  transition:
+    background var(--transition-fast, 150ms ease),
+    transform var(--transition-fast, 150ms ease);
+  align-self: flex-start;
+}
+
+.directionsButton:hover {
+  background: var(--s-color-primary-dark, #060f45);
+  transform: translateY(-1px);
+}
+
+.directionsButton:focus-visible {
+  outline: 2px solid var(--focus-ring-color, #2563eb);
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md, 1rem);
+  }
+}

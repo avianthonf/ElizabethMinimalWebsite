@@ -3,6 +3,7 @@
 import { type ReactNode, type RefObject } from "react";
 import { usePathname } from "next/navigation";
 import { Link } from "@/components/primitives/Link";
+import { CommandPalette } from "@/components/ui/CommandPalette/CommandPalette";
 import styles from "./Header.module.css";
 
 export interface HeaderNavLink {
@@ -102,6 +103,8 @@ export function Header({
           </Link>
         ))}
       </nav>
+
+      <CommandPalette />
 
       {showMenu && (
         <button

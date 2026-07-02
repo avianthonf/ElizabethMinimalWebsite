@@ -3,7 +3,7 @@ import type { VisitInfoCard, MapConfig } from "@/components/templates";
 import { Text } from "@/components/primitives/Text";
 import { createPageMetadata } from "@/lib/page-utils";
 import { CONTACT_VISIT_PAGE } from "@/data/contact";
-import { SCHOOL_ADDRESS, GOOGLE_MAPS_EMBED_URL } from "@/data/visits";
+import { SCHOOL_ADDRESS, SCHOOL_COORDINATES } from "@/data/visits";
 import { CONTACT_IMAGES } from "@/data/images";
 
 export const metadata = createPageMetadata(
@@ -30,7 +30,9 @@ const visitInfoCards: VisitInfoCard[] = [
     eyebrow: "Getting Here",
     content: (
       <Text variant="muted" size="small">
-        From Panjim: Take the NH66 north towards Mapusa, turn right at the Pomburpa junction, and follow the signs to the school. From Mapusa: Head south on the road to Pomburpa. The school is located on Ven. Fr. Hilario Gonsalves Road, near the Pomburpa church.
+        From Panjim: Take the NH66 north towards Mapusa, turn right at the Pomburpa junction, and
+        follow the signs to the school. From Mapusa: Head south on the road to Pomburpa. The school
+        is located on Ven. Fr. Hilario Gonsalves Road, near the Pomburpa church.
       </Text>
     ),
   },
@@ -38,7 +40,8 @@ const visitInfoCards: VisitInfoCard[] = [
 
 const mapConfig: MapConfig = {
   title: "Campus Map",
-  embedUrl: GOOGLE_MAPS_EMBED_URL,
+  lat: SCHOOL_COORDINATES.lat,
+  lng: SCHOOL_COORDINATES.lng,
 };
 
 export default function ContactVisitPage() {

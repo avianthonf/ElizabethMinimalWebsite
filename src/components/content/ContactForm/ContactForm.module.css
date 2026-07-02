@@ -54,6 +54,17 @@
   border-color: var(--s-color-primary);
 }
 
+.input[aria-invalid="true"],
+.textarea[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.input[aria-invalid="true"]:focus,
+.textarea[aria-invalid="true"]:focus {
+  outline-color: #dc2626;
+  border-color: #dc2626;
+}
+
 .textarea {
   resize: vertical;
   min-height: 90px;
@@ -109,4 +120,10 @@
   height: 1px;
   overflow: hidden;
   opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit {
+    transition: none;
+  }
 }

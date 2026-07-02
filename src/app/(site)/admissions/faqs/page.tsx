@@ -1,11 +1,10 @@
 import { Hero } from "@/components/content/Hero";
-import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Stack } from "@/components/layout/Stack";
 import { PageShell } from "@/components/layout";
 import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
+import { Accordion } from "@/components/ui/Accordion";
 import { createPageMetadata, getHeroImage } from "@/lib/page-utils";
 import { FAQS } from "@/data/admissions";
 
@@ -28,30 +27,18 @@ export default function FAQsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Frequently asked questions"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Frequently asked questions">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">
               Common Questions
             </Heading>
-            <Stack gap="medium">
-              {FAQS.map((faq) => (
-                <Card key={faq.question} variant="default" padding="medium">
-                  <Stack gap="small">
-                    <Heading level="h3" variant="card">
-                      {faq.question}
-                    </Heading>
-                    <Text variant="muted" size="medium">
-                      {faq.answer}
-                    </Text>
-                  </Stack>
-                </Card>
-              ))}
-            </Stack>
+            <Accordion
+              items={FAQS.map((faq) => ({
+                trigger: faq.question,
+                content: faq.answer,
+              }))}
+            />
           </Stack>
         </Container>
       </Section>

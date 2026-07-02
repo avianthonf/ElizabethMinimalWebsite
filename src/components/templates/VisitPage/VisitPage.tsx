@@ -8,8 +8,8 @@ import { SplitLayout } from "@/components/layout/SplitLayout";
 import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
+import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedWrapper";
 import type { MapConfig } from "@/data/visits";
-import styles from "./VisitPage.module.css";
 
 export interface VisitInfoCard {
   /** Small eyebrow label (renders as "eyebrow" variant) */
@@ -99,16 +99,7 @@ export function VisitPage({
                   {mapConfig.title}
                 </Heading>
                 {mapConfig.addressLines}
-                <div className={styles.mapWrapper}>
-                  <iframe
-                    src={mapConfig.embedUrl}
-                    className={styles.mapIframe}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="St. Elizabeth's High School on Google Maps"
-                  />
-                </div>
+                <MapEmbed lat={mapConfig.lat} lng={mapConfig.lng} zoom={mapConfig.zoom} />
               </Stack>
             }
           />

@@ -1,0 +1,114 @@
+/* SchoolBrochure */
+
+.brochure {
+  background: var(--s-color-surface, #fff);
+  border-radius: var(--card-radius, 12px);
+  border: 1px solid var(--s-color-border, rgba(23, 23, 23, 0.14));
+  padding: 1.5rem;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--s-color-text, #171717);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+}
+
+.content {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--s-color-text, #171717);
+}
+
+.content h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.content p {
+  margin-bottom: 0.75rem;
+}
+
+.content strong {
+  font-weight: 600;
+}
+
+.content ul {
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.content li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--s-color-text, #171717);
+  margin-bottom: 0.75rem;
+}
+
+.qrSection {
+  text-align: center;
+}
+
+.countdownSection {
+  text-align: center;
+}
+
+.contactGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.contactLabel {
+  font-size: 0.75rem;
+  color: var(--s-color-text-muted, #5f5f5f);
+}
+
+.contactValue {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--s-color-text, #171717);
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: -1;
+  }
+}

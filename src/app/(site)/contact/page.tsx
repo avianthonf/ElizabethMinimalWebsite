@@ -7,14 +7,15 @@ import { PageShell } from "@/components/layout";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { createPageMetadata } from "@/lib/page-utils";
-import { SCHOOL_ADDRESS, SCHOOL_CONTACT, GOOGLE_MAPS_EMBED_URL } from "@/data/visits";
+import { SCHOOL_ADDRESS, SCHOOL_CONTACT } from "@/data/visits";
 import { CONTACT_IMAGES } from "@/data/images";
-import { ContactForm } from "./ContactForm";
-import styles from "./ContactPage.module.css";
+import { ContactForm } from "@/components/content/ContactForm";
+import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedWrapper";
 
 export const metadata = createPageMetadata(
   "Contact",
   "Get in touch with St. Elizabeth's High School in Pomburpa, Goa. Find our address, phone number, email, and location on Google Maps.",
+  { ogImage: "/images/DSC07580.jpg" },
 );
 
 export default function ContactPage() {
@@ -70,18 +71,7 @@ export default function ContactPage() {
                 <Heading level="h3" variant="card">
                   Find Us
                 </Heading>
-                <div className={styles.mapWrapper}>
-                  <iframe
-                    src={GOOGLE_MAPS_EMBED_URL}
-                    width="100%"
-                    height="100%"
-                    className={styles.mapIframe}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="St. Elizabeth's High School on Google Maps"
-                  />
-                </div>
+                <MapEmbed />
               </Stack>
             }
           />

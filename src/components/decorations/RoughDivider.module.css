@@ -1,0 +1,14 @@
+/* ── RoughDivider ─────────────────────────────────────────────────────── */
+
+.dividerContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.divider {
+  display: block;
+  width: 100%;
+}

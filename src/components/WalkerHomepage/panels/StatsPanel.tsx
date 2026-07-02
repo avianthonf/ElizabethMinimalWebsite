@@ -1,9 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import type { ReactNode } from "react";
 import { Icon } from "@/components/primitives/Icon";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
+import { useReducedMotion } from "@/components/WalkerHomepage/hooks/useReducedMotion";
+import { useGsapStaggerReveal } from "@/hooks/useGsapStaggerReveal";
 import { STATS } from "@/data/homepage";
 import styles from "./StatsPanel.module.css";
 import { StatValue } from "./StatValue";
@@ -12,7 +15,14 @@ import { AnimatedCard } from "./AnimatedCard";
 const STATS_ICONS: Record<string, ReactNode> = {
   "1949": (
     <Icon size="xlarge" decorative>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <rect x="3" y="4" width="18" height="18" rx="2" />
         <line x1="16" y1="2" x2="16" y2="6" />
         <line x1="8" y1="2" x2="8" y2="6" />
@@ -22,7 +32,14 @@ const STATS_ICONS: Record<string, ReactNode> = {
   ),
   "1200+": (
     <Icon size="xlarge" decorative>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <circle cx="9" cy="7" r="4" />
         <path d="M1 21v-2a4 4 0 0 1 4-4h4" />
         <circle cx="17" cy="7" r="4" />
@@ -32,7 +49,14 @@ const STATS_ICONS: Record<string, ReactNode> = {
   ),
   CBSE: (
     <Icon size="xlarge" decorative>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <circle cx="12" cy="8" r="6" />
         <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
       </svg>
@@ -52,16 +76,31 @@ export const statsPanelClass = styles.statsPanel;
  * is handled by the orchestrator.
  */
 export function StatsPanel(): ReactNode {
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  useGsapStaggerReveal({
+    container: cardsRef,
+    disabled: prefersReduced,
+    stagger: 0.15,
+    duration: 0.8,
+    y: 30,
+  });
+
   return (
     <>
       <div className={styles.statsIntro}>
-        <Text variant="eyebrow" as="p">By the Numbers</Text>
-        <Heading level="h2" variant="section">Our School at a Glance</Heading>
+        <Text variant="eyebrow" as="p">
+          By the Numbers
+        </Text>
+        <Heading level="h2" variant="section">
+          Our School at a Glance
+        </Heading>
         <Text variant="muted" as="p" size="medium">
           Seven decades of shaping young minds — here&rsquo;s what makes St. Elizabeth special.
         </Text>
       </div>
-      <div className={styles.statsCards}>
+      <div ref={cardsRef} className={styles.statsCards}>
         {STATS.map((stat, i) => (
           <AnimatedCard key={stat.label} index={i} total={STATS.length}>
             <article className={styles.statsCard} aria-label={`${stat.label}: ${stat.value}`}>

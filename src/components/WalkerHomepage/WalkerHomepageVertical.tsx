@@ -6,6 +6,7 @@ import { LoadOverlayMobile } from "@/components/LoadOverlay";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay";
+import { RoughDivider } from "@/components/decorations/RoughDivider";
 import type { UseMenuStateReturn } from "./hooks/useMenuState";
 import { useReducedMotion } from "./hooks/useReducedMotion";
 import { HeroPanel } from "./panels/HeroPanel";
@@ -71,6 +72,15 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
         <HeroPanel onMenuOpen={menu.open} />
       </section>
 
+      {/* ── Divider: Hero → Values ──────────────────────────────────── */}
+      <RoughDivider
+        color="rgba(255, 255, 255, 0.3)"
+        roughness={1.5}
+        strokeWidth={1.5}
+        height={30}
+        variant="wave"
+      />
+
       {/* ── Panel 2: Values ────────────────────────────────────────────── */}
       <motion.section
         className={`${shared.panel} ${valuesPanelClass}`}
@@ -83,6 +93,15 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
       >
         <ValuesPanel />
       </motion.section>
+
+      {/* ── Divider: Values → Stats ──────────────────────────────────── */}
+      <RoughDivider
+        color="rgba(12, 74, 110, 0.25)"
+        roughness={1.2}
+        strokeWidth={1.2}
+        height={24}
+        variant="zigzag"
+      />
 
       {/* ── Panel 3: Stats ─────────────────────────────────────────────── */}
       <motion.section
@@ -97,6 +116,15 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
         <StatsPanel />
       </motion.section>
 
+      {/* ── Divider: Stats → Gallery ─────────────────────────────────── */}
+      <RoughDivider
+        color="rgba(12, 33, 124, 0.2)"
+        roughness={1.5}
+        strokeWidth={1.5}
+        height={32}
+        variant="wave"
+      />
+
       {/* ── Panel 4: Gallery ───────────────────────────────────────────── */}
       <motion.section
         className={`${shared.panel} ${verticalGalleryPanelClass}`}
@@ -109,6 +137,15 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
       >
         <GalleryPanel className={verticalGalleryPanelClass} />
       </motion.section>
+
+      {/* ── Divider: Gallery → Testimonials ──────────────────────────── */}
+      <RoughDivider
+        color="rgba(201, 168, 76, 0.35)"
+        roughness={1.8}
+        strokeWidth={1.5}
+        height={28}
+        variant="wave"
+      />
 
       {/* ── Panel 5: Testimonials ───────────────────────────────────────── */}
       <motion.section
@@ -123,6 +160,15 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
         <TestimonialsPanel />
       </motion.section>
 
+      {/* ── Divider: Testimonials → CTA ──────────────────────────────── */}
+      <RoughDivider
+        color="rgba(255, 255, 255, 0.25)"
+        roughness={1.2}
+        strokeWidth={1.2}
+        height={24}
+        variant="zigzag"
+      />
+
       {/* ── Panel 6: CTA ───────────────────────────────────────────────── */}
       <motion.section
         className={`${shared.panel} ${ctaPanelClass}`}
@@ -135,6 +181,15 @@ export function WalkerHomepageVertical({ menu }: WalkerHomepageVerticalProps): R
       >
         <CTAPanel />
       </motion.section>
+
+      {/* ── Divider: CTA → News ──────────────────────────────────────── */}
+      <RoughDivider
+        color="rgba(12, 74, 110, 0.2)"
+        roughness={1.5}
+        strokeWidth={1.5}
+        height={30}
+        variant="wave"
+      />
 
       {/* ── Panel 7: Latest News ────────────────────────────────────────── */}
       <motion.section

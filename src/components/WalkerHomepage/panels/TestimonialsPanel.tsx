@@ -1,9 +1,13 @@
 "use client";
 
+import { useRef } from "react";
 import type { ReactNode } from "react";
 import { TestimonialCard } from "@/components/content/TestimonialCard";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
+import { RoughBorder } from "@/components/decorations/RoughBorder";
+import { useReducedMotion } from "@/components/WalkerHomepage/hooks/useReducedMotion";
+import { useGsapStaggerReveal } from "@/hooks/useGsapStaggerReveal";
 import { TESTIMONIALS } from "@/data/homepage";
 import styles from "./TestimonialsPanel.module.css";
 
@@ -19,6 +23,17 @@ export const testimonialsPanelClass = styles.testimonialsPanel;
  * is handled by the orchestrator.
  */
 export function TestimonialsPanel(): ReactNode {
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  useGsapStaggerReveal({
+    container: cardsRef,
+    disabled: prefersReduced,
+    stagger: 0.15,
+    duration: 0.8,
+    y: 24,
+  });
+
   return (
     <>
       {/* Sidebar — left column */}
@@ -32,14 +47,17 @@ export function TestimonialsPanel(): ReactNode {
       </div>
 
       {/* Card row — right column */}
-      <div className={styles.cardsRow}>
+      <div ref={cardsRef} className={styles.cardsRow}>
         {TESTIMONIALS.map((t) => (
-          <TestimonialCard
+          <RoughBorder
             key={t.attribution}
-            quote={t.quote}
-            attribution={t.attribution}
-            role={t.role}
-          />
+            color="rgba(12, 33, 124, 0.18)"
+            roughness={1.2}
+            strokeWidth={1.2}
+            borderRadius={6}
+          >
+            <TestimonialCard quote={t.quote} attribution={t.attribution} role={t.role} />
+          </RoughBorder>
         ))}
       </div>
     </>

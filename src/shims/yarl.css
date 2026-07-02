@@ -1,0 +1,75 @@
+/*
+ * yet-another-react-lightbox (YARL) CSS shim
+ *
+ * YARL v3 ships its own styles.css which Turbopack cannot resolve
+ * via bare specifier imports. This shim re-exports the vendor styles
+ * and applies project-level design token overrides.
+ */
+
+/* ── Vendor base styles ──────────────────────────────────── */
+@import "yet-another-react-lightbox/styles.css";
+
+/* ── Captions plugin styles ──────────────────────────────── */
+@import "yet-another-react-lightbox/plugins/captions.css";
+
+/* ── Project-level overrides using design tokens ─────────── */
+
+.yarl_root {
+  /* Override YARL's default font stack with our project fonts */
+  font-family: var(--font-sans);
+}
+
+/* Caption text styling */
+.yarl_plugins_captions_title {
+  font-family: var(--font-serif) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.yarl_plugins_captions_description {
+  font-family: var(--font-sans) !important;
+  font-weight: 400 !important;
+  opacity: 0.82 !important;
+}
+
+/* Counter styling */
+.yarl_plugins_counter {
+  font-family: var(--font-sans) !important;
+  font-size: 0.8125rem !important;
+  letter-spacing: 0.06em !important;
+  opacity: 0.5 !important;
+}
+
+/* Toolbar buttons */
+.yarl_button {
+  transition: background-color 200ms var(--ease-standard) !important;
+}
+
+.yarl_button:hover {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Focus visible for accessibility */
+.yarl_button:focus-visible {
+  outline: 2px solid var(--s-color-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Navigation buttons */
+.yarl_navigation_button {
+  transition:
+    background-color 200ms var(--ease-standard),
+    color 200ms var(--ease-standard) !important;
+}
+
+.yarl_navigation_button:hover {
+  color: var(--s-color-accent) !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .yarl_root * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
