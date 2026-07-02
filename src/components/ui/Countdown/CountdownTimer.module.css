@@ -1,0 +1,65 @@
+/* CountdownTimer */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--s-color-text-muted, #5f5f5f);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 48px;
+  padding: 0.5rem;
+  background: var(--s-color-surface-alt, #f4f1ed);
+  border-radius: 8px;
+  border: 1px solid var(--s-color-border, rgba(23, 23, 23, 0.14));
+}
+
+.value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--s-color-primary, #0c217c);
+  line-height: 1;
+}
+
+.unit .label {
+  font-size: 0.625rem;
+  color: var(--s-color-text-muted, #5f5f5f);
+  margin-top: 0.25rem;
+}
+
+.separator {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--s-color-text-muted, #5f5f5f);
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .unit {
+    min-width: 40px;
+    padding: 0.375rem;
+  }
+
+  .value {
+    font-size: 1.125rem;
+  }
+}
