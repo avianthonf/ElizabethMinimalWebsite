@@ -4,6 +4,8 @@ import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,
   GOOGLE_MAPS_EMBED_URL,
+  SCHOOL_COORDINATES,
+  GOOGLE_MAPS_DIRECTIONS_URL,
 } from "../visits";
 
 describe("Visits Data", () => {
@@ -49,6 +51,30 @@ describe("Visits Data", () => {
 
     it("references St. Elizabeth in the query", () => {
       expect(GOOGLE_MAPS_EMBED_URL).toMatch(/St.*Elizabeth/i);
+    });
+  });
+
+  describe("SCHOOL_COORDINATES", () => {
+    it("has lat and lng for Pomburpa, Goa", () => {
+      expect(SCHOOL_COORDINATES.lat).toBeCloseTo(15.5449, 3);
+      expect(SCHOOL_COORDINATES.lng).toBeCloseTo(73.9723, 3);
+    });
+
+    it("lat is within valid range", () => {
+      expect(SCHOOL_COORDINATES.lat).toBeGreaterThanOrEqual(-90);
+      expect(SCHOOL_COORDINATES.lat).toBeLessThanOrEqual(90);
+    });
+
+    it("lng is within valid range", () => {
+      expect(SCHOOL_COORDINATES.lng).toBeGreaterThanOrEqual(-180);
+      expect(SCHOOL_COORDINATES.lng).toBeLessThanOrEqual(180);
+    });
+  });
+
+  describe("GOOGLE_MAPS_DIRECTIONS_URL", () => {
+    it("is a non-empty Google Maps directions URL", () => {
+      expect(GOOGLE_MAPS_DIRECTIONS_URL.length).toBeGreaterThan(10);
+      expect(GOOGLE_MAPS_DIRECTIONS_URL).toContain("google.com/maps/dir");
     });
   });
 

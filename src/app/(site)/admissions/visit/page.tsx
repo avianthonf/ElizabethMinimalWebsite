@@ -3,7 +3,7 @@ import type { VisitInfoCard, MapConfig } from "@/components/templates";
 import { Text } from "@/components/primitives/Text";
 import { createPageMetadata, getHeroImage } from "@/lib/page-utils";
 import { ADMISSIONS_VISIT_PAGE } from "@/data/admissions";
-import { SCHOOL_ADDRESS, GOOGLE_MAPS_EMBED_URL } from "@/data/visits";
+import { SCHOOL_ADDRESS, SCHOOL_COORDINATES } from "@/data/visits";
 
 export const metadata = createPageMetadata(
   ADMISSIONS_VISIT_PAGE.metaTitle,
@@ -15,7 +15,9 @@ const visitInfoCards: VisitInfoCard[] = [
     eyebrow: "Visit Information",
     content: (
       <Text variant="muted" size="small">
-        Tours are conducted on weekdays from 9:00 AM to 2:00 PM. Please contact the admissions office at least one week in advance to schedule your visit. We recommend allowing 90 minutes for a complete campus tour.
+        Tours are conducted on weekdays from 9:00 AM to 2:00 PM. Please contact the admissions
+        office at least one week in advance to schedule your visit. We recommend allowing 90 minutes
+        for a complete campus tour.
       </Text>
     ),
   },
@@ -23,7 +25,8 @@ const visitInfoCards: VisitInfoCard[] = [
     eyebrow: "What to Expect",
     content: (
       <Text variant="muted" size="small">
-        Your visit will include a guided campus tour, classroom observations, a meeting with an admissions counsellor, and an opportunity to speak with current students and faculty.
+        Your visit will include a guided campus tour, classroom observations, a meeting with an
+        admissions counsellor, and an opportunity to speak with current students and faculty.
       </Text>
     ),
   },
@@ -40,7 +43,8 @@ const mapConfig: MapConfig = {
       {SCHOOL_ADDRESS.city} {SCHOOL_ADDRESS.pinCode}
     </Text>
   ),
-  embedUrl: GOOGLE_MAPS_EMBED_URL,
+  lat: SCHOOL_COORDINATES.lat,
+  lng: SCHOOL_COORDINATES.lng,
 };
 
 export default function AdmissionsVisitPage() {

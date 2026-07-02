@@ -23,10 +23,14 @@ export interface VisitType {
 export interface MapConfig {
   /** Right-column heading above the map */
   title: string;
-  /** Optional address text rendered above the map iframe (omitted when null) */
+  /** Optional address text rendered above the map (omitted when null) */
   addressLines?: ReactNode;
-  /** Google Maps embed URL for the iframe src */
-  embedUrl: string;
+  /** Center latitude */
+  lat?: number;
+  /** Center longitude */
+  lng?: number;
+  /** Map zoom level (default 14) */
+  zoom?: number;
 }
 
 export interface ContactInfo {
@@ -49,12 +53,23 @@ export const SCHOOL_ADDRESS = {
 export const SCHOOL_CONTACT = {
   phone: "+91 832-241-0654",
   email: "info@stelizabethhighschool.in",
+  hours: "Mon–Fri: 7:30 AM – 3:30 PM",
+} as const;
+
+// ── School Coordinates ─────────────────────────────────────────────────
+
+export const SCHOOL_COORDINATES = {
+  lat: 15.5449,
+  lng: 73.9723,
 } as const;
 
 // ── Google Maps ────────────────────────────────────────────────────────
 
 export const GOOGLE_MAPS_EMBED_URL =
   "https://maps.google.com/maps?q=St.+Elizabeth+High+School+Pomburpa+Goa&output=embed";
+
+export const GOOGLE_MAPS_DIRECTIONS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=St.+Elizabeth+High+School+Pomburpa+Goa";
 
 // ── Visit Types ────────────────────────────────────────────────────────
 

@@ -9,7 +9,7 @@ import { Text } from "@/components/primitives/Text";
 import { Link } from "@/components/primitives/Link";
 import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { ContactForm } from "@/components/content/ContactForm";
-import { MapEmbed } from "@/components/content/MapEmbed/MapEmbed";
+import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedWrapper";
 import { createPageMetadata } from "@/lib/page-utils";
 import { SCHOOL_ADDRESS, SCHOOL_CONTACT, GOOGLE_MAPS_EMBED_URL } from "@/data/visits";
 import { CONTACT_IMAGES } from "@/data/images";
@@ -88,10 +88,7 @@ export default function ContactInfoPage() {
                 <Heading level="h3" variant="card">
                   Find Us
                 </Heading>
-                <MapEmbed
-                  src={GOOGLE_MAPS_EMBED_URL}
-                  title="St. Elizabeth's High School on Google Maps"
-                />
+                <MapEmbed />
               </Stack>
             }
           />

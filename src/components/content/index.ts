@@ -9,3 +9,5 @@ export { MediaBlock } from "./MediaBlock";
 export { Gallery } from "./Gallery";
 export type { GalleryProps, GalleryImageEntry, GalleryFilterCategory } from "./Gallery";
 export { ContactForm } from "./ContactForm";
+export { MapEmbed } from "./MapEmbed/MapEmbed";
+export type { MapEmbedProps } from "./MapEmbed/MapEmbed";
