@@ -6,3 +6,5 @@ export { TestimonialCard } from "./TestimonialCard";
 export { Hero } from "./Hero";
 export { CTASection } from "./CTASection";
 export { MediaBlock } from "./MediaBlock";
+export { Gallery } from "./Gallery";
+export type { GalleryProps, GalleryImageEntry, GalleryFilterCategory } from "./Gallery";

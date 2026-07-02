@@ -34,6 +34,10 @@
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
+/* ── Vendor CSS Shims (Turbopack workaround) ────────── */
+@import "../shims/photo-album-masonry.css";
+@import "../shims/yarl.css";
+
 @layer reset, utilities;
 
 /* ── Design Tokens (unlayered — globally available) ─── */

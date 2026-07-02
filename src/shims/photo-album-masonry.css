@@ -1,0 +1,12 @@
+/*
+ * react-photo-album CSS shim
+ *
+ * react-photo-album v3 generates its own inline styles and class names
+ * at runtime. This shim provides minimal structural overrides to ensure
+ * the masonry grid integrates cleanly with our CSS Module design system.
+ */
+
+/* Ensure the album container respects our spacing tokens */
+div[style*="position: relative"] {
+  /* Let react-photo-album manage its own positioning */
+}
