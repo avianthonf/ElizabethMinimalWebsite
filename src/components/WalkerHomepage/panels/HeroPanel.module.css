@@ -107,8 +107,9 @@
     animation: fadeUpReveal 0.8s var(--ease-out) 0.3s both;
   }
 
+  /* Heading is now animated by GSAP char reveal — remove CSS animation */
   .heroHeading {
-    animation: fadeUpReveal 0.8s var(--ease-out) 0.5s both;
+    perspective: 800px;
   }
 }
 

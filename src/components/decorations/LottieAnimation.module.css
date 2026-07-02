@@ -1,0 +1,11 @@
+/* ── LottieAnimation wrapper ──────────────────────────────────────────── */
+
+.wrapper {
+  display: inline-block;
+  line-height: 0;
+}
+
+.lottie {
+  width: 100%;
+  height: 100%;
+}

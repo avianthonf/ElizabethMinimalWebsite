@@ -2,6 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { HERO_CONTENT } from "@/data/homepage";
+import { useReducedMotion } from "@/components/WalkerHomepage/hooks/useReducedMotion";
+import { useGsapCharReveal, useGsapParallax } from "@/hooks/useGsapReveal";
 import shared from "./shared.module.css";
 import styles from "./HeroPanel.module.css";
 
@@ -17,6 +19,8 @@ export const heroPanelClass = `${shared.panel} ${styles.heroPanel}`;
 export function HeroPanel(props: HeroPanelProps): ReactNode {
   void props;
   const videoRef = useRef<HTMLVideoElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const prefersReduced = useReducedMotion();
   const [seekTime, setSeekTime] = useState(2.7);
 
   // SSR-safe mobile detection — matches the 760px breakpoint
@@ -31,6 +35,19 @@ export function HeroPanel(props: HeroPanelProps): ReactNode {
       videoRef.current.currentTime = seekTime;
     }
   }, [seekTime]);
+
+  // GSAP character reveal on heading
+  useGsapCharReveal({
+    container: headingRef,
+    disabled: prefersReduced,
+  });
+
+  // GSAP parallax on video
+  useGsapParallax({
+    element: videoRef as React.RefObject<HTMLVideoElement>,
+    speed: 0.15,
+    disabled: prefersReduced,
+  });
 
   return (
     <>
@@ -47,13 +64,8 @@ export function HeroPanel(props: HeroPanelProps): ReactNode {
       />
       <div className={styles.heroOverlay}>
         <p className={styles.heroStatement}>{HERO_CONTENT.statement}</p>
-        <h1 className={styles.heroHeading}>
-          {HERO_CONTENT.heading.split(" ").map((word, i, arr) => (
-            <span key={word}>
-              {word}
-              {i < arr.length - 1 && <br />}
-            </span>
-          ))}
+        <h1 ref={headingRef} className={styles.heroHeading}>
+          {HERO_CONTENT.heading}
         </h1>
       </div>
     </>
