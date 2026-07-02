@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import Image from "next/image";
 import { GalleryCard } from "@/components/content/GalleryCard/GalleryCard";
 import { GalleryFilter } from "@/components/content/GalleryFilter/GalleryFilter";
 import { GalleryLightbox } from "@/components/content/GalleryLightbox/GalleryLightbox";

@@ -8,6 +8,7 @@ import { SplitLayout } from "@/components/layout/SplitLayout";
 import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
+import { MapEmbed } from "@/components/content/MapEmbed/MapEmbed";
 import type { MapConfig } from "@/data/visits";
 import styles from "./VisitPage.module.css";
 
@@ -99,16 +100,10 @@ export function VisitPage({
                   {mapConfig.title}
                 </Heading>
                 {mapConfig.addressLines}
-                <div className={styles.mapWrapper}>
-                  <iframe
-                    src={mapConfig.embedUrl}
-                    className={styles.mapIframe}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="St. Elizabeth's High School on Google Maps"
-                  />
-                </div>
+                <MapEmbed
+                  src={mapConfig.embedUrl}
+                  title="St. Elizabeth's High School on Google Maps"
+                />
               </Stack>
             }
           />
