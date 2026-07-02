@@ -8,3 +8,4 @@ export { CTASection } from "./CTASection";
 export { MediaBlock } from "./MediaBlock";
 export { Gallery } from "./Gallery";
 export type { GalleryProps, GalleryImageEntry, GalleryFilterCategory } from "./Gallery";
+export { ContactForm } from "./ContactForm";

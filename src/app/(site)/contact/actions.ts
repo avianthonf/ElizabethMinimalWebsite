@@ -2,6 +2,8 @@
 
 import { z } from "zod";
 import type { Resend } from "resend";
+import { InquiryEmail } from "@/lib/email";
+import { render } from "@react-email/components";
 
 /** Lazy Resend client — initialized on first use to avoid module-scope failures in tests. */
 let resendClient: Resend | null = null;
@@ -14,7 +16,7 @@ async function getResend(): Promise<Resend> {
   return resendClient;
 }
 
-const INQUIRY_EMAIL = process.env.CONTACT_EMAIL ?? "info@stelizabeths.edu.in";
+const INQUIRY_EMAIL = process.env.CONTACT_EMAIL ?? "info@stelizabethhighschool.in";
 
 const inquirySchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -34,10 +36,12 @@ export type FormState = {
   message?: string;
 };
 
+// ── Rate Limiting ───────────────────────────────────────────────────────
+
 /** Simple in-memory rate limiter. Resets on server restart. */
 const submissions = new Map<string, number[]>();
-const RATE_LIMIT_WINDOW = 60_000; // 1 minute
-const RATE_LIMIT_MAX = 3; // 3 submissions per minute per email
+const RATE_LIMIT_WINDOW = 3_600_000; // 1 hour
+const RATE_LIMIT_MAX = 3; // 3 submissions per hour per email
 
 function isRateLimited(email: string): boolean {
   const now = Date.now();
@@ -52,6 +56,8 @@ function recordSubmission(email: string): void {
   timestamps.push(Date.now());
   submissions.set(email, timestamps);
 }
+
+// ── Server Action ───────────────────────────────────────────────────────
 
 export async function submitInquiry(_prevState: FormState, formData: FormData): Promise<FormState> {
   const raw = {
@@ -74,45 +80,44 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
 
   const { name, email, phone, subject, message } = result.data;
 
-  // Honeypot check — bots fill this hidden field
+  // Rate limiting — checked before honeypot so bots can't exhaust limits
+  if (isRateLimited(email)) {
+    return {
+      success: false,
+      errors: {
+        email: ["Too many submissions. Please wait an hour and try again."],
+      },
+    };
+  }
+
+  // Honeypot check — bots fill this hidden field; silently pretend success
   if (result.data.website) {
-    // Silently pretend success to confuse bots
     return {
       success: true,
       message: "Thank you for your inquiry.",
     };
   }
 
-  // Rate limiting
-  if (isRateLimited(email)) {
-    return {
-      success: false,
-      errors: { email: ["Too many submissions. Please wait a minute and try again."] },
-    };
-  }
-
-  // Send email via Resend
+  // Send email via Resend using React Email template
   try {
+    const emailHtml = await render(
+      InquiryEmail({
+        name,
+        email,
+        phone,
+        subject,
+        message,
+      }),
+    );
+
     await (
       await getResend()
     ).emails.send({
-      from: "St. Elizabeth's Website <noreply@stelizabeths.edu.in>",
+      from: "St. Elizabeth's Website <noreply@stelizabethhighschool.in>",
       to: INQUIRY_EMAIL,
       replyTo: email,
       subject: `[Website Inquiry] ${subject}`,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        phone ? `Phone: ${phone}` : "",
-        "",
-        "Message:",
-        message,
-        "",
-        "---",
-        "Submitted via stelizabeths.edu.in contact form",
-      ]
-        .filter(Boolean)
-        .join("\n"),
+      html: emailHtml,
     });
 
     recordSubmission(email);
@@ -126,7 +131,7 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     return {
       success: false,
       message:
-        "Something went wrong. Please try again or contact us directly at info@stelizabeths.edu.in.",
+        "Something went wrong. Please try again or contact us directly at info@stelizabethhighschool.in.",
     };
   }
 }
