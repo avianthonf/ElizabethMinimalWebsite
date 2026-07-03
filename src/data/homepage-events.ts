@@ -35,7 +35,7 @@ export const UPCOMING_EVENTS: HomepageEvent[] = [
   },
 ];
 
-const EVENT_TYPE_ICONS: Record<string, string> = {
+const EVENT_TYPE_ICONS: Record<HomepageEvent["type"], string> = {
   academic: "graduation-cap",
   sports: "trophy",
   cultural: "music",
