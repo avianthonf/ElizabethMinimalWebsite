@@ -117,9 +117,19 @@ export function SearchOverlay({
     document.head.appendChild(script);
   }, [open, pagefindReady]);
 
+  // Ref to track the previously focused element before opening the overlay,
+  // so we can restore focus when it closes (WCAG 2.4.3).
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
   // Focus input on open, reset state on close
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      // Restore focus to the element that triggered the overlay
+      previousFocusRef.current?.focus();
+      previousFocusRef.current = null;
+      return;
+    }
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
     // Defer to next tick so the dialog is in the DOM
     queueMicrotask(() => inputRef.current?.focus());
     // Reset state to defaults whenever the overlay opens.

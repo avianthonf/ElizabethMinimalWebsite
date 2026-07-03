@@ -36,6 +36,9 @@ export function AnnouncementBar({
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // Sync from localStorage (an external store). This is a legitimate
+    // effect: we read a value we cannot access during SSR and update
+    // React state to match. The state only changes once, on mount.
     try {
       const dismissed = localStorage.getItem(storageKey);
       if (dismissed) {
@@ -43,6 +46,7 @@ export function AnnouncementBar({
         if (!Number.isNaN(dismissedAt)) {
           const reShowMs = RE_SHOW_DAYS * 24 * 60 * 60 * 1000;
           if (Date.now() - dismissedAt < reShowMs) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setVisible(false);
           } else {
             localStorage.removeItem(storageKey);

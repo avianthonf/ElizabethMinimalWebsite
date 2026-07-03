@@ -46,7 +46,7 @@ test.describe("Homepage", () => {
     await expect(stage).toBeVisible();
   });
 
-  test("scroll buttons navigate between panels", async ({ page }) => {
+  test("carousel dot navigation changes active slide", async ({ page }) => {
     await page.goto("/");
 
     await page.waitForSelector('[aria-roledescription="carousel"]', {
@@ -54,27 +54,15 @@ test.describe("Homepage", () => {
     });
     await page.waitForTimeout(500);
 
-    const initialScrollY = await page.evaluate(() => window.scrollY);
+    // The carousel has dot buttons with aria-label "Go to slide N"
+    const dot2 = page.locator('[role="tab"][aria-label="Go to slide 2"]');
+    await expect(dot2).toBeVisible();
 
-    // Click the "next panel" button
-    const nextBtn = page.locator('[aria-label="Scroll to next panel"]');
-    await nextBtn.click();
-
-    // Wait for scroll to settle
+    // Click the second dot
+    await dot2.click();
     await page.waitForTimeout(500);
 
-    const afterNextScrollY = await page.evaluate(() => window.scrollY);
-
-    // Scroll position should have changed
-    expect(afterNextScrollY).toBeGreaterThan(initialScrollY);
-
-    // Click the "previous panel" button
-    const prevBtn = page.locator('[aria-label="Scroll to previous panel"]');
-    await prevBtn.click();
-
-    await page.waitForTimeout(500);
-
-    const afterPrevScrollY = await page.evaluate(() => window.scrollY);
-    expect(afterPrevScrollY).toBeLessThan(afterNextScrollY);
+    // The second dot should now be selected
+    await expect(dot2).toHaveAttribute("aria-selected", "true");
   });
 });
