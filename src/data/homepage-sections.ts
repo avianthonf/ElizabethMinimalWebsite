@@ -3,6 +3,9 @@
  * Builds on existing homepage.ts (HERO_CONTENT, VALUES, STATS, TESTIMONIALS, CTA_CONTENT, LATEST_NEWS).
  */
 
+import { CONTACT_EMAIL, POSTAL_CODE } from "@/lib/brand";
+import { GOOGLE_MAPS_DIRECTIONS_URL } from "@/data/visits";
+
 import { WHY_ST_ELIZABETH_POINTS } from "@/data/admissions";
 import { BEYOND_ACADEMICS_SECTIONS } from "@/data/beyond-academics";
 
@@ -109,8 +112,15 @@ export const WHY_CONTENT = {
   sectionAriaLabel: "Why choose St. Elizabeth's High School",
 } as const;
 
-// Reuse WHY_ST_ELIZABETH_POINTS from admissions.ts (already has icon references via title)
-export { WHY_ST_ELIZABETH_POINTS as WHY_POINTS };
+/**
+ * Homepage-specific 'why points' — typed as {title, description} to match
+ * the WhySection component's expected input. Icons are resolved by title
+ * in WhySection's internal mapIcon() function.
+ */
+export const WHY_POINTS = WHY_ST_ELIZABETH_POINTS.map((p) => ({
+  title: p.title,
+  description: p.description,
+}));
 
 // ── Programs Grid ──────────────────────────────────────────────────────
 
@@ -337,11 +347,11 @@ export const NEWS_HOMEPAGE_CONTENT = {
 export const LOCATE_CONTENT = {
   eyebrow: "Find Us",
   heading: "Locate Us",
-  address: "St. Elizabeth's High School, Ven. Fr. Hilario Gonsalves Rd, Pomburpa, Bardez, Goa 403511, India",
+  address: `St. Elizabeth's High School, Ven. Fr. Hilario Gonsalves Rd, Pomburpa, Bardez, Goa ${POSTAL_CODE}, India`,
   phone: "+91 832 241 0654",
-  email: "info@stelizabeths.edu.in",
+  email: CONTACT_EMAIL,
   ctaText: "Get Directions",
-  ctaHref: "https://maps.google.com/?q=St+Elizabeths+High+School+Pomburpa+Goa",
+  ctaHref: GOOGLE_MAPS_DIRECTIONS_URL,
   sectionAriaLabel: "Locate us and contact information",
 } as const;
 

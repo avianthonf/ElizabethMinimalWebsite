@@ -1,6 +1,3 @@
-"use client";
-
-import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Link } from "@/components/primitives/Link";
 import styles from "./WelcomeSection.module.css";
@@ -20,6 +17,14 @@ interface WelcomeSectionProps {
   ariaLabel?: string;
 }
 
+/**
+ * Welcome section — server component.
+ *
+ * Renders a two-column layout: text + stacked images. Images are stacked
+ * with CSS (no JavaScript carousel) — only the first image is fully visible,
+ * the others are layered behind for depth. This is intentional: the section
+ * is above the fold and should load fast with zero JS.
+ */
 export function WelcomeSection({
   eyebrow,
   heading,
@@ -29,11 +34,6 @@ export function WelcomeSection({
   images,
   ariaLabel = "Welcome",
 }: WelcomeSectionProps) {
-  const [emblaRef] = useEmblaCarousel({
-    loop: true,
-    duration: 30,
-  });
-
   return (
     <section className={styles.root} aria-label={ariaLabel}>
       <div className={styles.inner}>
@@ -47,23 +47,25 @@ export function WelcomeSection({
           </Link>
         </div>
 
-        {/* ── Right: Image carousel ─────────────────────── */}
-        <div className={styles.carousel} ref={emblaRef}>
-          <div className={styles.carouselInner}>
-            {images.map((img, i) => (
-              <div key={i} className={styles.carouselSlide}>
-                <Image
-                  src={`/images/${img.filename}`}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  className={styles.carouselImage}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  quality={85}
-                />
-              </div>
-            ))}
-          </div>
+        {/* ── Right: Stacked images ────────────────────── */}
+        <div className={styles.imageStack}>
+          {images.map((img, i) => (
+            <div
+              key={i}
+              className={styles.imageWrapper}
+              style={{ "--image-index": i } as React.CSSProperties}
+            >
+              <Image
+                src={`/images/${img.filename}`}
+                alt={img.alt}
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+                className={styles.carouselImage}
+                loading={i === 0 ? "eager" : "lazy"}
+                quality={85}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

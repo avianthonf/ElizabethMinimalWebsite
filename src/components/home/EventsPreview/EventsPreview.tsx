@@ -15,7 +15,7 @@ export function EventsPreview() {
 
         <div className={styles.grid}>
           {events.map((event) => {
-            const iconName = EVENT_ICON_MAP[event.type] ?? "graduation-cap";
+            const iconName = EVENT_ICON_MAP[event.type];
             const path = EVENT_TYPE_ICON_PATHS[iconName];
 
             return (

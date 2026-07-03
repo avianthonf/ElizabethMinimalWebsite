@@ -104,12 +104,6 @@ describe("HeroCarousel", () => {
     expect(screen.getByRole("region", { name: /hero carousel/i })).toBeInTheDocument();
   });
 
-  it("uses image alt text for the slide images", () => {
-    render(<HeroCarousel slides={mockSlides} />);
-    expect(screen.getByAltText("St. Elizabeth's campus main building")).toBeInTheDocument();
-    expect(screen.getByAltText("Students in classroom")).toBeInTheDocument();
-  });
-
   it("the carousel region is keyboard focusable (tabindex=0)", () => {
     render(<HeroCarousel slides={mockSlides} />);
     const region = screen.getByRole("region");

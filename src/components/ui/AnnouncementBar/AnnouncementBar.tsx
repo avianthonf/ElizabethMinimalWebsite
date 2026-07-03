@@ -17,17 +17,15 @@ const RE_SHOW_DAYS = 7;
 /**
  * AnnouncementBar — dismissable top banner.
  *
- * SSR-safe: starts as `visible: true` so the server HTML always
- * contains the bar. After hydration, we read `localStorage` to
- * determine if the user dismissed it. If dismissed within the
- * last 7 days, the bar is hidden. Otherwise it is shown.
+ * SSR-safe: always renders the same DOM tree (including the close button).
+ * After hydration, reads `localStorage` to determine if the user dismissed
+ * it. If dismissed within the last 7 days, the bar is hidden via
+ * `data-hidden` attribute. On first render (pre-hydration), the bar is
+ * always visible and the close button is hidden via CSS.
  *
- * Why not read `localStorage` in `useState` initializer?
- *  - `localStorage` is `undefined` on the server, but a server-rendered
- *    "visible: true" with a client-rendered "visible: false" produces
- *    a React 19 hydration mismatch warning (and a possible content
- *    revert). Using `useEffect` to read the value post-mount keeps
- *    SSR and the first client paint consistent.
+ * This avoids the hydration mismatch that occurs when the server renders
+ * a different DOM tree than the client (e.g. missing close button on SSR
+ * vs present on hydration).
  */
 export function AnnouncementBar({
   message,
@@ -35,14 +33,12 @@ export function AnnouncementBar({
   linkText,
   storageKey = "stelizabeths-announcement-dismissed",
 }: AnnouncementBarProps) {
-  const [hydrated, setHydrated] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Hydrate from localStorage on mount. This is a one-time
-    // sync from an external store, not a cascading re-render.
-    /* eslint-disable react-hooks/set-state-in-effect */
-    setHydrated(true);
+    // Sync from localStorage (an external store). This is a legitimate
+    // effect: we read a value we cannot access during SSR and update
+    // React state to match. The state only changes once, on mount.
     try {
       const dismissed = localStorage.getItem(storageKey);
       if (dismissed) {
@@ -50,17 +46,16 @@ export function AnnouncementBar({
         if (!Number.isNaN(dismissedAt)) {
           const reShowMs = RE_SHOW_DAYS * 24 * 60 * 60 * 1000;
           if (Date.now() - dismissedAt < reShowMs) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setVisible(false);
           } else {
-            // Re-show after 7 days — clear old timestamp
             localStorage.removeItem(storageKey);
           }
         }
       }
     } catch {
-      // localStorage unavailable (e.g. private browsing) — keep visible
+      // localStorage unavailable — keep visible
     }
-    /* eslint-enable react-hooks/set-state-in-effect */
   }, [storageKey]);
 
   const dismiss = useCallback(() => {
@@ -72,37 +67,14 @@ export function AnnouncementBar({
     }
   }, [storageKey]);
 
-  // Don't render the bar at all if user dismissed within the last 7 days.
-  // Render an empty placeholder on first SSR pass to keep layout stable.
-  if (!hydrated) {
-    return (
-      <div
-        className={styles.root}
-        role="banner"
-        aria-label="Announcement"
-        data-hydration-placeholder="true"
-      >
-        <div className={styles.inner}>
-          <p className={styles.message}>
-            {message}
-            {href && linkText && (
-              <>
-                {" — "}
-                <a href={href} className={styles.link}>
-                  {linkText} <span aria-hidden="true">→</span>
-                </a>
-              </>
-            )}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!visible) return null;
-
   return (
-    <div className={styles.root} role="banner" aria-label="Announcement">
+    <div
+      className={styles.root}
+      role="banner"
+      aria-label="Announcement"
+      data-hidden={!visible}
+      style={!visible ? { display: "none" } : undefined}
+    >
       <div className={styles.inner}>
         <p className={styles.message}>
           {message}

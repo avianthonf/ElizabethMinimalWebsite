@@ -165,11 +165,17 @@ export function HomePage() {
           <StudentLifeSection
             eyebrow={STUDENT_LIFE_CONTENT.eyebrow}
             heading={STUDENT_LIFE_CONTENT.heading}
-            cards={STUDENT_LIFE_CARDS.map((s) => ({
+            cards={STUDENT_LIFE_CARDS.map((s, i) => ({
               title: s.title,
               description: s.description,
               href: s.href,
-              color: "var(--p-color-navy)",
+              color: [
+                "var(--p-color-navy)",
+                "var(--s-color-accent)",
+                "var(--p-color-gold)",
+                "var(--p-color-deep-blue)",
+                "var(--p-color-navy)",
+              ][i % 5],
             }))}
             ctaText={STUDENT_LIFE_CONTENT.ctaText}
             ctaHref={STUDENT_LIFE_CONTENT.ctaHref}

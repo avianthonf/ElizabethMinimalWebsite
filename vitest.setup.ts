@@ -2,9 +2,9 @@ import { vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
 // ── window.matchMedia mock ──────────────────────────────────────────────
-// Required by the responsive layout hook (src/hooks/useIsDesktop.ts).
-// Default: matches everything (acts like a very wide desktop). Tests that
-// need a narrow/mobile viewport should override per-test.
+// Used by SmoothScrollProvider and ScrollReveal to detect reduced-motion preference.
+// Default: matches everything (acts like a desktop with motion enabled). Tests that
+// need a narrow/mobile viewport or reduced-motion should override per-test.
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,

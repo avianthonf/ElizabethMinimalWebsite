@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, X, FileText, Loader2 } from "lucide-react";
+import { renderHighlightedText } from "@/lib/safe-html";
 import styles from "./SearchOverlay.module.css";
 
 /** Custom event name used to open the search overlay from anywhere in the app. */
@@ -116,9 +117,19 @@ export function SearchOverlay({
     document.head.appendChild(script);
   }, [open, pagefindReady]);
 
+  // Ref to track the previously focused element before opening the overlay,
+  // so we can restore focus when it closes (WCAG 2.4.3).
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
   // Focus input on open, reset state on close
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      // Restore focus to the element that triggered the overlay
+      previousFocusRef.current?.focus();
+      previousFocusRef.current = null;
+      return;
+    }
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
     // Defer to next tick so the dialog is in the DOM
     queueMicrotask(() => inputRef.current?.focus());
     // Reset state to defaults whenever the overlay opens.
@@ -324,14 +335,12 @@ export function SearchOverlay({
                       aria-hidden="true"
                     />
                     <div className={styles.resultContent}>
-                      <div
-                        className={styles.resultTitle}
-                        dangerouslySetInnerHTML={{ __html: r.title }}
-                      />
-                      <div
-                        className={styles.resultExcerpt}
-                        dangerouslySetInnerHTML={{ __html: r.excerpt }}
-                      />
+                      <div className={styles.resultTitle}>
+                        {renderHighlightedText(r.title)}
+                      </div>
+                      <div className={styles.resultExcerpt}>
+                        {renderHighlightedText(r.excerpt)}
+                      </div>
                     </div>
                   </Link>
                 </li>

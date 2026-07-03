@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/brand";
+
 interface BreadcrumbItem {
   label: string;
   href: string;
@@ -7,7 +9,7 @@ interface BreadcrumbJsonLdProps {
   items: BreadcrumbItem[];
 }
 
-const BASE_URL = "https://www.stelizabeths.edu.in";
+const BASE_URL = SITE_URL;
 
 /**
  * Renders JSON-LD structured data for BreadcrumbList schema.

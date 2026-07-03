@@ -20,6 +20,7 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -41,9 +42,9 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
     };
   }, [emblaApi, onSelect]);
 
-  // Autoplay — pauses on hover, respects reduced motion.
+  // Autoplay — pauses on hover/focus, respects reduced motion.
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi || isPaused) return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) return;
 
@@ -51,7 +52,22 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
       emblaApi.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [emblaApi]);
+  }, [emblaApi, isPaused]);
+
+  // Keyboard navigation: ArrowLeft/ArrowRight for carousel control.
+  const onSectionKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!emblaApi) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        emblaApi.scrollNext();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        emblaApi.scrollPrev();
+      }
+    },
+    [emblaApi],
+  );
 
   if (slides.length === 0) return null;
 
@@ -62,6 +78,11 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
       role="region"
       aria-roledescription="carousel"
       tabIndex={0}
+      onKeyDown={onSectionKeyDown}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
     >
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>

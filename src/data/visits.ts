@@ -8,6 +8,7 @@
  */
 
 import type { ReactNode } from "react";
+import { CONTACT_EMAIL, POSTAL_CODE } from "@/lib/brand";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -44,7 +45,7 @@ export const SCHOOL_ADDRESS = {
   street: "Ven. Fr. Hilario Gonsalves Rd",
   area: "Pomburpa, Bardez",
   city: "Goa",
-  pinCode: "403511",
+  pinCode: POSTAL_CODE,
   country: "India",
 } as const;
 
@@ -52,7 +53,7 @@ export const SCHOOL_ADDRESS = {
 
 export const SCHOOL_CONTACT = {
   phone: "+91 832-241-0654",
-  email: "info@stelizabethhighschool.in",
+  email: CONTACT_EMAIL,
   hours: "Mon–Fri: 7:30 AM – 3:30 PM",
 } as const;
 

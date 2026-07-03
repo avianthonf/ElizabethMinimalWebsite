@@ -10,6 +10,7 @@ import {
   Section,
   Text,
 } from "@react-email/components";
+import { SITE_URL } from "@/lib/brand";
 
 export interface InquiryEmailProps {
   name: string;
@@ -52,8 +53,8 @@ export function InquiryEmail({ name, email, phone, subject, message }: InquiryEm
           <Hr style={hr} />
           <Text style={footer}>
             Submitted via{" "}
-            <Link href="https://stelizabethhighschool.in" style={footerLink}>
-              stelizabethhighschool.in
+            <Link href={SITE_URL} style={footerLink}>
+              {SITE_URL.replace(/^https?:\/\//, "")}
             </Link>{" "}
             contact form
           </Text>

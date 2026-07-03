@@ -8,6 +8,7 @@ import { Text } from "@/components/primitives/Text";
 import { Button } from "@/components/primitives/Button";
 import { Link } from "@/components/primitives/Link";
 import { Breadcrumb } from "@/components/navigation/Breadcrumb";
+import { CONTACT_EMAIL } from "@/lib/brand";
 import { CONTACT_IMAGES } from "@/data/images";
 import { createPageMetadata } from "@/lib/page-utils";
 
@@ -43,7 +44,7 @@ export default function ContactThankYouPage() {
             <Text variant="muted">
               If your matter is urgent, please call us directly at{" "}
               <Link href="tel:+918322410654">+91 832-241-0654</Link> or email{" "}
-              <Link href="mailto:info@stelizabethhighschool.in">info@stelizabethhighschool.in</Link>
+              <Link href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</Link>
               .
             </Text>
             <Stack gap="small">
