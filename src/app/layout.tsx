@@ -7,6 +7,8 @@ import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnno
 import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
 import { WebVitals } from "@/components/ui/WebVitals/WebVitals";
 import { GlobalSearchOverlay } from "@/components/content/SearchOverlay/GlobalSearchOverlay";
+import { MenuProvider } from "@/components/navigation/MenuOverlay/MenuProvider";
+import { MenuOverlay } from "@/components/navigation/MenuOverlay/MenuOverlay";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, CONTACT_EMAIL, SOCIAL_LINKS } from "@/lib/brand";
@@ -116,13 +118,16 @@ export default function RootLayout({
       <body>
         <AxeProvider>
           <SmoothScrollProvider>
-            <RouteAnnouncer />
-            <ToastProvider />
-            <WebVitals />
-            <GlobalSearchOverlay />
-            {children}
-            <Analytics />
-            <SpeedInsights />
+            <MenuProvider>
+              <RouteAnnouncer />
+              <ToastProvider />
+              <WebVitals />
+              <GlobalSearchOverlay />
+              {children}
+              <MenuOverlay />
+              <Analytics />
+              <SpeedInsights />
+            </MenuProvider>
           </SmoothScrollProvider>
         </AxeProvider>
       </body>

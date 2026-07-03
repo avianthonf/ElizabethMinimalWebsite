@@ -30,11 +30,14 @@ describe("Header", () => {
     expect(header).toBeInTheDocument();
   });
 
-  it("renders menu button by default (disabled when no onMenuClick)", () => {
+  it("renders menu button by default", () => {
     render(<Header />);
     const btn = screen.getByRole("button", { name: "Open menu" });
     expect(btn).toBeInTheDocument();
-    expect((btn as HTMLButtonElement).disabled).toBe(true);
+    // Button is now always enabled — it wires to the MenuProvider context
+    // or the legacy onMenuClick prop. The disabled-state legacy behavior
+    // was removed when the MenuOverlay was built.
+    expect((btn as HTMLButtonElement).disabled).toBe(false);
   });
 
   it("menu button is enabled when onMenuClick provided", () => {

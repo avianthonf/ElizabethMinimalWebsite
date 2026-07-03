@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import { Link } from "@/components/primitives/Link";
 import { CommandPalette } from "@/components/ui/CommandPalette/CommandPalette";
 import { openSearchOverlay } from "@/components/content/SearchOverlay/SearchOverlay";
+import { useMenu } from "../MenuOverlay/MenuProvider";
 import styles from "./Header.module.css";
 
 export interface HeaderNavLink {
@@ -21,9 +22,15 @@ export interface HeaderProps {
   fixed?: boolean;
   transparent?: boolean;
   className?: string;
-  /** Called when the menu button is clicked. If not provided, menu button is disabled. */
+  /**
+   * @deprecated Use MenuProvider/MenuOverlay instead. If provided, the menu
+   * button uses this callback. Falls back to the MenuProvider context if not set.
+   */
   onMenuClick?: () => void;
-  /** Whether the menu is currently open (changes button aria-label and aria-expanded) */
+  /**
+   * @deprecated Use MenuProvider/MenuOverlay instead. If provided, the menu
+   * button reflects this state. Falls back to the MenuProvider context if not set.
+   */
   isMenuOpen?: boolean;
   /** Ref to attach to the menu button for focus restoration on overlay close */
   menuButtonRef?: RefObject<HTMLButtonElement | null>;
@@ -51,11 +58,23 @@ export function Header({
   transparent = true,
   noScrollBar = false,
   className,
-  onMenuClick,
-  isMenuOpen = false,
-  menuButtonRef,
+  onMenuClick: onMenuClickProp,
+  isMenuOpen: isMenuOpenProp,
+  menuButtonRef: menuButtonRefProp,
 }: HeaderProps): ReactNode {
   const pathname = usePathname();
+
+  // Read menu state from MenuProvider context. If the page is not wrapped in
+  // a MenuProvider, useMenu returns null and we fall back to prop-based API.
+  // (Prop API is deprecated; new code should wrap pages in MenuProvider.)
+  const menuContext = useMenu();
+  const contextIsOpen = menuContext?.isOpen ?? false;
+  const contextOpen = menuContext?.open;
+  const contextTriggerRef = menuContext?.triggerButtonRef ?? null;
+
+  const isMenuOpen = isMenuOpenProp ?? contextIsOpen;
+  const handleMenuClick = onMenuClickProp ?? contextOpen ?? (() => undefined);
+  const menuButtonRef = menuButtonRefProp ?? contextTriggerRef;
 
   /** Check if a nav link's href matches the current pathname (top-level section match). */
   const isActive = (href: string): boolean => {
@@ -113,13 +132,12 @@ export function Header({
 
       {showMenu && (
         <button
-          ref={menuButtonRef}
+          ref={menuButtonRef ?? undefined}
           className={styles.menuButton}
           type="button"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
-          disabled={!onMenuClick}
-          onClick={onMenuClick}
+          onClick={handleMenuClick}
         >
           <span>Menu</span>
           <span
