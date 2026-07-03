@@ -82,7 +82,7 @@ const container: React.CSSProperties = {
 };
 
 const heading: React.CSSProperties = {
-  color: "#0c217c",
+  color: "#1B2A4A",
   fontSize: "22px",
   fontWeight: 700,
   margin: "0 0 16px 0",
@@ -134,6 +134,6 @@ const footer: React.CSSProperties = {
 };
 
 const footerLink: React.CSSProperties = {
-  color: "#0c217c",
+  color: "#1B2A4A",
   textDecoration: "underline",
 };

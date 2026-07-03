@@ -1,6 +1,12 @@
-export { AnimatedCounter } from "./AnimatedCounter/AnimatedCounter";
-export { TypingEffect } from "./TypingEffect/TypingEffect";
-export { VideoEmbed } from "./VideoEmbed/VideoEmbed";
-export { CodeBlock } from "./CodeBlock/CodeBlock";
-export { EventCalendar } from "./EventCalendar/EventCalendar";
-export { MasonryGallery } from "./MasonryGallery/MasonryGallery";
+// Content components (kept — actively used by pages)
+export { Card } from "./Card/Card";
+export { ContactForm } from "./ContactForm/ContactForm";
+export { CTASection } from "./CTASection/CTASection";
+export { Gallery } from "./Gallery/Gallery";
+export { Hero } from "./Hero/Hero";
+export { IconCard } from "./IconCard/IconCard";
+export { ImageCard } from "./ImageCard/ImageCard";
+export { MapEmbed } from "./MapEmbed/MapEmbed";
+export { MediaBlock } from "./MediaBlock/MediaBlock";
+export { SearchOverlay, openSearchOverlay, useSearchOverlay, SEARCH_OVERLAY_OPEN_EVENT } from "./SearchOverlay/SearchOverlay";
+export { GlobalSearchOverlay } from "./SearchOverlay/GlobalSearchOverlay";

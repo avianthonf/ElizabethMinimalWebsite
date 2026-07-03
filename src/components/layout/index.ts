@@ -5,7 +5,6 @@ export { Grid } from "./Grid";
 export type { GridProps, GridColumns, GridGap } from "./Grid";
 export { Stack } from "./Stack";
 export { SplitLayout } from "./SplitLayout";
-export { Cluster } from "./Cluster";
 export { PageShell } from "./PageShell";
 export type { PageShellProps } from "./PageShell";
 export { AspectRatio } from "./AspectRatio";

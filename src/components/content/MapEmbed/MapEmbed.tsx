@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import type { LatLngExpression, DivIcon } from "leaflet";
+import { divIcon } from "leaflet";
 import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,
@@ -31,20 +32,17 @@ const DEFAULT_DIRECTIONS_URL = GOOGLE_MAPS_DIRECTIONS_URL;
  * Uses the school's royal blue brand colour with a chalk-white interior.
  */
 function createSchoolMarkerIcon(): DivIcon {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const L = require("leaflet");
-
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44" fill="none">
       <path d="M16 0C7.163 0 0 7.163 0 16c0 12 16 28 16 28s16-16 16-28C32 7.163 24.837 0 16 0z"
-            fill="#0c217c" stroke="#060f45" stroke-width="1.5"
+            fill="#1B2A4A" stroke="#0F1D35" stroke-width="1.5"
             stroke-linejoin="round" stroke-linecap="round"/>
       <circle cx="16" cy="15" r="8" fill="white" opacity="0.95"/>
       <text x="16" y="19" text-anchor="middle" font-family="Georgia, serif"
-            font-size="11" font-weight="700" fill="#0c217c">E</text>
+            font-size="11" font-weight="700" fill="#1B2A4A">E</text>
     </svg>`;
 
-  return L.divIcon({
+  return divIcon({
     html: svg,
     className: styles.markerIcon,
     iconSize: [32, 44],

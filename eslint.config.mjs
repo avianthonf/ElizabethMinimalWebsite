@@ -3,7 +3,7 @@ import nextTypescript from "eslint-config-next/typescript";
 
 const eslintConfig = [
   {
-    ignores: [".claude/**", "coverage/**", ".next/**"],
+    ignores: [".claude/**", "coverage/**", ".next/**", ".worktrees/**", "public/pagefind/**"],
   },
   ...nextVitals,
   ...nextTypescript,

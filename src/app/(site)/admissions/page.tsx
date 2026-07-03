@@ -59,7 +59,7 @@ export default function AdmissionsPage() {
                   <IconCard
                     icon={
                       <Icon size="medium">
-                        <SchoolIcon variant="academic" />
+                        <SchoolIcon variant="community" />
                       </Icon>
                     }
                     title="Why St. Elizabeth?"
@@ -69,12 +69,12 @@ export default function AdmissionsPage() {
                   <IconCard
                     icon={
                       <Icon size="medium">
-                        <SchoolIcon variant="community" />
+                        <SchoolIcon variant="academic" />
                       </Icon>
                     }
-                    title="Plan Your Visit"
-                    description="Experience our campus and community firsthand."
-                    href="/admissions/visit"
+                    title="Infrastructure"
+                    description="Explore our campus facilities and amenities."
+                    href="/admissions/infrastructure"
                   />
                   <IconCard
                     icon={
@@ -85,16 +85,6 @@ export default function AdmissionsPage() {
                     title="Apply"
                     description="Complete your application and take the first step."
                     href="/admissions/apply"
-                  />
-                  <IconCard
-                    icon={
-                      <Icon size="medium">
-                        <SchoolIcon variant="sports" />
-                      </Icon>
-                    }
-                    title="Tuition & Assistance"
-                    description="Learn about tuition fees and financial aid options."
-                    href="/admissions/tuition"
                   />
                 </Grid>
               </Stack>
@@ -122,8 +112,8 @@ export default function AdmissionsPage() {
                     </Text>
                   </Stack>
                 </Card>
-                <Link href="/admissions/faqs" variant="default">
-                  View Frequently Asked Questions →
+                <Link href="/contact/office-hours" variant="default">
+                  View Office Hours →
                 </Link>
               </Stack>
             }

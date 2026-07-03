@@ -1,0 +1,97 @@
+.root {
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
+  background: var(--p-color-navy-dark, #0F1D35);
+}
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: var(--type-eyebrow, 0.6094rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+  font-size: calc(var(--text-scale, 1) * clamp(1.75rem, 3.5vw, 2.75rem));
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-on-dark-primary, #ffffff);
+  text-align: center;
+  margin-bottom: clamp(40px, 5vw, 56px);
+}
+
+/* ── 3-Column Grid ────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 32px);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: clamp(24px, 3vw, 36px);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  transition: background 250ms ease;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.quote {
+  font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+  font-size: calc(var(--text-scale, 1) * clamp(0.9375rem, 1.5vw, 1.0625rem));
+  line-height: 1.7;
+  color: var(--text-on-dark-secondary, rgba(255, 255, 255, 0.95));
+  flex: 1;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.attribution {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: calc(var(--text-scale, 1) * 0.875rem);
+  font-weight: 600;
+  color: var(--text-on-dark-primary, #ffffff);
+  font-style: normal;
+}
+
+.role {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: calc(var(--text-scale, 1) * 0.75rem);
+  color: var(--text-on-dark-muted, rgba(255, 255, 255, 0.82));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-style: normal;
+}
+
+/* ── Mobile ───────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

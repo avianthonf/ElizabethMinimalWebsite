@@ -1,0 +1,142 @@
+.root {
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
+  background: var(--s-color-surface-alt, var(--p-color-soft, #f4f1ed));
+}
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: var(--type-eyebrow, 0.6094rem);
+  font-weight: var(--eyebrow-weight, 600);
+  letter-spacing: var(--eyebrow-spacing, 0.1em);
+  text-transform: uppercase;
+  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+  font-size: calc(var(--text-scale, 1) * clamp(1.75rem, 3.5vw, 2.75rem));
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--s-color-text, #171717);
+  text-align: center;
+  margin-bottom: clamp(40px, 5vw, 56px);
+}
+
+/* ── Embla Carousel ───────────────────────────────────── */
+
+.carousel {
+  overflow: hidden;
+}
+
+.carouselInner {
+  display: flex;
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.card {
+  flex: 0 0 clamp(260px, 35vw, 320px);
+  min-width: 0;
+  padding: clamp(20px, 2.5vw, 32px);
+  background: var(--s-color-surface, #ffffff);
+  border-radius: 8px;
+  border: var(--card-border, 1px solid rgba(0, 0, 0, 0.08));
+  transition: box-shadow 250ms ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover, 0 4px 12px rgba(0, 0, 0, 0.08));
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--p-color-deep-blue-light, #e0f2fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.iconSvg {
+  width: 24px;
+  height: 24px;
+  color: var(--s-color-primary, var(--p-color-navy, #1B2A4A));
+}
+
+.year {
+  display: inline-block;
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: calc(var(--text-scale, 1) * 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+  font-size: calc(var(--text-scale, 1) * clamp(1rem, 1.5vw, 1.125rem));
+  font-weight: 700;
+  color: var(--s-color-text, #171717);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: calc(var(--text-scale, 1) * 0.8125rem);
+  line-height: 1.6;
+  color: var(--s-color-text-muted, #5f5f5f);
+}
+
+/* ── Navigation Arrows ────────────────────────────────── */
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
+.navButton {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--s-color-border, rgba(23, 23, 23, 0.14));
+  background: var(--s-color-surface, #ffffff);
+  color: var(--s-color-text, #171717);
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 250ms ease, background 250ms ease;
+}
+
+.navButton:hover:not(:disabled) {
+  border-color: var(--s-color-primary, #1B2A4A);
+  background: var(--s-color-primary, #1B2A4A);
+  color: #ffffff;
+}
+
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ── Mobile ───────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .card {
+    flex: 0 0 75vw;
+  }
+}

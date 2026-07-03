@@ -27,63 +27,12 @@ export interface FooterProps {
   className?: string;
 }
 
-const DEFAULT_SECTIONS: FooterSection[] = [
-  {
-    title: "About",
-    links: [
-      { text: "Mission & Values", href: "/about/mission" },
-      { text: "History", href: "/about/history" },
-      { text: "Staff", href: "/about/staff" },
-    ],
-  },
-  {
-    title: "Admissions",
-    links: [
-      { text: "Why St. Elizabeth", href: "/admissions/why" },
-      { text: "Apply", href: "/admissions/apply" },
-      { text: "Tuition", href: "/admissions/tuition" },
-      { text: "FAQs", href: "/admissions/faqs" },
-    ],
-  },
-  {
-    title: "Academics",
-    links: [
-      { text: "Departments", href: "/academics/departments" },
-      { text: "Languages", href: "/academics/languages" },
-      { text: "Libraries", href: "/academics/libraries" },
-      { text: "College Counseling", href: "/academics/college-counseling" },
-    ],
-  },
-  {
-    title: "Community",
-    links: [
-      { text: "Student Life", href: "/student-life" },
-      { text: "Athletics", href: "/athletics" },
-      { text: "Arts", href: "/arts" },
-      { text: "Alumni", href: "/alumni" },
-      { text: "News", href: "/news" },
-      { text: "How to Help", href: "/how-to-help" },
-    ],
-  },
-];
+import { FOOTER_SECTIONS, FOOTER_INTRO, FOOTER_SOCIAL_LINKS, FOOTER_COPYRIGHT } from "@/data/navigation";
 
-const DEFAULT_INTRO = {
-  heading: "St. Elizabeth's High School",
-  body: `Guiding Minds, Nurturing Hearts, Building Futures. A nurturing Catholic school in Pomburpa, Goa, rooted in Truth and Honesty since 1949.
-
-Ven. Fr. Hilario Gonsalves Rd
-Pomburpa, Bardez
-Goa 403511, India
-
-info@stelizabethhighschool.in`,
-};
-
-const DEFAULT_SOCIAL: FooterSocialLink[] = [
-  { platform: "facebook", href: "https://facebook.com/stelizabethhighschool" },
-  { platform: "instagram", href: "https://instagram.com/stelizabethhighschool" },
-];
-
-const DEFAULT_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth's High School, Pomburpa, Goa. All Rights Reserved.`;
+const DEFAULT_SECTIONS = FOOTER_SECTIONS;
+const DEFAULT_INTRO = FOOTER_INTRO;
+const DEFAULT_SOCIAL: FooterSocialLink[] = FOOTER_SOCIAL_LINKS;
+const DEFAULT_COPYRIGHT = FOOTER_COPYRIGHT;
 
 const SOCIAL_ICONS: Record<string, ReactNode> = {
   facebook: (

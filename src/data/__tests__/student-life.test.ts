@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { CLUBS, STUDENT_LIFE_INTRO } from "../student-life";
+import { CLUBS, BEYOND_ACADEMICS_INTRO } from "../beyond-academics";
 
 describe("Student Life Data", () => {
   describe("CLUBS", () => {
-    it("has 9 clubs", () => {
-      expect(CLUBS).toHaveLength(9);
+    it("has 8 clubs", () => {
+      expect(CLUBS).toHaveLength(8);
     });
 
     it("all clubs have name, description, and category", () => {
@@ -20,16 +20,15 @@ describe("Student Life Data", () => {
       expect(categories).toContain("Academic");
       expect(categories).toContain("Service");
       expect(categories).toContain("Arts");
-      expect(categories).toContain("Leadership");
       expect(categories).toContain("Cultural");
       expect(categories).toContain("Athletics");
     });
 
-    it("includes Debate Society, Eco Club, and Student Council", () => {
+    it("includes Debate Society, Eco Club, and Heritage Club", () => {
       const names = CLUBS.map((c) => c.name);
       expect(names).toContain("Debate Society");
       expect(names).toContain("Eco Club");
-      expect(names).toContain("Student Council");
+      expect(names).toContain("Heritage Club");
     });
 
     it("Debate Society is Academic", () => {
@@ -39,10 +38,10 @@ describe("Student Life Data", () => {
     });
   });
 
-  describe("STUDENT_LIFE_INTRO", () => {
+  describe("BEYOND_ACADEMICS_INTRO", () => {
     it("has heading and body", () => {
-      expect(STUDENT_LIFE_INTRO.heading).toBe("Beyond the Classroom");
-      expect(STUDENT_LIFE_INTRO.body.length).toBeGreaterThan(50);
+      expect(BEYOND_ACADEMICS_INTRO.heading).toBe("Beyond the Classroom");
+      expect(BEYOND_ACADEMICS_INTRO.body.length).toBeGreaterThan(50);
     });
   });
 });

@@ -2,7 +2,7 @@
 
 import { useEffect, useActionState, useId } from "react";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { submitInquiry, type FormState } from "@/app/(site)/contact/actions";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";

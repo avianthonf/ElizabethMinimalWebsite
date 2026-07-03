@@ -7,13 +7,15 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      // Stub the pagefind runtime in tests — it's a build artifact, not a real module.
+      "/pagefind/pagefind.js": path.resolve(__dirname, "src/test/mocks/pagefind.ts"),
     },
   },
   test: {
     environment: "jsdom",
     globals: true,
     setupFiles: ["./vitest.setup.ts"],
-    exclude: ["e2e/**", "node_modules/**"],
+    exclude: ["e2e/**", "node_modules/**", ".worktrees/**"],
     coverage: {
       provider: "v8",
       thresholds: {
@@ -21,6 +23,12 @@ export default defineConfig({
         branches: 75,
         functions: 80,
         lines: 80,
+      },
+    },
+    server: {
+      deps: {
+        // Pagefind is a runtime artifact, not a real module — stub it.
+        fallbackCJS: true,
       },
     },
   },

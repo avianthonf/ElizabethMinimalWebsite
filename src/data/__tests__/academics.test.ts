@@ -3,8 +3,8 @@ import { DEPARTMENTS, LANGUAGE_PROGRAMS, LIBRARY_RESOURCES, COLLEGE_COUNSELING_S
 
 describe("Academics Data", () => {
   describe("DEPARTMENTS", () => {
-    it("has exactly 7 departments", () => {
-      expect(DEPARTMENTS).toHaveLength(7);
+    it("has 9 departments matching new IA", () => {
+      expect(DEPARTMENTS).toHaveLength(9);
     });
 
     it("all departments have name, description, icon, and href", () => {
@@ -16,7 +16,7 @@ describe("Academics Data", () => {
       }
     });
 
-    it("includes Science, Mathematics, English, Social Studies", () => {
+    it("includes core academic subjects", () => {
       const names = DEPARTMENTS.map((d) => d.name);
       expect(names).toContain("Science");
       expect(names).toContain("Mathematics");
@@ -24,23 +24,25 @@ describe("Academics Data", () => {
       expect(names).toContain("Social Studies");
     });
 
-    it("includes World Languages, Libraries, College Counseling", () => {
+    it("includes teaching methods and facilities", () => {
       const names = DEPARTMENTS.map((d) => d.name);
-      expect(names).toContain("World Languages");
-      expect(names).toContain("Libraries");
-      expect(names).toContain("College Counseling");
+      expect(names).toContain("Teaching Methods");
+      expect(names).toContain("Library");
+      expect(names).toContain("Resource Room");
+      expect(names).toContain("Science Laboratory");
+      expect(names).toContain("Computer Laboratory");
     });
 
-    it("World Languages links to /academics/languages", () => {
-      const langs = DEPARTMENTS.find((d) => d.name === "World Languages");
-      expect(langs).toBeDefined();
-      expect(langs!.href).toBe("/academics/languages");
+    it("Science Laboratory links to /academics/science-laboratory", () => {
+      const lab = DEPARTMENTS.find((d) => d.name === "Science Laboratory");
+      expect(lab).toBeDefined();
+      expect(lab!.href).toBe("/academics/science-laboratory");
     });
 
-    it("College Counseling links to /academics/college-counseling", () => {
-      const counseling = DEPARTMENTS.find((d) => d.name === "College Counseling");
-      expect(counseling).toBeDefined();
-      expect(counseling!.href).toBe("/academics/college-counseling");
+    it("Teaching Methods links to /academics/teaching-methods", () => {
+      const tm = DEPARTMENTS.find((d) => d.name === "Teaching Methods");
+      expect(tm).toBeDefined();
+      expect(tm!.href).toBe("/academics/teaching-methods");
     });
   });
 

@@ -4,6 +4,8 @@ import { Header } from "./Header";
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/about",
+  useRouter: () => ({ push: vi.fn(), back: vi.fn(), refresh: vi.fn(), replace: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
 }));
 
 describe("Header", () => {
@@ -12,17 +14,14 @@ describe("Header", () => {
     expect(screen.getByText("Test School")).toBeInTheDocument();
   });
 
-  it("renders default nav links (9 St. Elizabeth links)", () => {
+  it("renders default nav links (6 new IA links)", () => {
     render(<Header showMenu={false} />);
-    expect(screen.getByText("About")).toBeInTheDocument();
-    expect(screen.getByText("Admissions")).toBeInTheDocument();
+    expect(screen.getByText("About Us")).toBeInTheDocument();
     expect(screen.getByText("Academics")).toBeInTheDocument();
-    expect(screen.getByText("Athletics")).toBeInTheDocument();
-    expect(screen.getByText("Arts")).toBeInTheDocument();
-    expect(screen.getByText("Student Life")).toBeInTheDocument();
-    expect(screen.getByText("Alumni")).toBeInTheDocument();
-    expect(screen.getByText("News")).toBeInTheDocument();
-    expect(screen.getByText("Contact")).toBeInTheDocument();
+    expect(screen.getByText("Admissions")).toBeInTheDocument();
+    expect(screen.getByText("Beyond Academics")).toBeInTheDocument();
+    expect(screen.getByText("News & Media")).toBeInTheDocument();
+    expect(screen.getByText("Contact Us")).toBeInTheDocument();
   });
 
   it("renders as header element", () => {

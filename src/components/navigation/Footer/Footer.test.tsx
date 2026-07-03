@@ -15,12 +15,14 @@ describe("Footer", () => {
     expect(screen.getByText(/Guiding Minds, Nurturing Hearts, Building Futures/)).toBeInTheDocument();
   });
 
-  it("renders default link sections (4 columns)", () => {
+  it("renders default link sections from navigation data", () => {
     render(<Footer />);
-    expect(screen.getByText("About")).toBeInTheDocument();
-    expect(screen.getByText("Admissions")).toBeInTheDocument();
+    expect(screen.getByText("About Us")).toBeInTheDocument();
     expect(screen.getByText("Academics")).toBeInTheDocument();
-    expect(screen.getByText("Community")).toBeInTheDocument();
+    expect(screen.getByText("Admissions")).toBeInTheDocument();
+    expect(screen.getByText("Beyond Academics")).toBeInTheDocument();
+    expect(screen.getByText("News & Media")).toBeInTheDocument();
+    expect(screen.getByText("Contact Us")).toBeInTheDocument();
   });
 
   it("renders custom link sections", () => {

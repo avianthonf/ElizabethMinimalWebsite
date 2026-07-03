@@ -101,7 +101,7 @@ export const CTA_CONTENT = {
   description:
     "Start your St. Elizabeth journey today. We look forward to welcoming your family into ours.",
   primaryCTA: { text: "Inquire Now" as const, href: "/admissions" as const },
-  secondaryCTA: { text: "Plan a Visit" as const, href: "/contact/visit" as const },
+  secondaryCTA: { text: "Contact Us" as const, href: "/contact" as const },
 };
 
 // ── Panel 7: Latest News ───────────────────────────────────────────────
@@ -159,16 +159,6 @@ export interface HomepageData {
  * only the implementation body — no component changes needed.
  * Validates data against Zod schema in development mode.
  */
-export async function getHomepageData(): Promise<HomepageData> {
-  const data = { HERO_CONTENT, VALUES, STATS, TESTIMONIALS, CTA_CONTENT, LATEST_NEWS };
-
-  if (process.env.NODE_ENV === "development") {
-    const { homepageDataSchema } = await import("@/lib/schemas");
-    const result = homepageDataSchema.safeParse(data);
-    if (!result.success) {
-      console.error("[homepage] Data validation failed:", result.error.flatten().fieldErrors);
-    }
-  }
-
-  return data;
+export function getHomepageData(): HomepageData {
+  return { HERO_CONTENT, VALUES, STATS, TESTIMONIALS, CTA_CONTENT, LATEST_NEWS };
 }

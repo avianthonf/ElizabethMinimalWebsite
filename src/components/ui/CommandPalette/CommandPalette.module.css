@@ -19,8 +19,8 @@
 }
 
 .trigger:hover {
-  border-color: var(--s-color-primary, #0c217c);
-  box-shadow: 0 0 0 1px var(--s-color-primary, #0c217c);
+  border-color: var(--s-color-primary, #1B2A4A);
+  box-shadow: 0 0 0 1px var(--s-color-primary, #1B2A4A);
 }
 
 .triggerText {
@@ -140,7 +140,7 @@
 }
 
 .item[data-selected="true"] {
-  background: var(--s-color-primary, #0c217c);
+  background: var(--s-color-primary, #1B2A4A);
   color: var(--s-color-text-on-primary, #fff);
 }
 

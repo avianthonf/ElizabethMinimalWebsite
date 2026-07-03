@@ -23,7 +23,7 @@ export default function SiteError({
         We encountered an error loading this page. Please try again or go back to the homepage.
       </p>
       <div className={styles.actions}>
-        <button onClick={reset} className={styles.retryButton}>
+        <button type="button" onClick={reset} className={styles.retryButton}>
           Try Again
         </button>
         <Link href="/" className={styles.homeLink}>

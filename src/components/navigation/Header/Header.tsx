@@ -2,8 +2,10 @@
 
 import { type ReactNode, type RefObject } from "react";
 import { usePathname } from "next/navigation";
+import { Search } from "lucide-react";
 import { Link } from "@/components/primitives/Link";
 import { CommandPalette } from "@/components/ui/CommandPalette/CommandPalette";
+import { openSearchOverlay } from "@/components/content/SearchOverlay/SearchOverlay";
 import styles from "./Header.module.css";
 
 export interface HeaderNavLink {
@@ -36,17 +38,9 @@ export interface HeaderProps {
  * Note: The original Walker School defaults (Inquire, Visit, Summer, St. Elizabeth)
  * have been replaced with the St. Elizabeth site navigation from PAGE_ELEMENT_HIERARCHY.md §9.
  */
-const DEFAULT_NAV: HeaderNavLink[] = [
-  { text: "About", href: "/about" },
-  { text: "Admissions", href: "/admissions" },
-  { text: "Academics", href: "/academics" },
-  { text: "Athletics", href: "/athletics" },
-  { text: "Arts", href: "/arts" },
-  { text: "Student Life", href: "/student-life" },
-  { text: "Alumni", href: "/alumni" },
-  { text: "News", href: "/news" },
-  { text: "Contact", href: "/contact" },
-];
+import { HEADER_NAV_LINKS } from "@/data/navigation";
+
+const DEFAULT_NAV: HeaderNavLink[] = HEADER_NAV_LINKS;
 
 export function Header({
   brandText = "St. Elizabeth's High School",
@@ -105,6 +99,17 @@ export function Header({
       </nav>
 
       <CommandPalette />
+
+      <button
+        type="button"
+        className={styles.searchButton}
+        onClick={openSearchOverlay}
+        aria-label="Open search (Ctrl+K)"
+        title="Search (Ctrl+K)"
+      >
+        <Search size={18} aria-hidden="true" />
+        <kbd className={styles.searchKbd} aria-hidden="true">⌘K</kbd>
+      </button>
 
       {showMenu && (
         <button

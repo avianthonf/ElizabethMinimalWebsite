@@ -1,0 +1,14 @@
+export { HomePage } from "./HomePage";
+export { HeroCarousel } from "./HeroCarousel/HeroCarousel";
+export { CounterBar } from "./CounterBar/CounterBar";
+export { WelcomeSection } from "./WelcomeSection/WelcomeSection";
+export { WhySection } from "./WhySection/WhySection";
+export { ProgramsGrid } from "./ProgramsGrid/ProgramsGrid";
+export { HolisticSection } from "./HolisticSection/HolisticSection";
+export { GallerySection } from "./GallerySection/GallerySection";
+export { AchievementsSection } from "./AchievementsSection/AchievementsSection";
+export { StudentLifeSection } from "./StudentLifeSection/StudentLifeSection";
+export { TestimonialsSection } from "./TestimonialsSection/TestimonialsSection";
+export { AdmissionsCTA } from "./AdmissionsCTA/AdmissionsCTA";
+export { NewsSection } from "./NewsSection/NewsSection";
+export { LocateSection } from "./LocateSection/LocateSection";

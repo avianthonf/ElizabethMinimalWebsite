@@ -44,7 +44,7 @@ export default function AcademicsPage() {
               </Heading>
               <Text variant="muted" size="medium">
                 St. Elizabeth follows the Central Board of Secondary Education
-                (CBSE) curriculum. Our seven academic departments provide a
+                (CBSE) curriculum. Our nine academic departments provide a
                 well-rounded education that prepares students for university
                 and beyond.
               </Text>

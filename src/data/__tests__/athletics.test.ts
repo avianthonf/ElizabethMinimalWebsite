@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { SPORTS, ATHLETICS_STATS } from "../athletics";
+import { SPORTS, ATHLETICS_STATS } from "../beyond-academics";
 
-describe("Athletics Data", () => {
+describe("Sports (formerly Athletics)", () => {
   describe("SPORTS", () => {
     it("has 7 sports", () => {
       expect(SPORTS).toHaveLength(7);

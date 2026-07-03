@@ -13,5 +13,3 @@ export { ConditionalLink } from "./ConditionalLink";
 export type { ConditionalLinkProps } from "./ConditionalLink";
 export { VisuallyHidden } from "./VisuallyHidden";
 export type { VisuallyHiddenProps } from "./VisuallyHidden";
-export { Box } from "./Box";
-export type { BoxProps } from "./Box";

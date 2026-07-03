@@ -24,7 +24,7 @@ export default function GlobalError({
             We apologize for the inconvenience. Please try again or contact us if the problem
             persists.
           </p>
-          <button onClick={reset} className={styles.retryButton}>
+          <button type="button" onClick={reset} className={styles.retryButton}>
             Try Again
           </button>
         </div>

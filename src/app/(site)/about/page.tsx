@@ -110,9 +110,19 @@ export default function AboutPage() {
                         <SchoolIcon variant="academic" />
                       </Icon>
                     }
-                    title="Strategic Plan"
-                    description="Priorities for the future"
-                    href="/about/strategic-plan"
+                    title="Achievements"
+                    description="Milestones & milestones"
+                    href="/about/achievements"
+                  />
+                  <IconCard
+                    icon={
+                      <Icon size="medium">
+                        <SchoolIcon variant="community" />
+                      </Icon>
+                    }
+                    title="Alumni"
+                    description="Our extended community"
+                    href="/about/alumni"
                   />
                 </Stack>
               </Stack>
@@ -123,7 +133,8 @@ export default function AboutPage() {
 
       <CTASection
         heading="Ready to Learn More?"
-        primaryCTA={{ text: "Plan a Visit", href: "/contact/visit" }}
+        primaryCTA={{ text: "Contact Us", href: "/contact" }}
+        secondaryCTA={{ text: "Book a Tour", href: "/contact/location-map" }}
         background="blue"
       />
     </PageShell>

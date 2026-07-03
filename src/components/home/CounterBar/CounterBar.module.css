@@ -1,0 +1,67 @@
+.root {
+  background: var(--p-color-navy-dark, #0F1D35);
+  padding: clamp(40px, 6vw, 60px) clamp(24px, 6vw, 80px);
+}
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  text-align: center;
+}
+
+.item {
+  color: var(--text-on-dark-primary, #ffffff);
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.number {
+  font-size: calc(var(--text-scale, 1) * clamp(2rem, 5vw, 3.5rem));
+  font-variant-numeric: tabular-nums;
+  color: var(--text-on-dark-primary, #ffffff);
+  font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+}
+
+.prefix {
+  font-size: calc(var(--text-scale, 1) * clamp(1.25rem, 3vw, 2rem));
+  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+}
+
+.suffix {
+  font-size: calc(var(--text-scale, 1) * clamp(1.25rem, 3vw, 2rem));
+  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+}
+
+.label {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: calc(var(--text-scale, 1) * clamp(0.75rem, 1.25vw, 0.875rem));
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Mobile (2-column) ────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .root {
+    padding: 32px 20px;
+  }
+}

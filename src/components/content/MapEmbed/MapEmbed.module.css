@@ -77,7 +77,7 @@
   font-family: var(--font-serif);
   font-size: max(var(--text-floor), calc(var(--text-scale) * 1rem));
   font-weight: 700;
-  color: var(--s-color-primary, #0c217c);
+  color: var(--s-color-primary, #1B2A4A);
   line-height: 1.2;
 }
 
@@ -104,13 +104,13 @@
 }
 
 .popupDetail a {
-  color: var(--s-color-primary, #0c217c);
+  color: var(--s-color-primary, #1B2A4A);
   text-decoration: none;
   transition: color var(--transition-fast, 150ms ease);
 }
 
 .popupDetail a:hover {
-  color: var(--s-color-primary-dark, #060f45);
+  color: var(--s-color-primary-dark, #0F1D35);
   text-decoration: underline;
 }
 
@@ -126,7 +126,7 @@
   gap: 6px;
   margin-top: 4px;
   padding: 6px 12px;
-  background: var(--s-color-primary, #0c217c);
+  background: var(--s-color-primary, #1B2A4A);
   color: var(--s-color-surface, #ffffff);
   font-size: max(var(--text-floor), calc(var(--text-scale) * 0.8125rem));
   font-weight: 600;
@@ -139,7 +139,7 @@
 }
 
 .directionsLink:hover {
-  background: var(--s-color-primary-dark, #060f45);
+  background: var(--s-color-primary-dark, #0F1D35);
   transform: translateY(-1px);
 }
 

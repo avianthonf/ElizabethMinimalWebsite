@@ -1,11 +1,29 @@
 import type { Metadata, Viewport } from "next";
+import { Playfair_Display, Inter } from "next/font/google";
 import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
+import { AxeProvider } from "@/components/primitives/AxeProvider/AxeProvider";
+import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider/SmoothScrollProvider";
 import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnnouncer";
 import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
 import { WebVitals } from "@/components/ui/WebVitals/WebVitals";
+import { GlobalSearchOverlay } from "@/components/content/SearchOverlay/GlobalSearchOverlay";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -93,17 +111,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
         <NonceScript nonce={cspNonce} jsonLd={jsonLd} />
       </head>
       <body>
-        <RouteAnnouncer />
-        <ToastProvider />
-        <WebVitals />
-        {children}
-        <Analytics />
-        <SpeedInsights />
+        <AxeProvider>
+          <SmoothScrollProvider>
+            <RouteAnnouncer />
+            <ToastProvider />
+            <WebVitals />
+            <GlobalSearchOverlay />
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </SmoothScrollProvider>
+        </AxeProvider>
       </body>
     </html>
   );
