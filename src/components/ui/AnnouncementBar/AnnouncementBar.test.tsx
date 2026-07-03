@@ -57,8 +57,12 @@ describe("AnnouncementBar", () => {
 
   it("dismisses when close is clicked", () => {
     render(<AnnouncementBar {...defaultProps} />);
+    const banner = screen.getByRole("banner");
+    expect(banner).not.toHaveAttribute("data-hidden", "true");
     fireEvent.click(screen.getByRole("button", { name: /dismiss/i }));
-    expect(screen.queryByText(/Admissions Open/i)).not.toBeInTheDocument();
+    // Bar is hidden via display:none but still in the DOM — no hydration mismatch
+    expect(banner).toHaveAttribute("data-hidden", "true");
+    expect(banner).toHaveStyle({ display: "none" });
   });
 
   it("persists dismissal to localStorage", () => {
