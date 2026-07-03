@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { NEWS_ARTICLES } from "@/data/news";
+import { SITE_URL } from "@/lib/brand";
 
-const BASE_URL = "https://www.stelizabeths.edu.in";
+const BASE_URL = SITE_URL;
 
 /** All static inner page routes — matches new 6-section IA */
 const STATIC_ROUTES: MetadataRoute.Sitemap = [

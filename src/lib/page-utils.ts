@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
 import { HERO_IMAGES, IMAGE_BY_SECTION, type ImageAsset, type ImageSection } from "@/data/images";
 
-/** Site-wide constants used by the metadata helpers. */
-export const SITE_URL = "https://www.stelizabeths.edu.in";
-export const SITE_NAME = "St. Elizabeth's High School";
+// Re-export brand constants for backwards compatibility with the original
+// `from "@/lib/page-utils"` import path. New code should import directly
+// from "@/lib/brand" instead.
+export { SITE_URL, SITE_NAME, absoluteUrl } from "./brand";
+
+import { SITE_URL, SITE_NAME, absoluteUrl } from "./brand";
+
 export const SITE_DESCRIPTION =
   "St. Elizabeth's High School in Pomburpa, Goa — nurturing hearts since 1949. Catholic education affiliated with CBSE with an average class size of 15 students.";
-
-/** Returns the absolute URL for a site-relative path. */
-export function absoluteUrl(path: string): string {
-  if (path.startsWith("http://") || path.startsWith("https://")) return path;
-  const normalised = path.startsWith("/") ? path : `/${path}`;
-  return `${SITE_URL}${normalised}`;
-}
 
 interface CreatePageMetadataOptions {
   /** Optional Open Graph image URL (absolute or site-relative). */

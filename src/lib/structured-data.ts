@@ -9,14 +9,16 @@
  * passing process.env.NEXT_PUBLIC_CSP_NONCE as the nonce.
  */
 
-const BASE_URL = "https://www.stelizabeths.edu.in";
+import { SITE_URL, SOCIAL_LINKS, POSTAL_CODE } from "./brand";
+
+const BASE_URL = SITE_URL;
 const SCHOOL_NAME = "St. Elizabeth's High School";
 const SCHOOL_ADDRESS = {
   "@type": "PostalAddress",
   streetAddress: "Pomburpa, Bardez",
   addressLocality: "Goa",
   addressRegion: "Goa",
-  postalCode: "403513",
+  postalCode: POSTAL_CODE,
   addressCountry: "IN",
 };
 
@@ -50,10 +52,7 @@ export function createOrganizationSchema(): OrganizationSchema {
       contactType: "admissions",
       availableLanguage: ["English", "Hindi", "Konkani"],
     },
-    sameAs: [
-      "https://www.facebook.com/stelizabethshighschool",
-      "https://www.instagram.com/stelizabethshighschool",
-    ],
+    sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
   };
 }
 

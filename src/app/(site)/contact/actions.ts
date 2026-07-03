@@ -4,6 +4,7 @@ import { z } from "zod";
 import type { Resend } from "resend";
 import { InquiryEmail } from "@/lib/email";
 import { render } from "@react-email/components";
+import { CONTACT_EMAIL, TRANSACTIONAL_EMAIL_FROM } from "@/lib/brand";
 
 /** Lazy Resend client — initialized on first use to avoid module-scope failures in tests. */
 let resendClient: Resend | null = null;
@@ -16,7 +17,7 @@ async function getResend(): Promise<Resend> {
   return resendClient;
 }
 
-const INQUIRY_EMAIL = process.env.CONTACT_EMAIL ?? "info@stelizabethhighschool.in";
+const INQUIRY_EMAIL = process.env.CONTACT_EMAIL ?? CONTACT_EMAIL;
 
 const inquirySchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -113,7 +114,7 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     await (
       await getResend()
     ).emails.send({
-      from: "St. Elizabeth's Website <noreply@stelizabethhighschool.in>",
+      from: TRANSACTIONAL_EMAIL_FROM,
       to: INQUIRY_EMAIL,
       replyTo: email,
       subject: `[Website Inquiry] ${subject}`,
@@ -131,7 +132,7 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     return {
       success: false,
       message:
-        "Something went wrong. Please try again or contact us directly at info@stelizabethhighschool.in.",
+        `Something went wrong. Please try again or contact us directly at ${CONTACT_EMAIL}.`,
     };
   }
 }

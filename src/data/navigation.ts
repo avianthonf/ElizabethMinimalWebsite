@@ -5,6 +5,8 @@
  * IA: Home | About Us | Academics | Admissions | Beyond Academics | News & Media | Contact Us
  */
 
+import { CONTACT_EMAIL, FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/brand";
+
 export interface NavLink {
   text: string;
   href: string;
@@ -168,12 +170,12 @@ Ven. Fr. Hilario Gonsalves Rd
 Pomburpa, Bardez
 Goa 403511, India
 
-info@stelizabethhighschool.in`,
+${CONTACT_EMAIL}`,
 };
 
 export const FOOTER_SOCIAL_LINKS = [
-  { platform: "facebook" as const, href: "https://facebook.com/stelizabethhighschool" },
-  { platform: "instagram" as const, href: "https://instagram.com/stelizabethhighschool" },
+  { platform: "facebook" as const, href: FACEBOOK_URL },
+  { platform: "instagram" as const, href: INSTAGRAM_URL },
 ];
 
 export const FOOTER_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth's High School, Pomburpa, Goa. All Rights Reserved.`;

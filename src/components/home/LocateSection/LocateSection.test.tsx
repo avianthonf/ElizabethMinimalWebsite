@@ -1,13 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { LocateSection } from "./LocateSection";
+import { CONTACT_EMAIL } from "@/lib/brand";
 
 const defaultProps = {
   eyebrow: "Find Us",
   heading: "Locate Us",
   address: "St. Elizabeth's High School, Pomburpa, Bardez, Goa 403511",
   phone: "+91 832 241 0654",
-  email: "info@stelizabeths.edu.in",
+  email: CONTACT_EMAIL,
   ctaText: "Get Directions",
   ctaHref: "https://maps.google.com/?q=St+Elizabeths+High+School",
 };
