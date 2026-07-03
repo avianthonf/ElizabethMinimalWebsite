@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, X, FileText, Loader2 } from "lucide-react";
+import { renderHighlightedText } from "@/lib/safe-html";
 import styles from "./SearchOverlay.module.css";
 
 /** Custom event name used to open the search overlay from anywhere in the app. */
@@ -324,14 +325,12 @@ export function SearchOverlay({
                       aria-hidden="true"
                     />
                     <div className={styles.resultContent}>
-                      <div
-                        className={styles.resultTitle}
-                        dangerouslySetInnerHTML={{ __html: r.title }}
-                      />
-                      <div
-                        className={styles.resultExcerpt}
-                        dangerouslySetInnerHTML={{ __html: r.excerpt }}
-                      />
+                      <div className={styles.resultTitle}>
+                        {renderHighlightedText(r.title)}
+                      </div>
+                      <div className={styles.resultExcerpt}>
+                        {renderHighlightedText(r.excerpt)}
+                      </div>
                     </div>
                   </Link>
                 </li>
