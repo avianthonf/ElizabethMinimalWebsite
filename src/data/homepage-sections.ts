@@ -112,8 +112,15 @@ export const WHY_CONTENT = {
   sectionAriaLabel: "Why choose St. Elizabeth's High School",
 } as const;
 
-// Reuse WHY_ST_ELIZABETH_POINTS from admissions.ts (already has icon references via title)
-export { WHY_ST_ELIZABETH_POINTS as WHY_POINTS };
+/**
+ * Homepage-specific 'why points' — typed as {title, description} to match
+ * the WhySection component's expected input. Icons are resolved by title
+ * in WhySection's internal mapIcon() function.
+ */
+export const WHY_POINTS = WHY_ST_ELIZABETH_POINTS.map((p) => ({
+  title: p.title,
+  description: p.description,
+}));
 
 // ── Programs Grid ──────────────────────────────────────────────────────
 
