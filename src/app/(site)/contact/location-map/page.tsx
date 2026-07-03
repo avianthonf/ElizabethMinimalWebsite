@@ -7,7 +7,7 @@ import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { Link } from "@/components/primitives/Link";
-import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedWrapper";
+import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedLazy";
 import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,
