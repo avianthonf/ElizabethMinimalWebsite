@@ -45,9 +45,7 @@ export function createPageMetadata(
 ): Metadata {
   const canonical = options?.path ? absoluteUrl(options.path) : undefined;
   const fullTitle = `${title} | ${SITE_NAME}`;
-  const ogImage = options?.ogImage
-    ? absoluteUrl(options.ogImage)
-    : absoluteUrl("/og-default.jpg");
+  const ogImage = options?.ogImage ? absoluteUrl(options.ogImage) : absoluteUrl("/og-default.jpg");
   const ogType = options?.ogType ?? "website";
   const locale = options?.locale ?? "en_IN";
 
@@ -93,13 +91,22 @@ export function createPageMetadata(
  * Finds a hero image by its section identifier.
  *
  * Uses the O(1) IMAGE_BY_SECTION record for fast lookups.
- * Falls back to the first hero image if the section is not found.
+ * Falls back to the first hero image, then to a hardcoded safe default
+ * (so we never crash on an empty HERO_IMAGES array).
  *
  * @param section - The ImageSection value to look up
- * @returns The matching ImageAsset, or the first hero image as fallback
+ * @returns The matching ImageAsset, or a safe fallback
  */
 export function getHeroImage(section: ImageSection): ImageAsset {
-  return IMAGE_BY_SECTION[section] ?? HERO_IMAGES[0]!;
+  if (IMAGE_BY_SECTION[section]) return IMAGE_BY_SECTION[section];
+  if (HERO_IMAGES.length > 0) return HERO_IMAGES[0];
+  // Hardcoded fallback — DSC07300.jpg exists and is a safe default
+  return {
+    filename: "DSC07300.jpg",
+    alt: "St. Elizabeth's High School campus",
+    category: "hero",
+    section: "homepage-hero",
+  } as ImageAsset;
 }
 
 /**

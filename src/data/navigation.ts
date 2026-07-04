@@ -35,9 +35,7 @@ export const HEADER_NAV_LINKS: NavLink[] = [
   { text: "Contact Us", href: "/contact" },
 ];
 
-export const HEADER_CTA_LINKS: NavLink[] = [
-  { text: "Inquire", href: "/admissions" },
-];
+export const HEADER_CTA_LINKS: NavLink[] = [{ text: "Inquire", href: "/admissions" }];
 
 // ── Full-Screen Menu Structure ────────────────────────────────────────
 
@@ -178,4 +176,6 @@ export const FOOTER_SOCIAL_LINKS = [
   { platform: "instagram" as const, href: INSTAGRAM_URL },
 ];
 
-export const FOOTER_COPYRIGHT = `© ${new Date().getFullYear()} St. Elizabeth's High School, Pomburpa, Goa. All Rights Reserved.`;
+/** Copyright string with {year} placeholder — replaced client-side in Footer. */
+export const FOOTER_COPYRIGHT =
+  "© {year} St. Elizabeth's High School, Pomburpa, Goa. All Rights Reserved.";

@@ -5,6 +5,7 @@ import { Stack } from "@/components/layout/Stack";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { Link } from "@/components/primitives/Link";
+import { CopyrightYear } from "@/components/ui/CopyrightYear/CopyrightYear";
 import styles from "./Footer.module.css";
 
 export interface FooterSection {
@@ -27,7 +28,12 @@ export interface FooterProps {
   className?: string;
 }
 
-import { FOOTER_SECTIONS, FOOTER_INTRO, FOOTER_SOCIAL_LINKS, FOOTER_COPYRIGHT } from "@/data/navigation";
+import {
+  FOOTER_SECTIONS,
+  FOOTER_INTRO,
+  FOOTER_SOCIAL_LINKS,
+  FOOTER_COPYRIGHT,
+} from "@/data/navigation";
 
 const DEFAULT_SECTIONS = FOOTER_SECTIONS;
 const DEFAULT_INTRO = FOOTER_INTRO;
@@ -130,7 +136,17 @@ export function Footer({
 
             {copyright && (
               <Text variant="caption" className={isDark ? styles.lightCaption : undefined}>
-                {copyright}
+                {copyright.split("{year}").length > 1 ? (
+                  <>
+                    {copyright.split("{year}")[0]}
+                    <CopyrightYear />
+                    {copyright.split("{year}")[1]}
+                  </>
+                ) : (
+                  <>
+                    <CopyrightYear /> {copyright}
+                  </>
+                )}
               </Text>
             )}
           </div>
