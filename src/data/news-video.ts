@@ -23,6 +23,10 @@ export type VideoGalleryItem = {
   thumbnail: string;
   publishedAt: string;
   duration?: string;
+  /** When true, the video entry is a placeholder — channel videos exist but
+   *  specific video IDs haven't been identified yet. The UI should render a
+   *  link to the channel instead of an embed. */
+  placeholder?: boolean;
 };
 
 export const VIDEO_GALLERY_ITEMS: VideoGalleryItem[] = [
@@ -32,7 +36,7 @@ export const VIDEO_GALLERY_ITEMS: VideoGalleryItem[] = [
       "Highlights from our Annual Day celebration — student performances, awards, and a showcase of the cultural and academic achievements of the year.",
     platform: "youtube",
     videoId: "9ii1gFJrxS8",
-    thumbnail: "/images/DSC07460.jpg",
+    thumbnail: "/images/DSC07541.jpg",
     publishedAt: "2024-07-02",
     duration: "12:34",
   },
@@ -42,45 +46,56 @@ export const VIDEO_GALLERY_ITEMS: VideoGalleryItem[] = [
       "A look inside our computer laboratory where students learn programming and digital literacy using Raspberry Pi single-board computers.",
     platform: "youtube",
     videoId: "zFl70jKjL2s",
-    thumbnail: "/images/DSC07397.jpg",
+    thumbnail: "/images/DSC07335.jpg",
     publishedAt: "2023-06-10",
     duration: "4:18",
   },
+  // ═══ Placeholder entries — videos exist on the YouTube channel but
+  // specific video IDs haven't been published yet.  These render as
+  // "coming soon" cards with a link to the channel. ═══════════════════
   {
     title: "Campus Tour",
     description:
       "A guided walk-through of St. Elizabeth's campus — classrooms, science labs, computer lab, library, chapel, and sports facilities.",
     platform: "youtube",
-    videoId: "UC-tcx146Wg3S4PhDG8fefpQ",
-    thumbnail: "/images/DSC07397.jpg",
+    // TODO: Replace with actual video ID from the YouTube channel
+    videoId: "",
+    thumbnail: "/images/DSC07346.jpg",
     publishedAt: "2024-01-15",
+    placeholder: true,
   },
   {
     title: "Sports Meet Highlights",
     description:
       "Action from the Inter-House Sports Meet — track events, team sports, and the prize distribution ceremony.",
     platform: "youtube",
-    videoId: "UC-tcx146Wg3S4PhDG8fefpQ",
-    thumbnail: "/images/DSC08376.jpg",
+    // TODO: Replace with actual video ID from the YouTube channel
+    videoId: "",
+    thumbnail: "/images/DSC07570.jpg",
     publishedAt: "2024-11-20",
+    placeholder: true,
   },
   {
     title: "Science Fair",
     description:
       "Students present their working models and experiments at the annual Science Fair — physics, chemistry, biology, and mathematics projects.",
     platform: "youtube",
-    videoId: "UC-tcx146Wg3S4PhDG8fefpQ",
-    thumbnail: "/images/DSC07396.jpg",
+    // TODO: Replace with actual video ID from the YouTube channel
+    videoId: "",
+    thumbnail: "/images/DSC07411.jpg",
     publishedAt: "2025-01-30",
+    placeholder: true,
   },
   {
     title: "Christmas Concert",
     description:
       "The school choir and drama club present a heartwarming Christmas performance of carols, skits, and a nativity tableau.",
     platform: "youtube",
-    videoId: "UC-tcx146Wg3S4PhDG8fefpQ",
+    // TODO: Replace with actual video ID from the YouTube channel
+    videoId: "",
     thumbnail: "/images/DSC07416.jpg",
     publishedAt: "2024-12-22",
+    placeholder: true,
   },
 ];
 

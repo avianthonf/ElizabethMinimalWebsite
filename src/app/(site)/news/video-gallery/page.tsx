@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Hero } from "@/components/content/Hero";
 import { Card } from "@/components/content/Card";
 import { Container } from "@/components/layout/Container";
@@ -9,10 +10,13 @@ import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { createPageMetadata } from "@/lib/page-utils";
-import { VIDEO_GALLERY_PAGE, VIDEO_GALLERY_ITEMS } from "@/data/news-video";
+import { VIDEO_GALLERY_PAGE, VIDEO_GALLERY_ITEMS, YOUTUBE_CHANNEL } from "@/data/news-video";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(VIDEO_GALLERY_PAGE.metaTitle, VIDEO_GALLERY_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  VIDEO_GALLERY_PAGE.metaTitle,
+  VIDEO_GALLERY_PAGE.metaDescription,
+);
 
 export default function VideoGalleryPage() {
   return (
@@ -34,6 +38,19 @@ export default function VideoGalleryPage() {
               label={VIDEO_GALLERY_PAGE.breadcrumb.label}
               currentLabel={VIDEO_GALLERY_PAGE.breadcrumb.currentLabel}
             />
+
+            {/* Channel header — link to the full YouTube channel */}
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <a
+                href={YOUTUBE_CHANNEL.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+              >
+                Visit our YouTube Channel →
+              </a>
+            </div>
+
             <Grid columns={3} gap="medium" responsive>
               {VIDEO_GALLERY_ITEMS.map((video) => (
                 <Card key={video.title} variant="default" padding="small">
@@ -48,10 +65,49 @@ export default function VideoGalleryPage() {
                     <Stack gap="small">
                       <Heading level="h3" variant="card">
                         {video.title}
+                        {video.placeholder && (
+                          <span
+                            style={{
+                              fontSize: "0.75rem",
+                              fontWeight: 400,
+                              color: "var(--color-text-muted, #666)",
+                              marginLeft: "0.5rem",
+                            }}
+                          >
+                            Coming Soon
+                          </span>
+                        )}
                       </Heading>
                       <Text variant="muted" size="small">
                         {video.description}
                       </Text>
+                      {video.placeholder ? (
+                        <Link
+                          href={YOUTUBE_CHANNEL.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            fontSize: "0.875rem",
+                            color: "var(--color-accent, #1a56db)",
+                            textDecoration: "underline",
+                          }}
+                        >
+                          Watch on YouTube →
+                        </Link>
+                      ) : (
+                        <a
+                          href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            fontSize: "0.875rem",
+                            color: "var(--color-accent, #1a56db)",
+                            textDecoration: "underline",
+                          }}
+                        >
+                          Watch →
+                        </a>
+                      )}
                     </Stack>
                   </div>
                 </Card>
