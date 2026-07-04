@@ -101,8 +101,9 @@ describe("Navigation Data", () => {
     expect(FOOTER_INTRO.body).toContain("info@stelizabethhighschool.in");
   });
 
-  it("footer copyright includes current or future year", () => {
-    expect(FOOTER_COPYRIGHT).toMatch(/©\s*\d{4}/);
+  it("footer copyright contains {year} placeholder", () => {
+    expect(FOOTER_COPYRIGHT).toContain("{year}");
+    expect(FOOTER_COPYRIGHT).toContain("St. Elizabeth's");
   });
 
   it("footer social links include facebook and instagram", () => {

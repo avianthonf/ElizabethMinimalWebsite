@@ -12,7 +12,9 @@ describe("Footer", () => {
   it("renders default intro content", () => {
     render(<Footer />);
     expect(screen.getByText("St. Elizabeth's High School")).toBeInTheDocument();
-    expect(screen.getByText(/Guiding Minds, Nurturing Hearts, Building Futures/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Guiding Minds, Nurturing Hearts, Building Futures/),
+    ).toBeInTheDocument();
   });
 
   it("renders default link sections from navigation data", () => {
@@ -41,18 +43,17 @@ describe("Footer", () => {
   });
 
   it("renders custom intro content", () => {
-    render(
-      <Footer
-        intro={{ heading: "St. Elizabeth", body: "A school community." }}
-      />,
-    );
+    render(<Footer intro={{ heading: "St. Elizabeth", body: "A school community." }} />);
     expect(screen.getByText("St. Elizabeth")).toBeInTheDocument();
     expect(screen.getByText("A school community.")).toBeInTheDocument();
   });
 
-  it("renders copyright", () => {
-    render(<Footer copyright="© 2026 St. Elizabeth's High School" />);
-    expect(screen.getByText("© 2026 St. Elizabeth's High School")).toBeInTheDocument();
+  it("renders copyright with the current year", () => {
+    const currentYear = new Date().getFullYear();
+    render(<Footer copyright={`© {year} St. Elizabeth's High School`} />);
+    // CopyrightYear is a client component that renders the year as a fragment.
+    // The text is split across sibling nodes, so we search by partial text.
+    expect(screen.getByText(`© ${currentYear} St. Elizabeth's High School`)).toBeInTheDocument();
   });
 
   it("renders social media links with accessible labels", () => {
