@@ -7,7 +7,6 @@ import { Container } from "@/components/layout/Container";
 import { Stack } from "@/components/layout/Stack";
 import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { Text } from "@/components/primitives/Text";
-import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
 import { createNewsArticleSchema } from "@/lib/structured-data";
 import type { Metadata } from "next";
 
@@ -51,11 +50,12 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
     image: `/images/${article.imageFilename}`,
   });
 
-  const cspNonce = process.env.NEXT_PUBLIC_CSP_NONCE ?? "";
-
   return (
     <>
-      <NonceScript nonce={cspNonce} jsonLd={articleSchema} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <PageShell
         hero={
           <>

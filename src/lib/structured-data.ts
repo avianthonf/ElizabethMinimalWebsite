@@ -5,8 +5,9 @@
  * requirements. Each helper returns a plain object that can be serialized
  * to JSON and rendered inside a <script type="application/ld+json"> tag.
  *
- * CSP note: Use the existing NonceScript component to inject these,
- * passing process.env.NEXT_PUBLIC_CSP_NONCE as the nonce.
+ * CSP note: <script type="application/ld+json"> elements are data blocks,
+ * not executable JavaScript.  They are NOT subject to script-src directives
+ * and pass CSP without a nonce or hash.
  */
 
 import { SITE_URL, SOCIAL_LINKS, POSTAL_CODE } from "./brand";
@@ -221,5 +222,6 @@ export function createFAQSchema(items: FAQItem[]): FAQPageSchema {
 }
 
 // ── JSON-LD Renderer ───────────────────────────────────────────────
-// Re-export the NonceScript component for convenience
-export { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
+// JSON-LD data blocks (<script type="application/ld+json">) are not subject
+// to script-src CSP directives.  Simply use dangerouslySetInnerHTML or a
+// plain <script> tag — no nonce required.

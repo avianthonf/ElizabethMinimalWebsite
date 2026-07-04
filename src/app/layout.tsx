@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import { NonceScript } from "@/components/primitives/NonceScript/NonceScript";
 import { AxeProvider } from "@/components/primitives/AxeProvider/AxeProvider";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider/SmoothScrollProvider";
 import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnnouncer";
@@ -103,8 +102,6 @@ const jsonLd = {
   sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
 };
 
-const cspNonce = process.env.NEXT_PUBLIC_CSP_NONCE ?? "";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -113,7 +110,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
-        <NonceScript nonce={cspNonce} jsonLd={jsonLd} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         <AxeProvider>

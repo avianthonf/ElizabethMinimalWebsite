@@ -14,10 +14,12 @@ const BASE_URL = SITE_URL;
 /**
  * Renders JSON-LD structured data for BreadcrumbList schema.
  * Improves SEO by helping search engines understand page hierarchy.
+ *
+ * CSP note: <script type="application/ld+json"> is a data block, not
+ * executable JS.  It is not subject to script-src and passes CSP without
+ * a nonce.
  */
 export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
-  const nonce = process.env.NEXT_PUBLIC_CSP_NONCE ?? "";
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -32,7 +34,6 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
   return (
     <script
       type="application/ld+json"
-      nonce={nonce}
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );
