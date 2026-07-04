@@ -6,6 +6,8 @@ import { X } from "lucide-react";
 import { Link } from "@/components/primitives/Link";
 import { MENU_CATEGORIES } from "@/data/navigation";
 import { useMenu } from "./MenuProvider";
+import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import styles from "./MenuOverlay.module.css";
 
 /**
@@ -18,7 +20,8 @@ import styles from "./MenuOverlay.module.css";
  * Accessibility:
  * - Closes on Escape
  * - Returns focus to the trigger button on close
- * - Locks body scroll while open
+ * - Locks body scroll while open (reference-counted)
+ * - Traps keyboard focus inside the dialog
  * - Uses role="dialog" with aria-modal
  */
 const noop = () => undefined;
@@ -29,6 +32,10 @@ export function MenuOverlay() {
   const triggerButtonRef = menu?.triggerButtonRef;
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Focus trap — keeps keyboard navigation inside the overlay
+  useFocusTrap(dialogRef, isOpen);
 
   // Focus the close button when opening; restore focus to the trigger on close.
   useEffect(() => {
@@ -39,14 +46,11 @@ export function MenuOverlay() {
     }
   }, [isOpen, triggerButtonRef]);
 
-  // Lock body scroll when open
+  // Lock body scroll with reference counting
   useEffect(() => {
     if (!isOpen) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
+    lockBodyScroll();
+    return () => unlockBodyScroll();
   }, [isOpen]);
 
   // Close on Escape
@@ -66,6 +70,7 @@ export function MenuOverlay() {
 
   return (
     <div
+      ref={dialogRef}
       className={styles.root}
       role="dialog"
       aria-modal="true"

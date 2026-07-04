@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, X, FileText, Loader2 } from "lucide-react";
 import { renderHighlightedText } from "@/lib/safe-html";
+import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import styles from "./SearchOverlay.module.css";
 
 /** Custom event name used to open the search overlay from anywhere in the app. */
@@ -89,9 +91,7 @@ export function SearchOverlay({
     // that doesn't exist in dev/test. The script exposes a global on `window`.
     if (typeof document === "undefined") return;
 
-    const existing = document.querySelector<HTMLScriptElement>(
-      'script[data-pagefind-loader]',
-    );
+    const existing = document.querySelector<HTMLScriptElement>("script[data-pagefind-loader]");
     if (existing) {
       existing.addEventListener("load", () => setPagefindReady(true), { once: true });
       existing.addEventListener(
@@ -196,20 +196,22 @@ export function SearchOverlay({
     [onClose, router, results],
   );
 
-  // Lock body scroll when open
+  // Focus trap — keeps keyboard navigation inside the overlay
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, open);
+
+  // Lock body scroll with reference counting
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    lockBodyScroll();
+    return () => unlockBodyScroll();
   }, [open]);
 
   if (!open) return null;
 
   return (
     <div
+      ref={dialogRef}
       className={styles.backdrop}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -234,11 +236,7 @@ export function SearchOverlay({
             spellCheck={false}
           />
           {isLoading && (
-            <Loader2
-              size={18}
-              className={styles.spinner}
-              aria-label="Loading results"
-            />
+            <Loader2 size={18} className={styles.spinner} aria-label="Loading results" />
           )}
           <button
             type="button"
@@ -254,8 +252,8 @@ export function SearchOverlay({
           {!query.trim() && (
             <div className={styles.empty}>
               <p className={styles.hint}>
-                Start typing to search. Press <kbd>Esc</kbd> to close,{" "}
-                <kbd>Enter</kbd> to open the first result.
+                Start typing to search. Press <kbd>Esc</kbd> to close, <kbd>Enter</kbd> to open the
+                first result.
               </p>
               <div className={styles.suggestions}>
                 <p className={styles.suggestionsTitle}>Try searching for:</p>
@@ -318,29 +316,12 @@ export function SearchOverlay({
           {results.length > 0 && (
             <ul className={styles.results} role="listbox">
               {results.map((r) => (
-                <li
-                  key={r.id}
-                  className={styles.resultItem}
-                  role="option"
-                  aria-selected="false"
-                >
-                  <Link
-                    href={r.url}
-                    className={styles.resultLink}
-                    onClick={onClose}
-                  >
-                    <FileText
-                      size={18}
-                      className={styles.resultIcon}
-                      aria-hidden="true"
-                    />
+                <li key={r.id} className={styles.resultItem} role="option" aria-selected="false">
+                  <Link href={r.url} className={styles.resultLink} onClick={onClose}>
+                    <FileText size={18} className={styles.resultIcon} aria-hidden="true" />
                     <div className={styles.resultContent}>
-                      <div className={styles.resultTitle}>
-                        {renderHighlightedText(r.title)}
-                      </div>
-                      <div className={styles.resultExcerpt}>
-                        {renderHighlightedText(r.excerpt)}
-                      </div>
+                      <div className={styles.resultTitle}>{renderHighlightedText(r.title)}</div>
+                      <div className={styles.resultExcerpt}>{renderHighlightedText(r.excerpt)}</div>
                     </div>
                   </Link>
                 </li>
