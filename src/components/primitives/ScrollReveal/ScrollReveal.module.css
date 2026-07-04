@@ -8,7 +8,6 @@
 .hidden {
   opacity: 0;
   transition: none;
-  pointer-events: none;
 }
 
 .hidden.up {

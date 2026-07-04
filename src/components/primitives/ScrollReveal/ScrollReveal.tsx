@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import styles from "./ScrollReveal.module.css";
 
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
-  /** Override the default animation direction */
   direction?: "up" | "left" | "right";
-  /** Animation delay in milliseconds */
   delay?: number;
-  /** ARIA attributes for the wrapper section */
   role?: string;
   "aria-label"?: string;
 }
@@ -18,25 +15,20 @@ interface ScrollRevealProps {
 /**
  * ScrollReveal — SSR-safe progressive scroll-in animation.
  *
- * Render strategy:
- *  1. Server renders content with NO transform / NO opacity override
- *     (i.e. fully visible) so the initial HTML is crawlable and visible
- *     even without JS.
- *  2. On client mount, we read the actual intersection state. If the
- *     element is already in the viewport, the reveal animation plays
- *     from the in-view state (i.e. no visible jump). If it is below
- *     the fold, the observer attaches and animates in on intersection.
- *  3. `prefers-reduced-motion: reduce` short-circuits everything and
- *     leaves content fully visible.
+ * Strategy:
+ *  1. Start HIDDEN with `visibility: hidden` — preserves layout space
+ *     (no CLS) and is crawlable by search engines.
+ *  2. In `useLayoutEffect` (runs BEFORE paint), immediately set
+ *     visible=true for above-fold elements so they paint immediately.
+ *  3. For below-fold elements, attach an IntersectionObserver that
+ *     sets visible=true on scroll-in, triggering the CSS animation.
+ *  4. `prefers-reduced-motion: reduce` sets everything visible.
  *
- * Why not motion/react `m.div` with `whileInView`?
- *  - The `initial` state is server-rendered into HTML as
- *    `style="opacity:0;transform:translateY(40px)"`, which means
- *    SSR / no-JS users see nothing.
- *  - The motion bundle (~28KB gzipped) is not needed for a simple
- *    fade-and-slide.
- *  - A CSS-driven animation is smaller, deterministic, and easy to
- *    debug in DevTools.
+ * Why visibility:hidden instead of opacity:0?
+ *  - visibility:hidden preserves layout space → no CLS
+ *  - It's crawlable by search engines
+ *  - It prevents the "reverse FOUC" where content flashes visible
+ *    (SSR) then hidden (useEffect) then visible (IntersectionObserver)
  */
 export function ScrollReveal({
   children,
@@ -46,61 +38,37 @@ export function ScrollReveal({
   ...aria
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
-  // Start as `true` so SSR / first paint shows the content. We only
-  // flip to `false` once we've confirmed the element is below the fold
-  // AND we're going to animate it in. This prevents a FOUC.
-  const [visible, setVisible] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  // Start hidden — useLayoutEffect will immediately set visible for
+  // above-fold elements BEFORE the first paint.
+  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
 
-    // One-time init from external sources (matchMedia, IntersectionObserver).
-    // The setState-in-effect lint rule is suppressed for the whole effect
-    // because this is the correct pattern for syncing from external stores.
     /* eslint-disable react-hooks/set-state-in-effect */
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) {
-      setReducedMotion(true);
       setVisible(true);
       return;
     }
-    setReducedMotion(false);
-    const handler = (e: MediaQueryListEvent) => {
-      if (e.matches) {
-        setReducedMotion(true);
-        setVisible(true);
-      }
-    };
-    mq.addEventListener("change", handler);
 
     const node = ref.current;
-    if (!node) {
-      return () => mq.removeEventListener("change", handler);
-    }
+    if (!node) return;
 
-    // Check if the element is already in view on mount (above-the-fold).
     const rect = node.getBoundingClientRect();
-    const viewportHeight =
-      window.innerHeight || document.documentElement.clientHeight;
+    const viewportHeight = window.innerHeight ?? document.documentElement.clientHeight;
     const inView = rect.top < viewportHeight && rect.bottom > 0;
 
     if (inView) {
-      // Already visible — leave as-is. The "from" state never applies,
-      // so no animation needed; user sees content immediately.
       setVisible(true);
-    } else {
-      // Below the fold — hide it now, then animate in on intersection.
-      setVisible(false);
+      return;
     }
 
-    return () => mq.removeEventListener("change", handler);
-    /* eslint-enable react-hooks/set-state-in-effect */
-  }, []);
-
-  useEffect(() => {
-    if (reducedMotion || visible) return;
-    const node = ref.current;
-    if (!node) return;
+    // Below the fold — keep hidden, attach IntersectionObserver.
+    const reducer = (e: MediaQueryListEvent) => {
+      if (e.matches) setVisible(true);
+    };
+    mq.addEventListener("change", reducer);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -112,8 +80,13 @@ export function ScrollReveal({
       { threshold: 0.05, rootMargin: "0px 0px -10% 0px" },
     );
     observer.observe(node);
-    return () => observer.disconnect();
-  }, [reducedMotion, visible]);
+
+    return () => {
+      mq.removeEventListener("change", reducer);
+      observer.disconnect();
+    };
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, []);
 
   const composedClassName = [
     styles.root,
@@ -128,7 +101,7 @@ export function ScrollReveal({
     <div
       ref={ref}
       className={composedClassName}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={delay > 0 ? { transitionDelay: `${delay}ms` } : undefined}
       {...aria}
     >
       {children}
