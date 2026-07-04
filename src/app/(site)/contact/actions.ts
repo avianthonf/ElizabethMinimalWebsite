@@ -25,8 +25,15 @@ const inquirySchema = z.object({
   phone: z.string().optional(),
   subject: z.string().min(1, "Subject is required").max(200),
   message: z.string().min(10, "Message must be at least 10 characters").max(2000),
-  /** Honeypot field — should be empty. Bots fill this in. */
-  website: z.string().max(0, "Bot detected").optional().default(""),
+  /**
+   * Honeypot field — must always be empty. Bots fill this in.
+   *
+   * IMPORTANT: Do NOT add a .max(0) constraint — it would reject non-empty
+   * values BEFORE the fake-success check below, leaking the detection
+   * mechanism to attackers. The honeypot must silently return success so
+   * attackers don't know they were detected.
+   */
+  website: z.string().optional().default(""),
 });
 
 export type InquiryFormData = z.infer<typeof inquirySchema>;
@@ -39,7 +46,17 @@ export type FormState = {
 
 // ── Rate Limiting ───────────────────────────────────────────────────────
 
-/** Simple in-memory rate limiter. Resets on server restart. */
+/**
+ * NOTE: This is an in-memory rate limiter. On Vercel serverless, each
+ * function instance has its own Map — the limit resets on cold start and
+ * concurrent instances don't share state.
+ *
+ * For full production hardening, replace with Upstash Redis
+ * (@upstash/ratelimit + @upstash/redis). For a low-traffic school website,
+ * the combination of honeypot + timing check + in-memory rate limit
+ * provides pragmatic defense against scripted bots. A dedicated attacker
+ * can bypass the rate limit, but they can't bypass the honeypot.
+ */
 const submissions = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW = 3_600_000; // 1 hour
 const RATE_LIMIT_MAX = 3; // 3 submissions per hour per email
@@ -81,7 +98,31 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
 
   const { name, email, phone, subject, message } = result.data;
 
-  // Rate limiting — checked before honeypot so bots can't exhaust limits
+  // ═══ Bot defenses — ordered by cost: cheapest checks first ══════
+
+  // 1. Honeypot — bots fill the hidden field; silently pretend success
+  //    Place BEFORE rate limiting so bots don't poison real-user buckets
+  if (result.data.website) {
+    return {
+      success: true,
+      message: "Thank you for your inquiry.",
+    };
+  }
+
+  // 2. Timing check — bots submit forms faster than any human can type
+  //    `submissionStartedAt` is set client-side when the form is focused
+  const startedAt = formData.get("submissionStartedAt");
+  if (typeof startedAt === "string") {
+    const elapsed = Date.now() - parseInt(startedAt, 10);
+    if (elapsed < 3_000) {
+      return {
+        success: true,
+        message: "Thank you for your inquiry.",
+      };
+    }
+  }
+
+  // 3. Rate limiting — applied to real (non-bot) submissions by email
   if (isRateLimited(email)) {
     return {
       success: false,
@@ -91,15 +132,8 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     };
   }
 
-  // Honeypot check — bots fill this hidden field; silently pretend success
-  if (result.data.website) {
-    return {
-      success: true,
-      message: "Thank you for your inquiry.",
-    };
-  }
+  // ═══ Send email via Resend using React Email template ════════════
 
-  // Send email via Resend using React Email template
   try {
     const emailHtml = await render(
       InquiryEmail({
@@ -117,7 +151,8 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
       from: TRANSACTIONAL_EMAIL_FROM,
       to: INQUIRY_EMAIL,
       replyTo: email,
-      subject: `[Website Inquiry] ${subject}`,
+      // Strip CR/LF to prevent SMTP header injection
+      subject: `[Website Inquiry] ${subject.replace(/[\r\n]/g, "")}`,
       html: emailHtml,
     });
 
@@ -131,8 +166,7 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     console.error("[contact] Failed to send inquiry email:", error);
     return {
       success: false,
-      message:
-        `Something went wrong. Please try again or contact us directly at ${CONTACT_EMAIL}.`,
+      message: `Something went wrong. Please try again or contact us directly at ${CONTACT_EMAIL}.`,
     };
   }
 }

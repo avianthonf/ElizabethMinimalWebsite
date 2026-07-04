@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useActionState, useId } from "react";
+import { useEffect, useActionState, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { submitInquiry, type FormState } from "@/app/(site)/contact/actions";
@@ -21,6 +21,13 @@ export function ContactForm() {
   const router = useRouter();
   const [state, formAction, isPending] = useActionState(submitInquiry, initialState);
   const formId = useId();
+  /**
+   * Timestamp (ms) when the user first interacts with the form.
+   * Used server-side to reject bot submissions made in < 3 seconds.
+   * Must be state (not ref) because it is read during render in the
+   * hidden input's value attribute.
+   */
+  const [startedAt, setStartedAt] = useState<string | null>(null);
 
   // Redirect to thank-you page on successful submission (in effect, not render)
   useEffect(() => {
@@ -62,7 +69,10 @@ export function ContactForm() {
             animate={{ opacity: 1 }}
             aria-label="Contact inquiry form"
           >
-            {/* Honeypot field — hidden from humans, bots fill it in */}
+            {/* Timing-based bot detection — records when the user first interacts */}
+            <input type="hidden" name="submissionStartedAt" value={startedAt ?? ""} />
+
+            {/* Honeypot field — visually hidden from humans, bots fill it in */}
             <div className={styles.honeypot} aria-hidden="true">
               <label htmlFor={`${formId}-website`}>Website</label>
               <input
@@ -90,6 +100,11 @@ export function ContactForm() {
                 className={styles.input}
                 aria-describedby={state.errors?.name ? `${formId}-name-error` : undefined}
                 aria-invalid={state.errors?.name ? "true" : undefined}
+                onFocus={() => {
+                  if (!startedAt) {
+                    setStartedAt(String(Date.now()));
+                  }
+                }}
               />
               <AnimatePresence>
                 {state.errors?.name && (
