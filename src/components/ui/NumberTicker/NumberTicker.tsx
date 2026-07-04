@@ -13,14 +13,15 @@ interface NumberTickerProps {
 /**
  * Animates a number from 0 to `value` using requestAnimationFrame.
  * Respects `prefers-reduced-motion` — falls back to displaying the final value immediately.
+ *
+ * Accessibility: `aria-live` is set to `"off"` during the animation and
+ * switches to `"polite"` with `role="status"` only once the animation
+ * completes.  This prevents screen readers from receiving ~120 rapid-fire
+ * announcements (60 fps × 2 seconds).
  */
-export function NumberTicker({
-  value,
-  duration = 2000,
-  className,
-  ariaLabel,
-}: NumberTickerProps) {
+export function NumberTicker({ value, duration = 2000, className, ariaLabel }: NumberTickerProps) {
   const [count, setCount] = useState(0);
+  const [animationComplete, setAnimationComplete] = useState(false);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
@@ -31,7 +32,10 @@ export function NumberTicker({
     const prefersReducedMotion = mq.matches;
 
     if (prefersReducedMotion) {
-      queueMicrotask(() => setCount(value));
+      queueMicrotask(() => {
+        setCount(value);
+        setAnimationComplete(true);
+      });
       return;
     }
 
@@ -54,6 +58,8 @@ export function NumberTicker({
 
       if (progress < 1) {
         frameId = requestAnimationFrame(animate);
+      } else {
+        setAnimationComplete(true);
       }
     };
 
@@ -72,8 +78,8 @@ export function NumberTicker({
     <span
       className={composedClass}
       aria-label={ariaLabel ?? String(count)}
-      role="status"
-      aria-live="polite"
+      role={animationComplete ? "status" : undefined}
+      aria-live={animationComplete ? "polite" : "off"}
     >
       {count}
     </span>
