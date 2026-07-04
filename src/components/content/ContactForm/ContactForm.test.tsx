@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 const mockPush = vi.fn();
@@ -33,11 +33,23 @@ describe("ContactForm", () => {
   it("marks required fields with aria-required", () => {
     render(<ContactForm />);
     expect(screen.getByRole("textbox", { name: /name/i })).toHaveAttribute("aria-required", "true");
-    expect(screen.getByRole("textbox", { name: /email/i })).toHaveAttribute("aria-required", "true");
-    expect(screen.getByRole("textbox", { name: /subject/i })).toHaveAttribute("aria-required", "true");
-    expect(screen.getByRole("textbox", { name: /message/i })).toHaveAttribute("aria-required", "true");
+    expect(screen.getByRole("textbox", { name: /email/i })).toHaveAttribute(
+      "aria-required",
+      "true",
+    );
+    expect(screen.getByRole("textbox", { name: /subject/i })).toHaveAttribute(
+      "aria-required",
+      "true",
+    );
+    expect(screen.getByRole("textbox", { name: /message/i })).toHaveAttribute(
+      "aria-required",
+      "true",
+    );
     // Phone is optional
-    expect(screen.getByRole("textbox", { name: /phone/i })).not.toHaveAttribute("aria-required", "true");
+    expect(screen.getByRole("textbox", { name: /phone/i })).not.toHaveAttribute(
+      "aria-required",
+      "true",
+    );
   });
 
   it("includes a honeypot field hidden from users", () => {
@@ -77,19 +89,20 @@ describe("ContactForm", () => {
       errors: { email: ["Please enter a valid email address"] },
     });
     render(<ContactForm />);
-    // The form starts hidden after first render because state is initialState; we
-    // need to trigger the action to see the error path. Use userEvent to submit empty form.
-    const button = screen.getByRole("button", { name: /send inquiry/i });
-    // Simulate the action returning errors
+
     const form = screen.getByRole("form", { name: /contact inquiry form/i });
-    expect(form).toBeInTheDocument();
-    // The button type is submit
-    expect(button).toHaveAttribute("type", "submit");
+    // Manually dispatch the form action to get the error state rendered
+    fireEvent.submit(form);
+    await waitFor(() => {
+      expect(screen.getByText("Please enter a valid email address")).toBeInTheDocument();
+    });
   });
 
   it("uses Heading primitive for semantic structure (h2)", () => {
     render(<ContactForm />);
-    expect(screen.getByRole("heading", { level: 2, name: /send us an inquiry/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: /send us an inquiry/i }),
+    ).toBeInTheDocument();
   });
 });
 

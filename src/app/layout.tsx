@@ -4,7 +4,6 @@ import { AxeProvider } from "@/components/primitives/AxeProvider/AxeProvider";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider/SmoothScrollProvider";
 import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnnouncer";
 import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
-import { WebVitals } from "@/components/ui/WebVitals/WebVitals";
 import { GlobalSearchOverlay } from "@/components/content/SearchOverlay/GlobalSearchOverlay";
 import { MenuProvider } from "@/components/navigation/MenuOverlay/MenuProvider";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay/MenuOverlay";
@@ -121,7 +120,6 @@ export default function RootLayout({
             <MenuProvider>
               <RouteAnnouncer />
               <ToastProvider />
-              <WebVitals />
               <GlobalSearchOverlay />
               {children}
               <MenuOverlay />
