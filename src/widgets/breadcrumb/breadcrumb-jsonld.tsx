@@ -1,5 +1,5 @@
-import { SITE_URL } from "@/shared/lib/brand";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
+import { createBreadcrumbSchema } from "@/shared/lib/structured-data";
 
 interface BreadcrumbItem {
   label: string;
@@ -10,27 +10,21 @@ interface BreadcrumbJsonLdProps {
   items: BreadcrumbItem[];
 }
 
-const BASE_URL = SITE_URL;
-
 /**
  * Renders JSON-LD structured data for BreadcrumbList schema.
- * Improves SEO by helping search engines understand page hierarchy.
+ * Uses the centralized createBreadcrumbSchema factory from shared/lib/structured-data.
  *
  * CSP note: <script type="application/ld+json"> is a data block, not
  * executable JS.  It is not subject to script-src and passes CSP without
  * a nonce.
  */
 export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
+  const jsonLd = createBreadcrumbSchema(
+    items.map((item) => ({
       name: item.label,
-      item: `${BASE_URL}${item.href}`,
+      url: item.href,
     })),
-  };
+  );
 
   return (
     <script

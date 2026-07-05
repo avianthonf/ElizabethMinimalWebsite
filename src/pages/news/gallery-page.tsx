@@ -17,7 +17,7 @@ import {
   COMMUNITY_IMAGES,
   OVERFLOW_IMAGES,
 } from "@/domains/media/images.data";
-import styles from "./page.module.css";
+import styles from "./gallery-page.module.css";
 
 // ── Combine and deduplicate all gallery images ────────────────────────
 

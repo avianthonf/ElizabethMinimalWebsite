@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapEmbedLazy } from "./map-embed-lazy";
+import { MapEmbedLazy } from "@/features/map/map-embed-lazy";
 import styles from "./locate-section.module.css";
 
 interface LocateSectionProps {

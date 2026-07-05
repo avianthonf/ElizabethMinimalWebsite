@@ -24,34 +24,6 @@
   min-height: 300px;
 }
 
-.mapPlaceholder {
-  aspect-ratio: 4 / 3;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mapContent {
-  text-align: center;
-  color: var(--text-on-dark-muted, rgba(255, 255, 255, 0.82));
-}
-
-.pinIcon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 12px;
-  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
-}
-
-.mapLabel {
-  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
-  font-size: calc(var(--text-scale, 1) * 0.875rem);
-  font-weight: 500;
-}
-
 /* ── Info Column ──────────────────────────────────────── */
 
 .eyebrow {

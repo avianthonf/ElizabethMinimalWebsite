@@ -58,6 +58,6 @@ describe("LocateSection", () => {
     const { container } = render(<LocateSection {...defaultProps} />);
     // All info icons should have aria-hidden="true"
     const icons = container.querySelectorAll("svg[aria-hidden='true']");
-    expect(icons.length).toBeGreaterThanOrEqual(4);
+    expect(icons.length).toBeGreaterThanOrEqual(3);
   });
 });
