@@ -2,20 +2,12 @@
 
 import dynamic from "next/dynamic";
 import type { CalendarOptions, EventInput } from "@fullcalendar/core";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
 
-// FullCalendar requires browser APIs — lazy-load with ssr:false.
-// Plugins are imported at module level (pure JS, no browser APIs needed).
-const FullCalendar = dynamic(
-  async () => {
-    const mod = await import("@fullcalendar/react");
-    // Side-effect CSS imports (only executed on client)
-    await import("@fullcalendar/core/index.css");
-    await import("@fullcalendar/daygrid/index.css");
-    await import("@fullcalendar/list/index.css");
-    return { default: mod.default };
-  },
+// FullCalendar + plugins + CSS are ALL lazy-loaded — nothing from
+// @fullcalendar/* can be imported at module level because Next.js
+// will try to resolve the CSS during the SSR build pass.
+const EventsCalendarInner = dynamic(
+  () => import("./events-calendar-inner").then((mod) => ({ default: mod.EventsCalendarInner })),
   { ssr: false },
 );
 
@@ -67,26 +59,26 @@ export const SCHOOL_EVENTS: EventInput[] = [
   },
 ];
 
-export function EventsCalendar() {
-  const options: CalendarOptions = {
-    plugins: [dayGridPlugin, listPlugin],
-    initialView: "dayGridMonth",
-    events: SCHOOL_EVENTS,
-    headerToolbar: {
-      left: "prev,next today",
-      center: "title",
-      right: "dayGridMonth,listYear",
-    },
-    height: "auto",
-    firstDay: 1,
-    buttonText: { today: "Today", month: "Month", list: "Year" },
-    eventTimeFormat: { hour: "2-digit", minute: "2-digit", meridiem: "short" },
-    noEventsText: "No events scheduled",
-  };
+const calendarOptions: CalendarOptions = {
+  // plugins are resolved inside events-calendar-inner.tsx
+  initialView: "dayGridMonth",
+  events: SCHOOL_EVENTS,
+  headerToolbar: {
+    left: "prev,next today",
+    center: "title",
+    right: "dayGridMonth,listYear",
+  },
+  height: "auto",
+  firstDay: 1,
+  buttonText: { today: "Today", month: "Month", list: "Year" },
+  eventTimeFormat: { hour: "2-digit", minute: "2-digit", meridiem: "short" },
+  noEventsText: "No events scheduled",
+};
 
+export function EventsCalendar() {
   return (
     <div style={{ maxWidth: 960, margin: "0 auto" }}>
-      <FullCalendar {...options} />
+      <EventsCalendarInner options={calendarOptions} />
     </div>
   );
 }
