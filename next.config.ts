@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   poweredByHeader: false,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "100kb",
+    },
+  },
   images: {
     qualities: [75, 85, 90, 95],
     remotePatterns: [
@@ -42,7 +47,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
+            value:
+              "camera=(), microphone=(), geolocation=(), clipboard-write=(), display-capture=(), payment=()",
           },
         ],
       },

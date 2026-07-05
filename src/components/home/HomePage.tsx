@@ -60,28 +60,17 @@ export function HomePage() {
         href="/admissions/apply"
         linkText="Apply Now"
       />
-      <Header
-        navLinks={HEADER_NAV_LINKS}
-        transparent={true}
-        noScrollBar={true}
-        fixed
-      />
+      <Header navLinks={HEADER_NAV_LINKS} transparent={true} noScrollBar={true} fixed />
       <a href="#main-content" className="skipLink">
         Skip to main content
       </a>
-      <main id="main-content" tabIndex={-1} style={{ outline: "none" }}>
+      <main id="main-content" tabIndex={-1}>
         {/* S1: Hero Carousel — no scroll reveal (it's the hero) */}
-        <HeroCarousel
-          slides={HERO_SLIDES}
-          ariaLabel="Featured highlights"
-        />
+        <HeroCarousel slides={HERO_SLIDES} ariaLabel="Featured highlights" />
 
         {/* S2: Counter Bar */}
         <ScrollReveal>
-          <CounterBar
-            stats={COUNTER_STATS}
-            ariaLabel="Key school statistics"
-          />
+          <CounterBar stats={COUNTER_STATS} ariaLabel="Key school statistics" />
         </ScrollReveal>
 
         {/* S3: Welcome / About */}

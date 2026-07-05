@@ -28,11 +28,7 @@ export default function ApplyPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="Admission steps"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="Admission steps">
         <Container width="narrow">
           <Stack gap="large">
             <Heading level="h2" variant="section">
@@ -40,11 +36,7 @@ export default function ApplyPage() {
             </Heading>
             <Stack gap="medium">
               {ADMISSION_STEPS.map((step) => (
-                <Card
-                  key={step.step}
-                  variant="default"
-                  padding="medium"
-                >
+                <Card key={step.step} variant="default" padding="medium">
                   <Stack gap="small">
                     <Text variant="eyebrow">
                       Step {step.step}: {step.title}

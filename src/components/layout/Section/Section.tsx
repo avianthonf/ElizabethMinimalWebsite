@@ -38,12 +38,7 @@ export function Section({
   ariaLabel,
   id,
 }: SectionProps): ReactNode {
-  const composedClassName = [
-    styles.section,
-    bgClass[background],
-    padClass[padding],
-    className,
-  ]
+  const composedClassName = [styles.section, bgClass[background], padClass[padding], className]
     .filter(Boolean)
     .join(" ");
 

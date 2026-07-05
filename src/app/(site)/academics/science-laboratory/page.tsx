@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { SCIENCE_LAB_PAGE, SCIENCE_LAB_FACILITIES } from "@/data/academics-science";
 import { ACADEMICS_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(SCIENCE_LAB_PAGE.metaTitle, SCIENCE_LAB_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  SCIENCE_LAB_PAGE.metaTitle,
+  SCIENCE_LAB_PAGE.metaDescription,
+);
 
 export default function ScienceLabPage() {
   return (

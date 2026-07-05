@@ -170,10 +170,7 @@ const SCALABLE_UNITS = new Set([
 
 /** Full-bleed values preserved even on spatial properties. */
 function isFullBleed(numeric, unit) {
-  return (
-    numeric === 100 &&
-    (unit === "vw" || unit === "vh" || unit === "%" || unit === "vmax")
-  );
+  return numeric === 100 && (unit === "vw" || unit === "vh" || unit === "%" || unit === "vmax");
 }
 
 /**
@@ -287,7 +284,10 @@ for (const file of cssFiles) {
         scaledSamples.push(
           `  ${file
             .replace("src/", "")
-            .replace(/\.module\.css$/, "")}: ${decl.prop}: ${decl.value.trim()} → ${newValue.trim()}`,
+            .replace(
+              /\.module\.css$/,
+              "",
+            )}: ${decl.prop}: ${decl.value.trim()} → ${newValue.trim()}`,
         );
       }
     } else {
@@ -295,9 +295,7 @@ for (const file of cssFiles) {
       // 100%, 0, none). Count as preserved-by-value.
       filePreserved++;
       if (preserveSamples.length < 15) {
-        preserveSamples.push(
-          `  ${decl.prop}: ${decl.value.trim()}  (${file.replace("src/", "")})`,
-        );
+        preserveSamples.push(`  ${decl.prop}: ${decl.value.trim()}  (${file.replace("src/", "")})`);
       }
     }
   });
@@ -321,9 +319,7 @@ for (const file of cssFiles) {
 
 console.log("── Scaled declarations (sample) ──");
 scaledSamples.forEach((s) => console.log(s));
-console.log(
-  `\n── Spatial declarations preserved by value (no scalable length) (sample) ──`,
-);
+console.log(`\n── Spatial declarations preserved by value (no scalable length) (sample) ──`);
 preserveSamples.forEach((s) => console.log(s));
 
 console.log("\n── Per-file summary ──");
@@ -331,9 +327,7 @@ perFile
   .filter((f) => f.scaled > 0)
   .sort((a, b) => b.scaled - a.scaled)
   .forEach((f) =>
-    console.log(
-      `  ${String(f.scaled).padStart(4)} scaled  ${f.file.replace("src/", "")}`,
-    ),
+    console.log(`  ${String(f.scaled).padStart(4)} scaled  ${f.file.replace("src/", "")}`),
   );
 
 console.log(

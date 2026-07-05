@@ -91,12 +91,7 @@ export function LocateSection({
               </div>
             </div>
 
-            <Link
-              href={ctaHref}
-              className={styles.cta}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link href={ctaHref} className={styles.cta} target="_blank" rel="noopener noreferrer">
               {ctaText}
             </Link>
           </div>

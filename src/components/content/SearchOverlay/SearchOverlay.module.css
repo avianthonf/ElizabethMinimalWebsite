@@ -100,7 +100,9 @@
   border-radius: 6px;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .closeButton:hover,
@@ -177,7 +179,9 @@
   font-size: 0.875rem;
   color: var(--p-color-ink, #1a1a1a);
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 }
 
 .suggestionChip:hover,

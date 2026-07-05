@@ -32,7 +32,7 @@ export function PageShell({ children, hero, headerTheme = "light" }: PageShellPr
         Skip to main content
       </a>
       {hero}
-      <main id="main-content" tabIndex={-1} style={{ outline: "none" }}>
+      <main id="main-content" tabIndex={-1}>
         {children}
       </main>
       <Footer

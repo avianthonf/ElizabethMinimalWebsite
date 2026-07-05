@@ -15,9 +15,10 @@ vi.mock("next/navigation", () => ({
  * than calling open() during render (which fires a React warning).
  */
 function AutoOpen({ children }: { children: React.ReactNode }) {
-  const { open } = useMenu();
+  const menu = useMenu();
+  const open = menu?.open;
   useEffect(() => {
-    open();
+    open?.();
   }, [open]);
   return <>{children}</>;
 }
@@ -80,10 +81,7 @@ describe("MenuOverlay", () => {
       "href",
       "/academics/curriculum",
     );
-    expect(screen.getByRole("link", { name: "Latest News" })).toHaveAttribute(
-      "href",
-      "/news",
-    );
+    expect(screen.getByRole("link", { name: "Latest News" })).toHaveAttribute("href", "/news");
   });
 
   it("calls close when the close button is clicked", () => {

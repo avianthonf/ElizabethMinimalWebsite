@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { EDUCATIONAL_TOURS_PAGE, EDUCATIONAL_TOURS } from "@/data/beyond-academics";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(EDUCATIONAL_TOURS_PAGE.metaTitle, EDUCATIONAL_TOURS_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  EDUCATIONAL_TOURS_PAGE.metaTitle,
+  EDUCATIONAL_TOURS_PAGE.metaDescription,
+);
 
 export default function EducationalToursPage() {
   return (

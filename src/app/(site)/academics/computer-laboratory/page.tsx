@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { COMPUTER_LAB_PAGE, COMPUTER_LAB_FACILITIES } from "@/data/academics-computer";
 import { ACADEMICS_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(COMPUTER_LAB_PAGE.metaTitle, COMPUTER_LAB_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  COMPUTER_LAB_PAGE.metaTitle,
+  COMPUTER_LAB_PAGE.metaDescription,
+);
 
 export default function ComputerLabPage() {
   return (

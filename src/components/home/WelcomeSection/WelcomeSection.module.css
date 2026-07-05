@@ -24,7 +24,7 @@
   font-weight: var(--eyebrow-weight, 600);
   letter-spacing: var(--eyebrow-spacing, 0.1em);
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: clamp(8px, 1.5vh, 16px);
 }
 
@@ -49,23 +49,25 @@
 .cta {
   display: inline-flex;
   padding: clamp(12px, 1.5vw, 14px) clamp(24px, 3vw, 32px);
-  background: var(--s-color-primary, var(--p-color-navy, #1B2A4A));
+  background: var(--s-color-primary, var(--p-color-navy, #1b2a4a));
   color: var(--text-on-dark-primary, #ffffff);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
   font-size: calc(var(--text-scale, 1) * 0.9375rem);
   font-weight: 600;
   text-decoration: none;
   border-radius: 4px;
-  transition: background 250ms ease, transform 250ms ease;
+  transition:
+    background 250ms ease,
+    transform 250ms ease;
 }
 
 .cta:hover {
-  background: var(--p-color-navy-dark, #0F1D35);
+  background: var(--p-color-navy-dark, #0f1d35);
   transform: translateY(-1px);
 }
 
 .cta:focus-visible {
-  outline: 2px solid var(--s-color-primary, #1B2A4A);
+  outline: 2px solid var(--s-color-primary, #1b2a4a);
   outline-offset: 2px;
 }
 
@@ -83,7 +85,8 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: var(--shadow-card-hover, 0 4px 12px rgba(0, 0, 0, 0.08));
-  transform: rotate(calc(var(--image-index, 0) * -2deg)) translateX(calc(var(--image-index, 0) * 8px));
+  transform: rotate(calc(var(--image-index, 0) * -2deg))
+    translateX(calc(var(--image-index, 0) * 8px));
   z-index: calc(3 - var(--image-index, 0));
 }
 

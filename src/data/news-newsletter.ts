@@ -20,10 +20,30 @@ export const NEWSLETTER_INTRO = {
 } as const;
 
 export const NEWSLETTER_ARCHIVE = [
-  { title: "June 2026 — New Academic Year Begins", description: "Welcoming our new students, faculty introductions, and the year ahead." },
-  { title: "May 2026 — Summer Camp Highlights", description: "Recap of our annual summer camp featuring sports clinics, art workshops, and science explorations." },
-  { title: "March 2026 — Annual Day & Prize Distribution", description: "Celebrating student excellence across academics, sports, and arts at our Annual Day ceremony." },
-  { title: "January 2026 — Republic Day & Sports Meet XXII", description: "Republic Day celebrations and a thrilling inter-house athletics competition." },
-  { title: "November 2025 — Children's Day & Science Fair", description: "Special Children's Day programme and the annual science exhibition." },
-  { title: "August 2025 — Independence Day & Monsoon Sports", description: "Independence Day celebrations and the start of the monsoon sports season." },
+  {
+    title: "June 2026 — New Academic Year Begins",
+    description: "Welcoming our new students, faculty introductions, and the year ahead.",
+  },
+  {
+    title: "May 2026 — Summer Camp Highlights",
+    description:
+      "Recap of our annual summer camp featuring sports clinics, art workshops, and science explorations.",
+  },
+  {
+    title: "March 2026 — Annual Day & Prize Distribution",
+    description:
+      "Celebrating student excellence across academics, sports, and arts at our Annual Day ceremony.",
+  },
+  {
+    title: "January 2026 — Republic Day & Sports Meet XXII",
+    description: "Republic Day celebrations and a thrilling inter-house athletics competition.",
+  },
+  {
+    title: "November 2025 — Children's Day & Science Fair",
+    description: "Special Children's Day programme and the annual science exhibition.",
+  },
+  {
+    title: "August 2025 — Independence Day & Monsoon Sports",
+    description: "Independence Day celebrations and the start of the monsoon sports season.",
+  },
 ] as const;

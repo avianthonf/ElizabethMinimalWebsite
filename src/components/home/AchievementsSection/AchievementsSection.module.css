@@ -14,7 +14,7 @@
   font-weight: var(--eyebrow-weight, 600);
   letter-spacing: var(--eyebrow-spacing, 0.1em);
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: 12px;
   text-align: center;
 }
@@ -69,7 +69,7 @@
 .iconSvg {
   width: 24px;
   height: 24px;
-  color: var(--s-color-primary, var(--p-color-navy, #1B2A4A));
+  color: var(--s-color-primary, var(--p-color-navy, #1b2a4a));
 }
 
 .year {
@@ -78,7 +78,7 @@
   font-size: calc(var(--text-scale, 1) * 0.75rem);
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: 8px;
 }
 
@@ -119,12 +119,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 250ms ease, background 250ms ease;
+  transition:
+    border-color 250ms ease,
+    background 250ms ease;
 }
 
 .navButton:hover:not(:disabled) {
-  border-color: var(--s-color-primary, #1B2A4A);
-  background: var(--s-color-primary, #1B2A4A);
+  border-color: var(--s-color-primary, #1b2a4a);
+  background: var(--s-color-primary, #1b2a4a);
   color: #ffffff;
 }
 

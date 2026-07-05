@@ -15,7 +15,11 @@ describe("Badge", () => {
   });
 
   it("renders status variant", () => {
-    render(<Badge variant="status" color="muted">New</Badge>);
+    render(
+      <Badge variant="status" color="muted">
+        New
+      </Badge>,
+    );
     expect(screen.getByText("New")).toBeInTheDocument();
   });
 

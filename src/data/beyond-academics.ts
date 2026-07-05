@@ -12,42 +12,50 @@ export interface Club {
 export const CLUBS: Club[] = [
   {
     name: "Debate Society",
-    description: "Sharpen your public speaking and critical thinking skills through structured debates on current events, ethics, and global issues.",
+    description:
+      "Sharpen your public speaking and critical thinking skills through structured debates on current events, ethics, and global issues.",
     category: "Academic",
   },
   {
     name: "Eco Club",
-    description: "Champion environmental awareness through tree planting drives, waste reduction campaigns, and campus sustainability projects.",
+    description:
+      "Champion environmental awareness through tree planting drives, waste reduction campaigns, and campus sustainability projects.",
     category: "Service",
   },
   {
     name: "Drama Club",
-    description: "Explore the world of theatre through acting workshops, script writing, and stage production culminating in the annual school play.",
+    description:
+      "Explore the world of theatre through acting workshops, script writing, and stage production culminating in the annual school play.",
     category: "Arts",
   },
   {
     name: "Science Club",
-    description: "Conduct experiments, participate in science fairs, and explore the wonders of physics, chemistry, and biology beyond the classroom.",
+    description:
+      "Conduct experiments, participate in science fairs, and explore the wonders of physics, chemistry, and biology beyond the classroom.",
     category: "Academic",
   },
   {
     name: "Heritage Club",
-    description: "Celebrate Goa's rich cultural heritage through local history projects, traditional art forms, and community engagement.",
+    description:
+      "Celebrate Goa's rich cultural heritage through local history projects, traditional art forms, and community engagement.",
     category: "Cultural",
   },
   {
     name: "Sports Club",
-    description: "Organize inter-house tournaments, fitness challenges, and sports events that promote healthy competition and teamwork.",
+    description:
+      "Organize inter-house tournaments, fitness challenges, and sports events that promote healthy competition and teamwork.",
     category: "Athletics",
   },
   {
     name: "Community Service",
-    description: "Give back through volunteering at local organizations, fundraising for worthy causes, and service projects in Pomburpa and Bardez.",
+    description:
+      "Give back through volunteering at local organizations, fundraising for worthy causes, and service projects in Pomburpa and Bardez.",
     category: "Service",
   },
   {
     name: "Photography Club",
-    description: "Capture campus life, events, and the beauty of Goa through the lens. Learn composition, lighting, and photo editing techniques.",
+    description:
+      "Capture campus life, events, and the beauty of Goa through the lens. Learn composition, lighting, and photo editing techniques.",
     category: "Arts",
   },
 ];
@@ -84,7 +92,8 @@ export const BEYOND_ACADEMICS_PAGE = {
 export const BEYOND_ACADEMICS_SECTIONS = [
   {
     title: "Clubs",
-    description: "From debate to eco club, photography to heritage — find your passion among our diverse clubs.",
+    description:
+      "From debate to eco club, photography to heritage — find your passion among our diverse clubs.",
     href: "/beyond-academics/clubs",
   },
   {
@@ -104,7 +113,8 @@ export const BEYOND_ACADEMICS_SECTIONS = [
   },
   {
     title: "Educational Tours",
-    description: "Field trips and excursions that bring learning to life beyond the classroom walls.",
+    description:
+      "Field trips and excursions that bring learning to life beyond the classroom walls.",
     href: "/beyond-academics/educational-tours",
   },
 ] as const;
@@ -234,12 +244,14 @@ export interface Sport {
 export const SPORTS: Sport[] = [
   {
     name: "Basketball",
-    description: "A fast-paced team sport building agility, coordination, and strategic thinking on our outdoor courts.",
+    description:
+      "A fast-paced team sport building agility, coordination, and strategic thinking on our outdoor courts.",
     seasons: ["Winter"],
   },
   {
     name: "Football",
-    description: "The beautiful game that teaches teamwork, endurance, and sportsmanship on our school field in Pomburpa.",
+    description:
+      "The beautiful game that teaches teamwork, endurance, and sportsmanship on our school field in Pomburpa.",
     seasons: ["Monsoon"],
   },
   {
@@ -249,12 +261,14 @@ export const SPORTS: Sport[] = [
   },
   {
     name: "Cricket",
-    description: "India's beloved sport — developing batting, bowling, and fielding skills with coaching from experienced players.",
+    description:
+      "India's beloved sport — developing batting, bowling, and fielding skills with coaching from experienced players.",
     seasons: ["Summer"],
   },
   {
     name: "Athletics",
-    description: "Track and field events including sprints, relays, long jump, shot put, and cross-country running.",
+    description:
+      "Track and field events including sprints, relays, long jump, shot put, and cross-country running.",
     seasons: ["Year-round"],
   },
   {
@@ -264,7 +278,8 @@ export const SPORTS: Sport[] = [
   },
   {
     name: "Tennis",
-    description: "Developing hand-eye coordination, footwork, and strategic play on our school courts.",
+    description:
+      "Developing hand-eye coordination, footwork, and strategic play on our school courts.",
     seasons: ["Winter"],
   },
 ];

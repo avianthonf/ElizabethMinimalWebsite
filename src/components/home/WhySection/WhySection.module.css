@@ -15,7 +15,7 @@
   font-weight: var(--eyebrow-weight, 600);
   letter-spacing: var(--eyebrow-spacing, 0.1em);
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: clamp(8px, 1.5vh, 16px);
 }
 
@@ -40,7 +40,9 @@
   border-radius: 8px;
   padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 32px);
   border: var(--card-border, 1px solid rgba(0, 0, 0, 0.08));
-  transition: transform 250ms ease, box-shadow 250ms ease;
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease;
 }
 
 .card:hover {
@@ -62,7 +64,7 @@
 .icon {
   width: 28px;
   height: 28px;
-  color: var(--s-color-primary, var(--p-color-navy, #1B2A4A));
+  color: var(--s-color-primary, var(--p-color-navy, #1b2a4a));
 }
 
 .cardTitle {

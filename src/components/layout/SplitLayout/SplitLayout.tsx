@@ -32,12 +32,7 @@ export function SplitLayout({
   stackAt,
   className,
 }: SplitLayoutProps): ReactNode {
-  const composedClassName = [
-    styles.split,
-    ratioClass[ratio],
-    reverse && styles.reverse,
-    className,
-  ]
+  const composedClassName = [styles.split, ratioClass[ratio], reverse && styles.reverse, className]
     .filter(Boolean)
     .join(" ");
 

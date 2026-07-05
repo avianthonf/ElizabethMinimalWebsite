@@ -48,12 +48,14 @@ describe("CounterBar", () => {
   it("renders the same number of stat items as stats provided", () => {
     render(<CounterBar stats={mockStats} />);
     // The value containers all share the same className; check via label count.
-    const labels = screen.getAllByText(/^(Founded|Students|Student-Teacher Ratio|Years of Excellence)$/);
+    const labels = screen.getAllByText(
+      /^(Founded|Students|Student-Teacher Ratio|Years of Excellence)$/,
+    );
     expect(labels.length).toBe(mockStats.length);
   });
 
   it("renders zero initially (animation hasn't fired in jsdom)", () => {
-    const stats: CounterStat[] = [{ value: 100, label: "Count" }];
+    const stats: CounterStat[] = [{ value: 100, label: "Count", suffix: "" }];
     render(<CounterBar stats={stats} />);
     // Without IntersectionObserver firing, the displayed value is "0"
     expect(screen.getByText("0")).toBeInTheDocument();

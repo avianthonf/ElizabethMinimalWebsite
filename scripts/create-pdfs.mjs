@@ -245,7 +245,7 @@ async function generateDesktopHomepage(page) {
     carousel.style.height = "auto";
 
     // Find viewport (first <div> child, after the sr-only <span>)
-    const viewport = carousel.querySelector(':scope > div');
+    const viewport = carousel.querySelector(":scope > div");
     if (!viewport) return { ok: false, reason: "viewport not found" };
 
     // Un-sticky so it flows normally
@@ -255,7 +255,7 @@ async function generateDesktopHomepage(page) {
     viewport.style.overflow = "visible";
 
     // Find track (first <div> inside viewport)
-    const track = viewport.querySelector(':scope > div');
+    const track = viewport.querySelector(":scope > div");
     if (!track) return { ok: false, reason: "track not found" };
 
     // Freeze track: kill transform, keep flex
@@ -461,7 +461,12 @@ function verifyHomepageDesktop(filePath) {
   // The desktop homepage should be wide — check that it's larger than
   // a typical single-page PDF
   if (sizeKB < 100) {
-    return { ...result, ok: false, reason: `desktop homepage too small (${sizeKB} KB — expected >100 KB for image-heavy wide page)`, sizeKB };
+    return {
+      ...result,
+      ok: false,
+      reason: `desktop homepage too small (${sizeKB} KB — expected >100 KB for image-heavy wide page)`,
+      sizeKB,
+    };
   }
 
   // Quick structural check: does the PDF contain at least one page object?
@@ -526,9 +531,7 @@ async function main() {
           await generateStandardPdf(page, route, name, "desktop");
         }
         completed++;
-        console.log(
-          `  [${completed}/${total}] ✓ ${name} (desktop)`,
-        );
+        console.log(`  [${completed}/${total}] ✓ ${name} (desktop)`);
       } catch (err) {
         completed++;
         failures++;
@@ -542,9 +545,7 @@ async function main() {
       try {
         await generateStandardPdf(page2, route, name, "mobile");
         completed++;
-        console.log(
-          `  [${completed}/${total}] ✓ ${name} (mobile)`,
-        );
+        console.log(`  [${completed}/${total}] ✓ ${name} (mobile)`);
       } catch (err) {
         completed++;
         failures++;
@@ -589,7 +590,9 @@ async function main() {
         execSync(`qpdf "${pdfPath}" "${tmp}"`, { stdio: "pipe", timeout: 30_000 });
         const buf = readFileSync(tmp);
         writeFileSync(pdfPath, buf);
-        try { execSync(`rm "${tmp}"`); } catch {}
+        try {
+          execSync(`rm "${tmp}"`);
+        } catch {}
         // Then try linearize the rebuilt file
         execSync(`qpdf --linearize --replace-input "${pdfPath}"`, {
           stdio: "pipe",
@@ -602,7 +605,9 @@ async function main() {
       }
     }
   }
-  console.log(`\n\n  qpdf linearized ${allPdfPaths.length - qpdfFailures}/${allPdfPaths.length} PDFs`);
+  console.log(
+    `\n\n  qpdf linearized ${allPdfPaths.length - qpdfFailures}/${allPdfPaths.length} PDFs`,
+  );
   if (qpdfFailures > 0) {
     console.log(`  ${qpdfFailures} files could not be linearized`);
   }
@@ -616,19 +621,13 @@ async function main() {
   for (const { name } of PAGES) {
     // Desktop
     if (name === "homepage") {
-      verificationResults.push(
-        verifyHomepageDesktop(join(DESKTOP_DIR, `${name}.pdf`)),
-      );
+      verificationResults.push(verifyHomepageDesktop(join(DESKTOP_DIR, `${name}.pdf`)));
     } else {
-      verificationResults.push(
-        verifyPdf(join(DESKTOP_DIR, `${name}.pdf`), `${name}-desktop`),
-      );
+      verificationResults.push(verifyPdf(join(DESKTOP_DIR, `${name}.pdf`), `${name}-desktop`));
     }
 
     // Mobile
-    verificationResults.push(
-      verifyPdf(join(MOBILE_DIR, `${name}.pdf`), `${name}-mobile`),
-    );
+    verificationResults.push(verifyPdf(join(MOBILE_DIR, `${name}.pdf`), `${name}-mobile`));
   }
 
   let verifyFailures = 0;

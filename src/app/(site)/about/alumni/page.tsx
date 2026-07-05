@@ -29,18 +29,10 @@ export default function AlumniPage() {
         />
       }
     >
-      <Section
-        background="soft"
-        padding="xlarge"
-        ariaLabel="Alumni community"
-      >
+      <Section background="soft" padding="xlarge" ariaLabel="Alumni community">
         <Container>
           <Stack gap="xlarge">
-            <Breadcrumb
-              href="/about"
-              label="About"
-              currentLabel="Alumni"
-            />
+            <Breadcrumb href="/about" label="About" currentLabel="Alumni" />
             <Stack gap="medium">
               <Text variant="eyebrow">Our Community</Text>
               <Heading level="h2" variant="section">
@@ -75,11 +67,7 @@ export default function AlumniPage() {
               </Heading>
               <Grid columns={3} gap="medium" responsive>
                 {ALUMNI_EVENTS.map((event) => (
-                  <Card
-                    key={event.title}
-                    variant="default"
-                    padding="medium"
-                  >
+                  <Card key={event.title} variant="default" padding="medium">
                     <Stack gap="small">
                       <Heading level="h3" variant="card">
                         {event.title}

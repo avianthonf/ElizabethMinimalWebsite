@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { CULTURAL_ACTIVITIES_PAGE, CULTURAL_PROGRAMMES } from "@/data/beyond-academics";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(CULTURAL_ACTIVITIES_PAGE.metaTitle, CULTURAL_ACTIVITIES_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  CULTURAL_ACTIVITIES_PAGE.metaTitle,
+  CULTURAL_ACTIVITIES_PAGE.metaDescription,
+);
 
 export default function CulturalActivitiesPage() {
   return (

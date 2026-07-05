@@ -6,7 +6,13 @@ import { ImageCard } from "./ImageCard";
 vi.mock("next/image", () => ({
   default: ({ src, alt, fill, className, sizes }: Record<string, unknown>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={String(src)} alt={String(alt ?? "")} className={String(className ?? "")} data-fill={String(fill)} data-sizes={String(sizes ?? "")} />
+    <img
+      src={String(src)}
+      alt={String(alt ?? "")}
+      className={String(className ?? "")}
+      data-fill={String(fill)}
+      data-sizes={String(sizes ?? "")}
+    />
   ),
 }));
 
@@ -27,12 +33,7 @@ describe("ImageCard", () => {
 
   it("renders as link when href provided", () => {
     render(
-      <ImageCard
-        image="/images/library.jpg"
-        imageAlt="Library"
-        title="Library"
-        href="/library"
-      />,
+      <ImageCard image="/images/library.jpg" imageAlt="Library" title="Library" href="/library" />,
     );
     expect(screen.getByRole("link")).toHaveAttribute("href", "/library");
   });

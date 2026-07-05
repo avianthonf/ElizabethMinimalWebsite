@@ -1,5 +1,5 @@
 .root {
-  background: var(--p-color-navy-dark, #0F1D35);
+  background: var(--p-color-navy-dark, #0f1d35);
   padding: clamp(40px, 6vw, 60px) clamp(24px, 6vw, 80px);
 }
 
@@ -36,12 +36,12 @@
 
 .prefix {
   font-size: calc(var(--text-scale, 1) * clamp(1.25rem, 3vw, 2rem));
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
 }
 
 .suffix {
   font-size: calc(var(--text-scale, 1) * clamp(1.25rem, 3vw, 2rem));
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
 }
 
 .label {

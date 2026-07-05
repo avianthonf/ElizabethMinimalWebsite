@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import styles from "./error.module.css";
+import Link from "next/link";
+import styles from "./(site)/site-error.module.css";
 
-/** Global error boundary for the application. */
-export default function GlobalError({
+/** Error boundary for the root route (/ homepage). Renders inside the root layout. */
+export default function RootError({
   error,
   reset,
 }: {
@@ -12,23 +13,23 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error("Global error:", error);
+    console.error("Root route error:", error);
   }, [error]);
 
   return (
-    <html lang="en">
-      <body>
-        <div className={styles.wrapper}>
-          <h1 className={styles.heading}>Something went wrong</h1>
-          <p className={styles.description}>
-            We apologize for the inconvenience. Please try again or contact us if the problem
-            persists.
-          </p>
-          <button type="button" onClick={reset} className={styles.retryButton}>
-            Try Again
-          </button>
-        </div>
-      </body>
-    </html>
+    <div className={styles.wrapper}>
+      <h1 className={styles.heading}>Something went wrong</h1>
+      <p className={styles.description}>
+        We encountered an error loading this page. Please try again or go back to the homepage.
+      </p>
+      <div className={styles.actions}>
+        <button type="button" onClick={reset} className={styles.retryButton}>
+          Try Again
+        </button>
+        <Link href="/" className={styles.homeLink}>
+          Go Home
+        </Link>
+      </div>
+    </div>
   );
 }

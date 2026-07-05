@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { INFRASTRUCTURE_PAGE, INFRASTRUCTURE_FACILITIES } from "@/data/admissions-infrastructure";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(INFRASTRUCTURE_PAGE.metaTitle, INFRASTRUCTURE_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  INFRASTRUCTURE_PAGE.metaTitle,
+  INFRASTRUCTURE_PAGE.metaDescription,
+);
 
 export default function InfrastructurePage() {
   return (

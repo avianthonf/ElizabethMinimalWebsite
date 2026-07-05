@@ -69,11 +69,11 @@ export function Header({
   // (Prop API is deprecated; new code should wrap pages in MenuProvider.)
   const menuContext = useMenu();
   const contextIsOpen = menuContext?.isOpen ?? false;
-  const contextOpen = menuContext?.open;
+  const contextToggle = menuContext?.toggle;
   const contextTriggerRef = menuContext?.triggerButtonRef ?? null;
 
   const isMenuOpen = isMenuOpenProp ?? contextIsOpen;
-  const handleMenuClick = onMenuClickProp ?? contextOpen ?? (() => undefined);
+  const handleMenuClick = onMenuClickProp ?? contextToggle ?? (() => undefined);
   const menuButtonRef = menuButtonRefProp ?? contextTriggerRef;
 
   /** Check if a nav link's href matches the current pathname (top-level section match). */
@@ -127,7 +127,9 @@ export function Header({
         title="Search (Ctrl+K)"
       >
         <Search size={18} aria-hidden="true" />
-        <kbd className={styles.searchKbd} aria-hidden="true">⌘K</kbd>
+        <kbd className={styles.searchKbd} aria-hidden="true">
+          ⌘K
+        </kbd>
       </button>
 
       {showMenu && (

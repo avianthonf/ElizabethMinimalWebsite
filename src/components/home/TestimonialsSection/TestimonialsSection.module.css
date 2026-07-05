@@ -1,6 +1,6 @@
 .root {
   padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
-  background: var(--p-color-navy-dark, #0F1D35);
+  background: var(--p-color-navy-dark, #0f1d35);
 }
 
 .inner {
@@ -14,7 +14,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: 12px;
   text-align: center;
 }

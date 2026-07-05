@@ -45,19 +45,19 @@
 
 :root {
   /* ── Tier 1: Primitives (--p-color-*) ──────────────── */
-  --p-color-navy: #1B2A4A;
-  --p-color-navy-dark: #0F1D35;
-  --p-color-ink: #1A1A1A;
-  --p-color-muted: #6B7280;
-  --p-color-paper: #FAFAF9;
-  --p-color-soft: #F4F1ED;
-  --p-color-line: rgba(26, 26, 26, 0.10);
-  --p-color-deep-blue: #2D4373;
-  --p-color-deep-blue-light: #E8EDF5;
-  --p-color-gold: #C9A96E;
-  --p-color-gold-hover: #B8954F;
-  --p-color-dark: #1A1A2E;
-  --p-color-gallery-bg: #FAFAF9;
+  --p-color-navy: #1b2a4a;
+  --p-color-navy-dark: #0f1d35;
+  --p-color-ink: #1a1a1a;
+  --p-color-muted: #6b7280;
+  --p-color-paper: #fafaf9;
+  --p-color-soft: #f4f1ed;
+  --p-color-line: rgba(26, 26, 26, 0.1);
+  --p-color-deep-blue: #2d4373;
+  --p-color-deep-blue-light: #e8edf5;
+  --p-color-gold: #c9a96e;
+  --p-color-gold-hover: #b8954f;
+  --p-color-dark: #1a1a2e;
+  --p-color-gallery-bg: #fafaf9;
 
   /* ── Tier 2: Semantics (--s-color-*) ───────────────── */
   --s-color-primary: var(--p-color-navy);
@@ -125,7 +125,7 @@
   --focus-ring-shadow: 0 0 0 2px white, 0 0 0 4px var(--focus-ring-color);
 
   /* ── Dark Surface Tokens ──────────────────────────── */
-  --bg-dark-primary: #0F1D35;
+  --bg-dark-primary: #0f1d35;
   --bg-dark-gradient-start: #1e5a7e;
   --bg-dark-gradient-mid: #0c4a6e;
   --bg-dark-gradient-end: #082f49;
@@ -306,6 +306,12 @@
 
   #main-content {
     scroll-padding-top: calc(var(--header-height) + 12px);
+  }
+
+  #main-content:focus-visible {
+    outline: 3px solid var(--p-color-accent, #c9a96e);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   /* ── Print styles ────────────────────────────────── */

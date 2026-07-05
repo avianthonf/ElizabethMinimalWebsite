@@ -55,19 +55,25 @@ export function renderHighlightedText(html: string): ReactNode {
 
 /** Strip all HTML tags from a string, returning plain text. */
 function stripTags(html: string): string {
-  return html
-    // Strip entire <script>...</script> and <style>...</style> blocks
-    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
-    .replace(/<style\b[\s\S]*?<\/style>/gi, "")
-    // Replace block-level tags with spaces so words don't run together
-    .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<\/(p|div|h[1-6]|li|tr|td)>/gi, " ")
-    .replace(/<[^>]+>/g, "")
-    // Decode the most common HTML entities Pagefind emits
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&nbsp;/g, " ");
+  return (
+    html
+      // Strip entire <script>...</script> and <style>...</style> blocks
+      .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+      .replace(/<style\b[\s\S]*?<\/style>/gi, "")
+      // Replace block-level tags with spaces so words don't run together
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<\/(p|div|h[1-6]|li|tr|td)>/gi, " ")
+      .replace(/<[^>]+>/g, "")
+      // Decode the most common HTML entities Pagefind emits.
+      // Entity decoding MUST come AFTER tag stripping because decoded
+      // angle brackets (e.g., &lt; → <) would otherwise be consumed by
+      // the tag regex above.  Output is consumed as React children, which
+      // auto-escape < and >, so this is safe.
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&nbsp;/g, " ")
+  );
 }

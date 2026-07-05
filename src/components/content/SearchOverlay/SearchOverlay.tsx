@@ -141,7 +141,9 @@ export function SearchOverlay({
     setError(null);
   }, [open]);
 
-  // Run debounced search
+  // Run debounced search with stale-result cancellation.
+  // The `cancelled` flag prevents a slower, in-flight search from
+  // overwriting results after a faster, newer search has already resolved.
   useEffect(() => {
     if (!query.trim()) {
       // Defer to next microtask to avoid sync setState-in-effect
@@ -154,10 +156,12 @@ export function SearchOverlay({
       return;
     }
 
+    let cancelled = false;
     queueMicrotask(() => setIsLoading(true));
     const handle = setTimeout(async () => {
       try {
         const response = await pagefind.search(query);
+        if (cancelled) return;
         const fragments = await Promise.all(
           response.results.slice(0, maxResults).map(async (r) => {
             const data = await r.data();
@@ -169,16 +173,21 @@ export function SearchOverlay({
             } as ResultItem;
           }),
         );
+        if (cancelled) return;
         setResults(fragments);
       } catch {
+        if (cancelled) return;
         setError("Search failed. Please try again.");
         setResults([]);
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     }, 150);
 
-    return () => clearTimeout(handle);
+    return () => {
+      clearTimeout(handle);
+      cancelled = true;
+    };
   }, [query, pagefindReady, maxResults]);
 
   // Keyboard handling: Esc to close, Enter to navigate to first result
@@ -314,9 +323,9 @@ export function SearchOverlay({
           )}
 
           {results.length > 0 && (
-            <ul className={styles.results} role="listbox">
+            <ul className={styles.results}>
               {results.map((r) => (
-                <li key={r.id} className={styles.resultItem} role="option" aria-selected="false">
+                <li key={r.id} className={styles.resultItem}>
                   <Link href={r.url} className={styles.resultLink} onClick={onClose}>
                     <FileText size={18} className={styles.resultIcon} aria-hidden="true" />
                     <div className={styles.resultContent}>
@@ -335,8 +344,8 @@ export function SearchOverlay({
 }
 
 /**
- * useSearchOverlay — hook that returns [open, openOverlay, closeOverlay].
- * Handles global ⌘K / Ctrl+K keyboard shortcut to open. Listens for the
+ * useSearchOverlay — hook that returns { open, openOverlay, closeOverlay }.
+ * Handles global ⌘K / Ctrl+K keyboard shortcut to open/close. Listens for the
  * custom event dispatched by the Header search button.
  */
 export function useSearchOverlay() {

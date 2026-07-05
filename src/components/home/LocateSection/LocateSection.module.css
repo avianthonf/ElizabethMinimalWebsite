@@ -1,6 +1,6 @@
 .root {
   padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
-  background: var(--bg-dark-primary, #0F1D35);
+  background: var(--bg-dark-primary, #0f1d35);
   color: var(--text-on-dark-primary, #ffffff);
 }
 
@@ -43,7 +43,7 @@
   width: 48px;
   height: 48px;
   margin-bottom: 12px;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
 }
 
 .mapLabel {
@@ -60,7 +60,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: 12px;
 }
 
@@ -94,7 +94,7 @@
   height: 20px;
   flex-shrink: 0;
   margin-top: 2px;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
 }
 
 .infoText {
@@ -110,12 +110,14 @@
   color: var(--text-on-dark-secondary, rgba(255, 255, 255, 0.95));
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  transition: color 250ms ease, border-color 250ms ease;
+  transition:
+    color 250ms ease,
+    border-color 250ms ease;
 }
 
 .infoLink:hover {
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
-  border-color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
+  border-color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
 }
 
 /* ── CTA ──────────────────────────────────────────────── */
@@ -123,8 +125,8 @@
 .cta {
   display: inline-flex;
   padding: clamp(12px, 1.5vw, 14px) clamp(24px, 3vw, 32px);
-  background: var(--s-color-accent, var(--p-color-gold, #C9A96E));
-  color: var(--p-color-navy-dark, #0F1D35);
+  background: var(--s-color-accent, var(--p-color-gold, #c9a96e));
+  color: var(--p-color-navy-dark, #0f1d35);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
   font-size: calc(var(--text-scale, 1) * 0.9375rem);
   font-weight: 600;
@@ -134,7 +136,7 @@
 }
 
 .cta:hover {
-  background: color-mix(in srgb, var(--s-color-accent, #C9A96E) 85%, black);
+  background: color-mix(in srgb, var(--s-color-accent, #c9a96e) 85%, black);
 }
 
 /* ── Mobile ───────────────────────────────────────────── */

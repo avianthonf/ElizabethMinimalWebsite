@@ -1,5 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { VALUES, STATS, TESTIMONIALS, LATEST_NEWS, HERO_CONTENT, getHomepageData } from "../homepage";
+import {
+  VALUES,
+  STATS,
+  TESTIMONIALS,
+  LATEST_NEWS,
+  HERO_CONTENT,
+  getHomepageData,
+} from "../homepage";
 
 describe("Homepage Data", () => {
   it("getHomepageData() returns all page content", async () => {

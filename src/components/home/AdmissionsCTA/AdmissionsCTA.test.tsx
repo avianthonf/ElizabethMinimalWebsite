@@ -4,9 +4,9 @@ import { AdmissionsCTA } from "./AdmissionsCTA";
 import type { AdmissionsStep } from "@/data/homepage-sections";
 
 const mockSteps: AdmissionsStep[] = [
-  { step: 1, title: "Inquire", description: "Submit an inquiry form", href: "/admissions/why" },
-  { step: 2, title: "Visit", description: "Schedule a campus tour", href: "/contact" },
-  { step: 3, title: "Apply", description: "Complete the application", href: "/admissions/apply" },
+  { step: "1", title: "Inquire", description: "Submit an inquiry form", href: "/admissions/why" },
+  { step: "2", title: "Visit", description: "Schedule a campus tour", href: "/contact" },
+  { step: "3", title: "Apply", description: "Complete the application", href: "/admissions/apply" },
 ];
 
 describe("AdmissionsCTA", () => {
@@ -33,7 +33,9 @@ describe("AdmissionsCTA", () => {
         primaryCtaHref="/admissions/apply"
       />,
     );
-    expect(screen.getByRole("heading", { level: 2, name: /begin your journey/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: /begin your journey/i }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/community of learners/i)).toBeInTheDocument();
   });
 
@@ -92,7 +94,10 @@ describe("AdmissionsCTA", () => {
         primaryCtaHref="/admissions/apply"
       />,
     );
-    expect(screen.getByRole("link", { name: /^1.*inquire/i })).toHaveAttribute("href", "/admissions/why");
+    expect(screen.getByRole("link", { name: /^1.*inquire/i })).toHaveAttribute(
+      "href",
+      "/admissions/why",
+    );
     expect(screen.getByRole("link", { name: /^2.*visit/i })).toHaveAttribute("href", "/contact");
     // 'apply' appears in step 3 and the primary CTA, so use the heading-scoped query
     expect(screen.getByRole("heading", { level: 3, name: "Apply" }).closest("a")).toHaveAttribute(

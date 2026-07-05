@@ -1,10 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  WHY_ST_ELIZABETH_POINTS,
-  ADMISSION_STEPS,
-  FAQS,
-  TUITION_INFO,
-} from "../admissions";
+import { WHY_ST_ELIZABETH_POINTS, ADMISSION_STEPS, FAQS, TUITION_INFO } from "../admissions";
 
 describe("Admissions Data", () => {
   describe("WHY_ST_ELIZABETH_POINTS", () => {

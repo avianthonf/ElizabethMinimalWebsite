@@ -28,16 +28,19 @@
   border-radius: 8px;
   background: var(--s-color-surface, #ffffff);
   border: 1px solid transparent;
-  border-top: 3px solid var(--card-accent, var(--s-color-primary, #1B2A4A));
+  border-top: 3px solid var(--card-accent, var(--s-color-primary, #1b2a4a));
   text-decoration: none;
   cursor: pointer;
-  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
 }
 
 .card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover, 0 4px 12px rgba(0, 0, 0, 0.08));
-  border-color: var(--card-accent, var(--s-color-primary, #1B2A4A));
+  border-color: var(--card-accent, var(--s-color-primary, #1b2a4a));
 }
 
 .cardArrow {
@@ -45,7 +48,7 @@
   top: 16px;
   right: 16px;
   font-size: 1.125rem;
-  color: var(--card-accent, var(--s-color-primary, #1B2A4A));
+  color: var(--card-accent, var(--s-color-primary, #1b2a4a));
   transition: transform 250ms ease;
 }
 
@@ -77,7 +80,7 @@
   justify-content: center;
   padding: clamp(24px, 3vw, 40px);
   border-radius: 8px;
-  background: var(--p-color-navy-dark, #0F1D35);
+  background: var(--p-color-navy-dark, #0f1d35);
   color: var(--text-on-dark-primary, #ffffff);
   text-align: center;
 }
@@ -88,7 +91,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: 12px;
 }
 

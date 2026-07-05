@@ -85,22 +85,21 @@ export function MediaBlock({
   );
 
   if (layout === "stacked") {
-    const stackedChildren = mediaPosition === "left" ? (
-      <>
-        {mediaElement}
-        {textContent}
-      </>
-    ) : (
-      <>
-        {textContent}
-        {mediaElement}
-      </>
-    );
+    const stackedChildren =
+      mediaPosition === "left" ? (
+        <>
+          {mediaElement}
+          {textContent}
+        </>
+      ) : (
+        <>
+          {textContent}
+          {mediaElement}
+        </>
+      );
 
     return (
-      <div className={[styles.stacked, className].filter(Boolean).join(" ")}>
-        {stackedChildren}
-      </div>
+      <div className={[styles.stacked, className].filter(Boolean).join(" ")}>{stackedChildren}</div>
     );
   }
 

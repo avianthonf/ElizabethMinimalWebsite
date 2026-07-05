@@ -175,7 +175,10 @@
   font-family: inherit;
   font-size: max(var(--text-floor), calc(var(--text-scale) * 0.75rem));
   opacity: 0.85;
-  transition: opacity 0.18s, background 0.18s, color 0.18s;
+  transition:
+    opacity 0.18s,
+    background 0.18s,
+    color 0.18s;
 }
 
 .searchButton:hover,

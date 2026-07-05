@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { STUDENT_COUNCIL_PAGE, STUDENT_COUNCIL_ROLES } from "@/data/beyond-academics";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(STUDENT_COUNCIL_PAGE.metaTitle, STUDENT_COUNCIL_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  STUDENT_COUNCIL_PAGE.metaTitle,
+  STUDENT_COUNCIL_PAGE.metaDescription,
+);
 
 export default function StudentCouncilPage() {
   return (

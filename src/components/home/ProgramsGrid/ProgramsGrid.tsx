@@ -32,9 +32,7 @@ export function ProgramsGrid({
               className={`${styles.box} ${i === 0 ? styles.boxLarge : ""}`}
               style={{ "--box-color": box.color } as React.CSSProperties}
             >
-              <span className={styles.boxNumber}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <span className={styles.boxNumber}>{String(i + 1).padStart(2, "0")}</span>
               <h3 className={styles.boxTitle}>{box.title}</h3>
               <p className={styles.boxDescription}>{box.description}</p>
             </Link>

@@ -1,4 +1,5 @@
 import { SITE_URL } from "@/lib/brand";
+import { safeJsonStringify } from "@/lib/safe-json";
 
 interface BreadcrumbItem {
   label: string;
@@ -34,7 +35,7 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonStringify(jsonLd) }}
     />
   );
 }

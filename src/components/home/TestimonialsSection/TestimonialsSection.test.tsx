@@ -7,17 +7,17 @@ const mockTestimonials: TestimonialData[] = [
   {
     quote: "The values and education I received here shaped who I am today.",
     attribution: "Alumni, Class of 1998",
-    role: "Software Engineer",
+    role: "alumni" as const,
   },
   {
     quote: "My children love coming to school every day. The teachers are wonderful.",
     attribution: "Parent",
-    role: "Mother of two",
+    role: "parent" as const,
   },
   {
     quote: "I have grown academically and personally during my time here.",
     attribution: "Student, Class 12",
-    role: "School Captain",
+    role: "student" as const,
   },
 ];
 
@@ -45,7 +45,7 @@ describe("TestimonialsSection", () => {
 
   it("renders the testimonial roles", () => {
     render(<TestimonialsSection testimonials={mockTestimonials} />);
-    expect(screen.getByText("Software Engineer")).toBeInTheDocument();
+    expect(screen.getByText("Alumni, Class of 1998")).toBeInTheDocument();
   });
 
   it("limits display to 3 testimonials", () => {
@@ -54,7 +54,7 @@ describe("TestimonialsSection", () => {
       {
         quote: "A great school that nurtures every child.",
         attribution: "Teacher",
-        role: "Faculty",
+        role: "teacher" as const,
       },
     ];
     render(<TestimonialsSection testimonials={manyTestimonials} />);

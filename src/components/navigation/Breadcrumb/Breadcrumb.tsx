@@ -22,15 +22,21 @@ export function Breadcrumb({ href, label, currentLabel }: BreadcrumbProps): Reac
   return (
     <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
       <Container width="narrow">
-        <Link href={href} className={styles.link}>
-          {label}
-        </Link>
-        <span className={styles.separator} aria-hidden="true">
-          {" / "}
-        </span>
-        <span className={styles.current} aria-current="page">
-          {currentLabel}
-        </span>
+        <ol className={styles.list}>
+          <li>
+            <Link href={href} className={styles.link}>
+              {label}
+            </Link>
+          </li>
+          <li>
+            <span className={styles.separator} aria-hidden="true">
+              {" / "}
+            </span>
+            <span className={styles.current} aria-current="page">
+              {currentLabel}
+            </span>
+          </li>
+        </ol>
       </Container>
     </nav>
   );

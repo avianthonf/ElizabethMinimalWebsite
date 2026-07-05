@@ -56,7 +56,7 @@ export function ScrollReveal({
     if (!node) return;
 
     const rect = node.getBoundingClientRect();
-    const viewportHeight = window.innerHeight ?? document.documentElement.clientHeight;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const inView = rect.top < viewportHeight && rect.bottom > 0;
 
     if (inView) {

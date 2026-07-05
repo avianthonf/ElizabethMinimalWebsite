@@ -8,5 +8,10 @@ export { IconCard } from "./IconCard/IconCard";
 export { ImageCard } from "./ImageCard/ImageCard";
 export { MapEmbed } from "./MapEmbed/MapEmbed";
 export { MediaBlock } from "./MediaBlock/MediaBlock";
-export { SearchOverlay, openSearchOverlay, useSearchOverlay, SEARCH_OVERLAY_OPEN_EVENT } from "./SearchOverlay/SearchOverlay";
+export {
+  SearchOverlay,
+  openSearchOverlay,
+  useSearchOverlay,
+  SEARCH_OVERLAY_OPEN_EVENT,
+} from "./SearchOverlay/SearchOverlay";
 export { GlobalSearchOverlay } from "./SearchOverlay/GlobalSearchOverlay";

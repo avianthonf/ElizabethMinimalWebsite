@@ -1,6 +1,6 @@
 .root {
-  background: var(--s-color-accent, var(--p-color-gold, #C9A96E));
-  color: var(--p-color-navy-dark, #0F1D35);
+  background: var(--s-color-accent, var(--p-color-gold, #c9a96e));
+  color: var(--p-color-navy-dark, #0f1d35);
   position: relative;
   z-index: 1000;
 }
@@ -60,7 +60,7 @@
 }
 
 .close:focus-visible {
-  outline: 2px solid var(--p-color-navy-dark, #0F1D35);
+  outline: 2px solid var(--p-color-navy-dark, #0f1d35);
   outline-offset: 2px;
 }
 

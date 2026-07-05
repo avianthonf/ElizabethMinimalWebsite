@@ -32,6 +32,8 @@ export function NumberTicker({ value, duration = 2000, className, ariaLabel }: N
     const prefersReducedMotion = mq.matches;
 
     if (prefersReducedMotion) {
+      // queueMicrotask prevents the "setState in effect" violation while
+      // still being practically synchronous for the user.
       queueMicrotask(() => {
         setCount(value);
         setAnimationComplete(true);

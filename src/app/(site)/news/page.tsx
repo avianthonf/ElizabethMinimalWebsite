@@ -28,11 +28,7 @@ export default function NewsPage() {
         />
       }
     >
-      <Section
-        background="paper"
-        padding="xlarge"
-        ariaLabel="News articles"
-      >
+      <Section background="paper" padding="xlarge" ariaLabel="News articles">
         <Container>
           <Stack gap="xlarge">
             <Stack gap="medium">

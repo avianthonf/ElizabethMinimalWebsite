@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { OFFICE_HOURS_PAGE, OFFICE_HOURS, HOLIDAY_SCHEDULE } from "@/data/contact-hours";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(OFFICE_HOURS_PAGE.metaTitle, OFFICE_HOURS_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  OFFICE_HOURS_PAGE.metaTitle,
+  OFFICE_HOURS_PAGE.metaDescription,
+);
 
 export default function OfficeHoursPage() {
   return (
@@ -18,7 +21,15 @@ export default function OfficeHoursPage() {
       heroDescription={OFFICE_HOURS_PAGE.heroDescription}
       heroBackgroundImage={`/images/${getHeroImage("contact-hero").filename}`}
       sectionHeading="When to Reach Us"
-      items={[...OFFICE_HOURS, { label: "Holiday Schedule", hours: "", days: "", description: HOLIDAY_SCHEDULE.join(" / ") }]}
+      items={[
+        ...OFFICE_HOURS,
+        {
+          label: "Holiday Schedule",
+          hours: "",
+          days: "",
+          description: HOLIDAY_SCHEDULE.join(" / "),
+        },
+      ]}
       layout="list"
       renderItem={(item) => (
         <Card key={item.label} variant="default" padding="medium">

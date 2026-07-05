@@ -67,9 +67,9 @@ export function HolisticSection({ ariaLabel = "Holistic education" }: HolisticSe
             <p className={styles.centerEyebrow}>Our Philosophy</p>
             <h2 className={styles.centerHeading}>Holistic Education</h2>
             <p className={styles.centerBody}>
-              At St. Elizabeth&apos;s, we believe education extends far beyond textbooks. Our holistic
-              approach nurtures the mind, body, and spirit — developing confident, compassionate, and
-              well-rounded individuals ready to thrive in a changing world.
+              At St. Elizabeth&apos;s, we believe education extends far beyond textbooks. Our
+              holistic approach nurtures the mind, body, and spirit — developing confident,
+              compassionate, and well-rounded individuals ready to thrive in a changing world.
             </p>
           </div>
 

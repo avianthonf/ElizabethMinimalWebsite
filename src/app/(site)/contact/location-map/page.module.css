@@ -17,7 +17,7 @@
   gap: 6px;
   margin-top: 4px;
   padding: 8px 16px;
-  background: var(--s-color-primary, #1B2A4A);
+  background: var(--s-color-primary, #1b2a4a);
   color: var(--s-color-surface, #ffffff);
   font-size: max(var(--text-floor), calc(var(--text-scale) * 0.8125rem));
   font-weight: 600;
@@ -30,7 +30,7 @@
 }
 
 .directionsButton:hover {
-  background: var(--s-color-primary-dark, #0F1D35);
+  background: var(--s-color-primary-dark, #0f1d35);
   transform: translateY(-1px);
 }
 

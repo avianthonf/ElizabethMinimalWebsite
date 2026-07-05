@@ -34,17 +34,13 @@ describe("renderHighlightedText", () => {
   });
 
   it("strips script tags and renders as text (XSS prevention)", () => {
-    const { container } = render(
-      <>{renderHighlightedText("<script>alert('xss')</script>safe")}</>,
-    );
+    const { container } = render(<>{renderHighlightedText("<script>alert('xss')</script>safe")}</>);
     expect(container.querySelector("script")).toBeNull();
     expect(container.textContent).toBe("safe");
   });
 
   it("strips event handler attributes by rendering as text", () => {
-    const { container } = render(
-      <>{renderHighlightedText('<img src=x onerror="alert(1)">ok')}</>,
-    );
+    const { container } = render(<>{renderHighlightedText('<img src=x onerror="alert(1)">ok')}</>);
     expect(container.querySelector("img")).toBeNull();
     expect(container.textContent).toBe("ok");
   });
@@ -63,9 +59,7 @@ describe("renderHighlightedText", () => {
   });
 
   it("strips nested tags inside <mark>", () => {
-    const { container } = render(
-      <>{renderHighlightedText("<mark><b>bold match</b></mark>")}</>,
-    );
+    const { container } = render(<>{renderHighlightedText("<mark><b>bold match</b></mark>")}</>);
     const mark = container.querySelector("mark");
     expect(mark).not.toBeNull();
     expect(mark?.textContent).toBe("bold match");
@@ -73,9 +67,7 @@ describe("renderHighlightedText", () => {
   });
 
   it("handles text before and after marks correctly", () => {
-    const { container } = render(
-      <>{renderHighlightedText("before <mark>match</mark> after")}</>,
-    );
+    const { container } = render(<>{renderHighlightedText("before <mark>match</mark> after")}</>);
     expect(container.textContent).toBe("before match after");
   });
 });

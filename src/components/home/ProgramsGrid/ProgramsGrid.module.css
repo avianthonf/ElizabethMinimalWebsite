@@ -19,7 +19,7 @@
   font-weight: var(--eyebrow-weight, 600);
   letter-spacing: var(--eyebrow-spacing, 0.1em);
   text-transform: uppercase;
-  color: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   margin-bottom: 12px;
 }
 
@@ -45,10 +45,14 @@
   position: relative;
   padding: clamp(24px, 3vw, 36px) clamp(20px, 2.5vw, 28px);
   border-radius: 8px;
-  background: color-mix(in srgb, var(--box-color, var(--s-color-primary, #1B2A4A)) 6%, white);
-  border: 1px solid color-mix(in srgb, var(--box-color, var(--s-color-primary, #1B2A4A)) 12%, transparent);
+  background: color-mix(in srgb, var(--box-color, var(--s-color-primary, #1b2a4a)) 6%, white);
+  border: 1px solid
+    color-mix(in srgb, var(--box-color, var(--s-color-primary, #1b2a4a)) 12%, transparent);
   text-decoration: none;
-  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -57,7 +61,7 @@
 .box:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover, 0 4px 12px rgba(0, 0, 0, 0.08));
-  border-color: var(--box-color, var(--s-color-primary, #1B2A4A));
+  border-color: var(--box-color, var(--s-color-primary, #1b2a4a));
 }
 
 .boxLarge {
@@ -69,7 +73,7 @@
   font-size: calc(var(--text-scale, 1) * 0.75rem);
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: var(--box-color, var(--s-color-primary, #1B2A4A));
+  color: var(--box-color, var(--s-color-primary, #1b2a4a));
   opacity: 0.5;
   margin-bottom: 12px;
 }

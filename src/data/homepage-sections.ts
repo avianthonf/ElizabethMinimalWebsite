@@ -146,13 +146,15 @@ export const PROGRAM_BOXES: ProgramBox[] = [
   },
   {
     title: "Safe Campus",
-    description: "Secure, gated campus in a serene Goan village setting — a sanctuary for learning.",
+    description:
+      "Secure, gated campus in a serene Goan village setting — a sanctuary for learning.",
     href: "/contact/location-map",
     color: "var(--p-color-royal-blue-dark)",
   },
   {
     title: "Holistic Growth",
-    description: "Clubs, sports, cultural activities, and leadership programmes for all-round development.",
+    description:
+      "Clubs, sports, cultural activities, and leadership programmes for all-round development.",
     href: "/beyond-academics",
     color: "var(--p-color-gold)",
   },
@@ -242,7 +244,8 @@ export interface Achievement {
 export const ACHIEVEMENTS: Achievement[] = [
   {
     title: "CBSE Affiliation",
-    description: "Permanently affiliated with the Central Board of Secondary Education, delivering a nationally recognised curriculum.",
+    description:
+      "Permanently affiliated with the Central Board of Secondary Education, delivering a nationally recognised curriculum.",
     icon: "award",
     year: "2005",
   },
@@ -254,13 +257,15 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     title: "Community Impact",
-    description: "Our alumni serve as doctors, engineers, teachers, and leaders across India and the world.",
+    description:
+      "Our alumni serve as doctors, engineers, teachers, and leaders across India and the world.",
     icon: "users",
     year: "",
   },
   {
     title: "Sports Excellence",
-    description: "Inter-house and inter-school competitions in basketball, football, cricket, and athletics.",
+    description:
+      "Inter-house and inter-school competitions in basketball, football, cricket, and athletics.",
     icon: "trophy",
   },
   {
@@ -270,7 +275,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     title: "Cultural Recognition",
-    description: "Regular participation and awards at state-level cultural competitions and events.",
+    description:
+      "Regular participation and awards at state-level cultural competitions and events.",
     icon: "music",
   },
 ];
@@ -307,26 +313,30 @@ export const ADMISSIONS_CTA_STEPS: AdmissionsStep[] = [
   {
     step: "01",
     title: "Inquire",
-    description: "Reach out to our admissions office. We'll answer your questions and guide you through the process.",
+    description:
+      "Reach out to our admissions office. We'll answer your questions and guide you through the process.",
     href: "/contact/info",
   },
   {
     step: "02",
     title: "Visit",
-    description: "Experience our campus firsthand. Meet our faculty, tour the facilities, and feel the St. Elizabeth's spirit.",
+    description:
+      "Experience our campus firsthand. Meet our faculty, tour the facilities, and feel the St. Elizabeth's spirit.",
     href: "/contact/location-map",
   },
   {
     step: "03",
     title: "Apply",
-    description: "Complete the simple application form. Our team will support you every step of the way.",
+    description:
+      "Complete the simple application form. Our team will support you every step of the way.",
     href: "/admissions/apply",
   },
 ];
 
 export const ADMISSIONS_CTA_CONTENT = {
   heading: "Begin Your Journey at St. Elizabeth's",
-  description: "Join a community where every child is known, valued, and inspired to reach their fullest potential.",
+  description:
+    "Join a community where every child is known, valued, and inspired to reach their fullest potential.",
   primaryCtaText: "Start Your Application",
   primaryCtaHref: "/admissions/apply",
   sectionAriaLabel: "Admissions call to action",

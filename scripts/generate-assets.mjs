@@ -28,8 +28,8 @@ async function generateFavicon() {
       sharp(logoBuffer)
         .resize(size, size, { fit: "contain", background: { r: 12, g: 33, b: 124, alpha: 1 } })
         .png()
-        .toBuffer()
-    )
+        .toBuffer(),
+    ),
   );
 
   // ICO format: header + directory entries + PNG data
@@ -58,7 +58,9 @@ async function generateFavicon() {
 
   const ico = Buffer.concat([header, directory, ...pngBuffers]);
   writeFileSync(join(PUBLIC, "favicon.ico"), ico);
-  console.log(`✅ favicon.ico generated (${ico.length} bytes, ${sizes.join("x")} multi-resolution)`);
+  console.log(
+    `✅ favicon.ico generated (${ico.length} bytes, ${sizes.join("x")} multi-resolution)`,
+  );
 }
 
 async function generateOGImage() {
@@ -96,17 +98,17 @@ async function generateOGImage() {
     </svg>
   `;
 
-  const bgImage = await sharp(Buffer.from(svg))
-    .png()
-    .toBuffer();
+  const bgImage = await sharp(Buffer.from(svg)).png().toBuffer();
 
   // Composite logo on top (centered horizontally)
   const ogImage = await sharp(bgImage)
-    .composite([{
-      input: logo,
-      left: Math.floor((WIDTH - 200) / 2),
-      top: 40,
-    }])
+    .composite([
+      {
+        input: logo,
+        left: Math.floor((WIDTH - 200) / 2),
+        top: 40,
+      },
+    ])
     .jpeg({ quality: 90 })
     .toBuffer();
 

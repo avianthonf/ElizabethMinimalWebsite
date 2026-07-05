@@ -8,10 +8,17 @@ import { PageShell } from "@/components/layout";
 import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { createPageMetadata } from "@/lib/page-utils";
-import { BEYOND_ACADEMICS_PAGE, BEYOND_ACADEMICS_INTRO, BEYOND_ACADEMICS_SECTIONS } from "@/data/beyond-academics";
+import {
+  BEYOND_ACADEMICS_PAGE,
+  BEYOND_ACADEMICS_INTRO,
+  BEYOND_ACADEMICS_SECTIONS,
+} from "@/data/beyond-academics";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(BEYOND_ACADEMICS_PAGE.metaTitle, BEYOND_ACADEMICS_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  BEYOND_ACADEMICS_PAGE.metaTitle,
+  BEYOND_ACADEMICS_PAGE.metaDescription,
+);
 
 export default function BeyondAcademicsPage() {
   return (

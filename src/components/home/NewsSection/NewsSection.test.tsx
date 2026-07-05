@@ -88,12 +88,14 @@ describe("NewsSection", () => {
         ctaHref="/news"
       />,
     );
-    expect(
-      screen.getByRole("link", { name: /annual day 2024/i }),
-    ).toHaveAttribute("href", "/news/annual-day-2024");
-    expect(
-      screen.getByRole("link", { name: /sports meet xxii/i }),
-    ).toHaveAttribute("href", "/news/sports-meet-xxii");
+    expect(screen.getByRole("link", { name: /annual day 2024/i })).toHaveAttribute(
+      "href",
+      "/news/annual-day-2024",
+    );
+    expect(screen.getByRole("link", { name: /sports meet xxii/i })).toHaveAttribute(
+      "href",
+      "/news/sports-meet-xxii",
+    );
   });
 
   it("renders the dates", () => {

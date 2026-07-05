@@ -83,10 +83,7 @@ export function CampusThenNow({
           </div>
 
           {/* Before image (clipped from left) */}
-          <div
-            className={styles.imageClip}
-            style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-          >
+          <div className={styles.imageClip} style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
             <Image
               src={`/images/${beforeImage.filename}`}
               alt={beforeImage.alt}
@@ -105,8 +102,12 @@ export function CampusThenNow({
           >
             <div className={styles.handleLine} />
             <div className={styles.handleGrip}>
-              <span className={styles.handleArrow} aria-hidden="true">◀</span>
-              <span className={styles.handleArrow} aria-hidden="true">▶</span>
+              <span className={styles.handleArrow} aria-hidden="true">
+                ◀
+              </span>
+              <span className={styles.handleArrow} aria-hidden="true">
+                ▶
+              </span>
             </div>
             <div className={styles.handleLine} />
           </div>

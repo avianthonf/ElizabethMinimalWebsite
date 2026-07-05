@@ -46,8 +46,9 @@ export function ConditionalLink({
       <Link
         href={href}
         className={className}
-        onClick={onClick as () => void}
+        onClick={disabled ? (e: React.MouseEvent) => e.preventDefault() : onClick}
         ariaLabel={ariaLabel}
+        ariaDisabled={disabled ? true : undefined}
         ref={ref}
       >
         {children}

@@ -12,7 +12,8 @@ export interface LinkProps {
   className?: string;
   ariaLabel?: string;
   ariaCurrent?: "page" | "step" | "location" | "date" | "time" | "true";
-  onClick?: () => void;
+  ariaDisabled?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   ref?: Ref<HTMLAnchorElement>;
 }
 
@@ -30,6 +31,7 @@ export function Link({
   className,
   ariaLabel,
   ariaCurrent,
+  ariaDisabled,
   onClick,
   ref,
 }: LinkProps): ReactNode {
@@ -49,6 +51,7 @@ export function Link({
         target="_blank"
         aria-label={ariaLabel}
         aria-current={ariaCurrent}
+        aria-disabled={ariaDisabled}
         onClick={onClick}
       >
         {children}
@@ -63,6 +66,7 @@ export function Link({
       className={composedClassName}
       aria-label={ariaLabel}
       aria-current={ariaCurrent}
+      aria-disabled={ariaDisabled}
       onClick={onClick}
     >
       {children}

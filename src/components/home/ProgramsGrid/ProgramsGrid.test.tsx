@@ -4,13 +4,48 @@ import { ProgramsGrid } from "./ProgramsGrid";
 import type { ProgramBox } from "@/data/homepage-sections";
 
 const mockBoxes: ProgramBox[] = [
-  { title: "75+ Year Legacy", description: "A rich tradition of holistic education since 1949.", href: "/about/history", color: "var(--p-color-navy)" },
-  { title: "Modern Facilities", description: "Well-equipped labs, library, and smart classrooms.", href: "/admissions/infrastructure", color: "var(--p-color-gold)" },
-  { title: "Safe Campus", description: "CCTV-monitored campus with secure entry.", href: "/admissions/infrastructure", color: "var(--p-color-navy)" },
-  { title: "Holistic Development", description: "Arts, sports, and values alongside academics.", href: "/beyond-academics", color: "var(--p-color-gold)" },
-  { title: "15:1 Student-Teacher Ratio", description: "Personalised attention for every child.", href: "/academics", color: "var(--p-color-navy)" },
-  { title: "CBSE Curriculum", description: "Nationally recognised board with structured assessments.", href: "/academics/curriculum", color: "var(--p-color-gold)" },
-  { title: "Values + Academics", description: "Rooted in the motto 'Truth and Honesty'.", href: "/about/mission", color: "var(--p-color-navy)" },
+  {
+    title: "75+ Year Legacy",
+    description: "A rich tradition of holistic education since 1949.",
+    href: "/about/history",
+    color: "var(--p-color-navy)",
+  },
+  {
+    title: "Modern Facilities",
+    description: "Well-equipped labs, library, and smart classrooms.",
+    href: "/admissions/infrastructure",
+    color: "var(--p-color-gold)",
+  },
+  {
+    title: "Safe Campus",
+    description: "CCTV-monitored campus with secure entry.",
+    href: "/admissions/infrastructure",
+    color: "var(--p-color-navy)",
+  },
+  {
+    title: "Holistic Development",
+    description: "Arts, sports, and values alongside academics.",
+    href: "/beyond-academics",
+    color: "var(--p-color-gold)",
+  },
+  {
+    title: "15:1 Student-Teacher Ratio",
+    description: "Personalised attention for every child.",
+    href: "/academics",
+    color: "var(--p-color-navy)",
+  },
+  {
+    title: "CBSE Curriculum",
+    description: "Nationally recognised board with structured assessments.",
+    href: "/academics/curriculum",
+    color: "var(--p-color-gold)",
+  },
+  {
+    title: "Values + Academics",
+    description: "Rooted in the motto 'Truth and Honesty'.",
+    href: "/about/mission",
+    color: "var(--p-color-navy)",
+  },
 ];
 
 describe("ProgramsGrid", () => {
@@ -41,7 +76,10 @@ describe("ProgramsGrid", () => {
 
   it("renders each box as a link to its href", () => {
     render(<ProgramsGrid eyebrow="Programs" heading="At a Glance" boxes={mockBoxes} />);
-    expect(screen.getByRole("link", { name: /75\+ year legacy/i })).toHaveAttribute("href", "/about/history");
+    expect(screen.getByRole("link", { name: /75\+ year legacy/i })).toHaveAttribute(
+      "href",
+      "/about/history",
+    );
   });
 
   it("renders numbered boxes (01, 02, ...)", () => {
@@ -51,7 +89,14 @@ describe("ProgramsGrid", () => {
   });
 
   it("uses a custom ariaLabel when provided", () => {
-    render(<ProgramsGrid eyebrow="Programs" heading="At a Glance" boxes={mockBoxes} ariaLabel="Programs overview" />);
+    render(
+      <ProgramsGrid
+        eyebrow="Programs"
+        heading="At a Glance"
+        boxes={mockBoxes}
+        ariaLabel="Programs overview"
+      />,
+    );
     expect(screen.getByRole("region", { name: /programs overview/i })).toBeInTheDocument();
   });
 });

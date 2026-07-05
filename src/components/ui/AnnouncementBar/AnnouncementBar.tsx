@@ -70,7 +70,7 @@ export function AnnouncementBar({
   return (
     <div
       className={styles.root}
-      role="banner"
+      role="region"
       aria-label="Announcement"
       data-hidden={!visible}
       style={!visible ? { display: "none" } : undefined}

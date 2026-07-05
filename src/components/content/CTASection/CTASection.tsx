@@ -51,16 +51,16 @@ export function CTASection({
         </Text>
       )}
 
-      <Heading
-        level="h2"
-        variant="section"
-        className={isDark ? styles.lightHeading : undefined}
-      >
+      <Heading level="h2" variant="section" className={isDark ? styles.lightHeading : undefined}>
         {heading}
       </Heading>
 
       {description && (
-        <Text variant={isDark ? "body" : "muted"} size="large" className={isDark ? styles.lightText : undefined}>
+        <Text
+          variant={isDark ? "body" : "muted"}
+          size="large"
+          className={isDark ? styles.lightText : undefined}
+        >
           {description}
         </Text>
       )}
@@ -115,9 +115,7 @@ export function CTASection({
   return (
     <Section background={bgMap[background]} padding="xlarge" className={className}>
       <Container width="narrow">
-        <div className={`${styles.content} ${centered ? styles.centered : ""}`}>
-          {ctaContent}
-        </div>
+        <div className={`${styles.content} ${centered ? styles.centered : ""}`}>{ctaContent}</div>
       </Container>
     </Section>
   );

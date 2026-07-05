@@ -65,6 +65,11 @@ export function ContactForm() {
             key="form"
             action={formAction}
             className={styles.form}
+            onChange={() => {
+              if (!startedAt) {
+                setStartedAt(String(Date.now()));
+              }
+            }}
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             aria-label="Contact inquiry form"
@@ -97,14 +102,10 @@ export function ContactForm() {
                 type="text"
                 required
                 aria-required="true"
+                autoComplete="name"
                 className={styles.input}
                 aria-describedby={state.errors?.name ? `${formId}-name-error` : undefined}
                 aria-invalid={state.errors?.name ? "true" : undefined}
-                onFocus={() => {
-                  if (!startedAt) {
-                    setStartedAt(String(Date.now()));
-                  }
-                }}
               />
               <AnimatePresence>
                 {state.errors?.name && (
@@ -133,6 +134,7 @@ export function ContactForm() {
                 type="email"
                 required
                 aria-required="true"
+                autoComplete="email"
                 className={styles.input}
                 aria-describedby={state.errors?.email ? `${formId}-email-error` : undefined}
                 aria-invalid={state.errors?.email ? "true" : undefined}
@@ -162,6 +164,7 @@ export function ContactForm() {
                 id={`${formId}-phone`}
                 name="phone"
                 type="tel"
+                autoComplete="tel"
                 className={styles.input}
                 aria-describedby={state.errors?.phone ? `${formId}-phone-error` : undefined}
               />

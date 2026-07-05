@@ -7,7 +7,10 @@ import { Heading } from "@/components/primitives/Heading";
 import { Text } from "@/components/primitives/Text";
 import { createPageMetadata } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(MOTTO_ANTHEM_PAGE.metaTitle, MOTTO_ANTHEM_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  MOTTO_ANTHEM_PAGE.metaTitle,
+  MOTTO_ANTHEM_PAGE.metaDescription,
+);
 
 export default function MottoAnthemPage() {
   return (

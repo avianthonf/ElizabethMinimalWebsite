@@ -44,8 +44,7 @@ export default function ContactThankYouPage() {
             <Text variant="muted">
               If your matter is urgent, please call us directly at{" "}
               <Link href="tel:+918322410654">+91 832-241-0654</Link> or email{" "}
-              <Link href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</Link>
-              .
+              <Link href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</Link>.
             </Text>
             <Stack gap="small">
               <Button href="/" variant="primary">

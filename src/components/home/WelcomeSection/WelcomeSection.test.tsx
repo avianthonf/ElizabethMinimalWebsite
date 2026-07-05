@@ -24,7 +24,9 @@ describe("WelcomeSection", () => {
   it("renders the eyebrow, heading, and body text", () => {
     render(<WelcomeSection {...defaultProps} />);
     expect(screen.getByText("Welcome to")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /tradition of excellence/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: /tradition of excellence/i }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/nurturing the whole person/i)).toBeInTheDocument();
   });
 

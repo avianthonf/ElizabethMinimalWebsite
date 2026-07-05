@@ -39,9 +39,7 @@ export function EventsPreview() {
                     <time dateTime={event.date}>{event.date}</time>
                     {event.time && <span className={styles.cardTime}> — {event.time}</span>}
                   </p>
-                  {event.location && (
-                    <p className={styles.cardLocation}>{event.location}</p>
-                  )}
+                  {event.location && <p className={styles.cardLocation}>{event.location}</p>}
                 </div>
               </div>
             );

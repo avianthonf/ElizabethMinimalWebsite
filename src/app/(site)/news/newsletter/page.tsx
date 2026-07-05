@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { NEWSLETTER_PAGE, NEWSLETTER_INTRO, NEWSLETTER_ARCHIVE } from "@/data/news-newsletter";
 import { getHeroImage } from "@/lib/page-utils";
 
-export const metadata = createPageMetadata(NEWSLETTER_PAGE.metaTitle, NEWSLETTER_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  NEWSLETTER_PAGE.metaTitle,
+  NEWSLETTER_PAGE.metaDescription,
+);
 
 export default function NewsletterPage() {
   return (

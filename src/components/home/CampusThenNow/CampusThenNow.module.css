@@ -1,6 +1,6 @@
 .root {
   padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
-  background: var(--bg-surface-alt, #F4F1ED);
+  background: var(--bg-surface-alt, #f4f1ed);
 }
 
 .inner {
@@ -19,7 +19,7 @@
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: var(--p-color-navy-dark, #0F1D35);
+  color: var(--p-color-navy-dark, #0f1d35);
   margin: 0 0 12px 0;
 }
 
@@ -27,7 +27,7 @@
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
   font-size: calc(var(--text-scale, 1) * 1.0625rem);
   line-height: 1.6;
-  color: var(--s-color-text-muted, #6B7280);
+  color: var(--s-color-text-muted, #6b7280);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -103,7 +103,7 @@
 
 .handleActive .handleGrip {
   transform: scale(1.15);
-  background: var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  background: var(--s-color-accent, var(--p-color-gold, #c9a96e));
 }
 
 .handleArrow {
@@ -144,7 +144,7 @@
 /* ── Keyboard focus ───────────────────────────────────── */
 
 .handleGrip:focus-visible {
-  outline: 2px solid var(--s-color-accent, var(--p-color-gold, #C9A96E));
+  outline: 2px solid var(--s-color-accent, var(--p-color-gold, #c9a96e));
   outline-offset: 2px;
 }
 

@@ -35,9 +35,15 @@ export function useFocusTrap(containerRef: RefObject<HTMLElement | null>, isActi
 
     function getFocusableElements(): HTMLElement[] {
       const elements = container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
-      return Array.from(elements).filter(
-        (el) => el.offsetParent !== null, // visible
-      );
+      return Array.from(elements).filter((el) => {
+        const style = getComputedStyle(el);
+        return (
+          style.visibility !== "hidden" &&
+          style.display !== "none" &&
+          el.offsetWidth > 0 &&
+          el.offsetHeight > 0
+        );
+      });
     }
 
     function handleKeyDown(e: KeyboardEvent) {

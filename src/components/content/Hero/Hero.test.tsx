@@ -14,12 +14,7 @@ describe("Hero", () => {
   });
 
   it("renders description", () => {
-    render(
-      <Hero
-        heading="Academics"
-        description="A rigorous curriculum."
-      />,
-    );
+    render(<Hero heading="Academics" description="A rigorous curriculum." />);
     expect(screen.getByText("A rigorous curriculum.")).toBeInTheDocument();
   });
 

@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { RESOURCE_ROOM_PAGE, RESOURCE_ROOM_SERVICES } from "@/data/academics-resource";
 import { ACADEMICS_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(RESOURCE_ROOM_PAGE.metaTitle, RESOURCE_ROOM_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  RESOURCE_ROOM_PAGE.metaTitle,
+  RESOURCE_ROOM_PAGE.metaDescription,
+);
 
 export default function ResourceRoomPage() {
   return (

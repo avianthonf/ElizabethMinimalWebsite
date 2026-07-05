@@ -12,55 +12,64 @@ export interface Department {
 export const DEPARTMENTS: Department[] = [
   {
     name: "Science",
-    description: "Hands-on laboratory learning in Physics, Chemistry, and Biology, fostering scientific inquiry and experimental skills.",
+    description:
+      "Hands-on laboratory learning in Physics, Chemistry, and Biology, fostering scientific inquiry and experimental skills.",
     icon: "science",
     href: "/academics/curriculum",
   },
   {
     name: "Mathematics",
-    description: "Building logical reasoning and problem-solving skills from foundational arithmetic through advanced calculus.",
+    description:
+      "Building logical reasoning and problem-solving skills from foundational arithmetic through advanced calculus.",
     icon: "math",
     href: "/academics/curriculum",
   },
   {
     name: "English",
-    description: "Developing critical reading, writing, and communication skills through literature, language study, and creative expression.",
+    description:
+      "Developing critical reading, writing, and communication skills through literature, language study, and creative expression.",
     icon: "english",
     href: "/academics/curriculum",
   },
   {
     name: "Social Studies",
-    description: "Exploring history, geography, civics, and economics to understand our world and our role as informed citizens.",
+    description:
+      "Exploring history, geography, civics, and economics to understand our world and our role as informed citizens.",
     icon: "social-studies",
     href: "/academics/curriculum",
   },
   {
     name: "Teaching Methods",
-    description: "Student-centred, activity-based learning with differentiated instruction in small classes of approximately 15 students.",
+    description:
+      "Student-centred, activity-based learning with differentiated instruction in small classes of approximately 15 students.",
     icon: "teaching",
     href: "/academics/teaching-methods",
   },
   {
     name: "Library",
-    description: "A well-stocked library and digital resource centre supporting research, reading, and lifelong learning habits.",
+    description:
+      "A well-stocked library and digital resource centre supporting research, reading, and lifelong learning habits.",
     icon: "library",
     href: "/academics/library",
   },
   {
     name: "Resource Room",
-    description: "Dedicated learning support for students with diverse needs — individualised instruction, remedial teaching, and counselling.",
+    description:
+      "Dedicated learning support for students with diverse needs — individualised instruction, remedial teaching, and counselling.",
     icon: "support",
     href: "/academics/resource-room",
   },
   {
     name: "Science Laboratory",
-    description: "Fully equipped Physics, Chemistry, and Biology labs for hands-on experimental learning and scientific inquiry.",
+    description:
+      "Fully equipped Physics, Chemistry, and Biology labs for hands-on experimental learning and scientific inquiry.",
     icon: "science",
     href: "/academics/science-laboratory",
   },
   {
     name: "Computer Laboratory",
-    description: "Modern computing facility with 30 workstations, coding programmes, digital literacy, and internet safety education.",
+    description:
+      "Modern computing facility with 30 workstations, coding programmes, digital literacy, and internet safety education.",
     icon: "computer",
     href: "/academics/computer-laboratory",
   },

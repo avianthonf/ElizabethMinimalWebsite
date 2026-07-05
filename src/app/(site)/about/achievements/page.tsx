@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { ACHIEVEMENTS_PAGE, ACHIEVEMENTS } from "@/data/about-achievements";
 import { COMMUNITY_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(ACHIEVEMENTS_PAGE.metaTitle, ACHIEVEMENTS_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  ACHIEVEMENTS_PAGE.metaTitle,
+  ACHIEVEMENTS_PAGE.metaDescription,
+);
 
 export default function AchievementsPage() {
   return (

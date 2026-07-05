@@ -11,11 +11,11 @@ export function useReducedMotion(): boolean {
   const initialised = useRef(false);
 
   useEffect(() => {
-    // First render: set initial value
+    // First render: set initial value synchronously — no microtask needed.
     if (!initialised.current) {
       initialised.current = true;
       const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-      queueMicrotask(() => setPrefersReduced(mq.matches));
+      setPrefersReduced(mq.matches);
     }
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");

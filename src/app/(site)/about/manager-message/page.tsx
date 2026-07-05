@@ -11,7 +11,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { MANAGER_MESSAGE_PAGE, MANAGER_MESSAGE } from "@/data/about-manager";
 import { COMMUNITY_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(MANAGER_MESSAGE_PAGE.metaTitle, MANAGER_MESSAGE_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  MANAGER_MESSAGE_PAGE.metaTitle,
+  MANAGER_MESSAGE_PAGE.metaDescription,
+);
 
 export default function ManagerMessagePage() {
   return (
@@ -25,7 +28,11 @@ export default function ManagerMessagePage() {
         />
       }
     >
-      <Section background="paper" padding="xlarge" ariaLabel={MANAGER_MESSAGE_PAGE.sectionAriaLabel}>
+      <Section
+        background="paper"
+        padding="xlarge"
+        ariaLabel={MANAGER_MESSAGE_PAGE.sectionAriaLabel}
+      >
         <Container width="narrow">
           <Stack gap="large">
             <Breadcrumb

@@ -30,23 +30,28 @@ describe("createPageMetadata", () => {
 
   it("builds OpenGraph with title, description, url, siteName, and image", () => {
     const meta = createPageMetadata("About", "About us", { path: "/about" });
-    expect(meta.openGraph?.title).toBe(`About | ${SITE_NAME}`);
-    expect(meta.openGraph?.description).toBe("About us");
-    expect(meta.openGraph?.url).toBe(`${SITE_URL}/about`);
-    expect(meta.openGraph?.siteName).toBe(SITE_NAME);
-    expect(meta.openGraph?.images).toHaveLength(1);
-    expect(meta.openGraph?.images?.[0]?.url).toBe(`${SITE_URL}/og-default.jpg`);
-    expect(meta.openGraph?.type).toBe("website");
+    const og = meta.openGraph as Record<string, unknown> | undefined;
+    expect(og?.title).toBe(`About | ${SITE_NAME}`);
+    expect(og?.description).toBe("About us");
+    expect(og?.url).toBe(`${SITE_URL}/about`);
+    expect(og?.siteName).toBe(SITE_NAME);
+    const images = og?.images as Array<Record<string, unknown>> | undefined;
+    expect(images).toHaveLength(1);
+    expect(images?.[0]?.url).toBe(`${SITE_URL}/og-default.jpg`);
+    expect(og?.type).toBe("website");
   });
 
   it("uses the provided ogImage when supplied", () => {
     const meta = createPageMetadata("Test", "Desc", { ogImage: "/images/hero.jpg" });
-    expect(meta.openGraph?.images?.[0]?.url).toBe(`${SITE_URL}/images/hero.jpg`);
+    const og = meta.openGraph as Record<string, unknown> | undefined;
+    const images = og?.images as Array<Record<string, unknown>> | undefined;
+    expect(images?.[0]?.url).toBe(`${SITE_URL}/images/hero.jpg`);
   });
 
   it("uses the provided ogType (e.g., article)", () => {
     const meta = createPageMetadata("News", "Article", { ogType: "article" });
-    expect(meta.openGraph?.type).toBe("article");
+    const og = meta.openGraph as Record<string, unknown> | undefined;
+    expect(og?.type).toBe("article");
   });
 
   it("includes publishedTime and modifiedTime on article metadata", () => {
@@ -55,27 +60,31 @@ describe("createPageMetadata", () => {
       publishedTime: "2024-01-15",
       modifiedTime: "2024-02-20",
     });
-    expect(meta.openGraph?.publishedTime).toBe("2024-01-15");
-    expect(meta.openGraph?.modifiedTime).toBe("2024-02-20");
+    const og = meta.openGraph as Record<string, unknown> | undefined;
+    expect(og?.publishedTime).toBe("2024-01-15");
+    expect(og?.modifiedTime).toBe("2024-02-20");
   });
 
   it("builds Twitter card with summary_large_image", () => {
     const meta = createPageMetadata("Test", "Desc");
-    expect(meta.twitter?.card).toBe("summary_large_image");
-    expect(meta.twitter?.title).toBe(`Test | ${SITE_NAME}`);
-    expect(meta.twitter?.images).toEqual([`${SITE_URL}/og-default.jpg`]);
+    const tw = meta.twitter as Record<string, unknown> | undefined;
+    expect(tw?.card).toBe("summary_large_image");
+    expect(tw?.title).toBe(`Test | ${SITE_NAME}`);
+    expect(tw?.images).toEqual([`${SITE_URL}/og-default.jpg`]);
   });
 
   it("sets robots to index/follow by default", () => {
     const meta = createPageMetadata("Test", "Desc");
-    expect(meta.robots?.index).toBe(true);
-    expect(meta.robots?.follow).toBe(true);
+    const robots = meta.robots as Record<string, unknown> | undefined;
+    expect(robots?.index).toBe(true);
+    expect(robots?.follow).toBe(true);
   });
 
   it("sets robots to noindex when noIndex is true", () => {
     const meta = createPageMetadata("Test", "Desc", { noIndex: true });
-    expect(meta.robots?.index).toBe(false);
-    expect(meta.robots?.follow).toBe(false);
+    const robots = meta.robots as Record<string, unknown> | undefined;
+    expect(robots?.index).toBe(false);
+    expect(robots?.follow).toBe(false);
   });
 
   it("uses en_IN as the default locale", () => {

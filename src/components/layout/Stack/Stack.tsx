@@ -24,9 +24,7 @@ export function Stack({
   className,
   as: Tag = "div",
 }: StackProps): ReactNode {
-  const composedClassName = [styles.stack, gapClass[gap], className]
-    .filter(Boolean)
-    .join(" ");
+  const composedClassName = [styles.stack, gapClass[gap], className].filter(Boolean).join(" ");
 
   return <Tag className={composedClassName}>{children}</Tag>;
 }

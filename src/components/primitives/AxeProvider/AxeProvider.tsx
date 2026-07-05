@@ -14,15 +14,13 @@ export function AxeProvider({ children }: { children: ReactNode }) {
     ran.current = true;
 
     // Load everything dynamically — keeps axe-core + react-dom out of prod bundle
-    Promise.all([
-      import("react"),
-      import("react-dom"),
-      import("@axe-core/react"),
-    ]).then(([React, ReactDOM, { default: axe }]) => {
-      axe(React, ReactDOM, 1000).catch(() => {
-        // axe-core init failed — non-critical in dev
-      });
-    });
+    Promise.all([import("react"), import("react-dom"), import("@axe-core/react")]).then(
+      ([React, ReactDOM, { default: axe }]) => {
+        axe(React, ReactDOM, 1000).catch(() => {
+          // axe-core init failed — non-critical in dev
+        });
+      },
+    );
   }, []);
 
   return <>{children}</>;

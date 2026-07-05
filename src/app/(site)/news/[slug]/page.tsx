@@ -8,6 +8,7 @@ import { Stack } from "@/components/layout/Stack";
 import { Breadcrumb } from "@/components/navigation/Breadcrumb";
 import { Text } from "@/components/primitives/Text";
 import { createNewsArticleSchema } from "@/lib/structured-data";
+import { safeJsonStringify } from "@/lib/safe-json";
 import type { Metadata } from "next";
 
 interface NewsArticlePageProps {
@@ -54,7 +55,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonStringify(articleSchema) }}
       />
       <PageShell
         hero={

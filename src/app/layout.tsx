@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Playfair_Display, Inter } from "next/font/google";
 import { AxeProvider } from "@/components/primitives/AxeProvider/AxeProvider";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider/SmoothScrollProvider";
@@ -10,6 +11,7 @@ import { MenuOverlay } from "@/components/navigation/MenuOverlay/MenuOverlay";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, CONTACT_EMAIL, SOCIAL_LINKS } from "@/lib/brand";
+import { safeJsonStringify } from "@/lib/safe-json";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -111,16 +113,18 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonStringify(jsonLd) }}
         />
       </head>
       <body>
         <AxeProvider>
           <SmoothScrollProvider>
             <MenuProvider>
-              <RouteAnnouncer />
-              <ToastProvider />
-              <GlobalSearchOverlay />
+              <Suspense fallback={null}>
+                <RouteAnnouncer />
+                <ToastProvider />
+                <GlobalSearchOverlay />
+              </Suspense>
               {children}
               <MenuOverlay />
               <Analytics />

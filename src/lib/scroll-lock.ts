@@ -11,6 +11,7 @@ let lockCount = 0;
 let previousOverflow: string | null = null;
 
 export function lockBodyScroll(): void {
+  if (typeof document === "undefined") return;
   if (lockCount === 0) {
     previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";

@@ -57,7 +57,7 @@ describe("AnnouncementBar", () => {
 
   it("dismisses when close is clicked", () => {
     render(<AnnouncementBar {...defaultProps} />);
-    const banner = screen.getByRole("banner");
+    const banner = screen.getByRole("region", { name: /announcement/i });
     expect(banner).not.toHaveAttribute("data-hidden", "true");
     fireEvent.click(screen.getByRole("button", { name: /dismiss/i }));
     // Bar is hidden via display:none but still in the DOM — no hydration mismatch
@@ -71,8 +71,8 @@ describe("AnnouncementBar", () => {
     expect(localStorageMock.setItem).toHaveBeenCalled();
   });
 
-  it("has role banner", () => {
+  it("has role region", () => {
     render(<AnnouncementBar {...defaultProps} />);
-    expect(screen.getByRole("banner")).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /announcement/i })).toBeInTheDocument();
   });
 });

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import { Pause, Play } from "lucide-react";
 import { Link } from "@/components/primitives/Link";
 import styles from "./HeroCarousel.module.css";
 import type { HeroSlide } from "@/data/homepage-sections";
@@ -12,6 +13,17 @@ interface HeroCarouselProps {
   ariaLabel?: string;
 }
 
+/**
+ * HeroCarousel — auto-advancing carousel for homepage hero slides.
+ *
+ * Accessibility:
+ * - Keyboard navigation: ArrowLeft/ArrowRight
+ * - Pause/play button for WCAG 2.2.2 auto-play compliance
+ * - Live region announces slide changes to screen readers
+ * - Pauses on focusin (bubbles) for child-focus awareness
+ * - Respects prefers-reduced-motion
+ * - Dots use role="group" with aria-current (not conflicting tablist pattern)
+ */
 export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -21,6 +33,9 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const liveRef = useRef<HTMLDivElement>(null);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -42,9 +57,9 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
     };
   }, [emblaApi, onSelect]);
 
-  // Autoplay — pauses on hover/focus, respects reduced motion.
+  // Autoplay — pauses on hover/focus, respects reduced motion and user pause.
   useEffect(() => {
-    if (!emblaApi || isPaused) return;
+    if (!emblaApi || isPaused || userPaused) return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) return;
 
@@ -52,7 +67,31 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
       emblaApi.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [emblaApi, isPaused]);
+  }, [emblaApi, isPaused, userPaused]);
+
+  // Announce slide changes via live region for screen readers.
+  useEffect(() => {
+    if (!liveRef.current || slides.length === 0) return;
+    liveRef.current.textContent = `Slide ${selectedIndex + 1} of ${slides.length}: ${slides[selectedIndex].heading}`;
+  }, [selectedIndex, slides]);
+
+  // focusin/focusout bubble — correctly handles focus on child elements
+  // (e.g., CTA links inside slides). The old onFocus/onBlur on the section
+  // fired blur when focus moved to a child, causing autoplay flicker.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const onFocusIn = () => setIsPaused(true);
+    const onFocusOut = (e: FocusEvent) => {
+      if (!section.contains(e.relatedTarget as Node)) setIsPaused(false);
+    };
+    section.addEventListener("focusin", onFocusIn);
+    section.addEventListener("focusout", onFocusOut);
+    return () => {
+      section.removeEventListener("focusin", onFocusIn);
+      section.removeEventListener("focusout", onFocusOut);
+    };
+  }, [slides]);
 
   // Keyboard navigation: ArrowLeft/ArrowRight for carousel control.
   const onSectionKeyDown = useCallback(
@@ -73,6 +112,7 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
 
   return (
     <section
+      ref={sectionRef}
       className={styles.root}
       aria-label={ariaLabel}
       role="region"
@@ -81,9 +121,16 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
       onKeyDown={onSectionKeyDown}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
     >
+      {/* Live region for screen reader slide-change announcements */}
+      <div
+        ref={liveRef}
+        className={styles.liveRegion}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      />
+
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>
           {slides.map((slide, index) => (
@@ -116,19 +163,32 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
         </div>
       </div>
 
-      <div className={styles.dots} role="tablist" aria-label="Carousel navigation">
+      <div className={styles.dots} role="group" aria-label="Carousel navigation">
         {slides.map((_, index) => (
           <button
             key={index}
             type="button"
-            role="tab"
             className={`${styles.dot} ${index === selectedIndex ? styles.dotActive : ""}`}
-            aria-label={`Go to slide ${index + 1}`}
-            aria-selected={index === selectedIndex}
+            aria-label={`Go to slide ${index + 1} of ${slides.length}`}
+            aria-current={index === selectedIndex ? "true" : undefined}
             onClick={() => emblaApi?.scrollTo(index)}
           />
         ))}
       </div>
+
+      {/* Pause/play toggle for WCAG 2.2.2 compliance */}
+      <button
+        type="button"
+        className={styles.pauseButton}
+        onClick={() => setUserPaused((p) => !p)}
+        aria-label={userPaused ? "Play carousel" : "Pause carousel"}
+      >
+        {userPaused ? (
+          <Play size={16} aria-hidden="true" />
+        ) : (
+          <Pause size={16} aria-hidden="true" />
+        )}
+      </button>
     </section>
   );
 }

@@ -3,8 +3,11 @@ import { describe, expect, it, vi } from "vitest";
 import { CTASection } from "./CTASection";
 
 vi.mock("next/image", () => ({
-  // eslint-disable-next-line @next/next/no-img-element
-  default: ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={String(alt ?? "")} />,
+   
+  default: ({ src, alt }: { src: string; alt: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={String(alt ?? "")} />
+  ),
 }));
 
 describe("CTASection", () => {
@@ -34,10 +37,7 @@ describe("CTASection", () => {
 
   it("renders image when provided", () => {
     render(
-      <CTASection
-        heading="Apply Today"
-        image={{ src: "/images/test.jpg", alt: "Test image" }}
-      />,
+      <CTASection heading="Apply Today" image={{ src: "/images/test.jpg", alt: "Test image" }} />,
     );
     const img = screen.getByRole("img", { name: /Test image/i });
     expect(img).toBeInTheDocument();
@@ -57,9 +57,7 @@ describe("CTASection", () => {
   });
 
   it("renders with blue background", () => {
-    const { container } = render(
-      <CTASection heading="Visit" background="blue" />,
-    );
+    const { container } = render(<CTASection heading="Visit" background="blue" />);
     // The section should have the blue background class
     expect(container.firstElementChild?.className).toContain("bgBlue");
   });

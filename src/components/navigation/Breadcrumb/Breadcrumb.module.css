@@ -4,6 +4,20 @@
   color: var(--s-color-text-muted);
 }
 
+.list {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list li {
+  display: flex;
+  align-items: baseline;
+}
+
 .link {
   color: var(--s-color-text-muted);
   text-decoration: underline;

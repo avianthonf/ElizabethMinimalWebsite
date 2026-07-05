@@ -46,10 +46,7 @@ test.describe("Accessibility", () => {
     // If pre-existing critical violations exist, skip with a note.
     // Remove .skip() once violations are resolved in production code.
     if (critical.length > 0) {
-      test.skip(
-        true,
-        `Pre-existing critical violations: ${critical.map((v) => v.id).join(", ")}`,
-      );
+      test.skip(true, `Pre-existing critical violations: ${critical.map((v) => v.id).join(", ")}`);
     }
 
     expect(critical.length).toBe(0);
@@ -62,10 +59,7 @@ test.describe("Accessibility", () => {
     const { critical } = await runAxeScan(page, "About");
 
     if (critical.length > 0) {
-      test.skip(
-        true,
-        `Pre-existing critical violations: ${critical.map((v) => v.id).join(", ")}`,
-      );
+      test.skip(true, `Pre-existing critical violations: ${critical.map((v) => v.id).join(", ")}`);
     }
 
     expect(critical.length).toBe(0);
@@ -78,18 +72,13 @@ test.describe("Accessibility", () => {
     const { critical } = await runAxeScan(page, "Academics");
 
     if (critical.length > 0) {
-      test.skip(
-        true,
-        `Pre-existing critical violations: ${critical.map((v) => v.id).join(", ")}`,
-      );
+      test.skip(true, `Pre-existing critical violations: ${critical.map((v) => v.id).join(", ")}`);
     }
 
     expect(critical.length).toBe(0);
   });
 
-  test("gallery lightbox (opened) should have zero critical violations", async ({
-    page,
-  }) => {
+  test("gallery lightbox (opened) should have zero critical violations", async ({ page }) => {
     await page.goto("/");
 
     await page.waitForSelector('[aria-roledescription="carousel"]', {
@@ -119,13 +108,12 @@ test.describe("Accessibility", () => {
     }
   });
 
-  test("menu overlay (opened) should have zero critical violations", async ({
-    page,
-  }) => {
+  test("menu overlay (opened) should have zero critical violations", async ({ page }) => {
     await page.goto("/");
 
-    // Open the menu — look for the menu button
-    const menuButton = page.locator('[aria-label="Open navigation menu"]');
+    // Open the menu — look for the "Open menu" button (the aria-label
+    // rendered by the Header component)
+    const menuButton = page.locator('[aria-label="Open menu"]');
     if ((await menuButton.count()) > 0) {
       await menuButton.click();
       await page.waitForTimeout(500);

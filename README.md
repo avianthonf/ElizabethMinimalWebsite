@@ -38,27 +38,27 @@ npm run dev
 
 ### Available Scripts
 
-| Script                  | Description                                      |
-| ----------------------- | ------------------------------------------------ |
-| `npm run dev`           | Start development server                         |
-| `npm run build`         | Production build (runs pagefind postbuild)       |
-| `npm run start`         | Start production server                          |
-| `npm run test`          | Run unit tests                                   |
-| `npm run test:coverage` | Run tests with coverage                          |
-| `npm run typecheck`     | TypeScript type checking                         |
-| `npm run lint`          | ESLint                                           |
-| `npm run format`        | Prettier format                                  |
-| `npm run format:check`  | Check formatting                                 |
-| `npm run analyze`       | Bundle analysis                                  |
+| Script                  | Description                                |
+| ----------------------- | ------------------------------------------ |
+| `npm run dev`           | Start development server                   |
+| `npm run build`         | Production build (runs pagefind postbuild) |
+| `npm run start`         | Start production server                    |
+| `npm run test`          | Run unit tests                             |
+| `npm run test:coverage` | Run tests with coverage                    |
+| `npm run typecheck`     | TypeScript type checking                   |
+| `npm run lint`          | ESLint                                     |
+| `npm run format`        | Prettier format                            |
+| `npm run format:check`  | Check formatting                           |
+| `npm run analyze`       | Bundle analysis                            |
 
 ### One-off scripts
 
-| Script                              | Description                                                     |
-| ----------------------------------- | --------------------------------------------------------------- |
-| `node scripts/generate-assets.mjs`  | Regenerate `favicon.ico` and `og-default.jpg` from `logo.png`  |
-| `node scripts/scale-ui.mjs`         | Codemod: globally scale spatial sizing in CSS modules           |
-| `node scripts/floor-text.mjs`       | Codemod: enforce a minimum font-size floor                      |
-| `node scripts/create-pdfs.mjs`      | Render every page to PDF (desktop + mobile) for printing        |
+| Script                             | Description                                                   |
+| ---------------------------------- | ------------------------------------------------------------- |
+| `node scripts/generate-assets.mjs` | Regenerate `favicon.ico` and `og-default.jpg` from `logo.png` |
+| `node scripts/scale-ui.mjs`        | Codemod: globally scale spatial sizing in CSS modules         |
+| `node scripts/floor-text.mjs`      | Codemod: enforce a minimum font-size floor                    |
+| `node scripts/create-pdfs.mjs`     | Render every page to PDF (desktop + mobile) for printing      |
 
 ## Architecture
 
@@ -124,10 +124,10 @@ npm run build
 
 | Variable         | Required | Description                                                    |
 | ---------------- | -------- | -------------------------------------------------------------- |
-| `RESEND_API_KEY` | No*      | Resend API key for contact form emails                         |
+| `RESEND_API_KEY` | No\*     | Resend API key for contact form emails                         |
 | `CONTACT_EMAIL`  | No       | Email to receive inquiries (default: info@stelizabeths.edu.in) |
 
-*Without `RESEND_API_KEY`, the contact form logs to the server console instead of sending email.
+\*Without `RESEND_API_KEY`, the contact form logs to the server console instead of sending email.
 
 ## License
 

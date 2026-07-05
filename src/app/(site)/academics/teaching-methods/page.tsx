@@ -7,7 +7,10 @@ import { createPageMetadata } from "@/lib/page-utils";
 import { TEACHING_METHODS_PAGE, TEACHING_METHODS } from "@/data/academics-teaching";
 import { ACADEMICS_IMAGES } from "@/data/images";
 
-export const metadata = createPageMetadata(TEACHING_METHODS_PAGE.metaTitle, TEACHING_METHODS_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  TEACHING_METHODS_PAGE.metaTitle,
+  TEACHING_METHODS_PAGE.metaDescription,
+);
 
 export default function TeachingMethodsPage() {
   return (

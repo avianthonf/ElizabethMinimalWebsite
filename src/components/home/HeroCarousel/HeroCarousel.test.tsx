@@ -54,17 +54,17 @@ describe("HeroCarousel", () => {
 
   it("renders navigation dots for each slide", () => {
     render(<HeroCarousel slides={mockSlides} />);
-    // Each dot is a tab in a tablist
-    const tablist = screen.getByRole("tablist", { name: /carousel navigation/i });
-    const tabs = tablist.querySelectorAll('[role="tab"]');
-    expect(tabs.length).toBe(2);
+    // Dots are buttons inside a group (carousel pattern, not tablist)
+    const navGroup = screen.getByRole("group", { name: /carousel navigation/i });
+    const dots = navGroup.querySelectorAll("button");
+    expect(dots.length).toBe(2);
   });
 
-  it("marks the first dot as selected initially", () => {
+  it("marks the first dot as active initially", () => {
     render(<HeroCarousel slides={mockSlides} />);
-    const tabs = screen.getAllByRole("tab");
-    expect(tabs[0]).toHaveAttribute("aria-selected", "true");
-    expect(tabs[1]).toHaveAttribute("aria-selected", "false");
+    const dots = screen.getAllByRole("button", { name: /go to slide/i });
+    expect(dots[0]).toHaveAttribute("aria-current", "true");
+    expect(dots[1]).not.toHaveAttribute("aria-current", "true");
   });
 
   it("renders slides with distinct alt text (LCP-friendly)", () => {

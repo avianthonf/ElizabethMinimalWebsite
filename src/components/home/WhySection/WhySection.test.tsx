@@ -19,24 +19,20 @@ const defaultPoints = [
 
 describe("WhySection", () => {
   it("renders the section with default aria-label", () => {
-    render(
-      <WhySection eyebrow="Why us" heading="Why St. Elizabeth's" points={defaultPoints} />,
-    );
+    render(<WhySection eyebrow="Why us" heading="Why St. Elizabeth's" points={defaultPoints} />);
     expect(screen.getByRole("region", { name: /why choose us/i })).toBeInTheDocument();
   });
 
   it("renders the eyebrow and heading", () => {
-    render(
-      <WhySection eyebrow="Why us" heading="Why St. Elizabeth's" points={defaultPoints} />,
-    );
+    render(<WhySection eyebrow="Why us" heading="Why St. Elizabeth's" points={defaultPoints} />);
     expect(screen.getByText("Why us")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /why st\. elizabeth/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: /why st\. elizabeth/i }),
+    ).toBeInTheDocument();
   });
 
   it("renders all 3 cards with titles and descriptions", () => {
-    render(
-      <WhySection eyebrow="Why us" heading="Why St. Elizabeth's" points={defaultPoints} />,
-    );
+    render(<WhySection eyebrow="Why us" heading="Why St. Elizabeth's" points={defaultPoints} />);
     for (const point of defaultPoints) {
       expect(screen.getByRole("heading", { level: 3, name: point.title })).toBeInTheDocument();
       expect(screen.getByText(point.description)).toBeInTheDocument();
@@ -52,9 +48,7 @@ describe("WhySection", () => {
         ariaLabel="Why choose us section"
       />,
     );
-    expect(
-      screen.getByRole("region", { name: /why choose us section/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /why choose us section/i })).toBeInTheDocument();
   });
 
   it("limits display to 3 cards even if more are provided", () => {
@@ -63,9 +57,7 @@ describe("WhySection", () => {
       { title: "Safe & Secure Campus", description: "CCTV-monitored campus with secure access." },
       { title: "Experienced Faculty", description: "Teachers with 10+ years average experience." },
     ];
-    render(
-      <WhySection eyebrow="Why us" heading="Why us" points={manyPoints} />,
-    );
+    render(<WhySection eyebrow="Why us" heading="Why us" points={manyPoints} />);
     // Should display 3, not 5
     const headings = screen.getAllByRole("heading", { level: 3 });
     expect(headings.length).toBe(3);
