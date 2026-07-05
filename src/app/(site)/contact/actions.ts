@@ -2,9 +2,9 @@
 
 import { z } from "zod";
 import type { Resend } from "resend";
-import { InquiryEmail } from "@/lib/email";
+import { InquiryEmail } from "@/shared/lib/email";
 import { render } from "@react-email/components";
-import { CONTACT_EMAIL, TRANSACTIONAL_EMAIL_FROM } from "@/lib/brand";
+import { CONTACT_EMAIL, TRANSACTIONAL_EMAIL_FROM } from "@/shared/lib/brand";
 
 /** Lazy Resend client — initialized on first use to avoid module-scope failures in tests. */
 let resendClient: Resend | null = null;

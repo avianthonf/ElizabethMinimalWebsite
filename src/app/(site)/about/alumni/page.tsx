@@ -1,16 +1,16 @@
-import { Hero } from "@/components/content/Hero";
-import { Card } from "@/components/content/Card";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { Grid } from "@/components/layout/Grid";
+import { Hero } from "@/shared/ui/hero";
+import { Card } from "@/shared/ui/card";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { Grid } from "@/shared/ui/grid";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { createPageMetadata } from "@/lib/page-utils";
-import { NOTABLE_ALUMNI, ALUMNI_EVENTS, ALUMNI_INTRO } from "@/data/alumni";
-import { COMMUNITY_IMAGES } from "@/data/images";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { NOTABLE_ALUMNI, ALUMNI_EVENTS, ALUMNI_INTRO } from "@/domains/about/alumni.data";
+import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
   "Alumni",

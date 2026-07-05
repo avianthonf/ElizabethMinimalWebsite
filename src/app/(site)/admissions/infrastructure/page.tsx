@@ -1,11 +1,14 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { INFRASTRUCTURE_PAGE, INFRASTRUCTURE_FACILITIES } from "@/data/admissions-infrastructure";
-import { getHeroImage } from "@/lib/page-utils";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import {
+  INFRASTRUCTURE_PAGE,
+  INFRASTRUCTURE_FACILITIES,
+} from "@/domains/admissions/infrastructure.data";
+import { getHeroImage } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
   INFRASTRUCTURE_PAGE.metaTitle,

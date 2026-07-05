@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { NewsSection } from "./NewsSection";
-import type { NewsItemData } from "@/data/homepage";
+import type { NewsItemData } from "@/domains/homepage/homepage.data";
 
 const mockNews: NewsItemData[] = [
   {

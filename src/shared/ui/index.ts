@@ -1,0 +1,20 @@
+// Shared layer public API — framework-agnostic primitives
+export { Button } from "./button";
+export type { ButtonProps, ButtonVariant, ButtonSize } from "./button";
+export { Card } from "./card";
+export { Container } from "./container";
+export { ConditionalLink } from "./conditional-link";
+export { CTASection } from "./cta-section";
+export { Grid } from "./grid";
+export { Heading } from "./heading";
+export { Hero } from "./hero";
+export { Icon } from "./icon";
+export { IconCard } from "./icon-card";
+export { ImageCard } from "./image-card";
+export { Link } from "./link";
+export { MediaBlock } from "./media-block";
+export { Section } from "./section";
+export { SplitLayout } from "./split-layout";
+export { Stack } from "./stack";
+export { Text } from "./text";
+export { VisuallyHidden } from "./visually-hidden";

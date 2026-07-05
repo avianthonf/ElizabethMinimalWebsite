@@ -1,0 +1,255 @@
+.titleBar {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(180px, 1fr) minmax(160px, auto) auto auto;
+  align-items: center;
+  gap: clamp(9px, 1.2vw, 16.5px);
+  padding: clamp(8.25px, 1.125vw, 16.5px) clamp(13.5px, 2.625vw, 36px);
+  z-index: 20;
+  pointer-events: none;
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal);
+}
+
+.titleBar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--s-color-surface);
+  opacity: calc(var(--scroll-progress, 0) * 6);
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+/* Suppress the scroll-driven white bar background (used on homepage) */
+.noScrollBar::before {
+  display: none;
+}
+
+.titleBar a,
+.titleBar button {
+  pointer-events: auto;
+}
+
+.titleBar button:disabled {
+  opacity: 1;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: var(--header-color, var(--s-color-text));
+}
+
+.transparent {
+  background: transparent;
+  color: var(--header-color, var(--s-color-surface));
+}
+
+.solid {
+  background: var(--s-color-surface);
+  color: var(--s-color-text);
+  box-shadow: 0 1px 0 var(--s-color-border);
+}
+
+/* ── Brand ─────────────────────────────────────────── */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-width: max-content;
+  gap: clamp(6px, 0.9vw, 10.5px);
+  color: currentColor;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand span:last-child {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: calc(var(--text-scale) * clamp(1.0875rem, 2.25vw, 2.5125rem));
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+}
+
+.brand:hover {
+  opacity: 0.82;
+}
+
+/* ── Crest ─────────────────────────────────────────── */
+
+.crest {
+  display: block;
+  width: clamp(21px, 2.1vw, 33px);
+  aspect-ratio: 0.876;
+  background-color: currentColor;
+  mask-image: url(/logo.png);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-image: url(/logo.png);
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  border: 2px solid currentColor;
+  border-radius: 1.5px 1.5px 9px 9px;
+}
+
+/* ── Nav Links ─────────────────────────────────────── */
+
+.navLinks {
+  display: flex;
+  justify-content: end;
+  gap: clamp(7.5px, 1.05vw, 15px);
+}
+
+/* ── Buttons ───────────────────────────────────────── */
+
+.menuButton {
+  border: 0;
+  color: currentColor;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4.5px;
+}
+
+.menuButton span:first-child {
+  color: currentColor;
+  font-size: max(var(--text-floor), calc(var(--text-scale) * clamp(0.6rem, 0.7875vw, 0.735rem)));
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.22);
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.menuIcon span {
+  display: block;
+  width: 16.5px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 999px;
+  transition:
+    transform var(--transition-normal),
+    opacity var(--transition-normal);
+}
+
+.menuOpen span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menuOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuOpen span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ── Search Button ────────────────────────────────── */
+
+.searchButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: max(var(--text-floor), calc(var(--text-scale) * 0.75rem));
+  opacity: 0.85;
+  transition:
+    opacity 0.18s,
+    background 0.18s,
+    color 0.18s;
+}
+
+.searchButton:hover,
+.searchButton:focus-visible {
+  opacity: 1;
+  background: currentColor;
+  color: var(--s-color-surface);
+}
+
+.searchButton:focus-visible {
+  outline: 2px solid var(--p-color-gold, #c9a96e);
+  outline-offset: 2px;
+}
+
+.searchKbd {
+  display: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1px 5px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  background: transparent;
+  line-height: 1.2;
+}
+
+@media (min-width: 760px) {
+  .searchKbd {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 420px) {
+  .searchButton {
+    padding: 6px;
+  }
+}
+
+/* ── Responsive ───────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .navLinks {
+    display: none;
+  }
+
+  .titleBar {
+    grid-template-columns: minmax(160px, 1fr) auto auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .titleBar {
+    grid-template-columns: 1fr auto auto;
+    padding: var(--spacing-md) var(--padding-page);
+    gap: var(--spacing-sm);
+  }
+
+  .brand span:last-child {
+    font-size: var(--type-card-heading);
+  }
+}
+
+@media (max-width: 420px) {
+  .titleBar {
+    padding: var(--spacing-sm) var(--padding-page);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .titleBar::before {
+    transition: none;
+  }
+}

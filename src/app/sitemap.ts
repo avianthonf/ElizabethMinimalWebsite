@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { NEWS_ARTICLES } from "@/data/news";
-import { SITE_URL } from "@/lib/brand";
+import { NEWS_ARTICLES } from "@/domains/news/news.data";
+import { SITE_URL } from "@/shared/lib/brand";
 
 const BASE_URL = SITE_URL;
 

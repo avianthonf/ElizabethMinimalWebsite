@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
-import { Hero } from "@/components/content/Hero";
-import { Container } from "@/components/layout/Container";
-import { Grid, type GridColumns } from "@/components/layout/Grid";
-import { PageShell } from "@/components/layout/PageShell";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { BreadcrumbJsonLd } from "@/components/navigation/Breadcrumb/BreadcrumbJsonLd";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
+import { Hero } from "@/shared/ui/hero";
+import { Container } from "@/shared/ui/container";
+import { Grid, type GridColumns } from "@/shared/ui/grid";
+import { PageShell } from "@/components/layout";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
 
 export interface ContentPageProps<T> {
   /** Hero eyebrow text (optional — when omitted, no eyebrow renders) */

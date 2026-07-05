@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./StudentLifeSection.module.css";
-import type { ProgramBox } from "@/data/homepage-sections";
+import type { ProgramBox } from "@/domains/homepage/sections.data";
 
 interface StudentLifeSectionProps {
   eyebrow: string;

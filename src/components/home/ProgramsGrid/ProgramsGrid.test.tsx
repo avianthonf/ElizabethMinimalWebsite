@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { ProgramsGrid } from "./ProgramsGrid";
-import type { ProgramBox } from "@/data/homepage-sections";
+import type { ProgramBox } from "@/domains/homepage/sections.data";
 
 const mockBoxes: ProgramBox[] = [
   {

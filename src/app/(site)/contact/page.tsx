@@ -1,14 +1,14 @@
-import { Hero } from "@/components/content/Hero";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { SplitLayout } from "@/components/layout/SplitLayout";
+import { Hero } from "@/shared/ui/hero";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { SplitLayout } from "@/shared/ui/split-layout";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { SCHOOL_ADDRESS, SCHOOL_CONTACT } from "@/data/visits";
-import { CONTACT_IMAGES } from "@/data/images";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { SCHOOL_ADDRESS, SCHOOL_CONTACT } from "@/domains/contact/contact.data";
+import { CONTACT_IMAGES } from "@/domains/media/images.data";
 import { ContactForm } from "@/components/content/ContactForm";
 import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedLazy";
 

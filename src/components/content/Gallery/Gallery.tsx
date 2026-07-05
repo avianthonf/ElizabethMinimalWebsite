@@ -12,8 +12,8 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 
-import { cn, blurPlaceholderSvg } from "@/lib/utils";
-import type { ImageCategory } from "@/data/images";
+import { cn, blurPlaceholderSvg } from "@/shared/lib/cn";
+import type { ImageCategory } from "@/domains/media/images.data";
 import styles from "./Gallery.module.css";
 
 // ── Types ──────────────────────────────────────────────────────────────

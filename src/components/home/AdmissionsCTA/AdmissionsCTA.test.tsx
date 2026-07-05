@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { AdmissionsCTA } from "./AdmissionsCTA";
-import type { AdmissionsStep } from "@/data/homepage-sections";
+import type { AdmissionsStep } from "@/domains/homepage/sections.data";
 
 const mockSteps: AdmissionsStep[] = [
   { step: "1", title: "Inquire", description: "Submit an inquiry form", href: "/admissions/why" },

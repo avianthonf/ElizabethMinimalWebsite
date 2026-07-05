@@ -3,8 +3,7 @@
 import { type ReactNode, type RefObject } from "react";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
-import { Link } from "@/components/primitives/Link";
-import { CommandPalette } from "@/components/ui/CommandPalette/CommandPalette";
+import { Link } from "@/shared/ui/link";
 import { openSearchOverlay } from "@/components/content/SearchOverlay/SearchOverlay";
 import { useMenu } from "../MenuOverlay/MenuProvider";
 import styles from "./Header.module.css";
@@ -45,7 +44,7 @@ export interface HeaderProps {
  * Note: The original Walker School defaults (Inquire, Visit, Summer, St. Elizabeth)
  * have been replaced with the St. Elizabeth site navigation from PAGE_ELEMENT_HIERARCHY.md §9.
  */
-import { HEADER_NAV_LINKS } from "@/data/navigation";
+import { HEADER_NAV_LINKS } from "@/domains/nav/navigation.data";
 
 const DEFAULT_NAV: HeaderNavLink[] = HEADER_NAV_LINKS;
 
@@ -116,8 +115,6 @@ export function Header({
           </Link>
         ))}
       </nav>
-
-      <CommandPalette />
 
       <button
         type="button"

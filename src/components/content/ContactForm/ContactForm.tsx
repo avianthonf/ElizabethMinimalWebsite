@@ -4,8 +4,8 @@ import { useEffect, useActionState, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { submitInquiry, type FormState } from "@/app/(site)/contact/actions";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
 import styles from "./ContactForm.module.css";
 
 const initialState: FormState = { success: false };

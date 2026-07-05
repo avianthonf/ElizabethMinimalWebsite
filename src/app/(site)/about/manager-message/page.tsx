@@ -1,15 +1,15 @@
-import { PageShell } from "@/components/layout/PageShell";
-import { Hero } from "@/components/content/Hero";
-import { Section } from "@/components/layout/Section";
-import { Container } from "@/components/layout/Container";
-import { Stack } from "@/components/layout/Stack";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { BreadcrumbJsonLd } from "@/components/navigation/Breadcrumb/BreadcrumbJsonLd";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { MANAGER_MESSAGE_PAGE, MANAGER_MESSAGE } from "@/data/about-manager";
-import { COMMUNITY_IMAGES } from "@/data/images";
+import { PageShell } from "@/components/layout";
+import { Hero } from "@/shared/ui/hero";
+import { Section } from "@/shared/ui/section";
+import { Container } from "@/shared/ui/container";
+import { Stack } from "@/shared/ui/stack";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { MANAGER_MESSAGE_PAGE, MANAGER_MESSAGE } from "@/domains/about/manager.data";
+import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
   MANAGER_MESSAGE_PAGE.metaTitle,

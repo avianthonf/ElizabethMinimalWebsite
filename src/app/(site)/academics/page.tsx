@@ -1,17 +1,17 @@
-import { Hero } from "@/components/content/Hero";
-import { IconCard } from "@/components/content/IconCard";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { Grid } from "@/components/layout/Grid";
+import { Hero } from "@/shared/ui/hero";
+import { IconCard } from "@/shared/ui/icon-card";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { Grid } from "@/shared/ui/grid";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { Icon } from "@/components/primitives/Icon";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/components/icons/SchoolIcon";
-import { createPageMetadata } from "@/lib/page-utils";
-import { DEPARTMENTS } from "@/data/academics";
-import { ACADEMICS_HERO } from "@/data/images";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { DEPARTMENTS } from "@/domains/academics/academics.data";
+import { ACADEMICS_HERO } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
   "Academics",

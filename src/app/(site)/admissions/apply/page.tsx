@@ -1,13 +1,13 @@
-import { Hero } from "@/components/content/Hero";
-import { Card } from "@/components/content/Card";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
+import { Hero } from "@/shared/ui/hero";
+import { Card } from "@/shared/ui/card";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata, getHeroImage } from "@/lib/page-utils";
-import { ADMISSION_STEPS } from "@/data/admissions";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
+import { ADMISSION_STEPS } from "@/domains/admissions/admissions.data";
 
 export const metadata = createPageMetadata(
   "Apply",

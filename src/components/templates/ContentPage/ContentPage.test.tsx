@@ -6,7 +6,7 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/about/staff",
 }));
 
-vi.mock("@/components/layout/PageShell", () => ({
+vi.mock("@/components/layout", () => ({
   PageShell: ({ children, hero }: { children: React.ReactNode; hero?: React.ReactNode }) => (
     <div data-testid="pageshell">
       {hero}
@@ -15,15 +15,15 @@ vi.mock("@/components/layout/PageShell", () => ({
   ),
 }));
 
-vi.mock("@/components/content/Hero", () => ({
+vi.mock("@/shared/ui/hero", () => ({
   Hero: ({ heading }: { heading: string }) => <h1 data-testid="mock-hero">{heading}</h1>,
 }));
 
-vi.mock("@/components/navigation/Breadcrumb", () => ({
+vi.mock("@/widgets/breadcrumb/breadcrumb", () => ({
   Breadcrumb: () => <nav data-testid="mock-breadcrumb">Breadcrumb</nav>,
 }));
 
-vi.mock("@/components/navigation/Breadcrumb/BreadcrumbJsonLd", () => ({
+vi.mock("@/widgets/breadcrumb/breadcrumb-jsonld", () => ({
   BreadcrumbJsonLd: () => <div data-testid="mock-jsonld" />,
 }));
 
@@ -71,7 +71,8 @@ describe("ContentPage", () => {
         sectionAriaLabel="Test section"
       />,
     );
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Section Title");
+    const headings = screen.getAllByRole("heading", { level: 2 });
+    expect(headings.some((h) => h.textContent === "Section Title")).toBe(true);
   });
 
   it("wraps content in PageShell", () => {

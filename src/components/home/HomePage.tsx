@@ -1,14 +1,14 @@
-import { Header } from "@/components/navigation/Header";
-import { Footer } from "@/components/navigation/Footer";
-import { AnnouncementBar } from "@/components/ui/AnnouncementBar/AnnouncementBar";
-import { ScrollReveal } from "@/components/primitives/ScrollReveal/ScrollReveal";
+import { Header } from "@/widgets/header/header";
+import { Footer } from "@/widgets/footer/footer";
+import { AnnouncementBar } from "@/widgets/announcement-bar/announcement-bar";
+import { ScrollReveal } from "@/shared/ui/scroll-reveal";
 import {
   HEADER_NAV_LINKS,
   FOOTER_SECTIONS,
   FOOTER_INTRO,
   FOOTER_SOCIAL_LINKS,
   FOOTER_COPYRIGHT,
-} from "@/data/navigation";
+} from "@/domains/nav/navigation.data";
 import { HeroCarousel } from "./HeroCarousel/HeroCarousel";
 import { CounterBar } from "./CounterBar/CounterBar";
 import { WelcomeSection } from "./WelcomeSection/WelcomeSection";
@@ -25,7 +25,7 @@ import { NewsSection } from "./NewsSection/NewsSection";
 import { EventsPreview } from "./EventsPreview/EventsPreview";
 import { LocateSection } from "./LocateSection/LocateSection";
 
-import { TESTIMONIALS, LATEST_NEWS } from "@/data/homepage";
+import { TESTIMONIALS, LATEST_NEWS } from "@/domains/homepage/homepage.data";
 import {
   HERO_SLIDES,
   COUNTER_STATS,
@@ -45,7 +45,7 @@ import {
   ADMISSIONS_CTA_STEPS,
   NEWS_HOMEPAGE_CONTENT,
   LOCATE_CONTENT,
-} from "@/data/homepage-sections";
+} from "@/domains/homepage/sections.data";
 
 const whyPointsData = WHY_POINTS.map((p) => ({
   title: p.title,

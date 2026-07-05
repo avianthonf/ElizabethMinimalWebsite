@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
-import { Header } from "@/components/navigation/Header";
-import { Footer } from "@/components/navigation/Footer";
+import { Header } from "@/widgets/header/header";
+import { Footer } from "@/widgets/footer/footer";
 import {
   HEADER_NAV_LINKS,
   FOOTER_SECTIONS,
   FOOTER_INTRO,
   FOOTER_SOCIAL_LINKS,
   FOOTER_COPYRIGHT,
-} from "@/data/navigation";
+} from "@/domains/nav/navigation.data";
 
 export interface PageShellProps {
   children: ReactNode;

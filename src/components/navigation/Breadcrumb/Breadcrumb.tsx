@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container } from "@/components/layout/Container";
+import { Container } from "@/shared/ui/container";
 import styles from "./Breadcrumb.module.css";
 
 export interface BreadcrumbProps {

@@ -1,11 +1,11 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Heading } from "@/components/primitives/Heading";
-import { Stack } from "@/components/layout/Stack";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { MISSION_PAGE, MISSION_STATEMENT } from "@/data/about";
-import { COMMUNITY_IMAGES } from "@/data/images";
+import { Heading } from "@/shared/ui/heading";
+import { Stack } from "@/shared/ui/stack";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { MISSION_PAGE, MISSION_STATEMENT } from "@/domains/about/about.data";
+import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(MISSION_PAGE.metaTitle, MISSION_PAGE.metaDescription);
 

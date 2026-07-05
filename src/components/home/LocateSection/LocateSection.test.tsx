@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { LocateSection } from "./LocateSection";
-import { CONTACT_EMAIL } from "@/lib/brand";
+import { CONTACT_EMAIL } from "@/shared/lib/brand";
 
 const defaultProps = {
   eyebrow: "Find Us",

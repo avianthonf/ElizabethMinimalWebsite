@@ -1,15 +1,15 @@
-import { Hero } from "@/components/content/Hero";
-import { IconCard } from "@/components/content/IconCard";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { Grid } from "@/components/layout/Grid";
+import { Hero } from "@/shared/ui/hero";
+import { IconCard } from "@/shared/ui/icon-card";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { Grid } from "@/shared/ui/grid";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Icon } from "@/components/primitives/Icon";
+import { Heading } from "@/shared/ui/heading";
+import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/components/icons/SchoolIcon";
-import { createPageMetadata, getHeroImage } from "@/lib/page-utils";
-import { WHY_ST_ELIZABETH_POINTS } from "@/data/admissions";
+import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
+import { WHY_ST_ELIZABETH_POINTS } from "@/domains/admissions/admissions.data";
 
 export const metadata = createPageMetadata(
   "Why St. Elizabeth?",

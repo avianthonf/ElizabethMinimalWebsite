@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { Container } from "@/components/layout/Container";
-import { Grid, type GridColumns } from "@/components/layout/Grid";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { Link } from "@/components/primitives/Link";
+import { Container } from "@/shared/ui/container";
+import { Grid, type GridColumns } from "@/shared/ui/grid";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { Link } from "@/shared/ui/link";
 import { CopyrightYear } from "@/components/ui/CopyrightYear/CopyrightYear";
 import styles from "./Footer.module.css";
 
@@ -33,7 +33,7 @@ import {
   FOOTER_INTRO,
   FOOTER_SOCIAL_LINKS,
   FOOTER_COPYRIGHT,
-} from "@/data/navigation";
+} from "@/domains/nav/navigation.data";
 
 const DEFAULT_SECTIONS = FOOTER_SECTIONS;
 const DEFAULT_INTRO = FOOTER_INTRO;

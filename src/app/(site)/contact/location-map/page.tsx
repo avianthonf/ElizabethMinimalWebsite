@@ -1,21 +1,21 @@
 import { PageShell } from "@/components/layout";
-import { Hero } from "@/components/content/Hero";
-import { Section } from "@/components/layout/Section";
-import { Container } from "@/components/layout/Container";
-import { Stack } from "@/components/layout/Stack";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { Link } from "@/components/primitives/Link";
+import { Hero } from "@/shared/ui/hero";
+import { Section } from "@/shared/ui/section";
+import { Container } from "@/shared/ui/container";
+import { Stack } from "@/shared/ui/stack";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { Link } from "@/shared/ui/link";
 import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedLazy";
 import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,
   SCHOOL_COORDINATES,
   GOOGLE_MAPS_DIRECTIONS_URL,
-} from "@/data/visits";
-import { CONTACT_IMAGES } from "@/data/images";
-import { createPageMetadata } from "@/lib/page-utils";
+} from "@/domains/contact/contact.data";
+import { CONTACT_IMAGES } from "@/domains/media/images.data";
+import { createPageMetadata } from "@/shared/lib/page-utils";
 import styles from "./page.module.css";
 
 export const metadata = createPageMetadata(

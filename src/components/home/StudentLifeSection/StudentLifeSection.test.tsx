@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { StudentLifeSection } from "./StudentLifeSection";
-import type { ProgramBox } from "@/data/homepage-sections";
+import type { ProgramBox } from "@/domains/homepage/sections.data";
 
 const mockCards: ProgramBox[] = [
   {

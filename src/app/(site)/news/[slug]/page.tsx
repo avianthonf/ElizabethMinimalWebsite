@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
-import { NEWS_ARTICLES } from "@/data/news";
+import { NEWS_ARTICLES } from "@/domains/news/news.data";
 import { PageShell } from "@/components/layout";
-import { Hero } from "@/components/content/Hero";
-import { Section } from "@/components/layout/Section";
-import { Container } from "@/components/layout/Container";
-import { Stack } from "@/components/layout/Stack";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { Text } from "@/components/primitives/Text";
-import { createNewsArticleSchema } from "@/lib/structured-data";
-import { safeJsonStringify } from "@/lib/safe-json";
+import { Hero } from "@/shared/ui/hero";
+import { Section } from "@/shared/ui/section";
+import { Container } from "@/shared/ui/container";
+import { Stack } from "@/shared/ui/stack";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { Text } from "@/shared/ui/text";
+import { createNewsArticleSchema } from "@/shared/lib/structured-data";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
 import type { Metadata } from "next";
 
 interface NewsArticlePageProps {

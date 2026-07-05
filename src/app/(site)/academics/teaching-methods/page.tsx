@@ -1,11 +1,11 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { TEACHING_METHODS_PAGE, TEACHING_METHODS } from "@/data/academics-teaching";
-import { ACADEMICS_IMAGES } from "@/data/images";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { TEACHING_METHODS_PAGE, TEACHING_METHODS } from "@/domains/academics/teaching.data";
+import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
   TEACHING_METHODS_PAGE.metaTitle,

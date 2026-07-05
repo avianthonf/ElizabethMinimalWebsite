@@ -1,4 +1,4 @@
-import type { TestimonialData } from "@/data/homepage";
+import type { TestimonialData } from "@/domains/homepage/homepage.data";
 import styles from "./TestimonialsSection.module.css";
 
 interface TestimonialsSectionProps {

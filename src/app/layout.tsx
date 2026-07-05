@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { Playfair_Display, Inter } from "next/font/google";
-import { AxeProvider } from "@/components/primitives/AxeProvider/AxeProvider";
+import { AxeProvider } from "@/shared/ui/axe-provider";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider/SmoothScrollProvider";
 import { RouteAnnouncer } from "@/components/navigation/RouteAnnouncer/RouteAnnouncer";
 import { ToastProvider } from "@/components/ui/Toast/ToastProvider";
@@ -10,8 +10,8 @@ import { MenuProvider } from "@/components/navigation/MenuOverlay/MenuProvider";
 import { MenuOverlay } from "@/components/navigation/MenuOverlay/MenuOverlay";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SITE_URL, CONTACT_EMAIL, SOCIAL_LINKS } from "@/lib/brand";
-import { safeJsonStringify } from "@/lib/safe-json";
+import { SITE_URL, CONTACT_EMAIL, SOCIAL_LINKS } from "@/shared/lib/brand";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({

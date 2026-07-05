@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./AdmissionsCTA.module.css";
-import type { AdmissionsStep } from "@/data/homepage-sections";
+import type { AdmissionsStep } from "@/domains/homepage/sections.data";
 
 interface AdmissionsCTAProps {
   steps: AdmissionsStep[];

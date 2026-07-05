@@ -4,9 +4,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
-import { Link } from "@/components/primitives/Link";
+import { Link } from "@/shared/ui/link";
 import styles from "./HeroCarousel.module.css";
-import type { HeroSlide } from "@/data/homepage-sections";
+import type { HeroSlide } from "@/domains/homepage/sections.data";
 
 interface HeroCarouselProps {
   slides: HeroSlide[];

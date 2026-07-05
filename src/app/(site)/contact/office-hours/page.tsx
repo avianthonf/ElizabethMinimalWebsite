@@ -1,11 +1,11 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { OFFICE_HOURS_PAGE, OFFICE_HOURS, HOLIDAY_SCHEDULE } from "@/data/contact-hours";
-import { getHeroImage } from "@/lib/page-utils";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { OFFICE_HOURS_PAGE, OFFICE_HOURS, HOLIDAY_SCHEDULE } from "@/domains/contact/hours.data";
+import { getHeroImage } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
   OFFICE_HOURS_PAGE.metaTitle,

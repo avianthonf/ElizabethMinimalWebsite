@@ -1,11 +1,11 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Stack } from "@/components/layout/Stack";
-import { MOTTO_ANTHEM_PAGE, SCHOOL_MOTTO } from "@/data/about-motto";
-import { COMMUNITY_IMAGES } from "@/data/images";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
+import { Stack } from "@/shared/ui/stack";
+import { MOTTO_ANTHEM_PAGE, SCHOOL_MOTTO } from "@/domains/about/motto.data";
+import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
   MOTTO_ANTHEM_PAGE.metaTitle,

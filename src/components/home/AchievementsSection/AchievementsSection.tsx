@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import styles from "./AchievementsSection.module.css";
-import type { Achievement } from "@/data/homepage-sections";
+import type { Achievement } from "@/domains/homepage/sections.data";
 
 const ACHIEVEMENT_ICONS: Record<string, string> = {
   award:

@@ -20,7 +20,7 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
-vi.mock("@/components/navigation/Header", () => ({
+vi.mock("@/widgets/header/header", () => ({
   Header: () => <header data-testid="header" />,
 }));
 

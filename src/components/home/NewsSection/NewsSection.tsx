@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./NewsSection.module.css";
-import type { NewsItemData } from "@/data/homepage";
+import type { NewsItemData } from "@/domains/homepage/homepage.data";
 
 interface NewsSectionProps {
   eyebrow: string;

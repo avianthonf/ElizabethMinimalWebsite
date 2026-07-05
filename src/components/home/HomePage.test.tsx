@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { HomePage } from "./HomePage";
 
-// Mock next/navigation for useRouter / usePathname used by CommandPalette and Header
+// Mock next/navigation for useRouter / usePathname used by Header
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
     push: vi.fn(),

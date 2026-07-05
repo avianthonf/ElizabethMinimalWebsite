@@ -9,7 +9,7 @@ import {
   SCHOOL_CONTACT,
   SCHOOL_COORDINATES,
   GOOGLE_MAPS_DIRECTIONS_URL,
-} from "@/data/visits";
+} from "@/domains/contact/contact.data";
 import styles from "./MapEmbed.module.css";
 
 // ── Default school data ────────────────────────────────────────────────

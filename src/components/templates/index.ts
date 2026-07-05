@@ -1,2 +1,2 @@
-export { ContentPage } from "./ContentPage";
-export type { ContentPageProps } from "./ContentPage";
+export { ContentPage } from "./ContentPage/ContentPage";
+export type { ContentPageProps } from "./ContentPage/ContentPage";

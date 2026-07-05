@@ -2,12 +2,12 @@
 
 import { useMemo } from "react";
 import { Gallery, type GalleryImageEntry } from "@/components/content/Gallery";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import type { ImageAsset } from "@/data/images";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import type { ImageAsset } from "@/domains/media/images.data";
 import {
   HOMEPAGE_GRID_IMAGES,
   ACADEMICS_IMAGES,
@@ -16,7 +16,7 @@ import {
   STUDENT_LIFE_IMAGES,
   COMMUNITY_IMAGES,
   OVERFLOW_IMAGES,
-} from "@/data/images";
+} from "@/domains/media/images.data";
 import styles from "./page.module.css";
 
 // ── Combine and deduplicate all gallery images ────────────────────────

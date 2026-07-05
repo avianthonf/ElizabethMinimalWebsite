@@ -1,11 +1,14 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { STUDENT_COUNCIL_PAGE, STUDENT_COUNCIL_ROLES } from "@/data/beyond-academics";
-import { getHeroImage } from "@/lib/page-utils";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import {
+  STUDENT_COUNCIL_PAGE,
+  STUDENT_COUNCIL_ROLES,
+} from "@/domains/beyond-academics/beyond.data";
+import { getHeroImage } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
   STUDENT_COUNCIL_PAGE.metaTitle,

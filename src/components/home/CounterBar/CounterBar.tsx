@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NumberTicker } from "@/components/ui/NumberTicker/NumberTicker";
 import styles from "./CounterBar.module.css";
-import type { CounterStat } from "@/data/homepage-sections";
+import type { CounterStat } from "@/domains/homepage/sections.data";
 
 interface CounterBarProps {
   stats: CounterStat[];

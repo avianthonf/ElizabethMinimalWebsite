@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/components/primitives/Link";
+import { Link } from "@/shared/ui/link";
 import styles from "./WelcomeSection.module.css";
 
 interface WelcomeImage {

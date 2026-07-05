@@ -1,18 +1,18 @@
-import { Hero } from "@/components/content/Hero";
-import { IconCard } from "@/components/content/IconCard";
-import { Card } from "@/components/content/Card";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { SplitLayout } from "@/components/layout/SplitLayout";
-import { Grid } from "@/components/layout/Grid";
+import { Hero } from "@/shared/ui/hero";
+import { IconCard } from "@/shared/ui/icon-card";
+import { Card } from "@/shared/ui/card";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { SplitLayout } from "@/shared/ui/split-layout";
+import { Grid } from "@/shared/ui/grid";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { Icon } from "@/components/primitives/Icon";
-import { Link } from "@/components/primitives/Link";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { Icon } from "@/shared/ui/icon";
+import { Link } from "@/shared/ui/link";
 import { SchoolIcon } from "@/components/icons/SchoolIcon";
-import { createPageMetadata, getHeroImage } from "@/lib/page-utils";
+import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
   "Admissions",

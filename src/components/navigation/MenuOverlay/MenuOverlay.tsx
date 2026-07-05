@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
-import { Link } from "@/components/primitives/Link";
-import { MENU_CATEGORIES } from "@/data/navigation";
+import { Link } from "@/shared/ui/link";
+import { MENU_CATEGORIES } from "@/domains/nav/navigation.data";
 import { useMenu } from "./MenuProvider";
-import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
-import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { lockBodyScroll, unlockBodyScroll } from "@/shared/hooks/use-scroll-lock";
+import { useFocusTrap } from "@/shared/hooks/use-focus-trap";
 import styles from "./MenuOverlay.module.css";
 
 /**

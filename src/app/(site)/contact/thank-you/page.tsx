@@ -1,16 +1,16 @@
 import { PageShell } from "@/components/layout";
-import { Hero } from "@/components/content/Hero";
-import { Section } from "@/components/layout/Section";
-import { Container } from "@/components/layout/Container";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { Button } from "@/components/primitives/Button";
-import { Link } from "@/components/primitives/Link";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { CONTACT_EMAIL } from "@/lib/brand";
-import { CONTACT_IMAGES } from "@/data/images";
-import { createPageMetadata } from "@/lib/page-utils";
+import { Hero } from "@/shared/ui/hero";
+import { Section } from "@/shared/ui/section";
+import { Container } from "@/shared/ui/container";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { Button } from "@/shared/ui/button";
+import { Link } from "@/shared/ui/link";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { CONTACT_EMAIL } from "@/shared/lib/brand";
+import { CONTACT_IMAGES } from "@/domains/media/images.data";
+import { createPageMetadata } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
   "Thank You",

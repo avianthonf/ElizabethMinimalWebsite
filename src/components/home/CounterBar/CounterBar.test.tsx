@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { CounterBar } from "./CounterBar";
-import type { CounterStat } from "@/data/homepage-sections";
+import type { CounterStat } from "@/domains/homepage/sections.data";
 
 const mockStats: CounterStat[] = [
   { value: 1949, label: "Founded", suffix: "" },

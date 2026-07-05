@@ -4,9 +4,9 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, X, FileText, Loader2 } from "lucide-react";
-import { renderHighlightedText } from "@/lib/safe-html";
-import { lockBodyScroll, unlockBodyScroll } from "@/lib/scroll-lock";
-import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { renderHighlightedText } from "@/shared/lib/safe-html";
+import { lockBodyScroll, unlockBodyScroll } from "@/shared/hooks/use-scroll-lock";
+import { useFocusTrap } from "@/shared/hooks/use-focus-trap";
 import styles from "./SearchOverlay.module.css";
 
 /** Custom event name used to open the search overlay from anywhere in the app. */

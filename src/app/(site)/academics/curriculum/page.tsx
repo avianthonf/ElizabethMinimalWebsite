@@ -1,11 +1,11 @@
-import { Card } from "@/components/content/Card";
+import { Card } from "@/shared/ui/card";
 import { ContentPage } from "@/components/templates";
-import { Stack } from "@/components/layout/Stack";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { DEPARTMENTS } from "@/data/academics";
-import { ACADEMICS_IMAGES } from "@/data/images";
+import { Stack } from "@/shared/ui/stack";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { DEPARTMENTS } from "@/domains/academics/academics.data";
+import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
   "Curriculum",

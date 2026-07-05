@@ -4,7 +4,7 @@ import { PageShell } from "./PageShell";
 import React from "react";
 
 // Mock sub-components
-vi.mock("@/components/navigation/Header", () => ({
+vi.mock("@/widgets/header/header", () => ({
   Header: (props: Record<string, unknown>) => (
     <header data-testid="mock-header" data-transparent={String(props.transparent)}>
       Header
@@ -12,12 +12,12 @@ vi.mock("@/components/navigation/Header", () => ({
   ),
 }));
 
-vi.mock("@/components/navigation/Footer", () => ({
+vi.mock("@/widgets/footer/footer", () => ({
   Footer: () => <footer data-testid="mock-footer">Footer</footer>,
 }));
 
 // Mock data
-vi.mock("@/data/navigation", () => ({
+vi.mock("@/domains/nav/navigation.data", () => ({
   HEADER_NAV_LINKS: [
     { text: "About", href: "/about" },
     { text: "Admissions", href: "/admissions" },

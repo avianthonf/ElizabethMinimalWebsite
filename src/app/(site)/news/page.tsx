@@ -1,15 +1,15 @@
-import { Hero } from "@/components/content/Hero";
-import { ImageCard } from "@/components/content/ImageCard";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { Stack } from "@/components/layout/Stack";
-import { Grid } from "@/components/layout/Grid";
+import { Hero } from "@/shared/ui/hero";
+import { ImageCard } from "@/shared/ui/image-card";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
+import { Stack } from "@/shared/ui/stack";
+import { Grid } from "@/shared/ui/grid";
 import { PageShell } from "@/components/layout";
-import { Heading } from "@/components/primitives/Heading";
-import { Text } from "@/components/primitives/Text";
-import { createPageMetadata } from "@/lib/page-utils";
-import { NEWS_ARTICLES } from "@/data/news";
-import { HERO_IMAGES } from "@/data/images";
+import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
+import { createPageMetadata } from "@/shared/lib/page-utils";
+import { NEWS_ARTICLES } from "@/domains/news/news.data";
+import { HERO_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
   "News & Events",

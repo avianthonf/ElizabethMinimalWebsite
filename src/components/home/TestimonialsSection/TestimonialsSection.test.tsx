@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { TestimonialsSection } from "./TestimonialsSection";
-import type { TestimonialData } from "@/data/homepage";
+import type { TestimonialData } from "@/domains/homepage/homepage.data";
 
 const mockTestimonials: TestimonialData[] = [
   {

@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { UPCOMING_EVENTS, EVENT_ICON_MAP, EVENT_TYPE_ICON_PATHS } from "@/data/homepage-events";
+import {
+  UPCOMING_EVENTS,
+  EVENT_ICON_MAP,
+  EVENT_TYPE_ICON_PATHS,
+} from "@/domains/homepage/events.data";
 import styles from "./EventsPreview.module.css";
 
 export function EventsPreview() {
