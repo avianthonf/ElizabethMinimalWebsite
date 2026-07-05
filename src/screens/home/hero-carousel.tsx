@@ -1,12 +1,26 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import dynamic from "next/dynamic";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { Link } from "@/shared/ui/link";
 import styles from "./hero-carousel.module.css";
 import type { HeroSlide } from "@/domains/homepage/sections.data";
+
+// Spline 3D scene — lazy-loaded to avoid blocking initial render.
+// Falls back silently to the existing gradient overlay.
+const HeroSplineScene = dynamic(
+  () => import("./hero-spline-scene").then((mod) => ({ default: mod.HeroSplineScene })),
+  { ssr: false },
+);
+
+// Spline scene URL — replace with a custom-designed school campus scene.
+// Current: generic abstract 3D background from Spline Community.
+// To update: export from Spline editor → Code → React → copy the URL.
+const SPLINE_SCENE_URL =
+  "https://prod.spline.design/23e9e4ac-b5af-4395-9cf1-7f56cb1af18e/scene.splinecode";
 
 interface HeroCarouselProps {
   slides: HeroSlide[];
@@ -130,6 +144,9 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
         aria-live="polite"
         aria-atomic="true"
       />
+
+      {/* 3D Spline scene — renders behind the overlay, hidden from screen readers */}
+      <HeroSplineScene sceneUrl={SPLINE_SCENE_URL} />
 
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>
