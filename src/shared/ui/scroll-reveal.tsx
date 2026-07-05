@@ -1,7 +1,7 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import styles from "./scroll-reveal.module.css";
+import { type ReactNode } from "react";
+import { motion, type Transition } from "motion/react";
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -13,22 +13,20 @@ interface ScrollRevealProps {
 }
 
 /**
- * ScrollReveal — SSR-safe progressive scroll-in animation.
+ * Scroll-triggered reveal using Motion's native ScrollTimeline (hardware
+ * accelerated when available, falling back to pooled IntersectionObserver).
  *
- * Strategy:
- *  1. Start HIDDEN with `visibility: hidden` — preserves layout space
- *     (no CLS) and is crawlable by search engines.
- *  2. In `useLayoutEffect` (runs BEFORE paint), immediately set
- *     visible=true for above-fold elements so they paint immediately.
- *  3. For below-fold elements, attach an IntersectionObserver that
- *     sets visible=true on scroll-in, triggering the CSS animation.
- *  4. `prefers-reduced-motion: reduce` sets everything visible.
+ * Motion's `whileInView` with `once: true` fires once when the element enters
+ * the viewport.  The parent `<MotionConfig reducedMotion="user" />` in
+ * root-layout automatically disables all animation when the user has
+ * `prefers-reduced-motion: reduce` — no manual media-query handling needed.
  *
- * Why visibility:hidden instead of opacity:0?
- *  - visibility:hidden preserves layout space → no CLS
- *  - It's crawlable by search engines
- *  - It prevents the "reverse FOUC" where content flashes visible
- *    (SSR) then hidden (useEffect) then visible (IntersectionObserver)
+ * Replaces the custom IntersectionObserver + useLayoutEffect implementation
+ * with a 0.6 KB hook from the already-installed `motion` package.
+ *
+ * The old CSS-module approach (visibility:hidden → visible transitions) is
+ * fully replaced — Motion handles the initial render state and animation
+ * orchestration.
  */
 export function ScrollReveal({
   children,
@@ -37,74 +35,28 @@ export function ScrollReveal({
   delay = 0,
   ...aria
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  // Start hidden — useLayoutEffect will immediately set visible for
-  // above-fold elements BEFORE the first paint.
-  const [visible, setVisible] = useState(false);
+  const initial = {
+    opacity: 0,
+    y: direction === "up" ? 40 : 0,
+    x: direction === "left" ? -40 : direction === "right" ? 40 : 0,
+  };
 
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    /* eslint-disable react-hooks/set-state-in-effect */
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      setVisible(true);
-      return;
-    }
-
-    const node = ref.current;
-    if (!node) return;
-
-    const rect = node.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const inView = rect.top < viewportHeight && rect.bottom > 0;
-
-    if (inView) {
-      setVisible(true);
-      return;
-    }
-
-    // Below the fold — keep hidden, attach IntersectionObserver.
-    const reducer = (e: MediaQueryListEvent) => {
-      if (e.matches) setVisible(true);
-    };
-    mq.addEventListener("change", reducer);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.05, rootMargin: "0px 0px -10% 0px" },
-    );
-    observer.observe(node);
-
-    return () => {
-      mq.removeEventListener("change", reducer);
-      observer.disconnect();
-    };
-    /* eslint-enable react-hooks/set-state-in-effect */
-  }, []);
-
-  const composedClassName = [
-    styles.root,
-    styles[direction],
-    visible ? styles.visible : styles.hidden,
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const transition: Transition = {
+    duration: 0.6,
+    delay,
+    ease: [0.16, 1, 0.3, 1],
+  };
 
   return (
-    <div
-      ref={ref}
-      className={composedClassName}
-      style={delay > 0 ? { transitionDelay: `${delay}ms` } : undefined}
+    <motion.div
+      initial={initial}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      transition={transition}
+      className={className}
       {...aria}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

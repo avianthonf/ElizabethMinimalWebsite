@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { ViewTransitions } from "next-view-transitions";
+import { MotionConfig } from "motion/react";
 import { Playfair_Display, Inter } from "next/font/google";
 import { AxeProvider } from "@/shared/ui/axe-provider";
 import { SmoothScrollProvider } from "@/shared/ui/smooth-scroll-provider";
@@ -107,23 +108,25 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ViewTransitions>
-          <AxeProvider>
-            <SmoothScrollProvider>
-              <MenuProvider>
-                <Suspense fallback={null}>
-                  <RouteAnnouncer />
-                  <ToastProvider />
-                  <GlobalSearchOverlay />
-                </Suspense>
-                {children}
-                <MenuOverlay />
-                <Analytics />
-                <SpeedInsights />
-              </MenuProvider>
-            </SmoothScrollProvider>
-          </AxeProvider>
-        </ViewTransitions>
+        <MotionConfig reducedMotion="user">
+          <ViewTransitions>
+            <AxeProvider>
+              <SmoothScrollProvider>
+                <MenuProvider>
+                  <Suspense fallback={null}>
+                    <RouteAnnouncer />
+                    <ToastProvider />
+                    <GlobalSearchOverlay />
+                  </Suspense>
+                  {children}
+                  <MenuOverlay />
+                  <Analytics />
+                  <SpeedInsights />
+                </MenuProvider>
+              </SmoothScrollProvider>
+            </AxeProvider>
+          </ViewTransitions>
+        </MotionConfig>
       </body>
     </html>
   );

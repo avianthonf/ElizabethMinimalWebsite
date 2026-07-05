@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { animate } from "motion";
 import styles from "./number-ticker.module.css";
 
 interface NumberTickerProps {
@@ -11,79 +12,51 @@ interface NumberTickerProps {
 }
 
 /**
- * Animates a number from 0 to `value` using requestAnimationFrame.
- * Respects `prefers-reduced-motion` — falls back to displaying the final value immediately.
+ * Animated number counter using Motion's imperative `animate()`.
  *
- * Accessibility: `aria-live` is set to `"off"` during the animation and
- * switches to `"polite"` with `role="status"` only once the animation
- * completes.  This prevents screen readers from receiving ~120 rapid-fire
- * announcements (60 fps × 2 seconds).
+ * Motion's `animate()` is hardware-accelerated and frame-accurate.
+ * When `prefers-reduced-motion: reduce` is active, the final value is
+ * shown immediately with no animation.
+ *
+ * Accessibility: `role="status"` so screen readers announce the final
+ * value once — not rapid-fire intermediate values.
  */
-export function NumberTicker({ value, duration = 2000, className, ariaLabel }: NumberTickerProps) {
-  const [count, setCount] = useState(0);
-  const [animationComplete, setAnimationComplete] = useState(false);
+export function NumberTicker({ value, duration = 2, className, ariaLabel }: NumberTickerProps) {
+  const scopeRef = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
     if (hasAnimated.current) return;
     hasAnimated.current = true;
 
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const prefersReducedMotion = mq.matches;
+    const node = scopeRef.current;
+    if (!node) return;
 
-    if (prefersReducedMotion) {
-      // queueMicrotask prevents the "setState in effect" violation while
-      // still being practically synchronous for the user.
-      queueMicrotask(() => {
-        setCount(value);
-        setAnimationComplete(true);
-      });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      node.textContent = String(value);
       return;
     }
 
-    let frameId: number | null = null;
-    let startTime: number | null = null;
+    const controls = animate(0, value, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(latest) {
+        node.textContent = String(Math.round(latest));
+      },
+    });
 
-    const animate = (timestamp: number) => {
-      if (startTime === null) {
-        startTime = timestamp;
-      }
-
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(eased * value);
-
-      setCount(current);
-
-      if (progress < 1) {
-        frameId = requestAnimationFrame(animate);
-      } else {
-        setAnimationComplete(true);
-      }
-    };
-
-    frameId = requestAnimationFrame(animate);
-
-    return () => {
-      if (frameId !== null) {
-        cancelAnimationFrame(frameId);
-      }
-    };
+    return () => controls.stop();
   }, [value, duration]);
-
-  const composedClass = [styles.ticker, className].filter(Boolean).join(" ");
 
   return (
     <span
-      className={composedClass}
-      aria-label={ariaLabel ?? String(count)}
-      role={animationComplete ? "status" : undefined}
-      aria-live={animationComplete ? "polite" : "off"}
+      ref={scopeRef}
+      className={[styles.ticker, className].filter(Boolean).join(" ")}
+      aria-label={ariaLabel ?? String(value)}
+      role="status"
+      aria-live="polite"
     >
-      {count}
+      0
     </span>
   );
 }
