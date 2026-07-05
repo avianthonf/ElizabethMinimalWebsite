@@ -1,8 +1,8 @@
 import { act, render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { useEffect } from "react";
-import { MenuOverlay } from "./MenuOverlay";
-import { MenuProvider, useMenu } from "./MenuProvider";
+import { MenuOverlay } from "./menu-overlay";
+import { MenuProvider, useMenu } from "./menu-provider";
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/about",

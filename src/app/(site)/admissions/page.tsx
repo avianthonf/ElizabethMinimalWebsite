@@ -11,7 +11,7 @@ import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
 import { Link } from "@/shared/ui/link";
-import { SchoolIcon } from "@/components/icons/SchoolIcon";
+import { SchoolIcon } from "@/shared/ui/school-icon";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(

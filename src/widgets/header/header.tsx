@@ -4,8 +4,8 @@ import { type ReactNode, type RefObject } from "react";
 import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { Link } from "@/shared/ui/link";
-import { openSearchOverlay } from "@/components/content/SearchOverlay/SearchOverlay";
-import { useMenu } from "@/components/navigation/MenuOverlay/MenuProvider";
+import { openSearchOverlay } from "@/features/search/search-overlay";
+import { useMenu } from "@/features/menu/menu-provider";
 import styles from "./header.module.css";
 
 export interface HeaderNavLink {

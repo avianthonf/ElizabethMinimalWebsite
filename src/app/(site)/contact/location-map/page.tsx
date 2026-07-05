@@ -7,7 +7,7 @@ import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Link } from "@/shared/ui/link";
-import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedLazy";
+import { MapEmbedLazy as MapEmbed } from "@/features/map/map-embed-lazy";
 import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,

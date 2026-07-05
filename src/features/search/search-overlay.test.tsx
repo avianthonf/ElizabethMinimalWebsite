@@ -12,7 +12,7 @@ import {
   useSearchOverlay,
   openSearchOverlay,
   SEARCH_OVERLAY_OPEN_EVENT,
-} from "./SearchOverlay";
+} from "./search-overlay";
 
 /** Test harness for useSearchOverlay — exposes the hook's API to assertions. */
 function HookHarness({ onState }: { onState: (api: ReturnType<typeof useSearchOverlay>) => void }) {

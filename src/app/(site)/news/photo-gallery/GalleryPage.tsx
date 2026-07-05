@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { Gallery, type GalleryImageEntry } from "@/components/content/Gallery";
+import { Gallery, type GalleryImageEntry } from "@/features/gallery";
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";

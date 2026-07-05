@@ -11,7 +11,7 @@ vi.mock("@/app/(site)/contact/actions", () => ({
   submitInquiry: (...args: unknown[]) => mockSubmitInquiry(...args),
 }));
 
-import { ContactForm } from "./ContactForm";
+import { ContactForm } from "./contact-form";
 
 describe("ContactForm", () => {
   beforeEach(() => {

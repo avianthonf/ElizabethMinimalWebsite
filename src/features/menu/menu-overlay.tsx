@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { Link } from "@/shared/ui/link";
 import { MENU_CATEGORIES } from "@/domains/nav/navigation.data";
-import { useMenu } from "./MenuProvider";
+import { useMenu } from "./menu-provider";
 import { lockBodyScroll, unlockBodyScroll } from "@/shared/hooks/use-scroll-lock";
 import { useFocusTrap } from "@/shared/hooks/use-focus-trap";
-import styles from "./MenuOverlay.module.css";
+import styles from "./menu-overlay.module.css";
 
 /**
  * Full-screen navigation overlay. Triggered by the menu button in the Header.

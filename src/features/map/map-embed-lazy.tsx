@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, type ReactNode } from "react";
-import styles from "./MapEmbed.module.css";
+import styles from "./map-embed.module.css";
 
 /**
  * Client-side wrapper that dynamically imports MapEmbed after mount.
@@ -13,7 +13,7 @@ export function MapEmbedLazy(props: Record<string, unknown>): ReactNode {
   > | null>(null);
 
   useEffect(() => {
-    import("./MapEmbed").then((mod) => {
+    import("./map-embed").then((mod) => {
       setMapComponent(() => mod.MapEmbed);
     });
   }, []);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { NumberTicker } from "@/components/ui/NumberTicker/NumberTicker";
+import { NumberTicker } from "@/shared/ui/number-ticker";
 import styles from "./CounterBar.module.css";
 import type { CounterStat } from "@/domains/homepage/sections.data";
 

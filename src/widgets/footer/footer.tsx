@@ -5,7 +5,7 @@ import { Stack } from "@/shared/ui/stack";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Link } from "@/shared/ui/link";
-import { CopyrightYear } from "@/components/ui/CopyrightYear/CopyrightYear";
+import { CopyrightYear } from "@/shared/ui/copyright-year";
 import styles from "./footer.module.css";
 
 export interface FooterSection {

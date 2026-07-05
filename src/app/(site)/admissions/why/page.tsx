@@ -7,7 +7,7 @@ import { Grid } from "@/shared/ui/grid";
 import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Icon } from "@/shared/ui/icon";
-import { SchoolIcon } from "@/components/icons/SchoolIcon";
+import { SchoolIcon } from "@/shared/ui/school-icon";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 import { WHY_ST_ELIZABETH_POINTS } from "@/domains/admissions/admissions.data";
 

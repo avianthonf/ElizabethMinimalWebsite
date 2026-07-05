@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "./NumberTicker.module.css";
+import styles from "./number-ticker.module.css";
 
 interface NumberTickerProps {
   value: number;

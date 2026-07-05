@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchOverlay, useSearchOverlay } from "./SearchOverlay";
+import { SearchOverlay, useSearchOverlay } from "./search-overlay";
 
 /**
  * GlobalSearchOverlay — render-once wrapper for the SearchOverlay.

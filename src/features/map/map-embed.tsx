@@ -10,7 +10,7 @@ import {
   SCHOOL_COORDINATES,
   GOOGLE_MAPS_DIRECTIONS_URL,
 } from "@/domains/contact/contact.data";
-import styles from "./MapEmbed.module.css";
+import styles from "./map-embed.module.css";
 
 // ── Default school data ────────────────────────────────────────────────
 

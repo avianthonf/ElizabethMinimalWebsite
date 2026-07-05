@@ -9,8 +9,8 @@ import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import { SCHOOL_ADDRESS, SCHOOL_CONTACT } from "@/domains/contact/contact.data";
 import { CONTACT_IMAGES } from "@/domains/media/images.data";
-import { ContactForm } from "@/components/content/ContactForm";
-import { MapEmbedLazy as MapEmbed } from "@/components/content/MapEmbed/MapEmbedLazy";
+import { ContactForm } from "@/features/contact-form";
+import { MapEmbedLazy as MapEmbed } from "@/features/map/map-embed-lazy";
 
 export const metadata = createPageMetadata(
   "Contact",

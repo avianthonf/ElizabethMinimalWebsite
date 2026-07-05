@@ -14,7 +14,7 @@ import "yet-another-react-lightbox/plugins/captions.css";
 
 import { cn, blurPlaceholderSvg } from "@/shared/lib/cn";
 import type { ImageCategory } from "@/domains/media/images.data";
-import styles from "./Gallery.module.css";
+import styles from "./gallery.module.css";
 
 // ── Types ──────────────────────────────────────────────────────────────
 

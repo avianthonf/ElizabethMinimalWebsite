@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { SchoolIcon } from "./SchoolIcon";
+import { SchoolIcon } from "./school-icon";
 
 describe("SchoolIcon", () => {
   it("renders the academic icon", () => {

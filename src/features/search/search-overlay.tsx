@@ -7,7 +7,7 @@ import { Search, X, FileText, Loader2 } from "lucide-react";
 import { renderHighlightedText } from "@/shared/lib/safe-html";
 import { lockBodyScroll, unlockBodyScroll } from "@/shared/hooks/use-scroll-lock";
 import { useFocusTrap } from "@/shared/hooks/use-focus-trap";
-import styles from "./SearchOverlay.module.css";
+import styles from "./search-overlay.module.css";
 
 /** Custom event name used to open the search overlay from anywhere in the app. */
 export const SEARCH_OVERLAY_OPEN_EVENT = "stelizabeths:search-open";
