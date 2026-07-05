@@ -1,5 +1,5 @@
 import { Card } from "@/shared/ui/card";
-import { ContentPage } from "@/pages/generic";
+import { ContentPage } from "@/screens/generic";
 import { Heading } from "@/shared/ui/heading";
 import { Stack } from "@/shared/ui/stack";
 import { Text } from "@/shared/ui/text";

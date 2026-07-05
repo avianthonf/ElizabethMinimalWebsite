@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 import { Header } from "@/widgets/header/header";
 import { Footer } from "@/widgets/footer/footer";
 import { AnnouncementBar } from "@/widgets/announcement-bar/announcement-bar";
@@ -25,12 +26,14 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
-      <Footer
-        intro={FOOTER_INTRO}
-        sections={FOOTER_SECTIONS}
-        socialLinks={FOOTER_SOCIAL_LINKS}
-        copyright={FOOTER_COPYRIGHT}
-      />
+      <Suspense fallback={<footer />}>
+        <Footer
+          intro={FOOTER_INTRO}
+          sections={FOOTER_SECTIONS}
+          socialLinks={FOOTER_SOCIAL_LINKS}
+          copyright={FOOTER_COPYRIGHT}
+        />
+      </Suspense>
     </>
   );
 }

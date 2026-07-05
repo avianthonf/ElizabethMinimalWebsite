@@ -25,7 +25,7 @@ vi.mock("@/widgets/header/header", () => ({
 }));
 
 // Mock the HomePage
-vi.mock("@/pages/home", () => ({
+vi.mock("@/screens/home", () => ({
   HomePage: () => <main data-testid="homepage">Homepage</main>,
 }));
 

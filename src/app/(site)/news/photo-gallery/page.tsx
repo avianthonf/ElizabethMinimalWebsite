@@ -1,7 +1,7 @@
 import { Hero } from "@/shared/ui/hero";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import { HERO_IMAGES } from "@/domains/media/images.data";
-import { GalleryPage } from "@/pages/news/gallery-page";
+import { GalleryPage } from "@/screens/news/gallery-page";
 
 export const metadata = createPageMetadata(
   "Photo Gallery",

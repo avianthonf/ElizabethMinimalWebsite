@@ -1,5 +1,5 @@
 import { Card } from "@/shared/ui/card";
-import { ContentPage } from "@/pages/generic";
+import { ContentPage } from "@/screens/generic";
 import { Stack } from "@/shared/ui/stack";
 import { MOTTO_ANTHEM_PAGE, SCHOOL_MOTTO } from "@/domains/about/motto.data";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
