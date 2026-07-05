@@ -39,7 +39,7 @@ export function NumberTicker({ value, duration = 2, className, ariaLabel }: Numb
 
     const controls = animate(0, value, {
       duration,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
       onUpdate(latest) {
         node.textContent = String(Math.round(latest));
       },

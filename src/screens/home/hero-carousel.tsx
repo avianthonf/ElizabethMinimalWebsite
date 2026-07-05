@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { Link } from "@/shared/ui/link";
+import { TypewriterText } from "@/shared/ui/motion/motion-text";
 import styles from "./hero-carousel.module.css";
 import type { HeroSlide } from "@/domains/homepage/sections.data";
 
@@ -170,7 +171,15 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
               <div className={styles.overlay} />
               <div className={styles.content}>
                 <p className={styles.tagline}>{slide.tagline}</p>
-                <h1 className={styles.heading}>{slide.heading}</h1>
+                <h1 className={styles.heading}>
+                  {index === 0 ? (
+                    <TypewriterText as="span" speed={35} delay={0.3}>
+                      {slide.heading}
+                    </TypewriterText>
+                  ) : (
+                    slide.heading
+                  )}
+                </h1>
                 <Link href={slide.ctaHref} className={styles.cta}>
                   {slide.ctaText}
                 </Link>
