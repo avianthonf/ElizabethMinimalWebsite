@@ -6,6 +6,8 @@ import { Container } from "@/shared/ui/container";
 import { Stack } from "@/shared/ui/stack";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { Text } from "@/shared/ui/text";
+import { ShareBar } from "@/features/share";
+import { SITE_URL } from "@/shared/lib/brand";
 import { createNewsArticleSchema } from "@/shared/lib/structured-data";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import type { Metadata } from "next";
@@ -74,6 +76,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
               <Text variant="muted" size="large">
                 {article.excerpt}
               </Text>
+              <ShareBar url={`${SITE_URL}/news/${slug}`} title={article.title} />
             </Stack>
           </Container>
         </Section>

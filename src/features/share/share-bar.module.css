@@ -1,0 +1,51 @@
+.bar {
+  border-top: 1px solid var(--s-color-border, rgba(0, 0, 0, 0.1));
+  padding-top: var(--space-4, 16px);
+  margin-top: var(--space-4, 16px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.label {
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--s-color-text-muted, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border: 1px solid var(--s-color-border, rgba(0, 0, 0, 0.15));
+  border-radius: 6px;
+  background: var(--bg-surface, #ffffff);
+  color: var(--s-color-text-muted, #6b7280);
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.copyButton:hover {
+  border-color: var(--s-color-accent, #c9a96e);
+  color: var(--s-color-accent, #c9a96e);
+}
+
+.copyLabel {
+  min-width: 44px;
+  text-align: left;
+}
