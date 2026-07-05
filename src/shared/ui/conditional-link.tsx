@@ -18,7 +18,7 @@ export interface ConditionalLinkProps {
   /** Accessible label (forwarded to Link when href is present). */
   "aria-label"?: string;
   /** HTML type attribute (forwarded to native element when href is absent). */
-  type?: string;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
   /** Disabled state (forwarded to native element when href is absent). */
   disabled?: boolean;
 }
@@ -57,10 +57,10 @@ export function ConditionalLink({
   }
 
   // No href — render as a plain element, forwarding relevant props.
-  const Tag = Component as ElementType;
+  const Tag = Component as "span" | "button";
   return (
     <Tag
-      ref={ref as Ref<HTMLElement>}
+      ref={ref as Ref<HTMLButtonElement & HTMLSpanElement>}
       className={className}
       onClick={onClick}
       type={type}

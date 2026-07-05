@@ -34,7 +34,7 @@ export function Link({
   ariaDisabled,
   onClick,
   ref,
-}: LinkProps): ReactNode {
+}: LinkProps) {
   const isExternal = external ?? /^https?:\/\//.test(href);
 
   const composedClassName = [styles.link, variantClass[variant], className]

@@ -1,9 +1,8 @@
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import styles from "./visually-hidden.module.css";
 
 export interface VisuallyHiddenProps {
   children: ReactNode;
-  as?: ElementType;
   className?: string;
 }
 
@@ -12,13 +11,12 @@ export interface VisuallyHiddenProps {
  *
  * Use for providing additional context to assistive technology users
  * (e.g. instructions, expanded labels) without affecting the visual layout.
+ *
+ * Always renders as a <span> — if a different element is needed, wrap the
+ * content and apply VisuallyHidden as a className manually.
  */
-export function VisuallyHidden({
-  children,
-  as: Tag = "span",
-  className,
-}: VisuallyHiddenProps): ReactNode {
+export function VisuallyHidden({ children, className }: VisuallyHiddenProps) {
   const composedClassName = [styles.visuallyHidden, className].filter(Boolean).join(" ");
 
-  return <Tag className={composedClassName}>{children}</Tag>;
+  return <span className={composedClassName}>{children}</span>;
 }

@@ -10,6 +10,7 @@ import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/shared/ui/school-icon";
+import { SchoolMedallion } from "@/features/medallion";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 import { HERO_IMAGES } from "@/domains/media/images.data";
 
@@ -62,6 +63,10 @@ export default function AboutPage() {
             }
             right={
               <Stack gap="medium">
+                <Heading level="h3" variant="card">
+                  Our Crest
+                </Heading>
+                <SchoolMedallion ariaLabel="St. Elizabeth's school crest — 3D medallion" />
                 <Heading level="h3" variant="card">
                   Explore
                 </Heading>
