@@ -21,7 +21,7 @@ Object.defineProperty(window, "matchMedia", {
 });
 
 // ── ResizeObserver mock ─────────────────────────────────────────────────
-// Required by GSAP / ZProximityEngine to measure element bounds.
+// Required by ZProximityEngine to measure element bounds.
 // jsdom does not implement this API, so we provide a no-op stub.
 
 class ResizeObserverMock {
@@ -37,7 +37,7 @@ Object.defineProperty(window, "ResizeObserver", {
 });
 
 // ── IntersectionObserver mock ───────────────────────────────────────────
-// Required by GSAP's ScrollTrigger and ZProximityEngine visibility checks.
+// Required by ZProximityEngine visibility checks.
 // jsdom does not implement this API, so we provide a no-op stub.
 
 class IntersectionObserverMock {
@@ -67,9 +67,9 @@ Object.defineProperty(window, "IntersectionObserver", {
 });
 
 // ── requestAnimationFrame mock ──────────────────────────────────────────
-// GSAP uses rAF internally. Vitest's fake timers may interfere, so we
-// provide a real-ish passthrough that uses setTimeout to keep the event
-// loop running.
+// Animation libraries use rAF internally. Vitest's fake timers may
+// interfere, so we provide a real-ish passthrough that uses setTimeout
+// to keep the event loop running.
 
 if (typeof window.requestAnimationFrame === "undefined") {
   window.requestAnimationFrame = (cb: FrameRequestCallback) =>
