@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--space-6, 24px);
+}
+
+.book {
+  width: 140px;
+  height: 140px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.pageLeft {
+  animation: slideIn 2s ease-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(4px);
+  }
+  50% {
+    opacity: 0.08;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0.08;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book {
+    animation: none;
+  }
+  .pageLeft {
+    animation: none;
+    opacity: 0.08;
+  }
+}
