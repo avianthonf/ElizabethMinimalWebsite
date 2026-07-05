@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Search, X, FileText, Loader2 } from "lucide-react";
 import { renderHighlightedText } from "@/shared/lib/safe-html";
 import { lockBodyScroll, unlockBodyScroll } from "@/shared/hooks/use-scroll-lock";

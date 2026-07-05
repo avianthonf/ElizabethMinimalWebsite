@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Container } from "@/shared/ui/container";
 import styles from "./breadcrumb.module.css";
 

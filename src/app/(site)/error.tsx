@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import styles from "./site-error.module.css";
 
 /** Error boundary for inner pages ( Site route group ). */

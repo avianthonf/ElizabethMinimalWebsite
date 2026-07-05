@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Hero } from "@/shared/ui/hero";
 import { Card } from "@/shared/ui/card";
 import { Container } from "@/shared/ui/container";

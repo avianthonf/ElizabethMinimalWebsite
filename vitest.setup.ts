@@ -76,3 +76,37 @@ if (typeof window.requestAnimationFrame === "undefined") {
     window.setTimeout(() => cb(Date.now()), 16);
   window.cancelAnimationFrame = (id: number) => window.clearTimeout(id);
 }
+
+// ── next-view-transitions mock for jsdom ──────────────────────────────
+// next-view-transitions internally imports next/link (Next.js internals),
+// which vitest can't resolve in jsdom. Mock the entire module with a
+// passthrough that renders <ViewTransitions> as a simple wrapper and
+// <Link> / <Link as NextLink> as simple <a> tags.
+
+vi.mock("next-view-transitions", async () => {
+  const React = await vi.importActual<typeof import("react")>("react");
+
+  const MockViewTransitions = ({ children }: { children: React.ReactNode }) =>
+    React.createElement(React.Fragment, null, children);
+
+  const MockLink = React.forwardRef<HTMLAnchorElement, Record<string, unknown>>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function MockLink(props: any, ref) {
+      const { href, children, ...rest } = props;
+      return React.createElement("a", { href, ref, ...rest }, children);
+    },
+  );
+
+  return {
+    ViewTransitions: MockViewTransitions,
+    Link: MockLink,
+    default: MockLink,
+    useTransitionRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      back: vi.fn(),
+      refresh: vi.fn(),
+      prefetch: vi.fn(),
+    }),
+  };
+});

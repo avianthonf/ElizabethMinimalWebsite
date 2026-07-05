@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import styles from "./admissions-cta.module.css";
 import type { AdmissionsStep } from "@/domains/homepage/sections.data";
 
