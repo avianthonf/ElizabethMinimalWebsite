@@ -1,4 +1,3 @@
-import { PageShell } from "@/components/layout";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
@@ -19,18 +18,16 @@ export const metadata = createPageMetadata(
 
 export default function ContactThankYouPage() {
   return (
-    <PageShell
-      hero={
-        <>
-          <Breadcrumb href="/contact" label="Contact" currentLabel="Thank You" />
-          <Hero
-            eyebrow="Received"
-            heading="Thank You"
-            backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
-          />
-        </>
-      }
-    >
+    <>
+      <>
+        <Breadcrumb href="/contact" label="Contact" currentLabel="Thank You" />
+        <Hero
+          eyebrow="Received"
+          heading="Thank You"
+          backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        />
+      </>
+
       <Section background="paper" padding="xlarge" ariaLabel="Inquiry confirmation">
         <Container width="narrow">
           <Stack gap="large">
@@ -57,6 +54,6 @@ export default function ContactThankYouPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

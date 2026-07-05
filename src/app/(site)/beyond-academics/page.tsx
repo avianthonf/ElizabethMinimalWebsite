@@ -4,7 +4,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
@@ -22,16 +21,14 @@ export const metadata = createPageMetadata(
 
 export default function BeyondAcademicsPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow={BEYOND_ACADEMICS_PAGE.heroEyebrow}
-          heading={BEYOND_ACADEMICS_PAGE.heroHeading}
-          description={BEYOND_ACADEMICS_PAGE.heroDescription}
-          backgroundImage={`/images/${getHeroImage("student-life-hero").filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow={BEYOND_ACADEMICS_PAGE.heroEyebrow}
+        heading={BEYOND_ACADEMICS_PAGE.heroHeading}
+        description={BEYOND_ACADEMICS_PAGE.heroDescription}
+        backgroundImage={`/images/${getHeroImage("student-life-hero").filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="Beyond academics overview">
         <Container width="narrow">
           <Stack gap="xlarge">
@@ -65,6 +62,6 @@ export default function BeyondAcademicsPage() {
           </Grid>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

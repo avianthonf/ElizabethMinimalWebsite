@@ -1,4 +1,3 @@
-import { PageShell } from "@/components/layout";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
@@ -18,16 +17,14 @@ export const metadata = createPageMetadata(
 
 export default function ManagerMessagePage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow={MANAGER_MESSAGE_PAGE.heroEyebrow}
-          heading={MANAGER_MESSAGE_PAGE.heroHeading}
-          description={MANAGER_MESSAGE_PAGE.heroDescription}
-          backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow={MANAGER_MESSAGE_PAGE.heroEyebrow}
+        heading={MANAGER_MESSAGE_PAGE.heroHeading}
+        description={MANAGER_MESSAGE_PAGE.heroDescription}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+      />
+
       <Section
         background="paper"
         padding="xlarge"
@@ -65,6 +62,6 @@ export default function ManagerMessagePage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

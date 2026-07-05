@@ -4,7 +4,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
@@ -19,16 +18,14 @@ export const metadata = createPageMetadata(
 
 export default function AlumniPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Reconnect"
-          heading="St. Elizabeth Alumni"
-          description={ALUMNI_INTRO.body}
-          backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Reconnect"
+        heading="St. Elizabeth Alumni"
+        description={ALUMNI_INTRO.body}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+      />
+
       <Section background="soft" padding="xlarge" ariaLabel="Alumni community">
         <Container>
           <Stack gap="xlarge">
@@ -85,6 +82,6 @@ export default function AlumniPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

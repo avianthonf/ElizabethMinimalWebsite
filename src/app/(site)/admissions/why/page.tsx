@@ -4,7 +4,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/shared/ui/school-icon";
@@ -21,16 +20,14 @@ export default function WhyPage() {
   const heroImage = getHeroImage("admissions-hero");
 
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Discover"
-          heading="Why St. Elizabeth?"
-          description="Find out why families across North Goa choose St. Elizabeth's High School for their children's education."
-          backgroundImage={`/images/${heroImage.filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Discover"
+        heading="Why St. Elizabeth?"
+        description="Find out why families across North Goa choose St. Elizabeth's High School for their children's education."
+        backgroundImage={`/images/${heroImage.filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="Why choose St. Elizabeth">
         <Container width="narrow">
           <Stack gap="large">
@@ -54,6 +51,6 @@ export default function WhyPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

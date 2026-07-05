@@ -1,0 +1,30 @@
+import type { ReactNode } from "react";
+import { Header } from "@/widgets/header/header";
+import { Footer } from "@/widgets/footer/footer";
+import {
+  HEADER_NAV_LINKS,
+  FOOTER_SECTIONS,
+  FOOTER_INTRO,
+  FOOTER_SOCIAL_LINKS,
+  FOOTER_COPYRIGHT,
+} from "@/domains/nav/navigation.data";
+
+export default function SiteLayout({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <Header navLinks={HEADER_NAV_LINKS} transparent={true} fixed />
+      <a href="#main-content" className="skipLink">
+        Skip to main content
+      </a>
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
+      <Footer
+        intro={FOOTER_INTRO}
+        sections={FOOTER_SECTIONS}
+        socialLinks={FOOTER_SOCIAL_LINKS}
+        copyright={FOOTER_COPYRIGHT}
+      />
+    </>
+  );
+}

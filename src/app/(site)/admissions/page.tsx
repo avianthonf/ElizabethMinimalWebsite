@@ -6,7 +6,6 @@ import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { SplitLayout } from "@/shared/ui/split-layout";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
@@ -23,16 +22,14 @@ export default function AdmissionsPage() {
   const heroImage = getHeroImage("admissions-hero");
 
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Join Us"
-          heading="Admissions at St. Elizabeth"
-          description="Discover a nurturing school community where your child will be known, challenged, and supported to reach their full potential."
-          backgroundImage={`/images/${heroImage.filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Join Us"
+        heading="Admissions at St. Elizabeth"
+        description="Discover a nurturing school community where your child will be known, challenged, and supported to reach their full potential."
+        backgroundImage={`/images/${heroImage.filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="Admissions information">
         <Container>
           <SplitLayout
@@ -113,6 +110,6 @@ export default function AdmissionsPage() {
           />
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

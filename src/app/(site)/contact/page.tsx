@@ -3,7 +3,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { SplitLayout } from "@/shared/ui/split-layout";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
@@ -20,16 +19,14 @@ export const metadata = createPageMetadata(
 
 export default function ContactPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Connect"
-          heading="Contact Us"
-          description="We'd love to hear from you. Reach out to St. Elizabeth's High School in Pomburpa, Bardez, Goa."
-          backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Connect"
+        heading="Contact Us"
+        description="We'd love to hear from you. Reach out to St. Elizabeth's High School in Pomburpa, Bardez, Goa."
+        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="Contact information">
         <Container width="wide">
           <SplitLayout
@@ -77,6 +74,6 @@ export default function ContactPage() {
           />
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

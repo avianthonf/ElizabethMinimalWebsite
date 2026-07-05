@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { NEWS_ARTICLES } from "@/domains/news/news.data";
-import { PageShell } from "@/components/layout";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
@@ -57,19 +56,14 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonStringify(articleSchema) }}
       />
-      <PageShell
-        hero={
-          <>
-            <Breadcrumb href="/news" label="News" currentLabel={article.title} />
-            <Hero
-              eyebrow={article.category}
-              heading={article.title}
-              description={article.date}
-              backgroundImage={`/images/${article.imageFilename}`}
-            />
-          </>
-        }
-      >
+      <>
+        <Breadcrumb href="/news" label="News" currentLabel={article.title} />
+        <Hero
+          eyebrow={article.category}
+          heading={article.title}
+          description={article.date}
+          backgroundImage={`/images/${article.imageFilename}`}
+        />
         <Section background="paper" padding="xlarge" ariaLabel={`Article: ${article.title}`}>
           <Container width="narrow">
             <Stack gap="large">
@@ -83,7 +77,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
             </Stack>
           </Container>
         </Section>
-      </PageShell>
+      </>
     </>
   );
 }

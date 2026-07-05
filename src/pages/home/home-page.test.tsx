@@ -17,41 +17,11 @@ vi.mock("next/navigation", () => ({
 /**
  * HomePage smoke tests.
  *
- * HomePage is the most complex page in the app — it composes 15+ sections
- * with skip link, announcement bar, header, and footer. These tests assert
- * the critical structural elements exist so a broken import or missing
- * section is caught immediately.
+ * HomePage composes 15+ sections. The shell (Header, Footer,
+ * AnnouncementBar, SkipLink, <main>) is rendered by the (home)/layout.
+ * These tests assert the page sections are present.
  */
 describe("HomePage", () => {
-  it("renders the skip link", () => {
-    render(<HomePage />);
-    expect(screen.getByRole("link", { name: /skip to main content/i })).toBeInTheDocument();
-  });
-
-  it("renders main content with the correct id", () => {
-    render(<HomePage />);
-    expect(document.getElementById("main-content")).toBeInTheDocument();
-  });
-
-  it("renders the announcement bar", () => {
-    render(<HomePage />);
-    expect(screen.getByRole("region", { name: /announcement/i })).toBeInTheDocument();
-  });
-
-  it("renders the Header", () => {
-    render(<HomePage />);
-    // The Header is a <header> landmark
-    const headers = screen.getAllByRole("banner");
-    expect(headers.length).toBeGreaterThan(0);
-  });
-
-  it("renders the Footer", () => {
-    render(<HomePage />);
-    // Footer contains <footer> elements — at least one should exist
-    const footers = screen.getAllByRole("contentinfo");
-    expect(footers.length).toBeGreaterThan(0);
-  });
-
   it("renders the hero carousel", () => {
     render(<HomePage />);
     expect(screen.getByRole("region", { name: /featured highlights/i })).toBeInTheDocument();

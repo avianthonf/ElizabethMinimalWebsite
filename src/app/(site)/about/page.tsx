@@ -6,7 +6,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { SplitLayout } from "@/shared/ui/split-layout";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
@@ -23,16 +22,14 @@ export default function AboutPage() {
   const heroImage = getHeroImage("about-hero");
 
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Discover"
-          heading="About St. Elizabeth"
-          description="Guided by our motto 'Truth and Honesty,' St. Elizabeth's High School has been nurturing young minds in Pomburpa, Goa since 1949."
-          backgroundImage={`/images/${heroImage.filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Discover"
+        heading="About St. Elizabeth"
+        description="Guided by our motto 'Truth and Honesty,' St. Elizabeth's High School has been nurturing young minds in Pomburpa, Goa since 1949."
+        backgroundImage={`/images/${heroImage.filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="About St. Elizabeth">
         <Container>
           <SplitLayout
@@ -132,6 +129,6 @@ export default function AboutPage() {
         secondaryCTA={{ text: "Book a Tour", href: "/contact/location-map" }}
         background="blue"
       />
-    </PageShell>
+    </>
   );
 }

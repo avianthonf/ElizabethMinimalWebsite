@@ -3,7 +3,6 @@ import { Card } from "@/shared/ui/card";
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
@@ -19,19 +18,17 @@ export const metadata = createPageMetadata(
 
 export default function HistoryPage() {
   return (
-    <PageShell
-      hero={
-        <>
-          <Breadcrumb href="/about" label="About" currentLabel="History" />
-          <Hero
-            eyebrow="Our Story"
-            heading="School History"
-            description="Since 1949, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
-            backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
-          />
-        </>
-      }
-    >
+    <>
+      <>
+        <Breadcrumb href="/about" label="About" currentLabel="History" />
+        <Hero
+          eyebrow="Our Story"
+          heading="School History"
+          description="Since 1949, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
+          backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+        />
+      </>
+
       <Section background="paper" padding="xlarge" ariaLabel="School history timeline">
         <Container width="narrow">
           <Stack gap="large">
@@ -55,6 +52,6 @@ export default function HistoryPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

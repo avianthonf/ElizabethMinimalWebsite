@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { Hero } from "@/shared/ui/hero";
 import { Container } from "@/shared/ui/container";
 import { Grid, type GridColumns } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
@@ -59,34 +58,29 @@ export function ContentPage<T>({
   sectionAriaLabel,
 }: ContentPageProps<T>): ReactNode {
   return (
-    <PageShell
-      hero={
+    <>
+      {breadcrumb && (
         <>
-          {breadcrumb && (
-            <>
-              <BreadcrumbJsonLd
-                items={[
-                  { label: "Home", href: "/" },
-                  { label: breadcrumb.label, href: breadcrumb.href },
-                  { label: breadcrumb.currentLabel, href: "#" },
-                ]}
-              />
-              <Breadcrumb
-                href={breadcrumb.href}
-                label={breadcrumb.label}
-                currentLabel={breadcrumb.currentLabel}
-              />
-            </>
-          )}
-          <Hero
-            eyebrow={heroEyebrow}
-            heading={heroHeading}
-            description={heroDescription}
-            backgroundImage={heroBackgroundImage}
+          <BreadcrumbJsonLd
+            items={[
+              { label: "Home", href: "/" },
+              { label: breadcrumb.label, href: breadcrumb.href },
+              { label: breadcrumb.currentLabel, href: "#" },
+            ]}
+          />
+          <Breadcrumb
+            href={breadcrumb.href}
+            label={breadcrumb.label}
+            currentLabel={breadcrumb.currentLabel}
           />
         </>
-      }
-    >
+      )}
+      <Hero
+        eyebrow={heroEyebrow}
+        heading={heroHeading}
+        description={heroDescription}
+        backgroundImage={heroBackgroundImage}
+      />
       <Section background="paper" padding="xlarge" ariaLabel={sectionAriaLabel}>
         <Container width={containerWidth}>
           <Stack gap={layout === "grid" ? "large" : "xlarge"}>
@@ -114,6 +108,6 @@ export function ContentPage<T>({
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

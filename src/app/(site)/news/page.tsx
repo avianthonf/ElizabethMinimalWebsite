@@ -4,7 +4,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
@@ -18,16 +17,14 @@ export const metadata = createPageMetadata(
 
 export default function NewsPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Stay Informed"
-          heading="News & Events"
-          description="The latest updates, achievements, and happenings from the St. Elizabeth's High School community."
-          backgroundImage={`/images/${HERO_IMAGES[0].filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Stay Informed"
+        heading="News & Events"
+        description="The latest updates, achievements, and happenings from the St. Elizabeth's High School community."
+        backgroundImage={`/images/${HERO_IMAGES[0].filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="News articles">
         <Container>
           <Stack gap="xlarge">
@@ -53,6 +50,6 @@ export default function NewsPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

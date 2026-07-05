@@ -4,7 +4,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
@@ -20,16 +19,14 @@ export const metadata = createPageMetadata(
 
 export default function AcademicsPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Learn"
-          heading="Academics"
-          description="A rigorous CBSE curriculum delivered by dedicated faculty, designed to challenge and inspire every student to achieve their personal best."
-          backgroundImage={`/images/${ACADEMICS_HERO.filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Learn"
+        heading="Academics"
+        description="A rigorous CBSE curriculum delivered by dedicated faculty, designed to challenge and inspire every student to achieve their personal best."
+        backgroundImage={`/images/${ACADEMICS_HERO.filename}`}
+      />
+
       <Section background="soft" padding="xlarge" ariaLabel="Academic departments">
         <Container>
           <Stack gap="xlarge">
@@ -62,6 +59,6 @@ export default function AcademicsPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

@@ -1,4 +1,3 @@
-import { PageShell } from "@/components/layout";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
@@ -22,19 +21,17 @@ export const metadata = createPageMetadata(
 
 export default function ContactInfoPage() {
   return (
-    <PageShell
-      hero={
-        <>
-          <Breadcrumb href="/contact" label="Contact" currentLabel="Information" />
-          <Hero
-            eyebrow="Contact"
-            heading="Contact Information"
-            description="Get in touch with St. Elizabeth's High School in Pomburpa, Bardez, Goa."
-            backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
-          />
-        </>
-      }
-    >
+    <>
+      <>
+        <Breadcrumb href="/contact" label="Contact" currentLabel="Information" />
+        <Hero
+          eyebrow="Contact"
+          heading="Contact Information"
+          description="Get in touch with St. Elizabeth's High School in Pomburpa, Bardez, Goa."
+          backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        />
+      </>
+
       <Section background="paper" padding="xlarge" ariaLabel="Contact details and inquiry form">
         <Container width="wide">
           <SplitLayout
@@ -94,6 +91,6 @@ export default function ContactInfoPage() {
           />
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

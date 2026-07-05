@@ -1,4 +1,3 @@
-import { PageShell } from "@/components/layout";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
@@ -26,19 +25,17 @@ export const metadata = createPageMetadata(
 
 export default function LocationMapPage() {
   return (
-    <PageShell
-      hero={
-        <>
-          <Breadcrumb href="/contact" label="Contact" currentLabel="Location & Map" />
-          <Hero
-            eyebrow="Visit"
-            heading="Location & Map"
-            description="Find us in the heart of Pomburpa, Bardez, Goa. We're easily accessible from both Panjim and Mapusa."
-            backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
-          />
-        </>
-      }
-    >
+    <>
+      <>
+        <Breadcrumb href="/contact" label="Contact" currentLabel="Location & Map" />
+        <Hero
+          eyebrow="Visit"
+          heading="Location & Map"
+          description="Find us in the heart of Pomburpa, Bardez, Goa. We're easily accessible from both Panjim and Mapusa."
+          backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        />
+      </>
+
       <Section background="paper" padding="xlarge" ariaLabel="School location map">
         <Container width="wide">
           <Stack gap="large">
@@ -113,6 +110,6 @@ export default function LocationMapPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

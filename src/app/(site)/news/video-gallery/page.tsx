@@ -5,7 +5,6 @@ import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
-import { PageShell } from "@/components/layout";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
@@ -24,16 +23,14 @@ export const metadata = createPageMetadata(
 
 export default function VideoGalleryPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow={VIDEO_GALLERY_PAGE.heroEyebrow}
-          heading={VIDEO_GALLERY_PAGE.heroHeading}
-          description={VIDEO_GALLERY_PAGE.heroDescription}
-          backgroundImage={`/images/${getHeroImage("news-hero").filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow={VIDEO_GALLERY_PAGE.heroEyebrow}
+        heading={VIDEO_GALLERY_PAGE.heroHeading}
+        description={VIDEO_GALLERY_PAGE.heroDescription}
+        backgroundImage={`/images/${getHeroImage("news-hero").filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel={VIDEO_GALLERY_PAGE.sectionAriaLabel}>
         <Container>
           <Stack gap="xlarge">
@@ -120,6 +117,6 @@ export default function VideoGalleryPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

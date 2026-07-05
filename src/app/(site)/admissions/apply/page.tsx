@@ -3,7 +3,6 @@ import { Card } from "@/shared/ui/card";
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
-import { PageShell } from "@/components/layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
@@ -18,16 +17,14 @@ export default function ApplyPage() {
   const heroImage = getHeroImage("admissions-hero");
 
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Apply"
-          heading="Admission Steps"
-          description="Our straightforward admissions process is designed to help families navigate every stage — from initial inquiry to the first day of school."
-          backgroundImage={`/images/${heroImage.filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Apply"
+        heading="Admission Steps"
+        description="Our straightforward admissions process is designed to help families navigate every stage — from initial inquiry to the first day of school."
+        backgroundImage={`/images/${heroImage.filename}`}
+      />
+
       <Section background="paper" padding="xlarge" ariaLabel="Admission steps">
         <Container width="narrow">
           <Stack gap="large">
@@ -51,6 +48,6 @@ export default function ApplyPage() {
           </Stack>
         </Container>
       </Section>
-    </PageShell>
+    </>
   );
 }

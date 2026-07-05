@@ -1,5 +1,4 @@
 import { Hero } from "@/shared/ui/hero";
-import { PageShell } from "@/components/layout";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import { HERO_IMAGES } from "@/domains/media/images.data";
 import { GalleryPage } from "./GalleryPage";
@@ -12,17 +11,15 @@ export const metadata = createPageMetadata(
 
 export default function PhotoGalleryPage() {
   return (
-    <PageShell
-      hero={
-        <Hero
-          eyebrow="Explore"
-          heading="Photo Gallery"
-          description="A visual journey through the vibrant life at St. Elizabeth's High School."
-          backgroundImage={`/images/${HERO_IMAGES[0].filename}`}
-        />
-      }
-    >
+    <>
+      <Hero
+        eyebrow="Explore"
+        heading="Photo Gallery"
+        description="A visual journey through the vibrant life at St. Elizabeth's High School."
+        backgroundImage={`/images/${HERO_IMAGES[0].filename}`}
+      />
+
       <GalleryPage />
-    </PageShell>
+    </>
   );
 }

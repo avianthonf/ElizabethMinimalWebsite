@@ -6,15 +6,6 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/about/staff",
 }));
 
-vi.mock("@/components/layout", () => ({
-  PageShell: ({ children, hero }: { children: React.ReactNode; hero?: React.ReactNode }) => (
-    <div data-testid="pageshell">
-      {hero}
-      {children}
-    </div>
-  ),
-}));
-
 vi.mock("@/shared/ui/hero", () => ({
   Hero: ({ heading }: { heading: string }) => <h1 data-testid="mock-hero">{heading}</h1>,
 }));
@@ -75,7 +66,7 @@ describe("ContentPage", () => {
     expect(headings.some((h) => h.textContent === "Section Title")).toBe(true);
   });
 
-  it("wraps content in PageShell", () => {
+  it("renders hero and content", () => {
     render(
       <ContentPage
         heroHeading="Test Page"
@@ -84,7 +75,8 @@ describe("ContentPage", () => {
         sectionAriaLabel="Test section"
       />,
     );
-    expect(screen.getByTestId("pageshell")).toBeInTheDocument();
+    expect(screen.getByTestId("mock-hero")).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Test section" })).toBeInTheDocument();
   });
 
   it("renders in list layout when specified", () => {

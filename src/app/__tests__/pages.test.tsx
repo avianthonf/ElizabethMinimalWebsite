@@ -31,7 +31,7 @@ vi.mock("@/pages/home", () => ({
 
 // ── Homepage ─────────────────────────────────────────────────────────────
 
-import HomePage from "../page";
+import HomePage from "../(home)/page";
 import AboutPage from "../(site)/about/page";
 import AboutMissionPage from "../(site)/about/mission/page";
 import AboutHistoryPage from "../(site)/about/history/page";
@@ -133,21 +133,21 @@ describe("Page Smoke Tests", () => {
   describe("Academics '/academics/curriculum'", () => {
     it("renders the page", () => {
       render(<AcademicsCurriculumPage />);
-      expect(screen.getByRole("main")).toBeDefined();
+      expect(screen.getByRole("heading", { level: 1 })).toBeDefined();
     });
   });
 
   describe("Academics '/academics/library'", () => {
     it("renders the page", () => {
       render(<AcademicsLibraryPage />);
-      expect(screen.getByRole("main")).toBeDefined();
+      expect(screen.getByRole("heading", { level: 1 })).toBeDefined();
     });
   });
 
   describe("Beyond Academics '/beyond-academics'", () => {
     it("renders the page", () => {
       render(<BeyondAcademicsPage />);
-      expect(screen.getByRole("main")).toBeDefined();
+      expect(screen.getByRole("heading", { level: 1 })).toBeDefined();
     });
   });
 
