@@ -51,7 +51,7 @@ export function EventsPreview() {
         </div>
 
         <div className={styles.ctaWrapper}>
-          <Link href="/news" className={styles.cta}>
+          <Link href="/news/events-calendar" className={styles.cta}>
             View Full Calendar
           </Link>
         </div>

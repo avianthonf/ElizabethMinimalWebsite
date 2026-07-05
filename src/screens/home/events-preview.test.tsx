@@ -22,7 +22,7 @@ describe("EventsPreview", () => {
   it("renders a view full calendar CTA link", () => {
     render(<EventsPreview />);
     const cta = screen.getByRole("link", { name: /view full calendar/i });
-    expect(cta).toHaveAttribute("href", "/news");
+    expect(cta).toHaveAttribute("href", "/news/events-calendar");
   });
 
   it("renders date information for events", () => {
