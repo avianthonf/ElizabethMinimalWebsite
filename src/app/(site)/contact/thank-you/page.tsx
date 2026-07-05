@@ -8,6 +8,7 @@ import { Button } from "@/shared/ui/button";
 import { Link } from "@/shared/ui/link";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { CONTACT_EMAIL } from "@/shared/lib/brand";
+import { ConfettiTrigger } from "@/features/confetti";
 import { CONTACT_IMAGES } from "@/domains/media/images.data";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 
@@ -19,6 +20,7 @@ export const metadata = createPageMetadata(
 export default function ContactThankYouPage() {
   return (
     <>
+      <ConfettiTrigger />
       <>
         <Breadcrumb href="/contact" label="Contact" currentLabel="Thank You" />
         <Hero
