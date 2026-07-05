@@ -46,6 +46,7 @@
     "react": "19.2.4",
     "react-compare-slider": "^4.0.0",
     "react-dom": "19.2.4",
+    "react-globe.gl": "^2.38.0",
     "react-leaflet": "^5.0.0",
     "react-parallax-tilt": "^1.7.333",
     "react-photo-album": "^3.6.0",
