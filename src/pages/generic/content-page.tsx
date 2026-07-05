@@ -8,6 +8,8 @@ import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
+import { createWebPageSchema } from "@/shared/lib/structured-data";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
 
 export interface ContentPageProps<T> {
   /** Hero eyebrow text (optional — when omitted, no eyebrow renders) */
@@ -59,6 +61,14 @@ export function ContentPage<T>({
 }: ContentPageProps<T>): ReactNode {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonStringify(
+            createWebPageSchema(heroHeading, heroDescription ?? heroHeading, "#"),
+          ),
+        }}
+      />
       {breadcrumb && (
         <>
           <BreadcrumbJsonLd

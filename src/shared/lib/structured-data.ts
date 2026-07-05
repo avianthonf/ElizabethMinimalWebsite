@@ -27,7 +27,7 @@ const SCHOOL_ADDRESS = {
 
 export interface OrganizationSchema {
   "@context": "https://schema.org";
-  "@type": "EducationalOrganization";
+  "@type": "EducationalOrganization" | "School";
   name: string;
   url: string;
   logo?: string;
@@ -41,7 +41,9 @@ export interface OrganizationSchema {
   sameAs?: string[];
 }
 
-export function createOrganizationSchema(): OrganizationSchema {
+export function createOrganizationSchema(
+  overrides?: Partial<OrganizationSchema> & Record<string, unknown>,
+): OrganizationSchema {
   return {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -54,7 +56,8 @@ export function createOrganizationSchema(): OrganizationSchema {
       availableLanguage: ["English", "Hindi", "Konkani"],
     },
     sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
-  };
+    ...overrides,
+  } as OrganizationSchema;
 }
 
 // ── BreadcrumbList ─────────────────────────────────────────────────

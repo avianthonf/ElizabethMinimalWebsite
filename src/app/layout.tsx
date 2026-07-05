@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, CONTACT_EMAIL, SOCIAL_LINKS } from "@/shared/lib/brand";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
+import { createOrganizationSchema } from "@/shared/lib/structured-data";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -68,23 +69,12 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const jsonLd = createOrganizationSchema({
   "@type": "School",
-  name: "St. Elizabeth's High School",
   alternateName: "St. Elizabeth's High School, Pomburpa",
-  url: SITE_URL,
   logo: "/logo.png",
   description:
     "Catholic school affiliated with CBSE in Pomburpa, Bardez, Goa. Nurturing hearts since 1949 with an average class size of 15 students.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Pomburpa",
-    addressLocality: "Bardez",
-    addressRegion: "Goa",
-    postalCode: "403511",
-    addressCountry: "IN",
-  },
   geo: {
     "@type": "GeoCoordinates",
     latitude: 15.5449,
@@ -100,8 +90,7 @@ const jsonLd = {
     "@type": "QuantitativeValue",
     value: 1200,
   },
-  sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
-};
+});
 
 export default function RootLayout({
   children,
