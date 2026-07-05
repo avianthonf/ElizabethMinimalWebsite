@@ -1,0 +1,16 @@
+export { HomePage } from "./home-page";
+export { HeroCarousel } from "./hero-carousel";
+export { CounterBar } from "./counter-bar";
+export { WelcomeSection } from "./welcome-section";
+export { WhySection } from "./why-section";
+export { ProgramsGrid } from "./programs-grid";
+export { HolisticSection } from "./holistic-section";
+export { GallerySection } from "./gallery-section";
+export { CampusThenNow } from "./campus-then-now";
+export { AchievementsSection } from "./achievements-section";
+export { StudentLifeSection } from "./student-life-section";
+export { TestimonialsSection } from "./testimonials-section";
+export { AdmissionsCTA } from "./admissions-cta";
+export { NewsSection } from "./news-section";
+export { EventsPreview } from "./events-preview";
+export { LocateSection } from "./locate-section";

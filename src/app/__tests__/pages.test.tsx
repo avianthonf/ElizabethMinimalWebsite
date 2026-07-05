@@ -10,7 +10,7 @@ vi.mock("next/image", () => ({
   ),
 }));
 
-vi.mock("@/components/navigation/MenuOverlay", () => ({
+vi.mock("@/features/menu", () => ({
   MenuOverlay: () => <div data-testid="menu-overlay" />,
 }));
 
@@ -25,7 +25,7 @@ vi.mock("@/widgets/header/header", () => ({
 }));
 
 // Mock the HomePage
-vi.mock("@/components/home", () => ({
+vi.mock("@/pages/home", () => ({
   HomePage: () => <main data-testid="homepage">Homepage</main>,
 }));
 
