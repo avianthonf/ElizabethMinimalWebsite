@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { Header } from "@/widgets/header/header";
 import { Footer } from "@/widgets/footer/footer";
+import { ReadingProgressBar } from "@/features/progress";
 import {
   HEADER_NAV_LINKS,
   FOOTER_SECTIONS,
@@ -13,6 +14,7 @@ import {
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
+      <ReadingProgressBar />
       <Header navLinks={HEADER_NAV_LINKS} transparent={true} fixed />
       <a href="#main-content" className="skipLink">
         Skip to main content

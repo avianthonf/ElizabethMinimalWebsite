@@ -6,10 +6,16 @@ import { SplitLayout } from "@/shared/ui/split-layout";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
-import { SCHOOL_ADDRESS, SCHOOL_CONTACT } from "@/domains/contact/contact.data";
+import {
+  SCHOOL_ADDRESS,
+  SCHOOL_CONTACT,
+  GOOGLE_MAPS_DIRECTIONS_URL,
+} from "@/domains/contact/contact.data";
 import { CONTACT_IMAGES } from "@/domains/media/images.data";
 import { ContactForm } from "@/features/contact-form";
 import { MapEmbedLazy as MapEmbed } from "@/features/map/map-embed-lazy";
+import { QRCard } from "@/features/qr";
+import { SafeSection } from "@/features/error-isolation";
 
 export const metadata = createPageMetadata(
   "Contact",
@@ -60,7 +66,9 @@ export default function ContactPage() {
                   <Text variant="muted">Phone: {SCHOOL_CONTACT.phone}</Text>
                   <Text variant="muted">Email: {SCHOOL_CONTACT.email}</Text>
                 </Stack>
-                <ContactForm />
+                <SafeSection label="contact form">
+                  <ContactForm />
+                </SafeSection>
               </Stack>
             }
             right={
@@ -69,6 +77,11 @@ export default function ContactPage() {
                   Find Us
                 </Heading>
                 <MapEmbed />
+                <QRCard
+                  value={GOOGLE_MAPS_DIRECTIONS_URL}
+                  label="Scan for Google Maps directions"
+                  size={140}
+                />
               </Stack>
             }
           />

@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Link } from "@/shared/ui/link";
+import { QRCard } from "@/features/qr";
 import { MapEmbedLazy as MapEmbed } from "@/features/map/map-embed-lazy";
 import { SchoolGlobe } from "@/features/globe";
 import {
@@ -117,6 +118,11 @@ export default function LocationMapPage() {
                 >
                   Get Directions on Google Maps
                 </Link>
+                <QRCard
+                  value={GOOGLE_MAPS_DIRECTIONS_URL}
+                  label="Scan for directions to campus"
+                  size={130}
+                />
               </Stack>
             </div>
           </Stack>

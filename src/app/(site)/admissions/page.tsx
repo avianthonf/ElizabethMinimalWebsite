@@ -11,6 +11,7 @@ import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
 import { Link } from "@/shared/ui/link";
 import { SchoolIcon } from "@/shared/ui/school-icon";
+import { QRCard } from "@/features/qr";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 
 export const metadata = createPageMetadata(
@@ -83,6 +84,11 @@ export default function AdmissionsPage() {
             }
             right={
               <Stack gap="medium">
+                <QRCard
+                  value={`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://stelizabeths.in"}/admissions/apply`}
+                  label="Scan to apply"
+                  size={140}
+                />
                 <Heading level="h3" variant="card">
                   Key Dates
                 </Heading>

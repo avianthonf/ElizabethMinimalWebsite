@@ -7,10 +7,12 @@ import confetti from "canvas-confetti";
  * ConfettiTrigger — fires a confetti celebration on mount.
  *
  * Used on the contact thank-you page to delight users after form submission.
+ * Uses canvas-confetti for lightweight, dependency-free confetti bursts.
  * Fires staggered bursts from both corners for a dramatic effect.
  * Respects prefers-reduced-motion — no confetti for accessibility users.
  *
- * Accepts an optional `duration` prop (default 3000ms).
+ * tsParticles confetti preset was evaluated (Phase 3 research) but
+ * canvas-confetti is simpler, lighter, and already battle-tested here.
  */
 export interface ConfettiTriggerProps {
   duration?: number;

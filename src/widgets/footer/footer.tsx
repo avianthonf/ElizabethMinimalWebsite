@@ -5,7 +5,9 @@ import { Stack } from "@/shared/ui/stack";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Link } from "@/shared/ui/link";
+import { Suspense } from "react";
 import { CopyrightYear } from "@/shared/ui/copyright-year";
+import { PartnerScrollLazy } from "./partner-scroll-lazy";
 import styles from "./footer.module.css";
 
 export interface FooterSection {
@@ -150,6 +152,11 @@ export function Footer({
               </Text>
             )}
           </div>
+
+          {/* Partner / affiliation scroll */}
+          <Suspense fallback={null}>
+            <PartnerScrollLazy />
+          </Suspense>
         </div>
       </Container>
     </footer>

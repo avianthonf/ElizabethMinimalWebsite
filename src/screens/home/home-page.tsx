@@ -1,6 +1,7 @@
 import { ScrollReveal } from "@/shared/ui/scroll-reveal";
 import { HeroCarousel } from "./hero-carousel";
 import { CounterBar } from "./counter-bar";
+import { AchievementTicker } from "@/features/marquee";
 import { WelcomeSection } from "./welcome-section";
 import { WhySection } from "./why-section";
 import { ProgramsGrid } from "./programs-grid";
@@ -52,6 +53,20 @@ export function HomePage() {
       <ScrollReveal>
         <CounterBar stats={COUNTER_STATS} ariaLabel="Key school statistics" />
       </ScrollReveal>
+
+      {/* S2b: Achievement Ticker Strip */}
+      <AchievementTicker
+        items={[
+          "CBSE Affiliated Since 2005",
+          "75+ Years of Excellence",
+          "Consistent Academic Distinction",
+          "State-Level Sports Champions",
+          "Cultural Award Winners",
+          "Alumni Across 20+ Countries",
+          "Inter-House Competition Legacy",
+          "Community Service Award 2024",
+        ]}
+      />
 
       {/* S3: Welcome / About */}
       <ScrollReveal delay={0.1}>
