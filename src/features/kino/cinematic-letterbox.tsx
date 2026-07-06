@@ -3,6 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
+ * Determines whether the letterbox animation should be skipped.
+ *
+ * Returns true during SSR (no animation on server render), when the
+ * user has already seen the animation this browser session, or when
+ * prefers-reduced-motion is active.
+ */
+function shouldSkipAnimation(): boolean {
+  if (typeof window === "undefined") return true; // SSR: render children directly
+  try {
+    if (sessionStorage.getItem("stelizabeths-letterbox-seen")) return true;
+  } catch {
+    /* unavailable */
+  }
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+/**
  * CinematicLetterbox — a cinematic opening on first homepage visit.
  *
  * Shows a horizontal letterbox (black bars) that open from center
@@ -10,31 +27,20 @@ import { useEffect, useRef, useState } from "react";
  * effect only plays ONCE per browser session.
  *
  * Falls back to instant reveal when prefers-reduced-motion is active.
+ * During SSR, children render immediately (no animation on server).
  * Fully CSS-driven: no runtime animation cost after the initial reveal.
+ *
+ * StrictMode-safe: the effect runs without a ref guard, so it
+ * correctly re-initiates on the double-mount cycle.
  */
 export function CinematicLetterbox({ children }: { children: React.ReactNode }) {
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(shouldSkipAnimation);
   const containerRef = useRef<HTMLDivElement>(null);
-  const didInit = useRef(false);
 
   useEffect(() => {
-    if (didInit.current) return;
-    didInit.current = true;
-
-    // Check if we've seen the animation this session
-    let alreadySeen = false;
-    try {
-      if (sessionStorage.getItem("stelizabeths-letterbox-seen")) alreadySeen = true;
-    } catch {
-      /* unavailable */
-    }
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) alreadySeen = true;
-
-    if (alreadySeen) {
-      setRevealed(true);
-      return;
-    }
+    // Already revealed — nothing to animate (also guards against
+    // re-running after the timeout fires and changes revealed to true)
+    if (revealed) return;
 
     // Trigger the CSS transition for the letterbox bars
     const container = containerRef.current;
@@ -61,6 +67,7 @@ export function CinematicLetterbox({ children }: { children: React.ReactNode }) 
     }, 1200);
 
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- revealed guard at top of effect prevents re-animation after timeout fires
   }, []);
 
   // Already revealed — render normally

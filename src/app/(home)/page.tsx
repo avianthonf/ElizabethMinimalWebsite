@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { HomePage } from "@/screens/home";
 import { createPageMetadata, SITE_DESCRIPTION } from "@/shared/lib/page-utils";
 
@@ -9,9 +8,5 @@ export const metadata: Metadata = createPageMetadata("Home", SITE_DESCRIPTION, {
 });
 
 export default function Home() {
-  return (
-    <Suspense fallback={null}>
-      <HomePage />
-    </Suspense>
-  );
+  return <HomePage />;
 }
