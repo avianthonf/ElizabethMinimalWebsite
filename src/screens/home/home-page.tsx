@@ -49,10 +49,8 @@ export function HomePage() {
       {/* S1: Hero Carousel — no scroll reveal (it's the hero) */}
       <HeroCarousel slides={HERO_SLIDES} ariaLabel="Featured highlights" />
 
-      {/* S2: Counter Bar */}
-      <ScrollReveal>
-        <CounterBar stats={COUNTER_STATS} ariaLabel="Key school statistics" />
-      </ScrollReveal>
+      {/* S2: Counter Bar — no scroll reveal (immediately visible below hero) */}
+      <CounterBar stats={COUNTER_STATS} ariaLabel="Key school statistics" />
 
       {/* S2b: Achievement Ticker Strip */}
       <AchievementTicker

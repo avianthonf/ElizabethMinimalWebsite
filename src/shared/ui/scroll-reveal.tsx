@@ -16,17 +16,23 @@ interface ScrollRevealProps {
  * Scroll-triggered reveal using Motion's native ScrollTimeline (hardware
  * accelerated when available, falling back to pooled IntersectionObserver).
  *
- * Motion's `whileInView` with `once: true` fires once when the element enters
- * the viewport.  The parent `<MotionConfig reducedMotion="user" />` in
- * root-layout automatically disables all animation when the user has
- * `prefers-reduced-motion: reduce` — no manual media-query handling needed.
+ * **Transform-only — no opacity animation.** Content stays at `opacity: 1`
+ * (the CSS default) so it is immediately visible during SSR, when
+ * `prefers-reduced-motion: reduce` is active, and when `whileInView`
+ * never fires due to library compatibility issues. The animation applies
+ * only `transform` (translateX / translateY), which degrades gracefully:
+ * the browser skips the transform under reduced motion but content
+ * remains visible at its final position.
+ *
+ * This follows the industry best practice documented in:
+ *   https://access-proof.com/blog/prefers-reduced-motion-transform-only-fix
+ *
+ * The parent `<MotionConfig reducedMotion="user" />` in root-layout
+ * automatically disables all animation when the user has
+ * `prefers-reduced-motion: reduce`.
  *
  * Replaces the custom IntersectionObserver + useLayoutEffect implementation
- * with a 0.6 KB hook from the already-installed `motion` package.
- *
- * The old CSS-module approach (visibility:hidden → visible transitions) is
- * fully replaced — Motion handles the initial render state and animation
- * orchestration.
+ * with the already-installed `motion` package.
  */
 export function ScrollReveal({
   children,
@@ -36,7 +42,6 @@ export function ScrollReveal({
   ...aria
 }: ScrollRevealProps) {
   const initial = {
-    opacity: 0,
     y: direction === "up" ? 40 : 0,
     x: direction === "left" ? -40 : direction === "right" ? 40 : 0,
   };
@@ -50,8 +55,8 @@ export function ScrollReveal({
   return (
     <motion.div
       initial={initial}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      whileInView={{ x: 0, y: 0 }}
+      viewport={{ once: true, margin: "10% 0px 10% 0px" }}
       transition={transition}
       className={className}
       {...aria}
