@@ -1,0 +1,79 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run weekly on Mondays at 9 AM UTC
+    - cron: '0 9 * * 1'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Run npm audit
+        run: |
+          echo "Running npm audit..."
+          npm audit --production --audit-level=moderate || true
+          
+          # Save audit results
+          npm audit --production --json > audit-results.json || true
+          
+          # Count vulnerabilities
+          CRITICAL=$(node -pe "JSON.parse(require('fs').readFileSync('audit-results.json')).metadata.vulnerabilities.critical || 0")
+          HIGH=$(node -pe "JSON.parse(require('fs').readFileSync('audit-results.json')).metadata.vulnerabilities.high || 0")
+          MODERATE=$(node -pe "JSON.parse(require('fs').readFileSync('audit-results.json')).metadata.vulnerabilities.moderate || 0")
+          LOW=$(node -pe "JSON.parse(require('fs').readFileSync('audit-results.json')).metadata.vulnerabilities.low || 0")
+          
+          echo "Vulnerability Summary:"
+          echo "  Critical: $CRITICAL"
+          echo "  High: $HIGH"
+          echo "  Moderate: $MODERATE"
+          echo "  Low: $LOW"
+          
+          # Fail on critical or high vulnerabilities
+          if [ "$CRITICAL" -gt 0 ] || [ "$HIGH" -gt 0 ]; then
+            echo "❌ Critical or High vulnerabilities found!"
+            npm audit --production
+            exit 1
+          fi
+          
+          echo "✅ No critical or high vulnerabilities found"
+
+      - name: Check for outdated dependencies
+        run: |
+          echo "Checking for outdated dependencies..."
+          npm outdated || true
+
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: Upload Snyk results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: snyk.sarif
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        if: github.event_name == 'pull_request'
+        with:
+          fail-on-severity: moderate
+          deny-licenses: GPL-2.0, GPL-3.0
