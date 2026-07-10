@@ -263,20 +263,18 @@ export interface AcademicsData {
 }
 
 /**
- * Fetches academics page data.
+ * Academics page data - exported directly for synchronous access.
  *
- * Currently returns static content. When a CMS is integrated, replace
- * only the implementation body — no component changes needed.
+ * All data is static. When a CMS is integrated, add async fetching
+ * functions without changing existing component imports.
  */
-export async function getAcademicsData(): Promise<AcademicsData> {
-  return {
-    DEPARTMENTS,
-    CURRICULUM_HIGHLIGHTS,
-    CURRICULUM_INTRO,
-    LANGUAGE_PROGRAMS,
-    LIBRARY_RESOURCES,
-    COLLEGE_COUNSELING_STEPS,
-    CURRICULUM_PAGE,
-    NEP_READINESS,
-  };
-}
+export const ACADEMICS_DATA: AcademicsData = {
+  DEPARTMENTS,
+  CURRICULUM_HIGHLIGHTS,
+  CURRICULUM_INTRO,
+  LANGUAGE_PROGRAMS,
+  LIBRARY_RESOURCES,
+  COLLEGE_COUNSELING_STEPS,
+  CURRICULUM_PAGE,
+  NEP_READINESS,
+};
