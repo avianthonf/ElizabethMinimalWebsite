@@ -88,7 +88,7 @@ export function CinematicLetterbox({ children }: { children: React.ReactNode }) 
           right: 0,
           height: "50vh",
           background: "var(--color-primary-navy, #1B2A4A)",
-          zIndex: 10000,
+          zIndex: 50, // Below header (z-sticky: 100) so buttons remain clickable
           transition: "height 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
           willChange: "height",
         }}
@@ -103,7 +103,7 @@ export function CinematicLetterbox({ children }: { children: React.ReactNode }) 
           right: 0,
           height: "50vh",
           background: "var(--color-primary-navy, #1B2A4A)",
-          zIndex: 10000,
+          zIndex: 50, // Below header (z-sticky: 100) so buttons remain clickable
           transition: "height 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
           willChange: "height",
         }}
