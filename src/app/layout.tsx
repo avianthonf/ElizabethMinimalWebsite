@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { ViewTransitions } from "next-view-transitions";
 import { MotionConfig } from "motion/react";
 import { Playfair_Display, Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { AxeProvider } from "@/shared/ui/axe-provider";
 import { SmoothScrollProvider } from "@/shared/ui/smooth-scroll-provider";
 import { RouteAnnouncer } from "@/shared/ui/route-announcer";
@@ -87,6 +88,10 @@ const enhancedSchemas = [
   createBreadcrumbSchema([{ name: "Home", url: SITE_URL }]),
 ];
 
+// Google Analytics configuration
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const ENABLE_ANALYTICS = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -118,6 +123,8 @@ export default function RootLayout({
                   <MenuOverlay />
                   <Analytics />
                   <SpeedInsights />
+                  {/* Google Analytics 4 - only load in production when enabled */}
+                  {ENABLE_ANALYTICS && GA_ID && <GoogleAnalytics gaId={GA_ID} />}
                 </MenuProvider>
               </SmoothScrollProvider>
             </AxeProvider>
