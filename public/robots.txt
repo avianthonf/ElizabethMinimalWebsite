@@ -1,0 +1,106 @@
+# St. Elizabeth's High School - robots.txt
+# Updated: June 2026
+# Optimized for search engines and AI crawlers
+
+# Allow all legitimate crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://stelizabethhighschool.in/sitemap.xml
+
+# Block private and system directories
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_next/image/
+Disallow: /admin/
+Disallow: /*.json$
+
+# Allow search engine crawlers full access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Allow AI crawlers (important for AI visibility)
+# ChatGPT Search
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT Search (new crawler)
+User-agent: OAI-SearchBot
+Allow: /
+
+# Google AI (Gemini, AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Common.Crawl (used by many AI systems)
+User-agent: CCBot
+Allow: /
+
+# Anthropic's research crawler
+User-agent: anthropic-ai
+Allow: /
+
+# Diffbot (knowledge graph extraction)
+User-agent: Diffbot
+Allow: /
+
+# Apple's AI crawler
+User-agent: Applebot
+Allow: /
+
+# Yandex (Russian search engine)
+User-agent: YandexBot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Block known bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# Crawl-delay for aggressive crawlers (if needed)
+# User-agent: *
+# Crawl-delay: 10
+
+# Host directive (optional, for Yandex)
+# Host: https://stelizabethhighschool.in
