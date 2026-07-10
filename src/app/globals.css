@@ -48,13 +48,14 @@
   --p-color-navy: #1b2a4a;
   --p-color-navy-dark: #0f1d35;
   --p-color-ink: #1a1a1a;
-  --p-color-muted: #6b7280;
+  --p-color-muted: #5a5f6b; /* Darkened from #6b7280 for WCAG AA compliance */
   --p-color-paper: #fafaf9;
   --p-color-soft: #f4f1ed;
   --p-color-line: rgba(26, 26, 26, 0.1);
   --p-color-deep-blue: #2d4373;
   --p-color-deep-blue-light: #e8edf5;
-  --p-color-gold: #c9a96e;
+  --p-color-gold: #c9a96e; /* Used for backgrounds and large text */
+  --p-color-gold-text: #655537; /* Darkened for normal text - WCAG AA compliant (6.9:1 contrast) */
   --p-color-gold-hover: #b8954f;
   --p-color-dark: #1a1a2e;
   --p-color-gallery-bg: #fafaf9;
@@ -66,7 +67,8 @@
   --s-color-text-muted: var(--p-color-muted);
   --s-color-surface: var(--p-color-paper);
   --s-color-surface-alt: var(--p-color-soft);
-  --s-color-accent: var(--p-color-gold);
+  --s-color-accent: var(--p-color-gold); /* For backgrounds and large text */
+  --s-color-accent-text: var(--p-color-gold-text); /* For normal text - WCAG AA compliant */
   --s-color-accent-hover: var(--p-color-gold-hover);
   --s-color-dark: var(--p-color-dark);
   --s-color-cta-bg: var(--p-color-deep-blue);
