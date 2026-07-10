@@ -9,6 +9,7 @@
 
 import type { ReactNode } from "react";
 import { CONTACT_EMAIL, POSTAL_CODE } from "@/shared/lib/brand";
+import { SCHOOL_CONFIG, CONTACT_CONFIG } from "@/shared/config";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -42,26 +43,26 @@ export interface ContactInfo {
 // ── School Address ─────────────────────────────────────────────────────
 
 export const SCHOOL_ADDRESS = {
-  street: "Ven. Fr. Hilario Gonsalves Rd",
-  area: "Pomburpa, Bardez",
-  city: "Goa",
-  pinCode: POSTAL_CODE,
-  country: "India",
+  street: CONTACT_CONFIG.ADDRESS.STREET,
+  area: `${SCHOOL_CONFIG.LOCATION.CITY}, Bardez`,
+  city: CONTACT_CONFIG.ADDRESS.STATE,
+  pinCode: CONTACT_CONFIG.ADDRESS.POSTAL_CODE,
+  country: CONTACT_CONFIG.ADDRESS.COUNTRY,
 } as const;
 
 // ── School Contact ─────────────────────────────────────────────────────
 
 export const SCHOOL_CONTACT = {
-  phone: "+91 832-241-0654",
-  email: CONTACT_EMAIL,
-  hours: "Mon–Fri: 7:30 AM – 3:30 PM",
+  phone: CONTACT_CONFIG.PHONE.MAIN,
+  email: CONTACT_CONFIG.EMAIL.GENERAL,
+  hours: `${CONTACT_CONFIG.OFFICE_HOURS.DAYS.join(", ").replace(/, ([^,]*)$/, " and $1")}: ${CONTACT_CONFIG.OFFICE_HOURS.WEEKDAY_OPEN} – ${CONTACT_CONFIG.OFFICE_HOURS.WEEKDAY_CLOSE}`,
 } as const;
 
 // ── School Coordinates ─────────────────────────────────────────────────
 
 export const SCHOOL_COORDINATES = {
-  lat: 15.5449,
-  lng: 73.9723,
+  lat: SCHOOL_CONFIG.LOCATION.COORDINATES.LATITUDE,
+  lng: SCHOOL_CONFIG.LOCATION.COORDINATES.LONGITUDE,
 } as const;
 
 // ── Google Maps ────────────────────────────────────────────────────────
