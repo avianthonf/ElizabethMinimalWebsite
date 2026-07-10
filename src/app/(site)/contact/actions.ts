@@ -2,9 +2,11 @@
 
 import { z } from "zod";
 import type { Resend } from "resend";
+import { headers } from "next/headers";
 import { InquiryEmail } from "@/shared/lib/email";
 import { render } from "@react-email/components";
 import { CONTACT_EMAIL, TRANSACTIONAL_EMAIL_FROM } from "@/shared/lib/brand";
+import { rateLimit, getClientIP } from "@/shared/lib/rate-limit";
 
 /** Lazy Resend client — initialized on first use to avoid module-scope failures in tests. */
 let resendClient: Resend | null = null;
@@ -43,37 +45,6 @@ export type FormState = {
   errors?: Record<string, string[]>;
   message?: string;
 };
-
-// ── Rate Limiting ───────────────────────────────────────────────────────
-
-/**
- * NOTE: This is an in-memory rate limiter. On Vercel serverless, each
- * function instance has its own Map — the limit resets on cold start and
- * concurrent instances don't share state.
- *
- * For full production hardening, replace with Upstash Redis
- * (@upstash/ratelimit + @upstash/redis). For a low-traffic school website,
- * the combination of honeypot + timing check + in-memory rate limit
- * provides pragmatic defense against scripted bots. A dedicated attacker
- * can bypass the rate limit, but they can't bypass the honeypot.
- */
-const submissions = new Map<string, number[]>();
-const RATE_LIMIT_WINDOW = 3_600_000; // 1 hour
-const RATE_LIMIT_MAX = 3; // 3 submissions per hour per email
-
-function isRateLimited(email: string): boolean {
-  const now = Date.now();
-  const timestamps = submissions.get(email) ?? [];
-  const recent = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW);
-  submissions.set(email, recent);
-  return recent.length >= RATE_LIMIT_MAX;
-}
-
-function recordSubmission(email: string): void {
-  const timestamps = submissions.get(email) ?? [];
-  timestamps.push(Date.now());
-  submissions.set(email, timestamps);
-}
 
 // ── Server Action ───────────────────────────────────────────────────────
 
@@ -122,8 +93,13 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     }
   }
 
-  // 3. Rate limiting — applied to real (non-bot) submissions by email
-  if (isRateLimited(email)) {
+  // 3. Rate limiting — per-IP limit prevents abuse across serverless instances
+  //    Uses Upstash Redis if configured, falls back to in-memory for development
+  const headersList = await headers();
+  const ip = getClientIP(headersList);
+  const { success: rateLimitSuccess } = await rateLimit(`contact:${ip}`, 3, 3600);
+
+  if (!rateLimitSuccess) {
     return {
       success: false,
       errors: {
@@ -155,8 +131,6 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
       subject: `[Website Inquiry] ${subject.replace(/[\r\n]/g, "")}`,
       html: emailHtml,
     });
-
-    recordSubmission(email);
 
     return {
       success: true,
