@@ -249,7 +249,12 @@ export function SearchOverlay({
             spellCheck={false}
           />
           {isLoading && (
-            <Loader2 size={18} className={styles.spinner} aria-label="Loading results" />
+            <>
+              <Loader2 size={18} className={styles.spinner} aria-label="Loading results" />
+              <span className="sr-only" role="status" aria-live="polite">
+                Searching...
+              </span>
+            </>
           )}
           <button
             type="button"
@@ -319,7 +324,7 @@ export function SearchOverlay({
           )}
 
           {query.trim() && !error && results.length === 0 && !isLoading && (
-            <div className={styles.empty}>
+            <div className={styles.empty} role="status" aria-live="polite">
               <p className={styles.hint}>
                 No results found for <strong>&ldquo;{query}&rdquo;</strong>.
               </p>
@@ -327,19 +332,23 @@ export function SearchOverlay({
           )}
 
           {results.length > 0 && (
-            <ul className={styles.results}>
-              {results.map((r) => (
-                <li key={r.id} className={styles.resultItem}>
-                  <Link href={r.url} className={styles.resultLink} onClick={onClose}>
-                    <FileText size={18} className={styles.resultIcon} aria-hidden="true" />
-                    <div className={styles.resultContent}>
-                      <div className={styles.resultTitle}>{renderHighlightedText(r.title)}</div>
-                      <div className={styles.resultExcerpt}>{renderHighlightedText(r.excerpt)}</div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div role="region" aria-live="polite" aria-atomic="false">
+              <ul className={styles.results} aria-label={`${results.length} search results`}>
+                {results.map((r) => (
+                  <li key={r.id} className={styles.resultItem}>
+                    <Link href={r.url} className={styles.resultLink} onClick={onClose}>
+                      <FileText size={18} className={styles.resultIcon} aria-hidden="true" />
+                      <div className={styles.resultContent}>
+                        <div className={styles.resultTitle}>{renderHighlightedText(r.title)}</div>
+                        <div className={styles.resultExcerpt}>
+                          {renderHighlightedText(r.excerpt)}
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       </div>
