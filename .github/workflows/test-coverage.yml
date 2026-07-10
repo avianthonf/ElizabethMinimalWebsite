@@ -1,0 +1,97 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Check coverage thresholds
+        run: |
+          echo "Checking if coverage meets minimum thresholds..."
+          npm run test:coverage -- --reporter=json > coverage-summary.json || true
+          
+          # Extract coverage percentages
+          STATEMENTS=$(node -pe "JSON.parse(require('fs').readFileSync('coverage-summary.json')).total.statements.pct")
+          BRANCHES=$(node -pe "JSON.parse(require('fs').readFileSync('coverage-summary.json')).total.branches.pct")
+          FUNCTIONS=$(node -pe "JSON.parse(require('fs').readFileSync('coverage-summary.json')).total.functions.pct")
+          LINES=$(node -pe "JSON.parse(require('fs').readFileSync('coverage-summary.json')).total.lines.pct")
+          
+          echo "Coverage Summary:"
+          echo "  Statements: ${STATEMENTS}%"
+          echo "  Branches: ${BRANCHES}%"
+          echo "  Functions: ${FUNCTIONS}%"
+          echo "  Lines: ${LINES}%"
+          
+          # Thresholds (must match vitest.config.ts)
+          MIN_STATEMENTS=40
+          MIN_BRANCHES=35
+          MIN_FUNCTIONS=40
+          MIN_LINES=40
+          
+          FAILED=0
+          
+          if (( $(echo "$STATEMENTS < $MIN_STATEMENTS" | bc -l) )); then
+            echo "❌ Statements coverage ($STATEMENTS%) is below threshold ($MIN_STATEMENTS%)"
+            FAILED=1
+          fi
+          
+          if (( $(echo "$BRANCHES < $MIN_BRANCHES" | bc -l) )); then
+            echo "❌ Branches coverage ($BRANCHES%) is below threshold ($MIN_BRANCHES%)"
+            FAILED=1
+          fi
+          
+          if (( $(echo "$FUNCTIONS < $MIN_FUNCTIONS" | bc -l) )); then
+            echo "❌ Functions coverage ($FUNCTIONS%) is below threshold ($MIN_FUNCTIONS%)"
+            FAILED=1
+          fi
+          
+          if (( $(echo "$LINES < $MIN_LINES" | bc -l) )); then
+            echo "❌ Lines coverage ($LINES%) is below threshold ($MIN_LINES%)"
+            FAILED=1
+          fi
+          
+          if [ $FAILED -eq 1 ]; then
+            echo ""
+            echo "💡 Coverage thresholds not met. Please add more tests."
+            exit 1
+          fi
+          
+          echo "✅ All coverage thresholds met!"
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+      - name: Comment PR with coverage
+        uses: romeovs/lcov-reporter-action@v0.3.1
+        if: github.event_name == 'pull_request'
+        with:
+          lcov-file: ./coverage/lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          delete-old-comments: true
