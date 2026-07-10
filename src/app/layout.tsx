@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     template: "%s | St. Elizabeth's High School",
   },
   description:
-    "St. Elizabeth's High School in Pomburpa, Goa — nurturing hearts since 1949. Catholic education affiliated with CBSE with an average class size of 15 students.",
+    "St. Elizabeth's High School in Pomburpa, Goa — nurturing hearts since 1954. Catholic education affiliated with GBSHSE with an average class size of 15 students.",
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
@@ -76,7 +76,7 @@ const jsonLd = createOrganizationSchema({
   alternateName: "St. Elizabeth's High School, Pomburpa",
   logo: "/logo.png",
   description:
-    "Catholic school affiliated with CBSE in Pomburpa, Bardez, Goa. Nurturing hearts since 1949 with an average class size of 15 students.",
+    "Catholic school affiliated with GBSHSE in Pomburpa, Bardez, Goa. Nurturing hearts since 1954 with an average class size of 15 students.",
   geo: {
     "@type": "GeoCoordinates",
     latitude: 15.5449,
@@ -84,14 +84,37 @@ const jsonLd = createOrganizationSchema({
   },
   telephone: "+91-832-241-0654",
   email: CONTACT_EMAIL,
-  foundingDate: "1949",
+  foundingDate: "1954",
   slogan: "Truth and Honesty",
   educationalLevel: "Secondary",
-  curriculum: "CBSE",
+  curriculum: "GBSHSE",
   numberOfStudents: {
     "@type": "QuantitativeValue",
-    value: 1200,
+    value: 185,
   },
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "Secondary School Certificate (SSC)",
+    recognizedBy: {
+      "@type": "Organization",
+      name: "Goa Board of Secondary and Higher Secondary Education (GBSHSE)",
+    },
+  },
+  memberOf: {
+    "@type": "Organization",
+    name: "Diocesan Society of Education, Archdiocese of Goa and Daman",
+  },
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Archdiocese of Goa and Daman",
+  },
+  areaServed: [
+    { "@type": "City", name: "Mapusa" },
+    { "@type": "City", name: "Panjim" },
+    { "@type": "AdministrativeArea", name: "Bardez" },
+    { "@type": "AdministrativeArea", name: "North Goa" },
+    { "@type": "State", name: "Goa" },
+  ],
 });
 
 export default function RootLayout({

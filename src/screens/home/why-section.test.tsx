@@ -9,7 +9,7 @@ const defaultPoints = [
   },
   {
     title: "Academic Excellence",
-    description: "Consistently strong results at the CBSE Class X and XII examinations.",
+    description: "Consistently strong results at the GBSHSE Class X examinations.",
   },
   {
     title: "Nurturing Community",

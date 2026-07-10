@@ -55,8 +55,8 @@ export function HomePage() {
       {/* S2b: Achievement Ticker Strip */}
       <AchievementTicker
         items={[
-          "CBSE Affiliated Since 2005",
-          "75+ Years of Excellence",
+          "GBSHSE Affiliated",
+          "Since 1954 — Seven Decades of Excellence",
           "Consistent Academic Distinction",
           "State-Level Sports Champions",
           "Cultural Award Winners",

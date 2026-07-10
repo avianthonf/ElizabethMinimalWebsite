@@ -23,7 +23,7 @@ export default function AcademicsPage() {
       <Hero
         eyebrow="Learn"
         heading="Academics"
-        description="A rigorous CBSE curriculum delivered by dedicated faculty, designed to challenge and inspire every student to achieve their personal best."
+        description="A rigorous GBSHSE curriculum delivered by dedicated faculty, designed to challenge and inspire every student to achieve their personal best."
         backgroundImage={`/images/${ACADEMICS_HERO.filename}`}
       />
 
@@ -36,8 +36,9 @@ export default function AcademicsPage() {
                 Our Departments
               </Heading>
               <Text variant="muted" size="medium">
-                St. Elizabeth follows the Central Board of Secondary Education (CBSE) curriculum.
-                Our nine academic departments provide a well-rounded education that prepares
+                St. Elizabeth follows the Goa Board of Secondary and Higher Secondary Education
+                (GBSHSE) curriculum, aligned with the vision of the National Education Policy (NEP)
+                2020. Our nine academic departments provide a well-rounded education that prepares
                 students for university and beyond.
               </Text>
             </Stack>

@@ -5,40 +5,45 @@
 export const RESOURCE_ROOM_PAGE = {
   metaTitle: "Resource Room",
   metaDescription:
-    "The Resource Room at St. Elizabeth's High School — dedicated support for students with diverse learning needs.",
+    "The Academic Resource Room at St. Elizabeth's High School — where abilities are discovered, confidence is nurtured, and success begins.",
   breadcrumb: { href: "/academics", label: "Academics", currentLabel: "Resource Room" },
   heroEyebrow: "Support",
   heroHeading: "Resource Room",
   heroDescription:
-    "A dedicated space where students with diverse learning needs receive individualised support to thrive academically and personally.",
+    "Where abilities are discovered, confidence is nurtured, and success begins. A nurturing and inclusive learning space where every child is supported to learn at their own pace.",
   sectionHeading: "Support Services",
   sectionAriaLabel: "Resource room and learning support",
 } as const;
 
 export const RESOURCE_ROOM_SERVICES = [
   {
-    title: "Learning Support",
+    title: "Individualized Support",
     description:
-      "Our special educators work one-on-one and in small groups with students who need additional academic support. Whether it's reading, writing, mathematics, or study skills, we create individualized learning plans that build confidence and competence.",
+      "Personalized guidance tailored to each student's learning needs. Our special educators work one-on-one and in small groups with students who need additional academic support, creating individualized learning plans that build confidence and competence.",
   },
   {
-    title: "Remedial Teaching",
+    title: "Foundational Learning",
     description:
-      "Students who are falling behind in specific subjects receive targeted remedial instruction. Our teachers identify gaps in understanding and use alternative teaching strategies to help students catch up with their peers.",
+      "Focused support in reading, writing, mathematics, and other essential academic skills. We help students strengthen foundational skills and reach their full potential through targeted instruction.",
   },
   {
-    title: "Counselling Services",
+    title: "Engaging Learning Activities",
     description:
-      "Beyond academic support, our counsellors provide emotional and social guidance. Students can discuss personal challenges, peer relationships, and academic pressures in a safe, confidential environment.",
+      "Interactive activities and learning resources make learning enjoyable and meaningful. Through games, manipulatives, and creative exercises, students develop skills in a supportive and engaging environment.",
   },
   {
-    title: "Parent Partnership",
+    title: "Confidence Building",
     description:
-      "We work closely with parents to ensure consistency between home and school. Regular meetings, progress reports, and collaborative goal-setting keep families informed and engaged in their child's development.",
+      "We encourage students to develop self-confidence, independence, and a positive attitude towards learning. Success builds on success, and every achievement — no matter how small — is celebrated.",
   },
   {
-    title: "Inclusive Education",
+    title: "Inclusive Learning",
     description:
-      "St. Elizabeth's is committed to inclusive education. Our resource room supports the integration of students with diverse learning needs into mainstream classrooms while ensuring they receive the specialized attention they require to succeed.",
+      "A caring and supportive environment that empowers every learner to succeed. St. Elizabeth's is committed to inclusive education, supporting the integration of students with diverse learning needs into mainstream classrooms.",
+  },
+  {
+    title: "Every Child Matters",
+    description:
+      "We believe every child can learn, grow, and achieve their full potential with the right support. Our resource room embodies this commitment, ensuring no child is left behind.",
   },
 ] as const;

@@ -2,6 +2,8 @@
  * Academics content for St. Elizabeth's High School.
  */
 
+import { SCHOOL_BOARD_SHORT } from "@/shared/lib/brand";
+
 export interface Department {
   name: string;
   description: string;
@@ -48,7 +50,7 @@ export const DEPARTMENTS: Department[] = [
   {
     name: "Library",
     description:
-      "A well-stocked library and digital resource centre supporting research, reading, and lifelong learning habits.",
+      "A well-stocked library with over 6,000 resources and digital resource centre supporting research, reading, and lifelong learning habits.",
     icon: "library",
     href: "/academics/library",
   },
@@ -69,11 +71,60 @@ export const DEPARTMENTS: Department[] = [
   {
     name: "Computer Laboratory",
     description:
-      "Modern computing facility with 30 workstations, coding programmes, digital literacy, and internet safety education.",
+      "Modern computing facility with workstations, coding programmes, digital literacy, and internet safety education.",
     icon: "computer",
     href: "/academics/computer-laboratory",
   },
 ];
+
+export interface CurriculumHighlight {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export const CURRICULUM_HIGHLIGHTS: CurriculumHighlight[] = [
+  {
+    title: "Academic Excellence",
+    description: `A strong foundation in languages, mathematics, science, social sciences, and other core subjects aligned with ${SCHOOL_BOARD_SHORT} standards.`,
+    icon: "academic",
+  },
+  {
+    title: "Digital Learning",
+    description:
+      "Technology-integrated learning through ICT, digital resources, and innovative classroom practices.",
+    icon: "computer",
+  },
+  {
+    title: "Experiential Learning",
+    description:
+      "Hands-on activities, projects, and real-world experiences that make learning meaningful and engaging.",
+    icon: "science",
+  },
+  {
+    title: "Vocational Education",
+    description:
+      "Practical skill development and career awareness through NEP-aligned vocational learning opportunities.",
+    icon: "teaching",
+  },
+  {
+    title: "Holistic Development",
+    description:
+      "A balanced education enriched by sports, arts, clubs, environmental initiatives, and community service.",
+    icon: "arts",
+  },
+  {
+    title: "Values & Leadership",
+    description:
+      "Character formation through faith, discipline, leadership, collaboration, and responsible citizenship.",
+    icon: "community",
+  },
+];
+
+export const CURRICULUM_INTRO = {
+  heading: "Curriculum",
+  body: `At St. Elizabeth's High School, we follow the curriculum prescribed by the Goa Board of Secondary and Higher Secondary Education (${SCHOOL_BOARD_SHORT}). Aligned with the vision of the National Education Policy (NEP) 2020, our curriculum promotes academic excellence, experiential learning, critical thinking, creativity, and holistic development, preparing students to become confident, responsible, and lifelong learners.`,
+} as const;
 
 export interface LanguageProgram {
   name: string;
@@ -110,24 +161,29 @@ export interface LibraryResource {
 
 export const LIBRARY_RESOURCES: LibraryResource[] = [
   {
-    title: "Physical Collection",
+    title: "Extensive Collection",
     description:
-      "Our library houses thousands of books spanning fiction, non-fiction, reference materials, and periodicals. Students have access to age-appropriate reading materials across all subject areas.",
+      "A wide range of fiction, non-fiction, reference books, encyclopedias, and periodicals — over 6,000 resources available to students.",
   },
   {
-    title: "Digital Resources",
+    title: "Reading Culture",
     description:
-      "Our digital resource centre provides access to online databases, e-books, academic journals, and educational software that support research and self-directed learning.",
+      "We foster a love of reading through structured reading programmes, book clubs, author visits, and annual reading challenges that engage students of all ages, encouraging regular reading habits and a lifelong love for books.",
   },
   {
-    title: "Reading Programmes",
+    title: "Learning & Research",
     description:
-      "We foster a love of reading through structured reading programmes, book clubs, author visits, and annual reading challenges that engage students of all ages.",
+      "Supports classroom learning through reference materials and subject-specific resources. Our digital resource centre provides access to online databases, e-books, and educational software.",
   },
   {
-    title: "Study Spaces",
+    title: "Welcoming Environment",
     description:
-      "The library offers quiet study areas, collaborative work zones, and computer workstations where students can focus, research, and create in a supportive environment.",
+      "A quiet and comfortable space for reading, learning, and exploration. The library offers quiet study areas, collaborative work zones, and computer workstations.",
+  },
+  {
+    title: "Knowledge Beyond the Classroom",
+    description:
+      "Empowers students to think critically, explore new ideas, and become independent learners — supporting curiosity and discovery beyond the curriculum.",
   },
 ];
 
@@ -149,8 +205,7 @@ export const COLLEGE_COUNSELING_STEPS: CollegeCounselingStep[] = [
   },
   {
     title: "Entrance Exam Preparation",
-    description:
-      "We provide resources and guidance for CBSE board exams, JEE, NEET, and other competitive entrance examinations required by Indian universities.",
+    description: `We provide resources and guidance for ${SCHOOL_BOARD_SHORT} board exams, JEE, NEET, and other competitive entrance examinations required by Indian universities.`,
   },
   {
     title: "Career Exploration",
@@ -159,13 +214,52 @@ export const COLLEGE_COUNSELING_STEPS: CollegeCounselingStep[] = [
   },
 ];
 
+export const CURRICULUM_PAGE = {
+  metaTitle: "Curriculum",
+  metaDescription: `Explore the ${SCHOOL_BOARD_SHORT} curriculum at St. Elizabeth's High School — aligned with NEP 2020, promoting academic excellence and holistic development.`,
+  heroEyebrow: "Our Curriculum",
+  heroHeading: "Curriculum",
+  heroDescription: `At St. Elizabeth's High School, we follow the curriculum prescribed by the ${SCHOOL_BOARD_SHORT}, aligned with the vision of NEP 2020.`,
+  sectionHeading: "Our Curriculum",
+  sectionAriaLabel: "Curriculum overview",
+  breadcrumb: { href: "/academics", label: "Academics", currentLabel: "Curriculum" },
+} as const;
+
+// ── NEP 2020 Readiness ───────────────────────────────────────────────
+
+export const NEP_READINESS = {
+  heading: "NEP 2020 Readiness",
+  body: "Goa will implement the National Education Policy (NEP) 2020 for all classes from the academic year 2026-27. St. Elizabeth's High School is fully prepared, with NEP-aligned curriculum, vocational education opportunities, competency-based assessment, and holistic development programmes already in place.",
+  timeline: [
+    {
+      year: "2025-26",
+      milestone: "NEP implemented in Nursery, Class III, Class VI, and Classes IX-X across Goa.",
+    },
+    {
+      year: "2026-27",
+      milestone: "Full NEP rollout — all classes covered with credit-based assessment system.",
+    },
+  ],
+  highlights: [
+    "Credit-based assessment (30 notional learning hours per credit)",
+    "Common syllabus for art & craft, sports, yoga",
+    "Vocational education from middle school onwards",
+    "Competency-based learning replacing rote memorization",
+    "Free NEP-aligned textbooks from SCERT for all students",
+  ],
+} as const;
+
 // ── Async data getter (CMS-ready) ─────────────────────────────────────
 
 export interface AcademicsData {
   DEPARTMENTS: typeof DEPARTMENTS;
+  CURRICULUM_HIGHLIGHTS: typeof CURRICULUM_HIGHLIGHTS;
+  CURRICULUM_INTRO: typeof CURRICULUM_INTRO;
   LANGUAGE_PROGRAMS: typeof LANGUAGE_PROGRAMS;
   LIBRARY_RESOURCES: typeof LIBRARY_RESOURCES;
   COLLEGE_COUNSELING_STEPS: typeof COLLEGE_COUNSELING_STEPS;
+  CURRICULUM_PAGE: typeof CURRICULUM_PAGE;
+  NEP_READINESS: typeof NEP_READINESS;
 }
 
 /**
@@ -175,5 +269,14 @@ export interface AcademicsData {
  * only the implementation body — no component changes needed.
  */
 export async function getAcademicsData(): Promise<AcademicsData> {
-  return { DEPARTMENTS, LANGUAGE_PROGRAMS, LIBRARY_RESOURCES, COLLEGE_COUNSELING_STEPS };
+  return {
+    DEPARTMENTS,
+    CURRICULUM_HIGHLIGHTS,
+    CURRICULUM_INTRO,
+    LANGUAGE_PROGRAMS,
+    LIBRARY_RESOURCES,
+    COLLEGE_COUNSELING_STEPS,
+    CURRICULUM_PAGE,
+    NEP_READINESS,
+  };
 }

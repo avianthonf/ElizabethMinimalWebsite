@@ -24,17 +24,27 @@ export const VALUES: ValueCardData[] = [
   {
     number: "01",
     title: "Faith",
-    body: "In God we trust, in Truth we stand. Rooted in the motto 'Truth and Honesty,' our students grow with values that guide their moral compass and shape lives of purpose and service.",
+    body: "We nurture a strong foundation of faith, encouraging students to live with hope, purpose, gratitude, and trust in God while respecting the beliefs of others.",
   },
   {
     number: "02",
-    title: "Excellence",
-    body: "Academic rigor and holistic growth define our approach. With a disciplined school culture and committed educators, every learner finds their path to success — in the classroom and beyond.",
+    title: "Humility",
+    body: "We believe that true greatness lies in humility. We encourage our students to remain grounded, respectful, and open to learning from every experience.",
   },
   {
     number: "03",
-    title: "Community",
-    body: "Inclusive, nurturing, and committed to the whole child. From the classrooms of Bardez to the playing fields, we are a family that believes every student is known, valued, and loved.",
+    title: "Compassion",
+    body: "We foster empathy, kindness, and understanding, inspiring students to care for others, support those in need, and respect all forms of life.",
+  },
+  {
+    number: "04",
+    title: "Selfless Service",
+    body: "Following the example of St. Elizabeth, we encourage our students to use their talents and abilities in the service of others, making a positive difference.",
+  },
+  {
+    number: "05",
+    title: "Integrity",
+    body: "We uphold honesty, responsibility, and ethical conduct, empowering students to make the right choices and act with courage and fairness.",
   },
 ];
 
@@ -48,19 +58,21 @@ export interface StatData {
 
 export const STATS: StatData[] = [
   {
-    value: "1949",
+    value: "1954",
     label: "Founded",
     description: "Over seven decades of educational excellence in Pomburpa, Bardez, Goa.",
   },
   {
-    value: "1200+",
+    value: "185+",
     label: "Students",
-    description: "A vibrant student body from across North Goa, learning and growing together.",
+    description:
+      "An intimate learning community where every child is known by name, nurtured with individual attention.",
   },
   {
-    value: "CBSE",
+    value: "GBSHSE",
     label: "Affiliated",
-    description: "Central Board of Secondary Education curriculum with holistic development focus.",
+    description:
+      "Goa Board of Secondary and Higher Secondary Education curriculum with holistic development focus.",
   },
 ];
 

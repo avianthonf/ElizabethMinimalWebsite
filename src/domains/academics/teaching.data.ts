@@ -5,50 +5,45 @@
 export const TEACHING_METHODS_PAGE = {
   metaTitle: "Teaching Methods",
   metaDescription:
-    "Discover the teaching methods and pedagogical approaches at St. Elizabeth's High School, Pomburpa, Goa.",
+    "Discover the student-centred teaching methods and pedagogical approaches at St. Elizabeth's High School, Pomburpa, Goa.",
   breadcrumb: { href: "/academics", label: "Academics", currentLabel: "Teaching Methods" },
   heroEyebrow: "Our Approach",
   heroHeading: "Teaching Methods",
   heroDescription:
-    "Innovative, student-centred teaching that nurtures curiosity, critical thinking, and a lifelong love of learning.",
+    "At St. Elizabeth's High School, we believe that every child learns differently. Our teaching approach is student-centred, interactive, and aligned with the principles of the National Education Policy (NEP) 2020. We create meaningful learning experiences that encourage curiosity, critical thinking, creativity, and lifelong learning.",
   sectionHeading: "How We Teach",
   sectionAriaLabel: "Teaching methods and pedagogy",
 } as const;
 
 export const TEACHING_METHODS = [
   {
-    title: "Activity-Based Learning",
+    title: "Student-Centred Learning",
     description:
-      "We believe students learn best by doing. Our classrooms are dynamic spaces where hands-on activities, experiments, and projects replace passive listening. From science experiments to mathematical manipulatives, every subject incorporates active learning.",
+      "We believe students learn best when they are active participants. Our classrooms are dynamic spaces where teachers facilitate learning, guiding each student according to their individual needs, pace, and learning style.",
   },
   {
-    title: "Differentiated Instruction",
+    title: "Interactive Classrooms",
     description:
-      "Every child learns differently. With an average class size of 15, our teachers assess each student's learning style, pace, and needs, then adapt instruction accordingly. Advanced learners are challenged; those needing support receive targeted interventions.",
+      "Group projects, peer tutoring, and team-based problem-solving build communication skills and teach students to work effectively with others. Our classrooms are arranged to facilitate discussion and collaboration.",
   },
   {
-    title: "Collaborative Learning",
+    title: "Experiential Learning",
     description:
-      "Group projects, peer tutoring, and team-based problem-solving build communication skills and teach students to work effectively with others. Our classrooms are arranged to facilitate discussion and collaboration, not passive listening.",
+      "We believe students learn best by doing. Hands-on activities, experiments, projects, and real-world experiences replace passive listening, making learning meaningful and engaging across every subject.",
   },
   {
-    title: "Technology Integration",
+    title: "Technology-Enabled Learning",
     description:
-      "Smart boards, educational software, and digital resources complement traditional teaching methods. Students learn digital literacy alongside subject content, preparing them for a technology-driven world without replacing the human connection at the heart of great teaching.",
+      "Smart boards, educational software, digital resources, and computer lab sessions complement traditional teaching methods. Students learn digital literacy alongside subject content, preparing them for a technology-driven world.",
   },
   {
-    title: "Inquiry-Based Learning",
+    title: "Competency-Based Learning",
     description:
-      "We encourage students to ask questions, investigate, and discover answers for themselves. In science, this means designing and conducting experiments. In humanities, it means researching, debating, and forming evidence-based arguments through projects and presentations.",
+      "We focus on what students can do, not just what they know. Through continuous assessment, project work, and real-life problem solving, students demonstrate mastery of skills and concepts at their own pace.",
   },
   {
-    title: "Continuous Assessment",
+    title: "Inclusive & Holistic Education",
     description:
-      "Learning is assessed continuously through formative methods — quizzes, projects, presentations, and portfolios — not just through terminal examinations. This provides regular feedback to students and parents and helps teachers adjust instruction in real time.",
-  },
-  {
-    title: "Values Integration",
-    description:
-      "Academic excellence and character formation go hand in hand. Every lesson is an opportunity to reinforce our core values of Truth, Honesty, Responsibility, Compassion, and Excellence. Morning assemblies, value education classes, and community service are integral parts of our curriculum.",
+      "Every child is valued. Our approach supports students of all abilities through differentiated instruction, resource room support, and a commitment to the development of the whole person — intellectual, physical, creative, and spiritual.",
   },
 ] as const;

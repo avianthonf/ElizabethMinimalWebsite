@@ -73,8 +73,8 @@ describe("Academics Data", () => {
   });
 
   describe("LIBRARY_RESOURCES", () => {
-    it("has exactly 4 library resources", () => {
-      expect(LIBRARY_RESOURCES).toHaveLength(4);
+    it("has exactly 5 library resources", () => {
+      expect(LIBRARY_RESOURCES).toHaveLength(5);
     });
 
     it("all resources have title and description", () => {
@@ -84,12 +84,13 @@ describe("Academics Data", () => {
       }
     });
 
-    it("includes Physical Collection, Digital Resources, Reading Programmes, and Study Spaces", () => {
+    it("includes Extensive Collection, Reading Culture, Learning & Research, Welcoming Environment, and Knowledge Beyond the Classroom", () => {
       const titles = LIBRARY_RESOURCES.map((r) => r.title);
-      expect(titles).toContain("Physical Collection");
-      expect(titles).toContain("Digital Resources");
-      expect(titles).toContain("Reading Programmes");
-      expect(titles).toContain("Study Spaces");
+      expect(titles).toContain("Extensive Collection");
+      expect(titles).toContain("Reading Culture");
+      expect(titles).toContain("Learning & Research");
+      expect(titles).toContain("Welcoming Environment");
+      expect(titles).toContain("Knowledge Beyond the Classroom");
     });
   });
 

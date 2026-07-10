@@ -22,7 +22,7 @@ export interface HeroSlide {
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    tagline: "Est. 1949 · Pomburpa, Goa",
+    tagline: "Est. 1954 · Pomburpa, Goa",
     heading: "Guiding Minds, Nurturing Hearts, Building Futures",
     ctaText: "Discover Our Story",
     ctaHref: "/about/mission",
@@ -30,7 +30,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     imageAlt: "Students engaged in dynamic outdoor activity on the St. Elizabeth's campus",
   },
   {
-    tagline: "CBSE Affiliated",
+    tagline: "GBSHSE Affiliated",
     heading: "Academic Excellence Rooted in Values",
     ctaText: "Explore Academics",
     ctaHref: "/academics",
@@ -46,7 +46,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     imageAlt: "Students competing in a relay race during the inter-house sports meet",
   },
   {
-    tagline: "75+ Years of Legacy",
+    tagline: "Seven Decades of Legacy",
     heading: "A Tradition of Truth, Honesty & Service",
     ctaText: "Our Heritage",
     ctaHref: "/about/history",
@@ -73,10 +73,10 @@ export interface CounterStat {
 }
 
 export const COUNTER_STATS: CounterStat[] = [
-  { value: 1949, suffix: "", label: "Year Founded" },
-  { value: 1200, suffix: "+", label: "Students" },
+  { value: 1954, suffix: "", label: "Year Founded" },
   { value: 15, suffix: ":1", label: "Student-Teacher Ratio" },
-  { value: 75, suffix: "+", label: "Years of Excellence" },
+  { value: 185, suffix: "+", label: "Students" },
+  { value: 72, suffix: "", label: "Years of Excellence" },
 ];
 
 // ── Welcome Section ────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ export const COUNTER_STATS: CounterStat[] = [
 export const WELCOME_CONTENT = {
   eyebrow: "Welcome to St. Elizabeth's",
   heading: "A Legacy of Excellence in the Heart of Goa",
-  body: "For over seven decades, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez. Rooted in the Catholic tradition and guided by our motto 'Truth and Honesty,' we nurture young minds to become compassionate leaders, critical thinkers, and responsible citizens. With our CBSE-affiliated curriculum, dedicated faculty, and a vibrant campus community, every student is known, valued, and inspired to reach their fullest potential.",
+  body: "For over seven decades, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez. Rooted in the Catholic tradition and guided by our motto 'Truth and Honesty,' we nurture young minds to become compassionate leaders, critical thinkers, and responsible citizens. With our GBSHSE-affiliated curriculum, dedicated faculty, and a vibrant campus community, every student is known, valued, and inspired to reach their fullest potential.",
   ctaText: "Learn More About Us",
   ctaHref: "/about",
 } as const;
@@ -133,8 +133,8 @@ export interface ProgramBox {
 
 export const PROGRAM_BOXES: ProgramBox[] = [
   {
-    title: "75+ Year Legacy",
-    description: "Founded in 1949, shaping generations of leaders from Pomburpa and beyond.",
+    title: "Since 1954",
+    description: "Over seven decades shaping generations of leaders from Pomburpa and beyond.",
     href: "/about/history",
     color: "var(--p-color-royal-blue)",
   },
@@ -145,9 +145,9 @@ export const PROGRAM_BOXES: ProgramBox[] = [
     color: "var(--p-color-deep-blue)",
   },
   {
-    title: "Safe Campus",
+    title: "Safe Community",
     description:
-      "Secure, gated campus in a serene Goan village setting — a sanctuary for learning.",
+      "Nestled within the Pomburpa village community, our campus is a caring, watchful environment where every adult knows every child by name — a true village raising a child.",
     href: "/contact/location-map",
     color: "var(--p-color-royal-blue-dark)",
   },
@@ -165,8 +165,8 @@ export const PROGRAM_BOXES: ProgramBox[] = [
     color: "var(--p-color-deep-blue)",
   },
   {
-    title: "CBSE Excellence",
-    description: "Rigorous curriculum aligned with CBSE standards, consistently strong results.",
+    title: "GBSHSE Excellence",
+    description: "Rigorous curriculum aligned with GBSHSE standards, consistently strong results.",
     href: "/academics/curriculum",
     color: "var(--p-color-royal-blue)",
   },
@@ -243,17 +243,18 @@ export interface Achievement {
 
 export const ACHIEVEMENTS: Achievement[] = [
   {
-    title: "CBSE Affiliation",
+    title: "GBSHSE Affiliation",
     description:
-      "Permanently affiliated with the Central Board of Secondary Education, delivering a nationally recognised curriculum.",
+      "Affiliated with the Goa Board of Secondary and Higher Secondary Education, delivering a nationally aligned curriculum under NEP 2020.",
     icon: "award",
-    year: "2005",
+    year: "",
   },
   {
-    title: "75+ Years of Service",
-    description: "Seven decades of educational service to the communities of Bardez and North Goa.",
+    title: "Seven Decades of Service",
+    description:
+      "Since 1954, providing quality education to the communities of Bardez and North Goa.",
     icon: "clock",
-    year: "1949",
+    year: "1954",
   },
   {
     title: "Community Impact",
@@ -270,7 +271,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     title: "Academic Results",
-    description: "Consistent CBSE board examination results with distinction-holders every year.",
+    description:
+      "Consistent GBSHSE board examination results including 97.38% pass percentage in SSC 2025-26.",
     icon: "graduation-cap",
   },
   {

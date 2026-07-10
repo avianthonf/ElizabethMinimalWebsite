@@ -45,7 +45,7 @@ export default function ContactInfoPage() {
                   </Heading>
                   <Text variant="muted" size="medium">
                     St. Elizabeth&apos;s High School has been serving the Pomburpa community since
-                    1949. Whether you have questions about admissions, academics, or school life,
+                    1954. Whether you have questions about admissions, academics, or school life,
                     we&apos;re here to help.
                   </Text>
                 </Stack>

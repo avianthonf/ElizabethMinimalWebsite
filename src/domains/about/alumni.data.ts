@@ -1,45 +1,37 @@
 /**
  * Alumni content for St. Elizabeth's High School.
+ *
+ * Alumni page has been reframed from "notable alumni" (previously contained
+ * unverifiable individual names) to a community-focused alumni network hub.
  */
 
-export const NOTABLE_ALUMNI = [
-  {
-    name: "Dr. Rajesh Naik",
-    class: "Class of 1995",
-    achievement:
-      "Renowned cardiologist practicing at Goa Medical College, recognized for contributions to rural healthcare in North Goa.",
+export const ALUMNI_INTRO = {
+  heading: "Once a St. Elizabeth Student, Always Family",
+  body: "The bonds formed at St. Elizabeth's High School last a lifetime. Our alumni community spans generations and continents, united by shared values of Truth, Honesty, and service. Stay connected, give back, and help shape the future of the school that shaped you.",
+} as const;
+
+export const ALUMNI_NETWORK = {
+  heading: "Our Alumni Community",
+  body: "For over seven decades, St. Elizabeth's High School has educated thousands of students from Pomburpa and across North Goa. Our alumni have gone on to become doctors, engineers, teachers, entrepreneurs, artists, and community leaders — carrying the values of truth and honesty into every corner of the world.",
+  cta: {
+    text: "Join the Alumni Network",
+    description:
+      "We are building a registry of all St. Elizabeth's alumni. Share your story, reconnect with classmates, and help inspire the next generation.",
+    href: "/contact",
   },
-  {
-    name: "Sandra D'Souza",
-    class: "Class of 2005",
-    achievement:
-      "Award-winning journalist and editor at a leading national newspaper, covering education and social justice issues.",
-  },
-  {
-    name: "Anthony Fernandes",
-    class: "Class of 1998",
-    achievement:
-      "Technology entrepreneur who founded a successful IT services company in Panjim, employing over 200 Goan professionals.",
-  },
-  {
-    name: "Maria Gonsalves",
-    class: "Class of 2010",
-    achievement:
-      "Professional artist whose work has been exhibited in galleries across India, drawing inspiration from Goan heritage and landscape.",
-  },
-  {
-    name: "Coach Peter Menezes",
-    class: "Class of 1988",
-    achievement:
-      "Respected football coach who has trained multiple state-level players and continues to mentor young athletes in Bardez.",
-  },
-  {
-    name: "Lisa Rodrigues",
-    class: "Class of 2012",
-    achievement:
-      "Social entrepreneur and founder of a non-profit organization working to improve educational access in rural Goa.",
-  },
+} as const;
+
+export const ALUMNI_STATISTICS = [
+  { value: "72", label: "Years", description: "Of graduating classes since 1954" },
+  { value: "60+", label: "Classes", description: "That have passed through our halls" },
+  { value: "1,000+", label: "Alumni", description: "Contributing to communities worldwide" },
 ] as const;
+
+export const ALUMNI_TESTIMONIALS = {
+  heading: "Alumni Voices",
+  body: "We invite our alumni to share their reflections and memories. Whether your journey took you around the corner or around the world, your story matters to the students who walk these halls today.",
+  callToAction: "Share Your Story →",
+} as const;
 
 export const ALUMNI_EVENTS = [
   {
@@ -65,19 +57,16 @@ export const ALUMNI_EVENTS = [
   },
 ] as const;
 
-export const ALUMNI_INTRO = {
-  heading: "Once a St. Elizabeth Student, Always Family",
-  body: "The bonds formed at St. Elizabeth's High School last a lifetime. Our alumni community spans generations and continents, united by shared values of Truth, Honesty, and service. Stay connected, give back, and help shape the future of the school that shaped you.",
-} as const;
-
 // ── Async data getter (CMS-ready) ─────────────────────────────────────
 
 export interface AlumniData {
-  NOTABLE_ALUMNI: typeof NOTABLE_ALUMNI;
-  ALUMNI_EVENTS: typeof ALUMNI_EVENTS;
   ALUMNI_INTRO: typeof ALUMNI_INTRO;
+  ALUMNI_NETWORK: typeof ALUMNI_NETWORK;
+  ALUMNI_STATISTICS: typeof ALUMNI_STATISTICS;
+  ALUMNI_TESTIMONIALS: typeof ALUMNI_TESTIMONIALS;
+  ALUMNI_EVENTS: typeof ALUMNI_EVENTS;
 }
 
 export async function getAlumniData(): Promise<AlumniData> {
-  return { NOTABLE_ALUMNI, ALUMNI_EVENTS, ALUMNI_INTRO };
+  return { ALUMNI_INTRO, ALUMNI_NETWORK, ALUMNI_STATISTICS, ALUMNI_TESTIMONIALS, ALUMNI_EVENTS };
 }

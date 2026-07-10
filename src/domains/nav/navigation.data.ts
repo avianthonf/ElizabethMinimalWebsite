@@ -27,6 +27,7 @@ export interface FooterSection {
 // ── Header Navigation ──────────────────────────────────────────────────
 
 export const HEADER_NAV_LINKS: NavLink[] = [
+  { text: "Home", href: "/" },
   { text: "About Us", href: "/about" },
   { text: "Academics", href: "/academics" },
   { text: "Admissions", href: "/admissions" },
@@ -46,8 +47,10 @@ export const MENU_CATEGORIES: NavCategory[] = [
       { text: "School Motto & Anthem", href: "/about/motto-anthem" },
       { text: "Management & Staff", href: "/about/staff" },
       { text: "Manager's Message", href: "/about/manager-message" },
+      { text: "Headmistress's Message", href: "/about/headmistress-message" },
       { text: "Achievements & Milestones", href: "/about/achievements" },
       { text: "Alumni", href: "/about/alumni" },
+      { text: "Alumni Registration", href: "/about/alumni/register" },
     ],
   },
   {
@@ -59,6 +62,7 @@ export const MENU_CATEGORIES: NavCategory[] = [
       { text: "Library", href: "/academics/library" },
       { text: "Science Laboratory", href: "/academics/science-laboratory" },
       { text: "Computer Laboratory", href: "/academics/computer-laboratory" },
+      { text: "Vocational Education", href: "/academics/vocational-education" },
     ],
   },
   {
@@ -67,6 +71,8 @@ export const MENU_CATEGORIES: NavCategory[] = [
       { text: "Why St. Elizabeth's", href: "/admissions/why" },
       { text: "Infrastructure", href: "/admissions/infrastructure" },
       { text: "Admission Steps", href: "/admissions/apply" },
+      { text: "Class 5 Entry", href: "/admissions/class-5-entry" },
+      { text: "Relocating to Goa?", href: "/admissions/relocating-to-goa" },
     ],
   },
   {
@@ -77,6 +83,7 @@ export const MENU_CATEGORIES: NavCategory[] = [
       { text: "Student Council", href: "/beyond-academics/student-council" },
       { text: "Cultural Activities", href: "/beyond-academics/cultural-activities" },
       { text: "Educational Tours", href: "/beyond-academics/educational-tours" },
+      { text: "Prahari Club", href: "/beyond-academics/prahari-club" },
     ],
   },
   {
@@ -106,9 +113,13 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     links: [
       { text: "Mission & Values", href: "/about/mission" },
       { text: "History", href: "/about/history" },
+      { text: "Motto & Anthem", href: "/about/motto-anthem" },
       { text: "Management & Staff", href: "/about/staff" },
       { text: "Manager's Message", href: "/about/manager-message" },
+      { text: "Headmistress's Message", href: "/about/headmistress-message" },
+      { text: "Achievements", href: "/about/achievements" },
       { text: "Alumni", href: "/about/alumni" },
+      { text: "Alumni Registration", href: "/about/alumni/register" },
     ],
   },
   {
@@ -119,6 +130,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
       { text: "Library", href: "/academics/library" },
       { text: "Science Lab", href: "/academics/science-laboratory" },
       { text: "Computer Lab", href: "/academics/computer-laboratory" },
+      { text: "Vocational Education", href: "/academics/vocational-education" },
     ],
   },
   {
@@ -127,6 +139,8 @@ export const FOOTER_SECTIONS: FooterSection[] = [
       { text: "Why St. Elizabeth's", href: "/admissions/why" },
       { text: "Infrastructure", href: "/admissions/infrastructure" },
       { text: "Apply Now", href: "/admissions/apply" },
+      { text: "Class 5 Entry", href: "/admissions/class-5-entry" },
+      { text: "Relocating to Goa?", href: "/admissions/relocating-to-goa" },
     ],
   },
   {
@@ -137,6 +151,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
       { text: "Student Council", href: "/beyond-academics/student-council" },
       { text: "Cultural Activities", href: "/beyond-academics/cultural-activities" },
       { text: "Educational Tours", href: "/beyond-academics/educational-tours" },
+      { text: "Prahari Club", href: "/beyond-academics/prahari-club" },
     ],
   },
   {
@@ -160,7 +175,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
 
 export const FOOTER_INTRO = {
   heading: "St. Elizabeth's High School",
-  body: `Guiding Minds, Nurturing Hearts, Building Futures. A nurturing Catholic school in Pomburpa, Goa, rooted in Truth and Honesty since 1949.
+  body: `Guiding Minds, Nurturing Hearts, Building Futures. A nurturing Catholic school in Pomburpa, Goa, rooted in Truth and Honesty since 1954.
 
 Ven. Fr. Hilario Gonsalves Rd
 Pomburpa, Bardez

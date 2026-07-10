@@ -3,8 +3,8 @@ import { CLUBS, BEYOND_ACADEMICS_INTRO } from "../beyond.data";
 
 describe("Student Life Data", () => {
   describe("CLUBS", () => {
-    it("has 8 clubs", () => {
-      expect(CLUBS).toHaveLength(8);
+    it("has 9 clubs", () => {
+      expect(CLUBS).toHaveLength(9);
     });
 
     it("all clubs have name, description, and category", () => {

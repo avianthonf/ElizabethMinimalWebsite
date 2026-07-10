@@ -40,13 +40,13 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     href: "/news/feast-day-2024",
   },
   {
-    title: "Students Excel in CBSE Board Examinations",
+    title: "Students Excel in GBSHSE Board Examinations",
     date: "May 2024",
     excerpt:
-      "St. Elizabeth's High School students achieved outstanding results in the CBSE Class X and XII board examinations, with several students scoring above 95% and the school achieving a 100% pass rate.",
+      "St. Elizabeth's High School students achieved outstanding results in the GBSHSE Class X board examinations, with several students scoring above 95% and the school achieving a 100% pass rate.",
     imageFilename: "DSC07576.jpg",
     category: "Academics",
-    href: "/news/cbse-results-2024",
+    href: "/news/gbshse-results-2024",
   },
   {
     title: "Science Exhibition Showcases Student Innovation",
@@ -65,6 +65,15 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     imageFilename: "DSC07495.jpg",
     category: "Athletics",
     href: "/news/basketball-championship-2025",
+  },
+  {
+    title: "St. Elizabeth's Fully Prepared for NEP 2026-27 Rollout",
+    date: "June 15, 2026",
+    excerpt:
+      "With Goa implementing the National Education Policy for all classes from the 2026-27 academic year, St. Elizabeth's High School is fully prepared with NEP-aligned curriculum, vocational education opportunities, and credit-based assessment systems.",
+    imageFilename: "DSC07290.jpg",
+    category: "Academics",
+    href: "/news/nep-2026-readiness",
   },
 ];
 

@@ -68,9 +68,11 @@ describe("Page Smoke Tests", () => {
   });
 
   describe("About '/about/mission'", () => {
-    it("renders Mission & Values heading", () => {
+    it("renders Vision, Mission & Values heading", () => {
       render(<AboutMissionPage />);
-      expect(screen.getByRole("heading", { level: 1, name: "Mission & Values" })).toBeDefined();
+      expect(
+        screen.getByRole("heading", { level: 1, name: "Vision, Mission & Values" }),
+      ).toBeDefined();
     });
   });
 
@@ -82,9 +84,9 @@ describe("Page Smoke Tests", () => {
   });
 
   describe("About '/about/staff'", () => {
-    it("renders Staff & Leadership heading", () => {
+    it("renders Management & Staff heading", () => {
       render(<AboutStaffPage />);
-      expect(screen.getByRole("heading", { level: 1, name: "Staff & Leadership" })).toBeDefined();
+      expect(screen.getByRole("heading", { level: 1, name: "Management & Staff" })).toBeDefined();
     });
   });
 

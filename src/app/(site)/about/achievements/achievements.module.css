@@ -1,0 +1,27 @@
+.bannerEyebrow {
+  color: var(--p-color-gold);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.bannerValue {
+  color: var(--p-color-white);
+  text-align: center;
+  font-size: var(--p-font-size-display);
+}
+
+.bannerDesc {
+  color: var(--p-color-white);
+  opacity: 0.85;
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--p-space-medium);
+}

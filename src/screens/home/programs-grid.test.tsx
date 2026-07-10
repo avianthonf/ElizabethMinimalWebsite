@@ -5,8 +5,8 @@ import type { ProgramBox } from "@/domains/homepage/sections.data";
 
 const mockBoxes: ProgramBox[] = [
   {
-    title: "75+ Year Legacy",
-    description: "A rich tradition of holistic education since 1949.",
+    title: "Since 1954",
+    description: "A rich tradition of holistic education since 1954.",
     href: "/about/history",
     color: "var(--p-color-navy)",
   },
@@ -17,7 +17,7 @@ const mockBoxes: ProgramBox[] = [
     color: "var(--p-color-gold)",
   },
   {
-    title: "Safe Campus",
+    title: "Safe Community",
     description: "CCTV-monitored campus with secure entry.",
     href: "/admissions/infrastructure",
     color: "var(--p-color-navy)",
@@ -29,13 +29,13 @@ const mockBoxes: ProgramBox[] = [
     color: "var(--p-color-gold)",
   },
   {
-    title: "15:1 Student-Teacher Ratio",
+    title: "15:1 Ratio",
     description: "Personalised attention for every child.",
     href: "/academics",
     color: "var(--p-color-navy)",
   },
   {
-    title: "CBSE Curriculum",
+    title: "GBSHSE Curriculum",
     description: "Nationally recognised board with structured assessments.",
     href: "/academics/curriculum",
     color: "var(--p-color-gold)",
@@ -76,7 +76,7 @@ describe("ProgramsGrid", () => {
 
   it("renders each box as a link to its href", () => {
     render(<ProgramsGrid eyebrow="Programs" heading="At a Glance" boxes={mockBoxes} />);
-    expect(screen.getByRole("link", { name: /75\+ year legacy/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /since 1954/i })).toHaveAttribute(
       "href",
       "/about/history",
     );

@@ -3,7 +3,7 @@
 import Marquee from "react-fast-marquee";
 
 const PARTNER_LOGOS = [
-  { name: "CBSE", text: "CBSE Affiliated" },
+  { name: "GBSHSE", text: "GBSHSE Affiliated" },
   { name: "Goa Board", text: "Recognized by Govt. of Goa" },
   { name: "Sports Authority", text: "SAG Goa Partner" },
   { name: "NCC", text: "NCC Unit Member" },

@@ -4,7 +4,7 @@ import { WelcomeSection } from "./welcome-section";
 
 const defaultProps = {
   eyebrow: "Welcome to",
-  heading: "A Tradition of Excellence Since 1949",
+  heading: "A Tradition of Excellence Since 1954",
   body: "St. Elizabeth's High School is a Catholic institution committed to nurturing the whole person — mind, body, and spirit.",
   ctaText: "Learn more about us",
   ctaHref: "/about",

@@ -4,10 +4,10 @@ import { CounterBar } from "./counter-bar";
 import type { CounterStat } from "@/domains/homepage/sections.data";
 
 const mockStats: CounterStat[] = [
-  { value: 1949, label: "Founded", suffix: "" },
-  { value: 1200, label: "Students", suffix: "+" },
+  { value: 1954, label: "Founded", suffix: "" },
   { value: 15, label: "Student-Teacher Ratio", suffix: ":1" },
-  { value: 75, label: "Years of Excellence", suffix: "+" },
+  { value: 185, label: "Students", suffix: "+" },
+  { value: 72, label: "Years of Excellence", suffix: "" },
 ];
 
 describe("CounterBar", () => {
@@ -38,10 +38,10 @@ describe("CounterBar", () => {
   });
 
   it("provides an aria-label on the value container for screen readers", () => {
-    const stats: CounterStat[] = [{ value: 1200, label: "Students", suffix: "+" }];
+    const stats: CounterStat[] = [{ value: 185, label: "Students", suffix: "+" }];
     render(<CounterBar stats={stats} />);
     // The final value should be reachable via aria-label (since the number is animated)
-    const labeled = screen.getByLabelText("Students: 1200+");
+    const labeled = screen.getByLabelText("Students: 185+");
     expect(labeled).toBeInTheDocument();
   });
 

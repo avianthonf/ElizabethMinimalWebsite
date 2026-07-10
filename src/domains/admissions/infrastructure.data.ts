@@ -16,6 +16,11 @@ export const INFRASTRUCTURE_PAGE = {
 
 export const INFRASTRUCTURE_FACILITIES = [
   {
+    title: "Campus Setting",
+    description:
+      "Our school is nestled within the village of Pomburpa, creating an authentic community atmosphere where students learn within — not apart from — the world they will inherit. The campus is walking distance from many homes, fostering independence and community connection.",
+  },
+  {
     title: "Academic Block",
     description:
       "Spacious, well-ventilated classrooms with natural light and smart boards. Our academic building houses classrooms for all grades, faculty rooms, and administrative offices in a central location on campus.",
@@ -23,7 +28,7 @@ export const INFRASTRUCTURE_FACILITIES = [
   {
     title: "Science Laboratories",
     description:
-      "Fully equipped Physics, Chemistry, and Biology laboratories that meet CBSE standards. Each lab accommodates 30 students with individual workstations and modern apparatus.",
+      "Fully equipped Physics, Chemistry, and Biology laboratories that meet GBSHSE standards. Each lab accommodates 30 students with individual workstations and modern apparatus.",
   },
   {
     title: "Computer Laboratory",

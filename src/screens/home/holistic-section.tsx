@@ -11,7 +11,7 @@ interface HolisticCard {
 const HOLISTIC_CARDS: HolisticCard[] = [
   {
     title: "Academics",
-    description: "Rigorous CBSE curriculum with dedicated faculty and modern teaching methods.",
+    description: "Rigorous GBSHSE curriculum with dedicated faculty and modern teaching methods.",
     href: "/academics",
     accent: "var(--p-color-navy)",
   },

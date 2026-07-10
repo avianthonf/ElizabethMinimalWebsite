@@ -4,13 +4,13 @@ import { NEWS_ARTICLES, UPCOMING_EVENTS, getNewsData } from "../news.data";
 describe("News Data", () => {
   it("getNewsData() returns all news content", async () => {
     const data = await getNewsData();
-    expect(data.NEWS_ARTICLES).toHaveLength(6);
+    expect(data.NEWS_ARTICLES).toHaveLength(7);
     expect(data.UPCOMING_EVENTS).toHaveLength(3);
   });
 
   describe("NEWS_ARTICLES", () => {
     it("has 6 articles", () => {
-      expect(NEWS_ARTICLES).toHaveLength(6);
+      expect(NEWS_ARTICLES).toHaveLength(7);
     });
 
     it("all articles have required fields", () => {

@@ -429,7 +429,7 @@ async function generateStandardPdf(page, route, name, device) {
 
 // ── Verification ───────────────────────────────────────────────────────
 
-function verifyPdf(filePath, label) {
+function verifyPdf(filePath) {
   const exists = existsSync(filePath);
   if (!exists) {
     return { ok: false, reason: "file missing", path: filePath };
@@ -582,7 +582,7 @@ async function main() {
         timeout: 30_000,
       });
       process.stdout.write(".");
-    } catch (e) {
+    } catch {
       qpdfFailures++;
       // If linearize fails, try a simple rebuild (qpdf infile outfile)
       try {

@@ -13,6 +13,9 @@ import { Link } from "@/shared/ui/link";
 import { SchoolIcon } from "@/shared/ui/school-icon";
 import { QRCard } from "@/features/qr";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
+import { generateFAQSchema } from "@/shared/lib/seo";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
+import { WHATSAPP_INQUIRY, ADMISSIONS_TIMELINE, FAQS } from "@/domains/admissions/admissions.data";
 
 export const metadata = createPageMetadata(
   "Admissions",
@@ -21,9 +24,14 @@ export const metadata = createPageMetadata(
 
 export default function AdmissionsPage() {
   const heroImage = getHeroImage("admissions-hero");
+  const faqSchema = generateFAQSchema(FAQS);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonStringify(faqSchema) }}
+      />
       <Hero
         eyebrow="Join Us"
         heading="Admissions at St. Elizabeth"
@@ -114,6 +122,50 @@ export default function AdmissionsPage() {
               </Stack>
             }
           />
+        </Container>
+      </Section>
+
+      {/* Admissions Timeline + WhatsApp */}
+      <Section background="soft" padding="xlarge" ariaLabel="Admissions timeline and contact">
+        <Container>
+          <Stack gap="large">
+            <Heading level="h2" variant="section">
+              Admissions Timeline
+            </Heading>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gap: "var(--p-space-medium)",
+              }}
+            >
+              {ADMISSIONS_TIMELINE.map((item) => (
+                <Card key={item.month} variant="default" padding="medium">
+                  <Stack gap="small">
+                    <Text variant="eyebrow">{item.month}</Text>
+                    <Text variant="muted" size="small">
+                      {item.event}
+                    </Text>
+                  </Stack>
+                </Card>
+              ))}
+            </div>
+            <Card variant="default" padding="medium">
+              <div style={{ textAlign: "center" }}>
+                <Stack gap="small">
+                  <Heading level="h3" variant="card">
+                    Quick Inquiry via WhatsApp
+                  </Heading>
+                  <Text variant="muted" size="small">
+                    Have a quick question? Reach us directly on WhatsApp.
+                  </Text>
+                  <Link href={WHATSAPP_INQUIRY.link} variant="default">
+                    Chat on WhatsApp →
+                  </Link>
+                </Stack>
+              </div>
+            </Card>
+          </Stack>
         </Container>
       </Section>
     </>

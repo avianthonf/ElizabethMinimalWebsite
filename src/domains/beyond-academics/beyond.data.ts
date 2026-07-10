@@ -58,6 +58,12 @@ export const CLUBS: Club[] = [
       "Capture campus life, events, and the beauty of Goa through the lens. Learn composition, lighting, and photo editing techniques.",
     category: "Arts",
   },
+  {
+    name: "The Prahari Club",
+    description:
+      "A student-led initiative to combat substance abuse and prevent drug trafficking in and around educational institutions. Established as a joint initiative by the Narcotics Control Bureau (NCB) and the National Commission for Protection of Child Rights (NCPCR), the Prahari Club promotes a drug-free environment through vigilance, peer support, and educational campaigns. The club consists of 12 student members and 2 teachers, and in the academic year 2026-27, the Club's official logo was designed collaboratively by students and unveiled on The International Day Against Drug Abuse and Illicit Trafficking.",
+    category: "Service",
+  },
 ];
 
 export const CLUBS_PAGE = {
@@ -72,6 +78,11 @@ export const CLUBS_PAGE = {
   sectionDescription:
     "With clubs spanning academics, arts, athletics, service, and leadership, there is something for every student at St. Elizabeth's High School.",
   sectionAriaLabel: "Clubs and organizations",
+  breadcrumb: {
+    href: "/beyond-academics",
+    label: "Beyond Academics",
+    currentLabel: "Clubs & Organizations",
+  },
 } as const;
 
 export const BEYOND_ACADEMICS_INTRO = {
@@ -87,6 +98,7 @@ export const BEYOND_ACADEMICS_PAGE = {
   heroHeading: "Beyond Academics",
   heroDescription:
     "Discover a world of opportunities that develop character, leadership, creativity, and community spirit.",
+  breadcrumb: { href: "/", label: "Home", currentLabel: "Beyond Academics" },
 } as const;
 
 export const BEYOND_ACADEMICS_SECTIONS = [
@@ -129,6 +141,11 @@ export const STUDENT_COUNCIL_PAGE = {
     "Developing tomorrow's leaders through democratic representation, event organization, and community service.",
   sectionHeading: "Council Structure",
   sectionAriaLabel: "Student council information",
+  breadcrumb: {
+    href: "/beyond-academics",
+    label: "Beyond Academics",
+    currentLabel: "Student Council",
+  },
 } as const;
 
 export const STUDENT_COUNCIL_ROLES = [
@@ -164,6 +181,11 @@ export const CULTURAL_ACTIVITIES_PAGE = {
     "From painting to performance, discover your creative voice and celebrate Goa's rich cultural traditions.",
   sectionHeading: "Creative Programmes",
   sectionAriaLabel: "Cultural activities and performing arts programmes",
+  breadcrumb: {
+    href: "/beyond-academics",
+    label: "Beyond Academics",
+    currentLabel: "Cultural Activities",
+  },
 } as const;
 
 export const CULTURAL_PROGRAMMES = [
@@ -204,6 +226,11 @@ export const EDUCATIONAL_TOURS_PAGE = {
     "Learning comes alive when students step beyond the classroom. Our educational tours connect academic concepts with real-world experiences.",
   sectionHeading: "Recent Excursions",
   sectionAriaLabel: "Educational tours and excursions",
+  breadcrumb: {
+    href: "/beyond-academics",
+    label: "Beyond Academics",
+    currentLabel: "Educational Tours",
+  },
 } as const;
 
 export const EDUCATIONAL_TOURS = [
@@ -300,6 +327,7 @@ export const SPORTS_PAGE = {
     "Building character, teamwork, and physical fitness through competitive sports and athletic programmes.",
   sectionHeading: "Our Sports",
   sectionAriaLabel: "Sports and athletics",
+  breadcrumb: { href: "/beyond-academics", label: "Beyond Academics", currentLabel: "Sports" },
 } as const;
 
 // ── Async data getter ─────────────────────────────────────────────────

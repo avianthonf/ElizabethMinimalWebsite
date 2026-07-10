@@ -25,7 +25,13 @@ export const SITE_NAME = "St. Elizabeth's High School";
 export const SITE_TAGLINE = "Guiding Minds, Nurturing Hearts, Building Futures";
 
 /** Founding year. */
-export const SITE_FOUNDED = 1949;
+export const SITE_FOUNDED = 1954;
+
+/** School board affiliation. */
+export const SCHOOL_BOARD = "Goa Board of Secondary and Higher Secondary Education (GBSHSE)";
+
+/** Short board acronym for compact display. */
+export const SCHOOL_BOARD_SHORT = "GBSHSE";
 
 /** Contact email for inquiries, contact form, and footer. */
 export const CONTACT_EMAIL = "info@stelizabethhighschool.in";

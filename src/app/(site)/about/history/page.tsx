@@ -7,34 +7,37 @@ import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { createPageMetadata } from "@/shared/lib/page-utils";
-import { HISTORY_TIMELINE } from "@/domains/about/about.data";
+import { HISTORY_INTRO, HISTORY_TIMELINE, HISTORY_CLOSING } from "@/domains/about/about.data";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 import styles from "./history.module.css";
 
 export const metadata = createPageMetadata(
   "History",
-  "Explore the history of St. Elizabeth's High School — from its founding in 1949 to a thriving community of 1200+ students in Pomburpa, Goa.",
+  "Explore the history of St. Elizabeth's High School — founded in 1954, a Catholic, co-educational English-medium institution in Pomburpa, Goa.",
 );
 
 export default function HistoryPage() {
   return (
     <>
-      <>
-        <Breadcrumb href="/about" label="About" currentLabel="History" />
-        <Hero
-          eyebrow="Our Story"
-          heading="School History"
-          description="Since 1949, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
-          backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
-        />
-      </>
+      <Breadcrumb href="/about" label="About" currentLabel="History" />
+      <Hero
+        eyebrow="Our Story"
+        heading="School History"
+        description="Since 1954, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
+        backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+      />
 
-      <Section background="paper" padding="xlarge" ariaLabel="School history timeline">
+      <Section background="paper" padding="xlarge" ariaLabel="School history">
         <Container width="narrow">
           <Stack gap="large">
-            <Heading level="h2" variant="section">
-              Our Journey
-            </Heading>
+            <Stack gap="medium">
+              <Heading level="h2" variant="section">
+                {HISTORY_INTRO.heading}
+              </Heading>
+              <Text variant="muted" size="large">
+                {HISTORY_INTRO.body}
+              </Text>
+            </Stack>
             <div className={styles.timeline}>
               {HISTORY_TIMELINE.map((entry) => (
                 <div key={entry.year} className={styles.entry}>
@@ -49,6 +52,16 @@ export default function HistoryPage() {
                 </div>
               ))}
             </div>
+            <p
+              style={{
+                whiteSpace: "pre-line",
+                color: "var(--p-color-muted)",
+                fontSize: "var(--p-font-size-large)",
+                lineHeight: "1.7",
+              }}
+            >
+              {HISTORY_CLOSING.body}
+            </p>
           </Stack>
         </Container>
       </Section>

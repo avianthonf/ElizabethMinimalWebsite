@@ -27,7 +27,7 @@ export default function AboutPage() {
       <Hero
         eyebrow="Discover"
         heading="About St. Elizabeth"
-        description="Guided by our motto 'Truth and Honesty,' St. Elizabeth's High School has been nurturing young minds in Pomburpa, Goa since 1949."
+        description="Guided by our motto 'Truth and Honesty,' St. Elizabeth's High School has been nurturing young minds in Pomburpa, Goa since 1954."
         backgroundImage={`/images/${heroImage.filename}`}
       />
 
@@ -88,7 +88,7 @@ export default function AboutPage() {
                       </Icon>
                     }
                     title="History"
-                    description="Since 1949"
+                    description="Since 1954"
                     href="/about/history"
                   />
                   <IconCard

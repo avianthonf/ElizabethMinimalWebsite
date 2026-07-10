@@ -1,36 +1,52 @@
 import { describe, it, expect } from "vitest";
-import { NOTABLE_ALUMNI, ALUMNI_EVENTS, ALUMNI_INTRO } from "../alumni.data";
+import {
+  ALUMNI_INTRO,
+  ALUMNI_NETWORK,
+  ALUMNI_STATISTICS,
+  ALUMNI_TESTIMONIALS,
+  ALUMNI_EVENTS,
+} from "../alumni.data";
 
 describe("Alumni Data", () => {
-  describe("NOTABLE_ALUMNI", () => {
-    it("has 6 alumni", () => {
-      expect(NOTABLE_ALUMNI).toHaveLength(6);
+  describe("ALUMNI_INTRO", () => {
+    it("has heading and body", () => {
+      expect(ALUMNI_INTRO.heading).toBeTruthy();
+      expect(ALUMNI_INTRO.body.length).toBeGreaterThan(50);
     });
 
-    it("all alumni have name, class, and achievement", () => {
-      for (const alum of NOTABLE_ALUMNI) {
-        expect(alum.name).toBeTruthy();
-        expect(alum.class.startsWith("Class of")).toBe(true);
-        expect(alum.achievement.length).toBeGreaterThan(30);
+    it("heading references St. Elizabeth", () => {
+      expect(ALUMNI_INTRO.heading).toContain("St. Elizabeth");
+    });
+  });
+
+  describe("ALUMNI_NETWORK", () => {
+    it("has heading, body, and cta", () => {
+      expect(ALUMNI_NETWORK.heading).toBeTruthy();
+      expect(ALUMNI_NETWORK.body.length).toBeGreaterThan(50);
+      expect(ALUMNI_NETWORK.cta.text).toBeTruthy();
+      expect(ALUMNI_NETWORK.cta.href).toBeTruthy();
+    });
+  });
+
+  describe("ALUMNI_STATISTICS", () => {
+    it("has 3 statistics", () => {
+      expect(ALUMNI_STATISTICS).toHaveLength(3);
+    });
+
+    it("all stats have value, label, and description", () => {
+      for (const stat of ALUMNI_STATISTICS) {
+        expect(stat.value).toBeTruthy();
+        expect(stat.label).toBeTruthy();
+        expect(stat.description.length).toBeGreaterThan(10);
       }
     });
+  });
 
-    it("includes Dr. Rajesh Naik and Anthony Fernandes", () => {
-      const names = NOTABLE_ALUMNI.map((a) => a.name);
-      expect(names).toContain("Dr. Rajesh Naik");
-      expect(names).toContain("Anthony Fernandes");
-    });
-
-    it("class years are valid (1988–2012 range for listed alumni)", () => {
-      const years = NOTABLE_ALUMNI.map((a) => {
-        const match = a.class.match(/Class of (\d{4})/);
-        return match ? parseInt(match[1], 10) : null;
-      });
-      for (const year of years) {
-        expect(year).not.toBeNull();
-        expect(year!).toBeGreaterThanOrEqual(1988);
-        expect(year!).toBeLessThanOrEqual(2012);
-      }
+  describe("ALUMNI_TESTIMONIALS", () => {
+    it("has heading, body, and callToAction", () => {
+      expect(ALUMNI_TESTIMONIALS.heading).toBeTruthy();
+      expect(ALUMNI_TESTIMONIALS.body.length).toBeGreaterThan(20);
+      expect(ALUMNI_TESTIMONIALS.callToAction).toBeTruthy();
     });
   });
 
@@ -52,17 +68,6 @@ describe("Alumni Data", () => {
       const reunion = ALUMNI_EVENTS.find((e) => e.title === "Annual Alumni Reunion");
       expect(reunion).toBeDefined();
       expect(reunion!.date).toBe("December 28, 2026");
-    });
-  });
-
-  describe("ALUMNI_INTRO", () => {
-    it("has heading and body", () => {
-      expect(ALUMNI_INTRO.heading).toBeTruthy();
-      expect(ALUMNI_INTRO.body.length).toBeGreaterThan(50);
-    });
-
-    it("heading references St. Elizabeth", () => {
-      expect(ALUMNI_INTRO.heading).toContain("St. Elizabeth");
     });
   });
 });

@@ -696,6 +696,51 @@ export const OVERFLOW_IMAGES: ImageAsset[] = [
   },
 ];
 
+// ── Gallery Categories ─────────────────────────────────────────────────
+
+export const GALLERY_CATEGORIES = [
+  {
+    name: "Campus & Facilities",
+    slug: "campus",
+    description:
+      "Our school buildings, classrooms, laboratories, library, and playground in Pomburpa.",
+    imageFilenames: ["DSC07317.jpg", "DSC07580.jpg", "DSC07290.jpg"],
+  },
+  {
+    name: "Sports & Athletics",
+    slug: "sports",
+    description:
+      "Inter-house sports meets, athletics training, and outdoor activities at St. Elizabeth's.",
+    imageFilenames: ["DSC07305.jpg", "DSC07335.jpg"],
+  },
+  {
+    name: "Cultural Events",
+    slug: "cultural",
+    description:
+      "Annual Day, feast day celebrations, and cultural performances at St. Elizabeth's.",
+    imageFilenames: ["DSC07294.jpg", "DSC07504.jpg", "DSC07555.jpg"],
+  },
+  {
+    name: "Classroom Life",
+    slug: "classroom",
+    description: "Students engaged in learning, experiments, and collaborative activities.",
+    imageFilenames: ["DSC07328.jpg", "DSC07346.jpg"],
+  },
+  {
+    name: "Community & Outreach",
+    slug: "community",
+    description:
+      "Service projects, village events, and community engagement in Pomburpa and beyond.",
+    imageFilenames: ["DSC07469.jpg", "DSC07296.jpg"],
+  },
+  {
+    name: "Arts & Creativity",
+    slug: "arts",
+    description: "Art exhibitions, craft workshops, and creative expressions from our students.",
+    imageFilenames: ["DSC07565.jpg", "DSC07575.jpg", "DSC07597.jpg"],
+  },
+] as const;
+
 // ── Helper: Get image by filename ──────────────────────────────────────
 
 /** Flat array of all images across all registries — built once at module load. */

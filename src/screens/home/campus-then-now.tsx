@@ -21,7 +21,7 @@ interface CampusThenNowProps {
  */
 export function CampusThenNow({
   heading = "Our Campus — Then & Now",
-  description = "See how St. Elizabeth's has grown and evolved over 75+ years of educational excellence in Pomburpa.",
+  description = "See how St. Elizabeth's has grown and evolved over seven decades of educational excellence in Pomburpa.",
   beforeImage,
   afterImage,
 }: CampusThenNowProps) {

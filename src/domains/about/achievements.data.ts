@@ -5,74 +5,50 @@
 export const ACHIEVEMENTS_PAGE = {
   metaTitle: "Achievements & Milestones",
   metaDescription:
-    "Awards, achievements, and significant milestones of St. Elizabeth's High School, Pomburpa, Goa — 75+ years of educational excellence.",
+    "Awards, achievements, and significant milestones of St. Elizabeth's High School, Pomburpa, Goa — over seven decades of educational excellence.",
   breadcrumb: { href: "/about", label: "About", currentLabel: "Achievements & Milestones" },
   heroEyebrow: "Our Legacy",
   heroHeading: "Achievements & Milestones",
   heroDescription:
-    "Celebrating 75+ years of educational excellence, community impact, and student success.",
+    "For over seven decades, St. Elizabeth's High School has celebrated milestones of academic excellence, holistic development, and meaningful contributions to the community.",
   sectionAriaLabel: "Achievements and milestones",
+} as const;
+
+export const SSC_RESULT_BANNER = {
+  enabled: true,
+  heading: "SSC Results 2025–26",
+  subtitle: "97.38% Pass Percentage",
+  description:
+    "Our students have achieved outstanding results in the Goa Board SSC examinations, continuing our tradition of academic excellence.",
 } as const;
 
 export const ACHIEVEMENTS = [
   {
-    year: "1949",
-    title: "Foundation",
+    title: "GBSHSE Affiliation",
     description:
-      "St. Elizabeth's High School founded in Pomburpa, Bardez, Goa, with a mission to provide quality Catholic education to the local community.",
+      "Affiliated with the Goa Board of Secondary and Higher Secondary Education (GBSHSE), aligned with the National Education Policy (NEP) 2020. The state board's overall SSC pass percentage reached 95.3% in 2025, and St. Elizabeth's students consistently perform above state averages.",
+    icon: "school",
+    category: "academic",
   },
   {
-    year: "1968",
-    title: "First Batch of SSC Graduates",
+    title: "Sports Excellence",
     description:
-      "The school's first cohort of students graduated from the Secondary School Certificate (SSC) examination with outstanding results.",
+      "Achievements at inter-school, district, state, and national levels across multiple sports disciplines.",
+    icon: "trophy",
+    category: "sports",
   },
   {
-    year: "1983",
-    title: "New Campus Building",
+    title: "Cultural Achievements",
     description:
-      "Construction of the main academic building with dedicated classrooms, science laboratories, and administrative offices.",
+      "Music, dance, drama, art, literary events, and competitions showcasing the creative talents of our students.",
+    icon: "music",
+    category: "cultural",
   },
   {
-    year: "1990",
-    title: "Library Inauguration",
+    title: "Co-curricular Excellence",
     description:
-      "The school library was expanded into a dedicated building with over 5,000 volumes and reading spaces for students.",
-  },
-  {
-    year: "2005",
-    title: "CBSE Affiliation",
-    description:
-      "St. Elizabeth's achieved affiliation with the Central Board of Secondary Education (CBSE), adopting the national curriculum standard.",
-  },
-  {
-    year: "2010",
-    title: "Computer Laboratory",
-    description:
-      "Established a state-of-the-art computer laboratory with 30 workstations, bringing digital literacy and ICT education to all students.",
-  },
-  {
-    year: "2015",
-    title: "Sports Excellence Award",
-    description:
-      "Recognized by the Bardez Taluka Sports Association for outstanding performance in inter-school athletics and team sports competitions.",
-  },
-  {
-    year: "2019",
-    title: "70th Anniversary Celebration",
-    description:
-      "A year-long celebration marking seven decades of educational service, featuring alumni reunions, cultural events, and community outreach.",
-  },
-  {
-    year: "2022",
-    title: "Green Campus Certification",
-    description:
-      "Awarded Green Campus certification by the Goa State Biodiversity Board for our sustainability initiatives, waste management, and environmental education programmes.",
-  },
-  {
-    year: "2024",
-    title: "75 Years of Excellence",
-    description:
-      "Celebrated our Diamond Jubilee — 75 years of guiding minds, nurturing hearts, and building futures in Pomburpa and beyond.",
+      "Science exhibitions, quizzes, debates, and environmental initiatives that foster critical thinking and innovation.",
+    icon: "graduation-cap",
+    category: "co-curricular",
   },
 ] as const;

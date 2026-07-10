@@ -5,35 +5,45 @@
 export const SCIENCE_LAB_PAGE = {
   metaTitle: "Science Laboratory",
   metaDescription:
-    "The science laboratory at St. Elizabeth's High School — Physics, Chemistry, and Biology labs for hands-on experimental learning.",
+    "The science laboratory at St. Elizabeth's High School — Physics, Chemistry, and Biology labs for hands-on experimental learning and discovery.",
   breadcrumb: { href: "/academics", label: "Academics", currentLabel: "Science Laboratory" },
   heroEyebrow: "Experiment",
   heroHeading: "Science Laboratory",
   heroDescription:
-    "Where curiosity meets discovery — our fully equipped Physics, Chemistry, and Biology laboratories bring scientific concepts to life.",
+    "Our Science Laboratory provides students with a safe and stimulating environment to explore scientific concepts through observation, experimentation, and discovery. It encourages curiosity, critical thinking, and hands-on learning, making science both engaging and meaningful.",
   sectionHeading: "Our Laboratories",
   sectionAriaLabel: "Science laboratory facilities",
 } as const;
 
 export const SCIENCE_LAB_FACILITIES = [
   {
-    title: "Physics Laboratory",
+    title: "Hands-on Experiments",
     description:
-      "Equipped with apparatus for mechanics, optics, electricity, magnetism, and electronics experiments. Students verify theoretical principles through hands-on measurement and observation, developing experimental skills essential for higher studies in science and engineering.",
+      "Students learn by performing experiments that reinforce classroom concepts. From physics measurements to chemical reactions and biological observations, practical learning is at the heart of our science programme.",
   },
   {
-    title: "Chemistry Laboratory",
+    title: "Well-Equipped Laboratory",
     description:
-      "A well-ventilated lab with individual workstations, reagent storage, fume hood, and safety equipment. Students learn qualitative and quantitative analysis, titration techniques, and the synthesis and characterization of chemical compounds.",
+      "A range of scientific equipment and materials support practical learning across Physics, Chemistry, and Biology. Individual workstations, modern apparatus, and comprehensive specimen collections enable thorough scientific investigation.",
   },
   {
-    title: "Biology Laboratory",
+    title: "Scientific Thinking",
     description:
-      "Featuring compound and dissecting microscopes, specimen collection, anatomical models, and botanical specimens. Students study cell structure, plant and animal anatomy, and ecological systems through direct observation.",
+      "Activities encourage observation, inquiry, analysis, and problem-solving skills. Students learn to formulate hypotheses, design experiments, collect data, and draw evidence-based conclusions.",
   },
   {
-    title: "Safety & Standards",
+    title: "Experiential Learning",
     description:
-      "All three laboratories comply with CBSE safety standards. Each lab is equipped with fire extinguishers, first-aid kits, eye-wash stations, and chemical spill management. Students receive thorough safety training before beginning practical work.",
+      "Students explore, investigate, and discover through guided practical experiences. Hands-on engagement with scientific concepts makes learning memorable and meaningful.",
+  },
+  {
+    title: "Safe Learning Environment",
+    description:
+      "Experiments are conducted under teacher supervision with a strong emphasis on laboratory safety. Our labs comply with GBSHSE safety standards and are equipped with fire extinguishers, first-aid kits, eye-wash stations, and chemical spill management.",
+  },
+  {
+    title: "Learning Through Discovery",
+    description:
+      "Practical experiences inspire curiosity, creativity, and a lifelong interest in science. We nurture the next generation of scientists, doctors, engineers, and innovators.",
   },
 ] as const;

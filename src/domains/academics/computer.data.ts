@@ -5,35 +5,50 @@
 export const COMPUTER_LAB_PAGE = {
   metaTitle: "Computer Laboratory",
   metaDescription:
-    "The computer laboratory at St. Elizabeth's High School — digital literacy, programming, and technology education.",
+    "The computer laboratory at St. Elizabeth's High School — digital literacy, programming, and technology education in an inclusive setting.",
   breadcrumb: { href: "/academics", label: "Academics", currentLabel: "Computer Laboratory" },
   heroEyebrow: "Digital Literacy",
   heroHeading: "Computer Laboratory",
   heroDescription:
-    "Preparing students for a digital future with hands-on computing education, programming fundamentals, and responsible technology use.",
-  sectionHeading: "Facilities & Programmes",
+    "Our well-equipped Computer Laboratory provides students with a dynamic and engaging environment to develop digital skills, creativity, and computational thinking. The lab supports technology-enabled learning and caters to both regular students and Children with Special Needs (CWSN) in an inclusive setting.",
+  sectionHeading: "Facilities",
   sectionAriaLabel: "Computer laboratory and digital literacy",
 } as const;
 
 export const COMPUTER_LAB_FACILITIES = [
   {
-    title: "Computer Lab",
+    title: "Modern Computers",
     description:
-      "A modern facility with 30 networked workstations, broadband internet access, interactive smart board, and printing capabilities. Each student has dedicated terminal access during lab sessions with a 1:1 student-to-computer ratio.",
+      "Ten computers with the latest software support learning across subjects. Each student has dedicated terminal access during lab sessions.",
   },
   {
-    title: "Digital Literacy Curriculum",
+    title: "Audio-Visual Learning",
     description:
-      "Starting from foundational computing skills — keyboarding, file management, and productivity software — our curriculum progresses to programming fundamentals, web design, and multimedia creation in senior grades.",
+      "A projector and multimedia resources make lessons interactive and engaging, bringing digital content to life for the whole class.",
   },
   {
-    title: "Programming & Coding",
+    title: "Inclusive Learning",
     description:
-      "Students are introduced to computational thinking through visual programming environments before progressing to Python and web technologies. Our coding programme emphasizes problem-solving, logical reasoning, and creativity.",
+      "A welcoming space designed to support both regular students and Children with Special Needs (CWSN), ensuring equal access to digital education.",
   },
   {
-    title: "Internet Safety & Digital Citizenship",
+    title: "Digital Skills",
     description:
-      "We take digital citizenship seriously. Students learn about online safety, privacy, responsible social media use, cyberbullying prevention, and the ethical use of information — preparing them to navigate the digital world with wisdom and integrity.",
+      "Hands-on learning in computer applications, coding, and digital literacy. Students progress from foundational computing skills to programming fundamentals and web technologies.",
+  },
+  {
+    title: "Teamwork & Collaboration",
+    description:
+      "Pair and group activities help students build teamwork, confidence, and problem-solving skills in a technology-rich environment.",
+  },
+  {
+    title: "Future-Ready Education",
+    description:
+      "Technology is integrated into learning to build confidence, creativity, and problem-solving skills — preparing students for higher education and the modern workplace.",
   },
 ] as const;
+
+export const DIGITAL_LITERACY = {
+  heading: "Technology as a Tool, Not a Replacement",
+  body: "Our Computer Laboratory ensures students are technology-proficient — confident with computers, software applications, and digital research. But at St. Elizabeth's, technology serves education; it never replaces the human connection that makes learning transformative. Behind every screen in our lab stands a teacher who knows your child by name, guiding them not just through code, but through character.",
+} as const;

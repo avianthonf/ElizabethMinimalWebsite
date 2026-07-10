@@ -24,6 +24,8 @@ function mapIcon(name: string): string {
     "Holistic Development": "sparkles",
     "Nurturing Community": "heart-handshake",
     "Dedicated Faculty": "users",
+    "GBSHSE Advantage": "school",
+    "Small School, Big Impact": "heart",
   };
   return map[name] ?? "star";
 }
@@ -37,6 +39,10 @@ const ICON_PATHS: Record<string, string> = {
     "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z",
   users:
     "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75",
+  school:
+    "M14 22H5a2 2 0 0 1-2-2V8c0-.6.3-1.2.8-1.5l7-5a2 2 0 0 1 2.4 0l7 5c.5.3.8.9.8 1.5v12a2 2 0 0 1-2 2h-5v-7h-4v7z",
+  heart:
+    "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z",
 };
 
 export function WhySection({

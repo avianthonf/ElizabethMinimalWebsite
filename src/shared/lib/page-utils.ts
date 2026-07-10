@@ -14,7 +14,7 @@ export { SITE_URL, SITE_NAME, absoluteUrl } from "./brand";
 import { SITE_URL, SITE_NAME, absoluteUrl } from "./brand";
 
 export const SITE_DESCRIPTION =
-  "St. Elizabeth's High School in Pomburpa, Goa — nurturing hearts since 1949. Catholic education affiliated with CBSE with an average class size of 15 students.";
+  "St. Elizabeth's High School in Pomburpa, Goa — nurturing hearts since 1954. Catholic education affiliated with GBSHSE with an average class size of 15 students.";
 
 interface CreatePageMetadataOptions {
   /** Optional Open Graph image URL (absolute or site-relative). */
