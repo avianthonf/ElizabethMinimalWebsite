@@ -69,11 +69,7 @@ export function HomePage() {
       {/* S3: Welcome / About */}
       <ScrollReveal delay={0.1}>
         <WelcomeSection
-          eyebrow={WELCOME_CONTENT.eyebrow}
-          heading={WELCOME_CONTENT.heading}
-          body={WELCOME_CONTENT.body}
-          ctaText={WELCOME_CONTENT.ctaText}
-          ctaHref={WELCOME_CONTENT.ctaHref}
+          {...WELCOME_CONTENT}
           images={WELCOME_CAROUSEL_IMAGES}
           ariaLabel="Welcome to St. Elizabeth's"
         />
@@ -82,8 +78,7 @@ export function HomePage() {
       {/* S4: Why St. Elizabeth's */}
       <ScrollReveal direction="left" delay={0.1}>
         <WhySection
-          eyebrow={WHY_CONTENT.eyebrow}
-          heading={WHY_CONTENT.heading}
+          {...WHY_CONTENT}
           points={whyPointsData}
           ariaLabel={WHY_CONTENT.sectionAriaLabel}
         />
@@ -92,8 +87,7 @@ export function HomePage() {
       {/* S5: Programs at a Glance */}
       <ScrollReveal direction="right" delay={0.1}>
         <ProgramsGrid
-          eyebrow={PROGRAMS_CONTENT.eyebrow}
-          heading={PROGRAMS_CONTENT.heading}
+          {...PROGRAMS_CONTENT}
           boxes={PROGRAM_BOXES}
           ariaLabel={PROGRAMS_CONTENT.sectionAriaLabel}
         />
@@ -107,11 +101,8 @@ export function HomePage() {
       {/* S7: Photo Gallery */}
       <ScrollReveal delay={0.1}>
         <GallerySection
-          eyebrow={GALLERY_CONTENT.eyebrow}
-          heading={GALLERY_CONTENT.heading}
+          {...GALLERY_CONTENT}
           images={GALLERY_IMAGES}
-          ctaText={GALLERY_CONTENT.ctaText}
-          ctaHref={GALLERY_CONTENT.ctaHref}
           ariaLabel={GALLERY_CONTENT.sectionAriaLabel}
         />
       </ScrollReveal>
@@ -135,8 +126,7 @@ export function HomePage() {
       {/* S8: Achievements */}
       <ScrollReveal direction="left" delay={0.1}>
         <AchievementsSection
-          eyebrow={ACHIEVEMENTS_CONTENT.eyebrow}
-          heading={ACHIEVEMENTS_CONTENT.heading}
+          {...ACHIEVEMENTS_CONTENT}
           achievements={ACHIEVEMENTS}
           ariaLabel={ACHIEVEMENTS_CONTENT.sectionAriaLabel}
         />
@@ -145,8 +135,7 @@ export function HomePage() {
       {/* S9: Student Life */}
       <ScrollReveal direction="right" delay={0.1}>
         <StudentLifeSection
-          eyebrow={STUDENT_LIFE_CONTENT.eyebrow}
-          heading={STUDENT_LIFE_CONTENT.heading}
+          {...STUDENT_LIFE_CONTENT}
           cards={STUDENT_LIFE_CARDS.map((s, i) => ({
             title: s.title,
             description: s.description,
@@ -159,8 +148,6 @@ export function HomePage() {
               "var(--p-color-navy)",
             ][i % 5],
           }))}
-          ctaText={STUDENT_LIFE_CONTENT.ctaText}
-          ctaHref={STUDENT_LIFE_CONTENT.ctaHref}
           ariaLabel={STUDENT_LIFE_CONTENT.sectionAriaLabel}
         />
       </ScrollReveal>
@@ -176,11 +163,8 @@ export function HomePage() {
       {/* S11: Admissions CTA */}
       <ScrollReveal delay={0.1}>
         <AdmissionsCTA
+          {...ADMISSIONS_CTA_CONTENT}
           steps={ADMISSIONS_CTA_STEPS}
-          heading={ADMISSIONS_CTA_CONTENT.heading}
-          description={ADMISSIONS_CTA_CONTENT.description}
-          primaryCtaText={ADMISSIONS_CTA_CONTENT.primaryCtaText}
-          primaryCtaHref={ADMISSIONS_CTA_CONTENT.primaryCtaHref}
           ariaLabel={ADMISSIONS_CTA_CONTENT.sectionAriaLabel}
         />
       </ScrollReveal>
@@ -193,27 +177,15 @@ export function HomePage() {
       {/* S13: News & Events */}
       <ScrollReveal direction="left" delay={0.1}>
         <NewsSection
-          eyebrow={NEWS_HOMEPAGE_CONTENT.eyebrow}
-          heading={NEWS_HOMEPAGE_CONTENT.heading}
+          {...NEWS_HOMEPAGE_CONTENT}
           news={LATEST_NEWS}
-          ctaText={NEWS_HOMEPAGE_CONTENT.ctaText}
-          ctaHref={NEWS_HOMEPAGE_CONTENT.ctaHref}
           ariaLabel={NEWS_HOMEPAGE_CONTENT.sectionAriaLabel}
         />
       </ScrollReveal>
 
       {/* S14: Locate Us */}
       <ScrollReveal delay={0.1}>
-        <LocateSection
-          eyebrow={LOCATE_CONTENT.eyebrow}
-          heading={LOCATE_CONTENT.heading}
-          address={LOCATE_CONTENT.address}
-          phone={LOCATE_CONTENT.phone}
-          email={LOCATE_CONTENT.email}
-          ctaText={LOCATE_CONTENT.ctaText}
-          ctaHref={LOCATE_CONTENT.ctaHref}
-          ariaLabel={LOCATE_CONTENT.sectionAriaLabel}
-        />
+        <LocateSection {...LOCATE_CONTENT} ariaLabel={LOCATE_CONTENT.sectionAriaLabel} />
       </ScrollReveal>
     </>
   );
