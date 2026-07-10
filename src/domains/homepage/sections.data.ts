@@ -5,6 +5,7 @@
 
 import { CONTACT_EMAIL, POSTAL_CODE } from "@/shared/lib/brand";
 import { GOOGLE_MAPS_DIRECTIONS_URL } from "@/domains/contact/contact.data";
+import { SCHOOL_CONFIG, SCHOOL_STATS, CONTACT_CONFIG } from "@/shared/config";
 
 import { WHY_ST_ELIZABETH_POINTS } from "@/domains/admissions/admissions.data";
 import { BEYOND_ACADEMICS_SECTIONS } from "@/domains/beyond-academics/beyond.data";
@@ -22,7 +23,7 @@ export interface HeroSlide {
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    tagline: "Est. 1954 · Pomburpa, Goa",
+    tagline: `Est. ${SCHOOL_CONFIG.FOUNDED_YEAR} · ${SCHOOL_CONFIG.LOCATION.CITY}, ${SCHOOL_CONFIG.LOCATION.STATE}`,
     heading: "Guiding Minds, Nurturing Hearts, Building Futures",
     ctaText: "Discover Our Story",
     ctaHref: "/about/mission",
@@ -73,10 +74,14 @@ export interface CounterStat {
 }
 
 export const COUNTER_STATS: CounterStat[] = [
-  { value: 1954, suffix: "", label: "Year Founded" },
-  { value: 15, suffix: ":1", label: "Student-Teacher Ratio" },
-  { value: 185, suffix: "+", label: "Students" },
-  { value: 72, suffix: "", label: "Years of Excellence" },
+  { value: SCHOOL_CONFIG.FOUNDED_YEAR, suffix: "", label: "Year Founded" },
+  { value: SCHOOL_STATS.STUDENT_TEACHER_RATIO, suffix: ":1", label: "Student-Teacher Ratio" },
+  { value: SCHOOL_STATS.CURRENT_ENROLLMENT, suffix: "+", label: "Students" },
+  {
+    value: new Date().getFullYear() - SCHOOL_CONFIG.FOUNDED_YEAR,
+    suffix: "",
+    label: "Years of Excellence",
+  },
 ];
 
 // ── Welcome Section ────────────────────────────────────────────────────
@@ -134,7 +139,7 @@ export interface ProgramBox {
 export const PROGRAM_BOXES: ProgramBox[] = [
   {
     title: "Since 1954",
-    description: "Over seven decades shaping generations of leaders from Pomburpa and beyond.",
+    description: `Over ${new Date().getFullYear() - SCHOOL_CONFIG.FOUNDED_YEAR} decades shaping generations of leaders from ${SCHOOL_CONFIG.LOCATION.CITY} and beyond.`,
     href: "/about/history",
     color: "var(--p-color-royal-blue)",
   },
@@ -159,7 +164,7 @@ export const PROGRAM_BOXES: ProgramBox[] = [
     color: "var(--p-color-gold)",
   },
   {
-    title: "15:1 Ratio",
+    title: `${SCHOOL_STATS.STUDENT_TEACHER_RATIO}:1 Ratio`,
     description: "Small class sizes ensure personalised attention for every student.",
     href: "/academics/teaching-methods",
     color: "var(--p-color-deep-blue)",
@@ -251,10 +256,9 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     title: "Seven Decades of Service",
-    description:
-      "Since 1954, providing quality education to the communities of Bardez and North Goa.",
+    description: `Since ${SCHOOL_CONFIG.FOUNDED_YEAR}, providing quality education to the communities of Bardez and North Goa.`,
     icon: "clock",
-    year: "1954",
+    year: String(SCHOOL_CONFIG.FOUNDED_YEAR),
   },
   {
     title: "Community Impact",
@@ -359,9 +363,9 @@ export const NEWS_HOMEPAGE_CONTENT = {
 export const LOCATE_CONTENT = {
   eyebrow: "Find Us",
   heading: "Locate Us",
-  address: `St. Elizabeth's High School, Ven. Fr. Hilario Gonsalves Rd, Pomburpa, Bardez, Goa ${POSTAL_CODE}, India`,
-  phone: "+91 832 241 0654",
-  email: CONTACT_EMAIL,
+  address: `${SCHOOL_CONFIG.NAME}, Ven. Fr. Hilario Gonsalves Rd, ${CONTACT_CONFIG.ADDRESS.STREET}, ${CONTACT_CONFIG.ADDRESS.CITY}, ${CONTACT_CONFIG.ADDRESS.STATE} ${CONTACT_CONFIG.ADDRESS.POSTAL_CODE}, ${CONTACT_CONFIG.ADDRESS.COUNTRY}`,
+  phone: CONTACT_CONFIG.PHONE.MAIN,
+  email: CONTACT_CONFIG.EMAIL.GENERAL,
   ctaText: "Get Directions",
   ctaHref: GOOGLE_MAPS_DIRECTIONS_URL,
   sectionAriaLabel: "Locate us and contact information",
