@@ -48,7 +48,7 @@ interface CreatePageMetadataOptions {
 export function createPageMetadata(
   title: string,
   description: string,
-  path: string,
+  path: string = "/",
   options?: CreatePageMetadataOptions,
 ): Metadata {
   // Canonical URL is always absolute and required for proper SEO

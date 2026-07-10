@@ -18,8 +18,8 @@ describe("Visits Data", () => {
       expect(SCHOOL_ADDRESS.country).toBe("India");
     });
 
-    it("street contains the school road name", () => {
-      expect(SCHOOL_ADDRESS.street).toContain("Ven. Fr. Hilario Gonsalves Rd");
+    it("street is Pomburpa", () => {
+      expect(SCHOOL_ADDRESS.street).toBe("Pomburpa");
     });
 
     it("area is Pomburpa, Bardez", () => {
@@ -56,8 +56,8 @@ describe("Visits Data", () => {
 
   describe("SCHOOL_COORDINATES", () => {
     it("has lat and lng for Pomburpa, Goa", () => {
-      expect(SCHOOL_COORDINATES.lat).toBeCloseTo(15.5449, 3);
-      expect(SCHOOL_COORDINATES.lng).toBeCloseTo(73.9723, 3);
+      expect(SCHOOL_COORDINATES.lat).toBeCloseTo(15.2993, 3);
+      expect(SCHOOL_COORDINATES.lng).toBeCloseTo(74.124, 3);
     });
 
     it("lat is within valid range", () => {

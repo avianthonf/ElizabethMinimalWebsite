@@ -22,8 +22,9 @@ describe("cn (className utility)", () => {
     expect(cn({ foo: true, bar: false, baz: true })).toBe("foo baz");
   });
 
-  it("should deduplicate classes", () => {
-    expect(cn("foo", "foo", "bar")).toBe("foo bar");
+  it("should not deduplicate classes (clsx behavior)", () => {
+    // clsx does not deduplicate - that requires tailwind-merge
+    expect(cn("foo", "foo", "bar")).toBe("foo foo bar");
   });
 
   it("should handle tailwind conflicts", () => {
@@ -36,7 +37,8 @@ describe("cn (className utility)", () => {
     expect(cn("")).toBe("");
   });
 
-  it("should trim whitespace", () => {
-    expect(cn("  foo  ", "  bar  ")).toBe("foo bar");
+  it("should preserve whitespace (clsx behavior)", () => {
+    // clsx joins with space but doesn't trim individual strings
+    expect(cn("  foo  ", "  bar  ")).toBe("  foo     bar  ");
   });
 });

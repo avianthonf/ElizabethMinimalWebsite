@@ -7,6 +7,8 @@
  * unlock scroll that another overlay needs.
  */
 
+import { useEffect } from "react";
+
 let lockCount = 0;
 let previousOverflow: string | null = null;
 
@@ -25,6 +27,21 @@ export function unlockBodyScroll(): void {
     document.body.style.overflow = previousOverflow;
     previousOverflow = null;
   }
+}
+
+/**
+ * React hook to lock/unlock body scroll based on a boolean.
+ * Uses reference counting to handle multiple concurrent locks.
+ */
+export function useScrollLock(locked: boolean): void {
+  useEffect(() => {
+    if (locked) {
+      lockBodyScroll();
+      return () => {
+        unlockBodyScroll();
+      };
+    }
+  }, [locked]);
 }
 
 /**
