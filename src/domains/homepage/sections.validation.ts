@@ -56,9 +56,7 @@ export type WelcomeContent = z.infer<typeof WelcomeContentSchema>;
 // ── Values Section Schemas ─────────────────────────────────────────────
 
 export const ValueSchema = z.object({
-  icon: z.enum(["heart", "star", "users", "book", "globe", "award", "shield", "sun"], {
-    errorMap: () => ({ message: "Invalid icon type" }),
-  }),
+  icon: z.enum(["heart", "star", "users", "book", "globe", "award", "shield", "sun"] as const),
   title: z.string().min(1, "Value title cannot be empty"),
   description: z.string().min(20, "Value description too short"),
 });
@@ -76,9 +74,7 @@ export const AchievementSchema = z.object({
   year: z.string().regex(/^\d{4}$/, "Year must be 4 digits"),
   title: z.string().min(1, "Achievement title cannot be empty"),
   description: z.string().min(20, "Achievement description too short"),
-  icon: z.enum(["award", "trophy", "medal", "star", "graduation-cap", "certificate"], {
-    errorMap: () => ({ message: "Invalid achievement icon" }),
-  }),
+  icon: z.enum(["award", "trophy", "medal", "star", "graduation-cap", "certificate"] as const),
 });
 
 export const AchievementsSchema = z
@@ -132,9 +128,7 @@ export const NewsItemSchema = z.object({
   title: z.string().min(1, "News title cannot be empty"),
   excerpt: z.string().min(20, "News excerpt too short"),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD format"),
-  category: z.enum(["event", "achievement", "announcement", "news"], {
-    errorMap: () => ({ message: "Invalid news category" }),
-  }),
+  category: z.enum(["event", "achievement", "announcement", "news"] as const),
   imageUrl: z.string().optional(),
   slug: z.string().regex(/^[a-z0-9-]+$/, "Slug must be lowercase alphanumeric with hyphens"),
 });

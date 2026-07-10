@@ -9,6 +9,8 @@ import { Text } from "@/shared/ui/text";
 import { EventsCalendar } from "@/features/calendar";
 import { SafeSection } from "@/features/error-isolation";
 import { createPageMetadata } from "@/shared/lib/page-utils";
+import { createEventSchema } from "@/shared/lib/enhanced-structured-data";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
 
 export const metadata: Metadata = createPageMetadata(
   "Events Calendar",
@@ -17,9 +19,63 @@ export const metadata: Metadata = createPageMetadata(
   { ogImage: "/images/DSC07580.jpg" },
 );
 
+// Pre-generate Event schemas for SEO (static data)
+const eventSchemas = [
+  createEventSchema({
+    name: "Admissions Open House",
+    description: "Admissions event at St. Elizabeth's High School",
+    startDate: "2026-08-01",
+    endDate: "2026-08-01",
+    location: "Main Campus, St. Elizabeth's High School, Pomburpa, Goa",
+  }),
+  createEventSchema({
+    name: "First Day of School",
+    description: "Academic event at St. Elizabeth's High School",
+    startDate: "2026-09-01",
+    endDate: "2026-09-01",
+    location: "All Classrooms, St. Elizabeth's High School, Pomburpa, Goa",
+  }),
+  createEventSchema({
+    name: "Teacher's Day Celebration",
+    description: "Cultural event at St. Elizabeth's High School",
+    startDate: "2026-09-05",
+    endDate: "2026-09-05",
+    location: "Assembly Hall, St. Elizabeth's High School, Pomburpa, Goa",
+  }),
+  createEventSchema({
+    name: "Inter-House Sports Meet XXIII",
+    description: "Sports event at St. Elizabeth's High School",
+    startDate: "2026-10-10",
+    endDate: "2026-10-12",
+    location: "Sports Ground, St. Elizabeth's High School, Pomburpa, Goa",
+  }),
+  createEventSchema({
+    name: "Annual Day Celebrations",
+    description: "Cultural event at St. Elizabeth's High School",
+    startDate: "2026-11-15",
+    endDate: "2026-11-15",
+    location: "Auditorium, St. Elizabeth's High School, Pomburpa, Goa",
+  }),
+  createEventSchema({
+    name: "Christmas Celebrations & Vacation",
+    description: "Community event at St. Elizabeth's High School",
+    startDate: "2026-12-22",
+    endDate: "2026-12-31",
+    location: "Main Campus, St. Elizabeth's High School, Pomburpa, Goa",
+  }),
+];
+
 export default function EventsCalendarPage() {
   return (
     <>
+      {/* Add Event structured data for each calendar event */}
+      {eventSchemas.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonStringify(schema) }}
+        />
+      ))}
       <Breadcrumb href="/news" label="News" currentLabel="Events Calendar" />
       <Hero
         eyebrow="Stay Connected"
