@@ -22,7 +22,7 @@ import {
 export const metadata = createPageMetadata(
   RELOCATION_PAGE.metaTitle,
   RELOCATION_PAGE.metaDescription,
-  { path: "/admissions/relocating-to-goa" },
+  "/admissions/relocating-to-goa",
 );
 
 export default function RelocatingToGoaPage() {

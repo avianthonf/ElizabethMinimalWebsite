@@ -13,6 +13,7 @@ import { WHY_ST_ELIZABETH_POINTS } from "@/domains/admissions/admissions.data";
 export const metadata = createPageMetadata(
   "Why St. Elizabeth?",
   "Discover what makes St. Elizabeth's High School special — academic excellence, values-based education, holistic development, and a nurturing community.",
+  "/admissions/why",
   { ogImage: "/images/DSC07580.jpg" },
 );
 

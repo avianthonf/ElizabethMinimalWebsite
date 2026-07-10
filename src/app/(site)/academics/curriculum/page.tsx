@@ -17,6 +17,7 @@ import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   CURRICULUM_PAGE.metaTitle,
   CURRICULUM_PAGE.metaDescription,
+  "/academics/curriculum",
 );
 
 export default function CurriculumPage() {

@@ -13,6 +13,7 @@ import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   HEADMISTRESS_MESSAGE_PAGE.metaTitle,
   HEADMISTRESS_MESSAGE_PAGE.metaDescription,
+  "/about/headmistress-message",
 );
 
 export default function HeadmistressMessagePage() {

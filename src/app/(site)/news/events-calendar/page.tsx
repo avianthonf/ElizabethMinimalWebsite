@@ -13,6 +13,7 @@ import { createPageMetadata } from "@/shared/lib/page-utils";
 export const metadata: Metadata = createPageMetadata(
   "Events Calendar",
   "Upcoming events and important dates at St. Elizabeth's High School. View our academic calendar, sports meets, cultural celebrations, and school holidays for 2026-27.",
+  "/news/events-calendar",
   { ogImage: "/images/DSC07580.jpg" },
 );
 

@@ -13,6 +13,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   STUDENT_COUNCIL_PAGE.metaTitle,
   STUDENT_COUNCIL_PAGE.metaDescription,
+  "/beyond-academics/student-council",
 );
 
 export default function StudentCouncilPage() {

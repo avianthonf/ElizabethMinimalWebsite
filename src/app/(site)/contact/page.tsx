@@ -20,6 +20,7 @@ import { SafeSection } from "@/features/error-isolation";
 export const metadata = createPageMetadata(
   "Contact",
   "Get in touch with St. Elizabeth's High School in Pomburpa, Goa. Find our address, phone number, email, and location on Google Maps.",
+  "/contact",
   { ogImage: "/images/DSC07580.jpg" },
 );
 

@@ -14,6 +14,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   NEWSLETTER_PAGE.metaTitle,
   NEWSLETTER_PAGE.metaDescription,
+  "/news/newsletter",
 );
 
 export default function NewsletterPage() {

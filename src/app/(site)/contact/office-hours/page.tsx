@@ -10,6 +10,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   OFFICE_HOURS_PAGE.metaTitle,
   OFFICE_HOURS_PAGE.metaDescription,
+  "/contact/office-hours",
 );
 
 export default function OfficeHoursPage() {

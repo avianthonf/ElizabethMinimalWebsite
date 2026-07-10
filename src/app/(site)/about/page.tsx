@@ -17,6 +17,7 @@ import { HERO_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   "About",
   "Learn about St. Elizabeth's High School's mission, history, and values in Pomburpa, Goa.",
+  "/about",
 );
 
 export default function AboutPage() {

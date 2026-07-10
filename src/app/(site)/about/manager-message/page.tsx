@@ -13,6 +13,7 @@ import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   MANAGER_MESSAGE_PAGE.metaTitle,
   MANAGER_MESSAGE_PAGE.metaDescription,
+  "/about/manager-message",
 );
 
 export default function ManagerMessagePage() {

@@ -6,6 +6,7 @@ import { GalleryPage } from "@/screens/news/gallery-page";
 export const metadata = createPageMetadata(
   "Photo Gallery",
   "Browse photos of campus life, academics, athletics, arts, and community events at St. Elizabeth's High School in Pomburpa, Goa.",
+  "/news/photo-gallery",
   { ogImage: `/images/${HERO_IMAGES[0].filename}` },
 );
 

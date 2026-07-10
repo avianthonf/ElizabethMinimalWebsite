@@ -21,8 +21,6 @@ interface CreatePageMetadataOptions {
   ogImage?: string;
   /** If true, sets robots to noindex. */
   noIndex?: boolean;
-  /** Canonical URL — defaults to ogImage/ogUrl derived from `path`. */
-  path?: string;
   /** Override the open graph type. Defaults to "website". */
   ogType?: "website" | "article";
   /** When the page was last modified (ISO date string). */
@@ -39,16 +37,24 @@ interface CreatePageMetadataOptions {
  * Creates a Next.js Metadata object with consistent formatting.
  * Includes canonical URLs, OpenGraph, and Twitter card metadata.
  *
+ * IMPORTANT: Canonical URLs are REQUIRED for proper SEO. Every page must
+ * have an absolute canonical URL to prevent duplicate content issues.
+ *
  * @param title - The page title (appended with " | St. Elizabeth's High School")
  * @param description - The page description for SEO
+ * @param path - The page path (e.g., "/about/mission") - REQUIRED for canonical URL
  * @param options - SEO enhancement options
  */
 export function createPageMetadata(
   title: string,
   description: string,
+  path: string,
   options?: CreatePageMetadataOptions,
 ): Metadata {
-  const canonical = options?.path ? absoluteUrl(options.path) : undefined;
+  // Canonical URL is always absolute and required for proper SEO
+  // See: https://nextjs.org/learn/seo/canonical
+  // See: https://www.codeava.com/blog/common-canonical-mistakes-nextjs-cms
+  const canonical = absoluteUrl(path);
   const fullTitle = `${title} | ${SITE_NAME}`;
   const ogImage = options?.ogImage ? absoluteUrl(options.ogImage) : absoluteUrl("/og-default.jpg");
   const ogType = options?.ogType ?? "website";
@@ -59,7 +65,10 @@ export function createPageMetadata(
     description,
     authors: options?.author ? [{ name: options.author }] : undefined,
     metadataBase: new URL(SITE_URL),
-    alternates: canonical ? { canonical } : undefined,
+    // Canonical URL is required - every page must have one to prevent duplicate content
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title: fullTitle,
       description,

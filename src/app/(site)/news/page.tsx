@@ -13,6 +13,7 @@ import { HERO_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   "News & Events",
   "Stay informed with the latest news, events, and achievements from St. Elizabeth's High School in Pomburpa, Goa.",
+  "/news",
 );
 
 export default function NewsPage() {

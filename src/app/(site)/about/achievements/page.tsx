@@ -18,6 +18,7 @@ import styles from "./achievements.module.css";
 export const metadata = createPageMetadata(
   ACHIEVEMENTS_PAGE.metaTitle,
   ACHIEVEMENTS_PAGE.metaDescription,
+  "/about/achievements",
 );
 
 export default function AchievementsPage() {

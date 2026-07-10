@@ -15,6 +15,7 @@ import { createPageMetadata } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   "Thank You",
   "Thank you for contacting St. Elizabeth's High School. We will respond within two business days.",
+  "/contact/thank-you",
 );
 
 export default function ContactThankYouPage() {

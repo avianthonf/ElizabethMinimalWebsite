@@ -17,7 +17,11 @@ import {
 } from "@/domains/beyond-academics/prahari.data";
 import { STUDENT_LIFE_IMAGES } from "@/domains/media/images.data";
 
-export const metadata = createPageMetadata(PRAHARI_PAGE.metaTitle, PRAHARI_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  PRAHARI_PAGE.metaTitle,
+  PRAHARI_PAGE.metaDescription,
+  "/beyond-academics/prahari-club",
+);
 
 export default function PrahariClubPage() {
   return (

@@ -12,12 +12,12 @@ import { MenuProvider } from "@/features/menu/menu-provider";
 import { MenuOverlay } from "@/features/menu/menu-overlay";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SITE_URL, CONTACT_EMAIL } from "@/shared/lib/brand";
+import { SITE_URL } from "@/shared/lib/brand";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import {
-  createEnhancedSchoolSchema,
+  createSchoolOrganizationSchema,
   createWebSiteSchema,
-  createBreadcrumbListSchema,
+  createBreadcrumbSchema,
 } from "@/shared/lib/enhanced-structured-data";
 import "./globals.css";
 
@@ -78,13 +78,13 @@ export const metadata: Metadata = {
 // Enhanced structured data combining multiple schema types for maximum SEO value
 const enhancedSchemas = [
   // Primary: School + EducationalOrganization + LocalBusiness (combined schema)
-  createEnhancedSchoolSchema(),
+  createSchoolOrganizationSchema(),
 
   // WebSite schema with search action for Google Search integration
   createWebSiteSchema(),
 
   // BreadcrumbList for homepage (root level)
-  createBreadcrumbListSchema([{ name: "Home", url: SITE_URL }]),
+  createBreadcrumbSchema([{ name: "Home", url: SITE_URL }]),
 ];
 
 export default function RootLayout({

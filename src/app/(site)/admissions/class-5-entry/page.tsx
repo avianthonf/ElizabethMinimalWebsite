@@ -19,6 +19,7 @@ import {
 export const metadata = createPageMetadata(
   CLASS5_ENTRY_PAGE.metaTitle,
   CLASS5_ENTRY_PAGE.metaDescription,
+  "/admissions/class-5-entry",
 );
 
 export default function Class5EntryPage() {

@@ -22,6 +22,7 @@ import styles from "./page.module.css";
 export const metadata = createPageMetadata(
   "Location & Map",
   "Find St. Elizabeth's High School in Pomburpa, Bardez, Goa. Get directions, view our campus on the map, and plan your visit.",
+  "/contact/location-map",
   { ogImage: "/images/DSC07580.jpg" },
 );
 

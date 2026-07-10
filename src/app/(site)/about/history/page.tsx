@@ -14,6 +14,7 @@ import styles from "./history.module.css";
 export const metadata = createPageMetadata(
   "History",
   "Explore the history of St. Elizabeth's High School — founded in 1954, a Catholic, co-educational English-medium institution in Pomburpa, Goa.",
+  "/about/history",
 );
 
 export default function HistoryPage() {

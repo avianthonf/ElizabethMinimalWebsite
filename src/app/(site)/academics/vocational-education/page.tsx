@@ -14,6 +14,7 @@ import { VOCATIONAL_PAGE, VOCATIONAL_AREAS } from "@/domains/academics/vocationa
 export const metadata = createPageMetadata(
   VOCATIONAL_PAGE.metaTitle,
   VOCATIONAL_PAGE.metaDescription,
+  "/academics/vocational-education",
 );
 
 export default function VocationalEducationPage() {

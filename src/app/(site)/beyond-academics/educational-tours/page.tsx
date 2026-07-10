@@ -10,6 +10,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   EDUCATIONAL_TOURS_PAGE.metaTitle,
   EDUCATIONAL_TOURS_PAGE.metaDescription,
+  "/beyond-academics/educational-tours",
 );
 
 export default function EducationalToursPage() {

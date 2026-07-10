@@ -13,6 +13,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   CULTURAL_ACTIVITIES_PAGE.metaTitle,
   CULTURAL_ACTIVITIES_PAGE.metaDescription,
+  "/beyond-academics/cultural-activities",
 );
 
 export default function CulturalActivitiesPage() {

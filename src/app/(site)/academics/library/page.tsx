@@ -20,7 +20,11 @@ const LIBRARY_PAGE = {
   sectionAriaLabel: "Library resources and services",
 } as const;
 
-export const metadata = createPageMetadata(LIBRARY_PAGE.metaTitle, LIBRARY_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  LIBRARY_PAGE.metaTitle,
+  LIBRARY_PAGE.metaDescription,
+  "/academics/library",
+);
 
 export default function LibraryPage() {
   return (

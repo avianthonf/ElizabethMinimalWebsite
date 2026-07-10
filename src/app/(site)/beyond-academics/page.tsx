@@ -17,6 +17,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   BEYOND_ACADEMICS_PAGE.metaTitle,
   BEYOND_ACADEMICS_PAGE.metaDescription,
+  "/beyond-academics",
 );
 
 export default function BeyondAcademicsPage() {

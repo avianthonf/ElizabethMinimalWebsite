@@ -11,7 +11,11 @@ import { VISION, MISSION, VALUES, VALUES_INTRO, MISSION_PAGE } from "@/domains/a
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 import { Grid } from "@/shared/ui/grid";
 
-export const metadata = createPageMetadata(MISSION_PAGE.metaTitle, MISSION_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  MISSION_PAGE.metaTitle,
+  MISSION_PAGE.metaDescription,
+  "/about/mission",
+);
 
 export default function MissionPage() {
   return (

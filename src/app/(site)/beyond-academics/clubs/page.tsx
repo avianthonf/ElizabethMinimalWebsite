@@ -7,7 +7,11 @@ import { createPageMetadata } from "@/shared/lib/page-utils";
 import { CLUBS_PAGE, CLUBS } from "@/domains/beyond-academics/beyond.data";
 import { getHeroImage } from "@/shared/lib/page-utils";
 
-export const metadata = createPageMetadata(CLUBS_PAGE.metaTitle, CLUBS_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  CLUBS_PAGE.metaTitle,
+  CLUBS_PAGE.metaDescription,
+  "/beyond-academics/clubs",
+);
 
 export default function ClubsPage() {
   return (

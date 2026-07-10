@@ -20,6 +20,7 @@ import { WHATSAPP_INQUIRY, ADMISSIONS_TIMELINE, FAQS } from "@/domains/admission
 export const metadata = createPageMetadata(
   "Admissions",
   "Begin your journey at St. Elizabeth's High School. Learn about admissions, tuition, and how to apply.",
+  "/admissions",
 );
 
 export default function AdmissionsPage() {

@@ -1,4 +1,4 @@
-import { SCHOOL_CONFIG, CONTACT_CONFIG } from "./config";
+import { SCHOOL_CONFIG, CONTACT_CONFIG } from "@/shared/config";
 
 /**
  * Enhanced Structured Data Generation

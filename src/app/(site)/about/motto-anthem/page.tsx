@@ -10,6 +10,7 @@ import { createPageMetadata } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   MOTTO_ANTHEM_PAGE.metaTitle,
   MOTTO_ANTHEM_PAGE.metaDescription,
+  "/about/motto-anthem",
 );
 
 export default function MottoAnthemPage() {

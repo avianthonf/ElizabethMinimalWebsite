@@ -19,6 +19,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   VIDEO_GALLERY_PAGE.metaTitle,
   VIDEO_GALLERY_PAGE.metaDescription,
+  "/news/video-gallery",
 );
 
 export default function VideoGalleryPage() {

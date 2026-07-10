@@ -10,6 +10,7 @@ import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   TEACHING_METHODS_PAGE.metaTitle,
   TEACHING_METHODS_PAGE.metaDescription,
+  "/academics/teaching-methods",
 );
 
 export default function TeachingMethodsPage() {

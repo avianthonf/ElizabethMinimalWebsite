@@ -10,6 +10,7 @@ import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   SCIENCE_LAB_PAGE.metaTitle,
   SCIENCE_LAB_PAGE.metaDescription,
+  "/academics/science-laboratory",
 );
 
 export default function ScienceLabPage() {

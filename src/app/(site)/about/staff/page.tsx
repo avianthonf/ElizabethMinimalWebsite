@@ -7,7 +7,11 @@ import { createPageMetadata } from "@/shared/lib/page-utils";
 import { STAFF_PAGE, STAFF_MEMBERS } from "@/domains/about/about.data";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 
-export const metadata = createPageMetadata(STAFF_PAGE.metaTitle, STAFF_PAGE.metaDescription);
+export const metadata = createPageMetadata(
+  STAFF_PAGE.metaTitle,
+  STAFF_PAGE.metaDescription,
+  "/about/staff",
+);
 
 export default function StaffPage() {
   return (

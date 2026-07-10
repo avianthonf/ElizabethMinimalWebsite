@@ -17,6 +17,7 @@ import {
 export const metadata = createPageMetadata(
   ALUMNI_REGISTRATION_PAGE.metaTitle,
   ALUMNI_REGISTRATION_PAGE.metaDescription,
+  "/about/alumni/register",
 );
 
 export default function AlumniRegistrationPage() {

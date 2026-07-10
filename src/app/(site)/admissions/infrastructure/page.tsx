@@ -13,6 +13,7 @@ import { getHeroImage } from "@/shared/lib/page-utils";
 export const metadata = createPageMetadata(
   INFRASTRUCTURE_PAGE.metaTitle,
   INFRASTRUCTURE_PAGE.metaDescription,
+  "/admissions/infrastructure",
 );
 
 export default function InfrastructurePage() {

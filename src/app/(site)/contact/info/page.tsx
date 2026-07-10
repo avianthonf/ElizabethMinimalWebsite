@@ -16,6 +16,7 @@ import { CONTACT_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   "Contact Information",
   "Reach out to St. Elizabeth's High School in Pomburpa, Goa. Find our address, phone number, email, and send us an inquiry.",
+  "/contact/info",
   { ogImage: "/images/DSC07580.jpg" },
 );
 

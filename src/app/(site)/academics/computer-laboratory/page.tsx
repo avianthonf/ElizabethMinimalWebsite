@@ -19,6 +19,7 @@ import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   COMPUTER_LAB_PAGE.metaTitle,
   COMPUTER_LAB_PAGE.metaDescription,
+  "/academics/computer-laboratory",
 );
 
 export default function ComputerLabPage() {

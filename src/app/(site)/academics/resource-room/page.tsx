@@ -10,6 +10,7 @@ import { ACADEMICS_IMAGES } from "@/domains/media/images.data";
 export const metadata = createPageMetadata(
   RESOURCE_ROOM_PAGE.metaTitle,
   RESOURCE_ROOM_PAGE.metaDescription,
+  "/academics/resource-room",
 );
 
 export default function ResourceRoomPage() {
