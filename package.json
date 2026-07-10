@@ -14,7 +14,8 @@
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "analyze": "ANALYZE=true npm run build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "track-bundle": "node scripts/track-bundle-size.js"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
