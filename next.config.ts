@@ -34,12 +34,16 @@ const nextConfig: NextConfig = {
             value: "strict-origin-when-cross-origin",
           },
           {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
+          {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
           {
             key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
+            value: "same-origin-allow-popups",
           },
           {
             key: "Cross-Origin-Resource-Policy",
@@ -48,7 +52,7 @@ const nextConfig: NextConfig = {
           {
             key: "Permissions-Policy",
             value:
-              "camera=(), microphone=(), geolocation=(), clipboard-write=(), display-capture=(), payment=()",
+              "camera=(), microphone=(), geolocation=(), clipboard-write=(), display-capture=(), payment=(), browsing-topics=()",
           },
         ],
       },
