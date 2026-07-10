@@ -4,6 +4,7 @@ import { z } from "zod";
 import type { Resend } from "resend";
 import { headers } from "next/headers";
 import { InquiryEmail } from "@/shared/lib/email";
+import { ConfirmationEmail } from "@/shared/lib/confirmation-email";
 import { render } from "@react-email/components";
 import { CONTACT_EMAIL, TRANSACTIONAL_EMAIL_FROM } from "@/shared/lib/brand";
 import { rateLimit, getClientIP } from "@/shared/lib/rate-limit";
@@ -108,10 +109,13 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
     };
   }
 
-  // ═══ Send email via Resend using React Email template ════════════
+  // ═══ Send emails via Resend using React Email templates ═════════════
 
   try {
-    const emailHtml = await render(
+    const resend = await getResend();
+
+    // 1. Send inquiry to school
+    const schoolEmailHtml = await render(
       InquiryEmail({
         name,
         email,
@@ -121,20 +125,35 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
       }),
     );
 
-    await (
-      await getResend()
-    ).emails.send({
+    await resend.emails.send({
       from: TRANSACTIONAL_EMAIL_FROM,
       to: INQUIRY_EMAIL,
       replyTo: email,
       // Strip CR/LF to prevent SMTP header injection
       subject: `[Website Inquiry] ${subject.replace(/[\r\n]/g, "")}`,
-      html: emailHtml,
+      html: schoolEmailHtml,
+    });
+
+    // 2. Send confirmation to user
+    const confirmationEmailHtml = await render(
+      ConfirmationEmail({
+        name,
+        subject,
+        message,
+      }),
+    );
+
+    await resend.emails.send({
+      from: TRANSACTIONAL_EMAIL_FROM,
+      to: email,
+      subject: "Thank you for contacting St. Elizabeth's High School",
+      html: confirmationEmailHtml,
     });
 
     return {
       success: true,
-      message: "Thank you for your inquiry. We will respond within two business days.",
+      message:
+        "Thank you for your inquiry. We will respond within two business days. A confirmation email has been sent to your inbox.",
     };
   } catch (error) {
     // Log error with context for monitoring
