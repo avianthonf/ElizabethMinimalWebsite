@@ -39,6 +39,7 @@
 .carouselInner {
   display: flex;
   gap: clamp(16px, 2vw, 24px);
+  touch-action: pan-y pinch-zoom;
 }
 
 .card {
