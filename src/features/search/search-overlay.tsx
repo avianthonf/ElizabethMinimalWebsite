@@ -141,9 +141,9 @@ export function SearchOverlay({
     setError(null);
   }, [open]);
 
-  // Run debounced search with stale-result cancellation.
-  // The `cancelled` flag prevents a slower, in-flight search from
-  // overwriting results after a faster, newer search has already resolved.
+  // Run debounced search with AbortController for reliable cancellation.
+  // Using AbortController ensures clean cancellation of async operations
+  // and prevents race conditions where a slower search overwrites newer results.
   useEffect(() => {
     if (!query.trim()) {
       // Defer to next microtask to avoid sync setState-in-effect
@@ -156,12 +156,15 @@ export function SearchOverlay({
       return;
     }
 
-    let cancelled = false;
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     queueMicrotask(() => setIsLoading(true));
     const handle = setTimeout(async () => {
       try {
         const response = await pagefind.search(query);
-        if (cancelled) return;
+        if (signal.aborted) return;
+
         const fragments = await Promise.all(
           response.results.slice(0, maxResults).map(async (r) => {
             const data = await r.data();
@@ -173,20 +176,21 @@ export function SearchOverlay({
             } as ResultItem;
           }),
         );
-        if (cancelled) return;
+
+        if (signal.aborted) return;
         setResults(fragments);
       } catch {
-        if (cancelled) return;
+        if (signal.aborted) return;
         setError("Search failed. Please try again.");
         setResults([]);
       } finally {
-        if (!cancelled) setIsLoading(false);
+        if (!signal.aborted) setIsLoading(false);
       }
     }, 150);
 
     return () => {
       clearTimeout(handle);
-      cancelled = true;
+      controller.abort();
     };
   }, [query, pagefindReady, maxResults]);
 
