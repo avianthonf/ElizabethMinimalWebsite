@@ -245,10 +245,19 @@
 /* ── Utilities Layer ────────────────────────────────── */
 
 @layer utilities {
+  /* Skip link - WCAG 2.4.1 compliant pattern
+   * Uses off-screen positioning instead of top: -100%
+   * to ensure compatibility with all screen readers.
+   * Never use display:none or visibility:hidden as they
+   * remove the link from the accessibility tree.
+   */
   .skipLink {
-    position: fixed;
-    top: -100%;
-    left: 0;
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
     z-index: 9999;
     padding: 9px 18px;
     background: var(--s-color-primary);
@@ -260,8 +269,12 @@
   }
 
   .skipLink:focus {
-    top: 6px;
+    position: fixed;
     left: 6px;
+    top: 6px;
+    width: auto;
+    height: auto;
+    overflow: visible;
   }
 
   /* Dynamic-import loading skeleton */
