@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { Link } from "@/shared/ui/link";
 import { TypewriterText } from "@/shared/ui/motion/motion-text";
+import { SafeSection } from "@/features/error-isolation";
 import styles from "./hero-carousel.module.css";
 import type { HeroSlide } from "@/domains/homepage/sections.data";
 
@@ -153,20 +154,24 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
       />
 
       {/* 3D Spline scene — renders behind the overlay, hidden from screen readers */}
-      <HeroSplineScene sceneUrl={SPLINE_SCENE_URL} />
+      <SafeSection label="3D background scene">
+        <HeroSplineScene sceneUrl={SPLINE_SCENE_URL} />
+      </SafeSection>
 
       {/* Particle background — subtle school-color particle animation */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-      >
-        <HeroParticleBackground />
-      </div>
+      <SafeSection label="particle background">
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          <HeroParticleBackground />
+        </div>
+      </SafeSection>
 
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>

@@ -7,6 +7,7 @@ import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { EventsCalendar } from "@/features/calendar";
+import { SafeSection } from "@/features/error-isolation";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 
 export const metadata: Metadata = createPageMetadata(
@@ -40,7 +41,9 @@ export default function EventsCalendarPage() {
                 sports, purple and blue are cultural.
               </Text>
             </Stack>
-            <EventsCalendar />
+            <SafeSection label="events calendar">
+              <EventsCalendar />
+            </SafeSection>
           </Stack>
         </Container>
       </Section>

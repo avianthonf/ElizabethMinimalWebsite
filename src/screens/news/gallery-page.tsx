@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { Gallery, type GalleryImageEntry } from "@/features/gallery";
+import { SafeSection } from "@/features/error-isolation";
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
@@ -69,7 +70,9 @@ export function GalleryPage() {
             </Text>
           </Stack>
 
-          <Gallery images={galleryImages} />
+          <SafeSection label="photo gallery">
+            <Gallery images={galleryImages} />
+          </SafeSection>
         </Stack>
       </Container>
     </Section>
