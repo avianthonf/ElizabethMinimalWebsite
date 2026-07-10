@@ -2,7 +2,7 @@
   background: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   color: var(--p-color-navy-dark, #0f1d35);
   position: relative;
-  z-index: 1000;
+  z-index: var(--z-fixed);
 }
 
 .inner {

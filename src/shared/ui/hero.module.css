@@ -21,20 +21,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
+  z-index: var(--z-base);
 }
 
 .bgImage {
   position: absolute;
   inset: 0;
   object-fit: cover;
-  z-index: 0;
+  z-index: var(--z-base);
 }
 
 .mediaFallback {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: var(--z-layer-1);
 }
 
 .overlay::after {
@@ -42,14 +42,14 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  z-index: var(--z-layer-1);
 }
 
 /* ── Content ──────────────────────────────────────── */
 
 .content {
   position: relative;
-  z-index: 2;
+  z-index: var(--z-layer-2);
   max-width: 585px;
 }
 
