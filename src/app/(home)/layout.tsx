@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { Header } from "@/widgets/header/header";
 import { Footer } from "@/widgets/footer/footer";
-import { AnnouncementBar } from "@/widgets/announcement-bar/announcement-bar";
 import { SchoolCursor } from "@/features/cursor";
 import { CinematicLetterbox } from "@/features/kino";
 import {
@@ -17,11 +16,6 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
   return (
     <SchoolCursor>
       <CinematicLetterbox>
-        <AnnouncementBar
-          message="Admissions Open for 2026-27 — Applications now being accepted for all grades"
-          href="/admissions/apply"
-          linkText="Apply Now"
-        />
         <Header navLinks={HEADER_NAV_LINKS} transparent={true} noScrollBar={true} fixed />
         <a href="#main-content" className="skipLink">
           Skip to main content
