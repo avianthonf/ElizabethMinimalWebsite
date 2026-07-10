@@ -1,34 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import dynamic from "next/dynamic";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { Link } from "@/shared/ui/link";
 import { TypewriterText } from "@/shared/ui/motion/motion-text";
-import { SafeSection } from "@/features/error-isolation";
 import styles from "./hero-carousel.module.css";
 import type { HeroSlide } from "@/domains/homepage/sections.data";
-
-// Spline 3D scene — lazy-loaded to avoid blocking initial render.
-// Falls back silently to the existing gradient overlay.
-const HeroSplineScene = dynamic(
-  () => import("./hero-spline-scene").then((mod) => ({ default: mod.HeroSplineScene })),
-  { ssr: false },
-);
-
-// tsParticles hero background — lazy-loaded to avoid SSR bundle bloat.
-const HeroParticleBackground = dynamic(
-  () => import("@/features/particles").then((mod) => ({ default: mod.HeroParticleBackground })),
-  { ssr: false },
-);
-
-// Spline scene URL — replace with a custom-designed school campus scene.
-// Current: generic abstract 3D background from Spline Community.
-// To update: export from Spline editor → Code → React → copy the URL.
-const SPLINE_SCENE_URL =
-  "https://prod.spline.design/23e9e4ac-b5af-4395-9cf1-7f56cb1af18e/scene.splinecode";
 
 interface HeroCarouselProps {
   slides: HeroSlide[];
@@ -152,26 +131,6 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
         aria-live="polite"
         aria-atomic="true"
       />
-
-      {/* 3D Spline scene — renders behind the overlay, hidden from screen readers */}
-      <SafeSection label="3D background scene">
-        <HeroSplineScene sceneUrl={SPLINE_SCENE_URL} />
-      </SafeSection>
-
-      {/* Particle background — subtle school-color particle animation */}
-      <SafeSection label="particle background">
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
-        >
-          <HeroParticleBackground />
-        </div>
-      </SafeSection>
 
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>

@@ -8,7 +8,6 @@ import { Text } from "@/shared/ui/text";
 import { Link } from "@/shared/ui/link";
 import { QRCard } from "@/features/qr";
 import { MapEmbedLazy as MapEmbed } from "@/features/map/map-embed-lazy";
-import { SchoolGlobe } from "@/features/globe";
 import { SafeSection } from "@/features/error-isolation";
 import {
   SCHOOL_ADDRESS,
@@ -57,19 +56,6 @@ export default function LocationMapPage() {
               <div className={styles.mapSection}>
                 <MapEmbed lat={SCHOOL_COORDINATES.lat} lng={SCHOOL_COORDINATES.lng} zoom={14} />
               </div>
-            </SafeSection>
-
-            <SafeSection label="interactive globe">
-              <Stack gap="medium">
-                <Heading level="h2" variant="section">
-                  Where in the World
-                </Heading>
-                <Text variant="muted" size="medium">
-                  We&apos;re in Goa, on the west coast of India — a tropical paradise known for its
-                  beaches, culture, and warm community.
-                </Text>
-                <SchoolGlobe />
-              </Stack>
             </SafeSection>
 
             <div className={styles.infoGrid}>
