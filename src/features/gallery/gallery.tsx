@@ -155,6 +155,7 @@ export function Gallery({ images, className }: GalleryProps) {
           fill
           sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 33vw"
           quality={85}
+          loading="lazy"
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
           className={styles.albumImage}
