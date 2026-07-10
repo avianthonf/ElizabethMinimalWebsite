@@ -137,7 +137,15 @@ export async function submitInquiry(_prevState: FormState, formData: FormData): 
       message: "Thank you for your inquiry. We will respond within two business days.",
     };
   } catch (error) {
-    console.error("[contact] Failed to send inquiry email:", error);
+    // Log error with context for monitoring
+    // When Sentry is configured, use: Sentry.captureException(error, { tags: { action: 'contact-form' } })
+    console.error("[contact] Failed to send inquiry email:", {
+      error,
+      email: email,
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV,
+    });
+
     return {
       success: false,
       message: `Something went wrong. Please try again or contact us directly at ${CONTACT_EMAIL}.`,
