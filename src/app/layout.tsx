@@ -14,7 +14,11 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, CONTACT_EMAIL } from "@/shared/lib/brand";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
-import { createOrganizationSchema } from "@/shared/lib/structured-data";
+import {
+  createEnhancedSchoolSchema,
+  createWebSiteSchema,
+  createBreadcrumbListSchema,
+} from "@/shared/lib/enhanced-structured-data";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -71,51 +75,17 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = createOrganizationSchema({
-  "@type": "School",
-  alternateName: "St. Elizabeth's High School, Pomburpa",
-  logo: "/logo.png",
-  description:
-    "Catholic school affiliated with GBSHSE in Pomburpa, Bardez, Goa. Nurturing hearts since 1954 with an average class size of 15 students.",
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 15.5449,
-    longitude: 73.9723,
-  },
-  telephone: "+91-832-241-0654",
-  email: CONTACT_EMAIL,
-  foundingDate: "1954",
-  slogan: "Truth and Honesty",
-  educationalLevel: "Secondary",
-  curriculum: "GBSHSE",
-  numberOfStudents: {
-    "@type": "QuantitativeValue",
-    value: 185,
-  },
-  hasCredential: {
-    "@type": "EducationalOccupationalCredential",
-    credentialCategory: "Secondary School Certificate (SSC)",
-    recognizedBy: {
-      "@type": "Organization",
-      name: "Goa Board of Secondary and Higher Secondary Education (GBSHSE)",
-    },
-  },
-  memberOf: {
-    "@type": "Organization",
-    name: "Diocesan Society of Education, Archdiocese of Goa and Daman",
-  },
-  parentOrganization: {
-    "@type": "Organization",
-    name: "Archdiocese of Goa and Daman",
-  },
-  areaServed: [
-    { "@type": "City", name: "Mapusa" },
-    { "@type": "City", name: "Panjim" },
-    { "@type": "AdministrativeArea", name: "Bardez" },
-    { "@type": "AdministrativeArea", name: "North Goa" },
-    { "@type": "State", name: "Goa" },
-  ],
-});
+// Enhanced structured data combining multiple schema types for maximum SEO value
+const enhancedSchemas = [
+  // Primary: School + EducationalOrganization + LocalBusiness (combined schema)
+  createEnhancedSchoolSchema(),
+
+  // WebSite schema with search action for Google Search integration
+  createWebSiteSchema(),
+
+  // BreadcrumbList for homepage (root level)
+  createBreadcrumbListSchema([{ name: "Home", url: SITE_URL }]),
+];
 
 export default function RootLayout({
   children,
@@ -125,10 +95,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: safeJsonStringify(jsonLd) }}
-        />
+        {enhancedSchemas.map((schema, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: safeJsonStringify(schema) }}
+          />
+        ))}
       </head>
       <body>
         <MotionConfig reducedMotion="user">
