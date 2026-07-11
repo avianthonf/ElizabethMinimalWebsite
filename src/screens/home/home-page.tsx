@@ -3,6 +3,7 @@ import { HeroCarousel } from "./hero-carousel";
 import { CounterBar } from "./counter-bar";
 import { AchievementTicker } from "@/features/marquee";
 import { WelcomeSection } from "./welcome-section";
+import { LeadershipSection } from "./leadership-section";
 import { WhySection } from "./why-section";
 import { ProgramsGrid } from "./programs-grid";
 import { HolisticSection } from "./holistic-section";
@@ -73,6 +74,11 @@ export function HomePage() {
           images={WELCOME_CAROUSEL_IMAGES}
           ariaLabel="Welcome to St. Elizabeth's"
         />
+      </ScrollReveal>
+
+      {/* S3b: Leadership Messages */}
+      <ScrollReveal direction="right" delay={0.1}>
+        <LeadershipSection ariaLabel="Messages from our leadership" />
       </ScrollReveal>
 
       {/* S4: Why St. Elizabeth's */}
