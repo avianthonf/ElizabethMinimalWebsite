@@ -17,7 +17,8 @@ export interface HeroSlide {
   heading: string;
   ctaText: string;
   ctaHref: string;
-  imageFilename: string;
+  imageFilename?: string;
+  videoFilename?: string;
   imageAlt: string;
 }
 
@@ -27,6 +28,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     heading: "Guiding Minds, Nurturing Hearts, Building Futures",
     ctaText: "Discover Our Story",
     ctaHref: "/about/mission",
+    videoFilename: "welcome-video.mp4",
     imageFilename: "DSC07580.jpg",
     imageAlt: "Students engaged in dynamic outdoor activity on the St. Elizabeth's campus",
   },

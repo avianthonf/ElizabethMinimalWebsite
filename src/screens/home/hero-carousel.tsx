@@ -142,15 +142,28 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
               aria-roledescription="slide"
               aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.heading}`}
             >
-              <Image
-                src={`/images/${slide.imageFilename}`}
-                alt={slide.imageAlt}
-                fill
-                priority={index === 0}
-                className={styles.image}
-                sizes="100vw"
-                quality={85}
-              />
+              {slide.videoFilename ? (
+                <video
+                  src={`/videos/${slide.videoFilename}`}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className={styles.image}
+                  aria-hidden="true"
+                />
+              ) : slide.imageFilename ? (
+                <Image
+                  src={`/images/${slide.imageFilename}`}
+                  alt={slide.imageAlt}
+                  fill
+                  priority={index === 0}
+                  className={styles.image}
+                  sizes="100vw"
+                  quality={85}
+                />
+              ) : null}
               <div className={styles.overlay} />
               <div className={styles.content}>
                 <p className={styles.tagline}>{slide.tagline}</p>
