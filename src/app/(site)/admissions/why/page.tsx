@@ -5,10 +5,13 @@ import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
 import { Heading } from "@/shared/ui/heading";
+import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/shared/ui/school-icon";
+import { TestimonialsSection } from "@/screens/home/testimonials-section";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 import { WHY_ST_ELIZABETH_POINTS } from "@/domains/admissions/admissions.data";
+import { TESTIMONIALS } from "@/domains/homepage/homepage.data";
 
 export const metadata = createPageMetadata(
   "Why St. Elizabeth?",
@@ -49,6 +52,27 @@ export default function WhyPage() {
                 />
               ))}
             </Grid>
+          </Stack>
+        </Container>
+      </Section>
+
+      {/* Testimonials Section */}
+      <Section background="paper" padding="xlarge" ariaLabel="Testimonials from our community">
+        <Container width="default">
+          <Stack gap="large">
+            <div style={{ textAlign: "center" }}>
+              <Heading level="h2" variant="section">
+                Hear From Our Community
+              </Heading>
+              <div style={{ marginTop: "0.5rem" }}>
+                <Text variant="muted" size="large">
+                  The experiences of our students, parents, alumni, and teachers reflect the values
+                  and spirit that make St. Elizabeth&apos;s High School a special place to learn and
+                  grow.
+                </Text>
+              </div>
+            </div>
+            <TestimonialsSection testimonials={TESTIMONIALS} ariaLabel="Community testimonials" />
           </Stack>
         </Container>
       </Section>
