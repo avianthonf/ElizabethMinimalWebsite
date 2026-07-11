@@ -100,6 +100,7 @@ export const MENU_CATEGORIES: NavCategory[] = [
     links: [
       { text: "Contact Information", href: "/contact/info" },
       { text: "Office Hours", href: "/contact/office-hours" },
+      { text: "Visit Our Campus", href: "/contact/visit-our-campus" },
       { text: "Location Map", href: "/contact/location-map" },
     ],
   },
@@ -169,6 +170,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     links: [
       { text: "Contact Info", href: "/contact/info" },
       { text: "Office Hours", href: "/contact/office-hours" },
+      { text: "Visit Our Campus", href: "/contact/visit-our-campus" },
       { text: "Location Map", href: "/contact/location-map" },
     ],
   },
