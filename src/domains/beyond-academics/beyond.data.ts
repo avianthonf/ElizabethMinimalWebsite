@@ -17,7 +17,7 @@ export const CLUBS: Club[] = [
     category: "Academic",
   },
   {
-    name: "Eco Club",
+    name: "EcoSe Club",
     description:
       "Champion environmental awareness through tree planting drives, waste reduction campaigns, and campus sustainability projects.",
     category: "Service",
