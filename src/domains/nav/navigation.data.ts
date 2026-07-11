@@ -127,6 +127,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     links: [
       { text: "Curriculum", href: "/academics/curriculum" },
       { text: "Teaching Methods", href: "/academics/teaching-methods" },
+      { text: "Resource Room", href: "/academics/resource-room" },
       { text: "Library", href: "/academics/library" },
       { text: "Science Lab", href: "/academics/science-laboratory" },
       { text: "Computer Lab", href: "/academics/computer-laboratory" },
