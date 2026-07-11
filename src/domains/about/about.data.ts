@@ -134,7 +134,7 @@ export const MANAGEMENT_INTRO = {
 
 export const MANAGEMENT_INFO = [
   "St. Elizabeth's High School is managed by the Diocesan Society of Education, an educational society of the Archdiocese of Goa and Daman, committed to providing quality education rooted in faith and values. The Diocesan Society of Education oversees more than 45 educational institutions across Goa, ensuring consistent standards of academic excellence and faith-based education.",
-  "The school is guided by School Manager, Rev. Fr. Agnelo Francis Rodrigues, whose vision and leadership continue to strengthen the school's mission and growth.",
+  "The school is guided by School Manager, Rev. Fr. Agnelo Cipriano Rodrigues, whose vision and leadership continue to strengthen the school's mission and growth.",
   "Under the leadership of Headmistress Mrs. Shunia Mendes, our dedicated team of teachers and staff strives to create a caring, inclusive, and stimulating environment where every student can thrive.",
   "We are grateful for the active support of our Parent-Teacher Association (PTA). Led by PTA Chairman Mr. Willy Fernandes, the PTA works closely with the school to strengthen the partnership between parents and educators, enriching the learning experience of our students.",
 ] as const;
@@ -150,7 +150,7 @@ export const FACULTY_HIGHLIGHTS = {
 
 export const STAFF_MEMBERS = [
   {
-    name: "Rev. Fr. Agnelo Francis Rodrigues",
+    name: "Rev. Fr. Agnelo Cipriano Rodrigues",
     role: "Manager",
     department: "School Management",
     description:
