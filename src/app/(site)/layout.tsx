@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Header } from "@/widgets/header/header";
 import { Footer } from "@/widgets/footer/footer";
 import { ReadingProgressBar } from "@/features/progress";
+import { AnnouncementBar } from "@/widgets/announcement-bar/announcement-bar";
 import {
   HEADER_NAV_LINKS,
   FOOTER_SECTIONS,
@@ -10,10 +11,19 @@ import {
   FOOTER_SOCIAL_LINKS,
   FOOTER_COPYRIGHT,
 } from "@/domains/nav/navigation.data";
+import { CURRENT_ANNOUNCEMENT } from "@/domains/homepage/announcements.data";
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
+      {CURRENT_ANNOUNCEMENT.enabled && (
+        <AnnouncementBar
+          message={CURRENT_ANNOUNCEMENT.message}
+          href={CURRENT_ANNOUNCEMENT.href}
+          linkText={CURRENT_ANNOUNCEMENT.linkText}
+          storageKey={CURRENT_ANNOUNCEMENT.storageKey}
+        />
+      )}
       <ReadingProgressBar />
       <Header navLinks={HEADER_NAV_LINKS} transparent={true} fixed />
       <a href="#main-content" className="skipLink">
