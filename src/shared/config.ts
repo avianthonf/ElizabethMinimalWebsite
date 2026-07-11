@@ -40,19 +40,19 @@ export const SCHOOL_STATS = {
 
 export const CONTACT_CONFIG = {
   EMAIL: {
-    GENERAL: process.env.CONTACT_EMAIL || "info@stelizabethhighschool.in",
-    ADMISSIONS: process.env.ADMISSIONS_EMAIL || "admissions@stelizabethhighschool.in",
-    PRINCIPAL: process.env.PRINCIPAL_EMAIL || "principal@stelizabethhighschool.in",
+    GENERAL: process.env.CONTACT_EMAIL || "st.elizabethgoa@gmail.com",
+    ADMISSIONS: process.env.ADMISSIONS_EMAIL || "st.elizabethgoa@gmail.com",
+    PRINCIPAL: process.env.PRINCIPAL_EMAIL || "st.elizabethgoa@gmail.com",
   },
   PHONE: {
-    MAIN: process.env.NEXT_PUBLIC_PHONE || "+91 832 2334401",
-    OFFICE: process.env.NEXT_PUBLIC_OFFICE_PHONE || "+91 832 2334401",
+    MAIN: process.env.NEXT_PUBLIC_PHONE || "0832-2954452",
+    OFFICE: process.env.NEXT_PUBLIC_OFFICE_PHONE || "0832-2954452",
   },
   ADDRESS: {
-    STREET: "Pomburpa",
-    CITY: "Goa",
+    STREET: "Palmar, Pomburpa",
+    CITY: "Bardez",
     STATE: "Goa",
-    POSTAL_CODE: "403401",
+    POSTAL_CODE: "403523",
     COUNTRY: "India",
   },
   OFFICE_HOURS: {
