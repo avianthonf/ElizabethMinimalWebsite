@@ -24,4 +24,3 @@ export { SmoothScrollProvider } from "./smooth-scroll-provider";
 export { SplitLayout } from "./split-layout";
 export { Stack } from "./stack";
 export { Text } from "./text";
-export { VisuallyHidden } from "./visually-hidden";
