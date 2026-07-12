@@ -27,7 +27,34 @@ export const ALUMNI_STATISTICS = [
   { value: "1,000+", label: "Alumni", description: "Contributing to communities worldwide" },
 ] as const;
 
-export const ALUMNI_TESTIMONIALS = {
+export const ALUMNI_TESTIMONIALS = [
+  {
+    quote:
+      "The guidance and education I received at St. Elizabeth High School were instrumental in shaping my dream of pursuing medicine. As the first doctor from my village in Ecoxim, I look back at my alma mater with immense gratitude for empowering me to serve our community. St. Elizabeth High School did not just provide an education; it instilled core values of discipline, integrity, and empathy that has shaped me into the person that I am today. I am forever grateful to my teachers for teaching us to dream big while staying rooted in our values. To the students today, my advice is to embrace every learning opportunity, stay rooted in your moral values, and believe that your dedication and discipline will surely help you achieve your goals.",
+    name: "Dr. Mohandas Chodankar",
+    credentials: "BHMS, PGDEMS, MBA",
+    designation: "Svastha Health Clinic, Ecoxim",
+    academicYears: "1986-1996",
+  },
+  {
+    quote:
+      "Looking back at my school days fills me with gratitude and pride. The values of discipline, perseverance, teamwork, and integrity that I learned here have been the foundation of my professional journey. Today, I am privileged to serve as a Manager in an IT and Telecom organization, leading operations and projects across Mumbai and Goa. Whatever I have achieved today is rooted in the guidance, encouragement, and education I received from my teachers. I sincerely thank my alma mater for shaping my character and inspiring me to strive for excellence. I wish the school continued success in nurturing future leaders and creating many more success stories.",
+    name: "Subash Sitaram Volvoikar",
+    credentials: "",
+    designation: "Manager - Delivery Telecom-Mumbai & Goa, Sify Technologies Ltd",
+    academicYears: "",
+  },
+  {
+    quote:
+      "School is my foundation, where I have grown into character of harmony and unity. The values which will last for long.",
+    name: "Sushant Devidas Gad",
+    credentials: "",
+    designation: "Police Sub Inspector",
+    academicYears: "1988-1998",
+  },
+] as const;
+
+export const ALUMNI_TESTIMONIALS_INTRO = {
   heading: "Alumni Voices",
   body: "We invite our alumni to share their reflections and memories. Whether your journey took you around the corner or around the world, your story matters to the students who walk these halls today.",
   callToAction: "Share Your Story →",
@@ -64,9 +91,17 @@ export interface AlumniData {
   ALUMNI_NETWORK: typeof ALUMNI_NETWORK;
   ALUMNI_STATISTICS: typeof ALUMNI_STATISTICS;
   ALUMNI_TESTIMONIALS: typeof ALUMNI_TESTIMONIALS;
+  ALUMNI_TESTIMONIALS_INTRO: typeof ALUMNI_TESTIMONIALS_INTRO;
   ALUMNI_EVENTS: typeof ALUMNI_EVENTS;
 }
 
 export async function getAlumniData(): Promise<AlumniData> {
-  return { ALUMNI_INTRO, ALUMNI_NETWORK, ALUMNI_STATISTICS, ALUMNI_TESTIMONIALS, ALUMNI_EVENTS };
+  return {
+    ALUMNI_INTRO,
+    ALUMNI_NETWORK,
+    ALUMNI_STATISTICS,
+    ALUMNI_TESTIMONIALS,
+    ALUMNI_TESTIMONIALS_INTRO,
+    ALUMNI_EVENTS,
+  };
 }

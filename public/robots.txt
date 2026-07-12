@@ -7,7 +7,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://stelizabethhighschool.in/sitemap.xml
+Sitemap: https://www.stelizabethhighschool.in/sitemap.xml
 
 # Block private and system directories
 Disallow: /api/

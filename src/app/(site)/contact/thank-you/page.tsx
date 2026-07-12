@@ -7,7 +7,9 @@ import { Text } from "@/shared/ui/text";
 import { Button } from "@/shared/ui/button";
 import { Link } from "@/shared/ui/link";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
-import { CONTACT_EMAIL } from "@/shared/lib/brand";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
+import { CONTACT_EMAIL } from "@/shared/lib";
+import { CONTACT_CONFIG } from "@/shared/config";
 import { ConfettiTrigger } from "@/features/confetti";
 import { CONTACT_IMAGES } from "@/domains/media/images.data";
 import { createPageMetadata } from "@/shared/lib/page-utils";
@@ -22,14 +24,19 @@ export default function ContactThankYouPage() {
   return (
     <>
       <ConfettiTrigger />
-      <>
-        <Breadcrumb href="/contact" label="Contact" currentLabel="Thank You" />
-        <Hero
-          eyebrow="Received"
-          heading="Thank You"
-          backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
-        />
-      </>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Contact", href: "/contact" },
+          { label: "Thank You", href: "/contact/thank-you" },
+        ]}
+      />
+      <Breadcrumb href="/contact" label="Contact" currentLabel="Thank You" />
+      <Hero
+        eyebrow="Received"
+        heading="Thank You"
+        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+      />
 
       <Section background="paper" padding="xlarge" ariaLabel="Inquiry confirmation">
         <Container width="narrow">
@@ -43,8 +50,10 @@ export default function ContactThankYouPage() {
             </Text>
             <Text variant="muted">
               If your matter is urgent, please call us directly at{" "}
-              <Link href="tel:+918322410654">+91 832-241-0654</Link> or email{" "}
-              <Link href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</Link>.
+              <Link href={`tel:+91${CONTACT_CONFIG.PHONE.MAIN.replace(/-/g, "")}`}>
+                {CONTACT_CONFIG.PHONE.MAIN}
+              </Link>{" "}
+              or email <Link href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</Link>.
             </Text>
             <Stack gap="small">
               <Button href="/" variant="primary">

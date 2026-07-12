@@ -3,7 +3,13 @@
  *
  * Centralized configuration to eliminate hardcoded magic numbers and strings.
  * All values can be overridden via environment variables for different environments.
+ *
+ * Default values are sourced from @/shared/lib/brand — the single source of truth
+ * for school identity. When the school rebrands, update brand.ts and every config
+ * default updates automatically.
  */
+
+import { CONTACT_EMAIL, FACEBOOK_URL, INSTAGRAM_URL, SITE_URL } from "@/shared/lib/brand";
 
 // ============================================================================
 // SCHOOL INFORMATION
@@ -40,9 +46,9 @@ export const SCHOOL_STATS = {
 
 export const CONTACT_CONFIG = {
   EMAIL: {
-    GENERAL: process.env.CONTACT_EMAIL || "st.elizabethgoa@gmail.com",
-    ADMISSIONS: process.env.ADMISSIONS_EMAIL || "st.elizabethgoa@gmail.com",
-    PRINCIPAL: process.env.PRINCIPAL_EMAIL || "st.elizabethgoa@gmail.com",
+    GENERAL: process.env.CONTACT_EMAIL || CONTACT_EMAIL,
+    ADMISSIONS: process.env.ADMISSIONS_EMAIL || CONTACT_EMAIL,
+    PRINCIPAL: process.env.PRINCIPAL_EMAIL || CONTACT_EMAIL,
   },
   PHONE: {
     MAIN: process.env.NEXT_PUBLIC_PHONE || "0832-2954452",
@@ -67,11 +73,8 @@ export const CONTACT_CONFIG = {
 // ============================================================================
 
 export const SOCIAL_LINKS = {
-  FACEBOOK: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
-  INSTAGRAM: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
-  TWITTER: process.env.NEXT_PUBLIC_TWITTER_URL || "",
-  YOUTUBE: process.env.NEXT_PUBLIC_YOUTUBE_URL || "",
-  LINKEDIN: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+  FACEBOOK: process.env.NEXT_PUBLIC_FACEBOOK_URL || FACEBOOK_URL,
+  INSTAGRAM: process.env.NEXT_PUBLIC_INSTAGRAM_URL || INSTAGRAM_URL,
 } as const;
 
 // ============================================================================
@@ -95,11 +98,8 @@ export const RATE_LIMIT_CONFIG = {
 
 export const FEATURES = {
   ENABLE_ANALYTICS: process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true",
-  ENABLE_SEARCH: process.env.NEXT_PUBLIC_ENABLE_SEARCH !== "false", // Default true
-  ENABLE_CHAT: process.env.NEXT_PUBLIC_ENABLE_CHAT === "true",
-  ENABLE_NEWSLETTER: process.env.NEXT_PUBLIC_ENABLE_NEWSLETTER !== "false", // Default true
-  ENABLE_PWA: process.env.NEXT_PUBLIC_ENABLE_PWA === "true",
-  ENABLE_I18N: process.env.NEXT_PUBLIC_ENABLE_I18N === "true",
+  ENABLE_SEARCH: process.env.NEXT_PUBLIC_ENABLE_SEARCH !== "false",
+  ENABLE_NEWSLETTER: process.env.NEXT_PUBLIC_ENABLE_NEWSLETTER !== "false",
 } as const;
 
 // ============================================================================
@@ -152,22 +152,12 @@ export const ANIMATION = {
 } as const;
 
 // ============================================================================
-// API ENDPOINTS (if needed for future backend)
-// ============================================================================
-
-export const API_CONFIG = {
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || "",
-  TIMEOUT_MS: parseInt(process.env.API_TIMEOUT_MS || "10000"),
-} as const;
-
-// ============================================================================
 // THIRD-PARTY SERVICE KEYS (Public keys only - private keys stay in .env)
 // ============================================================================
 
 export const SERVICES = {
   GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GA_ID || "",
   GOOGLE_MAPS_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "",
-  SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN || "",
 } as const;
 
 // ============================================================================
@@ -179,7 +169,7 @@ export const SEO_CONFIG = {
   TITLE_TEMPLATE: "%s | St. Elizabeth's High School",
   DEFAULT_DESCRIPTION:
     "A Catholic English Medium Secondary School in Pomburpa, Goa, founded in 1954. Providing quality education with values since 1954.",
-  SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "https://stelizabethhighschool.in",
+  SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || SITE_URL,
   DEFAULT_OG_IMAGE: "/og-default.jpg",
 } as const;
 

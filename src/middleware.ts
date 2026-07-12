@@ -1,34 +1,42 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 /**
  * Middleware that applies Content-Security-Policy headers.
  *
- * This is a fully static site (no user-generated content, no Server Actions
- * that return HTML).  We use `script-src 'self'` — no nonce, no
- * `'strict-dynamic'` — because every script tag points at a same-origin
- * `/_next/static/…` bundle.  A nonce would require dynamic rendering and
- * a `NEXT_PUBLIC_`-prefixed nonce would be shipped in the client bundle,
- * completely nullifying its value.
+ * CSP allows `connect-src` and `img-src` to the Supabase project domain
+ * when configured — this enables the admin CMS and dynamic content fetching.
+ * When the Supabase URL env var is not set, the default CSP (self-only)
+ * remains in effect with no change in behavior.
  *
- * JSON-LD structured data (`<script type="application/ld+json">`) is
- * NOT subject to `script-src` — it is a data block, not executable
- * JavaScript — so it passes without any nonce or hash.
+ * Admin routes (/admin/*) are protected by server-side auth checks in
+ * the admin layout group — this middleware only handles CSP, not auth.
  */
-export function middleware() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function middleware(_request: NextRequest) {
   const response = NextResponse.next();
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseDomain = supabaseUrl ? new URL(supabaseUrl).hostname : null;
+
+  const connectSrc = supabaseDomain ? `'self' https://${supabaseDomain}` : "'self'";
+
+  const imgSrc = supabaseDomain
+    ? `'self' https://lh3.googleusercontent.com https://maps.googleapis.com https://${supabaseDomain}`
+    : "'self' https://lh3.googleusercontent.com https://maps.googleapis.com";
+
   const cspDirectives = [
-    "default-src 'self'",
-    "script-src 'self'",
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' https://lh3.googleusercontent.com https://maps.googleapis.com",
-    "font-src 'self'",
-    "frame-src https://www.google.com https://maps.google.com https://www.google.com/maps",
-    "connect-src 'self'",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'none'",
+    `default-src 'self'`,
+    `script-src 'self'`,
+    `style-src 'self' 'unsafe-inline'`,
+    `img-src ${imgSrc}`,
+    `media-src 'self'`,
+    `font-src 'self'`,
+    `frame-src https://www.google.com https://maps.google.com https://www.google.com/maps`,
+    `connect-src ${connectSrc}`,
+    `object-src 'none'`,
+    `base-uri 'self'`,
+    `form-action 'self'`,
+    `frame-ancestors 'none'`,
   ].join("; ");
 
   response.headers.set("Content-Security-Policy", cspDirectives);

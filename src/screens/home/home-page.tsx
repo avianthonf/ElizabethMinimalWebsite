@@ -18,6 +18,7 @@ import { EventsPreview } from "./events-preview";
 import { LocateSection } from "./locate-section";
 
 import { TESTIMONIALS, LATEST_NEWS } from "@/domains/homepage/homepage.data";
+import { getUpcomingEvents } from "@/domains/homepage/events.fetcher";
 import {
   HERO_SLIDES,
   COUNTER_STATS,
@@ -44,7 +45,9 @@ const whyPointsData = WHY_POINTS.map((p) => ({
   description: p.description,
 }));
 
-export function HomePage() {
+export async function HomePage() {
+  const hsEvents = await getUpcomingEvents();
+
   return (
     <>
       {/* S1: Hero Carousel — no scroll reveal (it's the hero) */}
@@ -56,14 +59,14 @@ export function HomePage() {
       {/* S2b: Achievement Ticker Strip */}
       <AchievementTicker
         items={[
-          "GBSHSE Affiliated",
-          "Since 1954 — Seven Decades of Excellence",
-          "Consistent Academic Distinction",
-          "State-Level Sports Champions",
-          "Cultural Award Winners",
-          "Alumni Across 20+ Countries",
-          "Inter-House Competition Legacy",
-          "Community Service Award 2024",
+          "GBSHSE Affiliated — Goa Board of Secondary and Higher Secondary Education",
+          "Since 1954 — Seven Decades of Educational Excellence in Pomburpa",
+          "97.38% SSC Pass Percentage — Academic Year 2025-26",
+          "State-Level Sports Participation — Inter-School Athletics & Team Sports",
+          "Cultural Award Winners — Goa State Cultural Competitions",
+          "Alumni Serving Across 20+ Countries — Doctors, Engineers, Teachers, Leaders",
+          "Inter-House Competition Legacy — Red, Yellow, Blue & Green Houses",
+          "Community Recognition — Active Parish & Village Engagement Since Inception",
         ]}
       />
 
@@ -177,7 +180,7 @@ export function HomePage() {
 
       {/* S12: Upcoming Events */}
       <ScrollReveal direction="right" delay={0.1}>
-        <EventsPreview />
+        <EventsPreview events={hsEvents} />
       </ScrollReveal>
 
       {/* S13: News & Events */}

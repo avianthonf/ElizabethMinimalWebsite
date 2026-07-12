@@ -6,6 +6,7 @@ import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Hero } from "@/shared/ui/hero";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import {
   ACHIEVEMENTS_PAGE,
@@ -24,6 +25,13 @@ export const metadata = createPageMetadata(
 export default function AchievementsPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: ACHIEVEMENTS_PAGE.breadcrumb.label, href: ACHIEVEMENTS_PAGE.breadcrumb.href },
+          { label: ACHIEVEMENTS_PAGE.breadcrumb.currentLabel, href: "/about/achievements" },
+        ]}
+      />
       <Breadcrumb
         href={ACHIEVEMENTS_PAGE.breadcrumb.href}
         label={ACHIEVEMENTS_PAGE.breadcrumb.label}

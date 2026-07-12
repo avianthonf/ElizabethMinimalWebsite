@@ -4,6 +4,8 @@ export {
   SITE_NAME,
   SITE_TAGLINE,
   SITE_FOUNDED,
+  SCHOOL_BOARD,
+  SCHOOL_BOARD_SHORT,
   CONTACT_EMAIL,
   TRANSACTIONAL_EMAIL_FROM,
   FACEBOOK_URL,
@@ -21,7 +23,8 @@ export {
   createNewsArticleSchema,
   createOrganizationSchema,
   createWebPageSchema,
-  createFAQSchema,
+  generateFAQSchema,
+  generateBreadcrumbSchema,
 } from "./structured-data";
 export type {
   BreadcrumbItem,

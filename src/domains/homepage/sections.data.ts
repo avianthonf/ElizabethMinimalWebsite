@@ -3,7 +3,6 @@
  * Builds on existing homepage.ts (HERO_CONTENT, VALUES, STATS, TESTIMONIALS, CTA_CONTENT, LATEST_NEWS).
  */
 
-import { CONTACT_EMAIL, POSTAL_CODE } from "@/shared/lib/brand";
 import { GOOGLE_MAPS_DIRECTIONS_URL } from "@/domains/contact/contact.data";
 import { SCHOOL_CONFIG, SCHOOL_STATS, CONTACT_CONFIG } from "@/shared/config";
 
@@ -91,7 +90,7 @@ export const COUNTER_STATS: CounterStat[] = [
 export const WELCOME_CONTENT = {
   eyebrow: "Welcome to St. Elizabeth's",
   heading: "A Legacy of Excellence in the Heart of Goa",
-  body: "For over seven decades, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez. Rooted in the Catholic tradition and guided by our motto 'Truth and Honesty,' we nurture young minds to become compassionate leaders, critical thinkers, and responsible citizens. With our GBSHSE-affiliated curriculum, dedicated faculty, and a vibrant campus community, every student is known, valued, and inspired to reach their fullest potential.",
+  body: "Some habits start small. In 1954, a handful of students gathered under the shade of a tree in Pomburpa to learn their letters. Today, over 185 students walk these same grounds each morning, their voices rising in the school anthem as the sun comes over the Bardez hills. For more than seven decades, St. Elizabeth's has been the school where village children become doctors, where shy kids find their voice on the elocution stage, and where a 15:1 student-teacher ratio means no child learns alone. Rooted in the Catholic tradition, guided by Truth and Honesty, and affiliated with the Goa Board (GBSHSE) under NEP 2020 — this is a school where community still means everyone knows your name.",
   ctaText: "Learn More About Us",
   ctaHref: "/about",
 } as const;

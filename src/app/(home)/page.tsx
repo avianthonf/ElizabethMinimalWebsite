@@ -6,6 +6,6 @@ export const metadata: Metadata = createPageMetadata("Home", SITE_DESCRIPTION, "
   ogImage: "/og-default.jpg",
 });
 
-export default function Home() {
+export default async function Home() {
   return <HomePage />;
 }

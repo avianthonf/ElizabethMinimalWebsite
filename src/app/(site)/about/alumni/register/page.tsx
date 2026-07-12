@@ -9,6 +9,7 @@ import { Text } from "@/shared/ui/text";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
+import { CONTACT_EMAIL } from "@/shared/lib";
 import {
   ALUMNI_REGISTRATION_PAGE,
   ALUMNI_BENEFITS,
@@ -119,8 +120,8 @@ export default function AlumniRegistrationPage() {
               />
             </div>
             <Text variant="caption">
-              Prefer not to use the form? Email us directly at info@stelizabethhighschool.in with
-              your full name, year of passing, and current contact details.
+              Prefer not to use the form? Email us directly at {CONTACT_EMAIL} with your full name,
+              year of passing, and current contact details.
             </Text>
           </Stack>
         </Container>

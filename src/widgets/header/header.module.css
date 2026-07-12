@@ -40,9 +40,10 @@
 
 .fixed {
   position: fixed;
-  top: 0;
+  top: var(--announcement-height, 0px);
   left: 0;
   color: var(--header-color, var(--s-color-text));
+  transition: top 200ms ease;
 }
 
 .transparent {

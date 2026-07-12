@@ -17,6 +17,12 @@ interface HeroCarouselProps {
 /**
  * HeroCarousel — auto-advancing carousel for homepage hero slides.
  *
+ * Video support:
+ * - Dual-format: MP4 (H.264 baseline) + WebM (VP9) via <source>
+ * - Poster frame while video loads
+ * - Respects prefers-reduced-motion (shows poster instead of playing)
+ * - muted + playsInline for iOS/mobile autoplay
+ *
  * Accessibility:
  * - Keyboard navigation: ArrowLeft/ArrowRight
  * - Pause/play button for WCAG 2.2.2 auto-play compliance
@@ -35,40 +41,43 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
   const sectionRef = useRef<HTMLElement>(null);
   const liveRef = useRef<HTMLDivElement>(null);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+  // Detect reduced-motion preference changes.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   // Sync dot indicators with the current snap.
   useEffect(() => {
     if (!emblaApi) return;
-    // One-time sync from embla's external state. The "in-effect
-    // setState" lint rule flags this, but it's intentional here.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
+    const select = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", select);
+    emblaApi.on("reInit", select);
     return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
+      emblaApi.off("select", select);
+      emblaApi.off("reInit", select);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi]);
 
   // Autoplay — pauses on hover/focus, respects reduced motion and user pause.
   useEffect(() => {
     if (!emblaApi || isPaused || userPaused) return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) return;
+    if (prefersReducedMotion) return;
 
     const interval = setInterval(() => {
       emblaApi.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [emblaApi, isPaused, userPaused]);
+  }, [emblaApi, isPaused, userPaused, prefersReducedMotion]);
 
   // Announce slide changes via live region for screen readers.
   useEffect(() => {
@@ -142,17 +151,26 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
               aria-roledescription="slide"
               aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.heading}`}
             >
-              {slide.videoFilename ? (
+              {slide.videoFilename && !prefersReducedMotion ? (
                 <video
-                  src={`/videos/${slide.videoFilename}`}
                   autoPlay
                   muted
                   loop
                   playsInline
                   preload="metadata"
+                  poster={`/videos/${slide.videoFilename.replace(/\.(mp4|webm)$/, "-poster.jpg")}`}
                   className={styles.image}
                   aria-hidden="true"
-                />
+                >
+                  <source
+                    src={`/videos/${slide.videoFilename.replace(/\.\w+$/, ".webm")}`}
+                    type="video/webm"
+                  />
+                  <source
+                    src={`/videos/${slide.videoFilename.replace(/\.\w+$/, ".mp4")}`}
+                    type="video/mp4"
+                  />
+                </video>
               ) : slide.imageFilename ? (
                 <Image
                   src={`/images/${slide.imageFilename}`}

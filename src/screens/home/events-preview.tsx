@@ -1,13 +1,19 @@
 import { Link } from "next-view-transitions";
 import {
-  UPCOMING_EVENTS,
+  UPCOMING_EVENTS as STATIC_EVENTS,
   EVENT_ICON_MAP,
   EVENT_TYPE_ICON_PATHS,
 } from "@/domains/homepage/events.data";
+import type { HomepageEvent } from "@/domains/homepage/events.data";
 import styles from "./events-preview.module.css";
 
-export function EventsPreview() {
-  const events = UPCOMING_EVENTS.slice(0, 4);
+interface EventsPreviewProps {
+  events?: HomepageEvent[];
+}
+
+export function EventsPreview({ events: eventsProp }: EventsPreviewProps) {
+  const events = eventsProp ?? STATIC_EVENTS;
+  const sliced = events.slice(0, 4);
 
   return (
     <section className={styles.root} aria-label="Upcoming events">
@@ -18,7 +24,7 @@ export function EventsPreview() {
         </div>
 
         <div className={styles.grid}>
-          {events.map((event) => {
+          {sliced.map((event) => {
             const iconName = EVENT_ICON_MAP[event.type];
             const path = EVENT_TYPE_ICON_PATHS[iconName];
 

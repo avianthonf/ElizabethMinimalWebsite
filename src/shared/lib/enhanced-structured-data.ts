@@ -1,3 +1,4 @@
+import { SITE_URL, SITE_NAME, absoluteUrl, CONTACT_EMAIL, SOCIAL_LINKS } from "@/shared/lib/brand";
 import { SCHOOL_CONFIG, CONTACT_CONFIG } from "@/shared/config";
 
 /**
@@ -5,6 +6,9 @@ import { SCHOOL_CONFIG, CONTACT_CONFIG } from "@/shared/config";
  *
  * Creates comprehensive Schema.org structured data for SEO optimization.
  * Follows Google's structured data guidelines and includes all recommended properties.
+ *
+ * All canonical URLs route through `absoluteUrl()` from the brand module —
+ * never hardcoded. If the school rebrands, the entire site updates from one file.
  */
 
 interface GeoCoordinates {
@@ -69,14 +73,14 @@ export function createSchoolOrganizationSchema() {
       "@type": "ContactPoint",
       telephone: CONTACT_CONFIG.PHONE.MAIN,
       contactType: "customer service",
-      email: CONTACT_CONFIG.EMAIL.GENERAL,
+      email: CONTACT_EMAIL,
       availableLanguage: ["English", "Hindi", "Konkani"],
     },
     {
       "@type": "ContactPoint",
       telephone: CONTACT_CONFIG.PHONE.OFFICE,
       contactType: "admissions",
-      email: CONTACT_CONFIG.EMAIL.ADMISSIONS,
+      email: CONTACT_EMAIL,
       availableLanguage: ["English"],
     },
   ];
@@ -84,16 +88,17 @@ export function createSchoolOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["School", "EducationalOrganization", "LocalBusiness"],
-    "@id": "https://stelizabethhighschool.in/#school",
-    name: SCHOOL_CONFIG.NAME,
+    "@id": absoluteUrl("/#school"),
+    name: SITE_NAME,
     alternateName: SCHOOL_CONFIG.SHORT_NAME,
     description:
-      "A Catholic English Medium Secondary School in Pomburpa, Goa, founded in 1954. Providing quality education with values since 1954.",
-    url: "https://stelizabethhighschool.in",
-    logo: "https://stelizabethhighschool.in/logo.png",
-    image: "https://stelizabethhighschool.in/og-default.jpg",
+      "A Catholic English Medium Secondary School in Pomburpa, Goa, founded in 1954. " +
+      "Providing quality education with values since 1954.",
+    url: SITE_URL,
+    logo: absoluteUrl("/logo.png"),
+    image: absoluteUrl("/og-default.jpg"),
     telephone: CONTACT_CONFIG.PHONE.MAIN,
-    email: CONTACT_CONFIG.EMAIL.GENERAL,
+    email: CONTACT_EMAIL,
     address,
     geo,
     openingHoursSpecification: openingHours,
@@ -120,20 +125,17 @@ export function createSchoolOrganizationSchema() {
       "@type": "QuantitativeValue",
       value: 25,
     },
-    sameAs: [
-      // Add social media URLs when available
-      // "https://facebook.com/stelizabethsgoa",
-      // "https://instagram.com/stelizabethsgoa",
-    ].filter(Boolean),
+    sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram].filter(Boolean),
     knowsAbout: [
       "Primary Education",
       "Secondary Education",
-      "CBSE Curriculum",
-      "Catholic Education",
       "English Medium Education",
+      "Catholic Education",
+      "Goa Board of Secondary and Higher Secondary Education",
     ],
     keywords:
-      "school in goa, catholic school, english medium school, secondary school, CBSE school, pomburpa school",
+      "school in goa, catholic school, english medium school, secondary school, " +
+      "GBSHSE school, pomburpa school",
   };
 }
 
@@ -148,7 +150,7 @@ export function createBreadcrumbSchema(items: Array<{ name: string; url: string 
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: absoluteUrl(item.url),
     })),
   };
 }
@@ -160,18 +162,18 @@ export function createWebSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://stelizabethhighschool.in/#website",
-    url: "https://stelizabethhighschool.in",
-    name: SCHOOL_CONFIG.NAME,
+    "@id": absoluteUrl("/#website"),
+    url: SITE_URL,
+    name: SITE_NAME,
     description: "Official website of St. Elizabeth's High School, Pomburpa, Goa",
     publisher: {
-      "@id": "https://stelizabethhighschool.in/#school",
+      "@id": absoluteUrl("/#school"),
     },
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://stelizabethhighschool.in/search?q={search_term_string}",
+        urlTemplate: absoluteUrl("/search?q={search_term_string}"),
       },
       "query-input": "required name=search_term_string",
     },
@@ -201,14 +203,14 @@ export function createNewsArticleSchema(article: {
     dateModified: article.modifiedDate || article.publishedDate,
     author: {
       "@type": "Organization",
-      name: SCHOOL_CONFIG.NAME,
+      name: SITE_NAME,
     },
     publisher: {
       "@type": "Organization",
-      name: SCHOOL_CONFIG.NAME,
+      name: SITE_NAME,
       logo: {
         "@type": "ImageObject",
-        url: "https://stelizabethhighschool.in/logo.png",
+        url: absoluteUrl("/logo.png"),
       },
     },
     mainEntityOfPage: {
@@ -240,7 +242,7 @@ export function createEventSchema(event: {
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
-      name: event.location || SCHOOL_CONFIG.NAME,
+      name: event.location || SITE_NAME,
       address: {
         "@type": "PostalAddress",
         streetAddress: CONTACT_CONFIG.ADDRESS.STREET,
@@ -249,11 +251,11 @@ export function createEventSchema(event: {
         addressCountry: CONTACT_CONFIG.ADDRESS.COUNTRY,
       },
     },
-    image: event.imageUrl || "https://stelizabethhighschool.in/og-default.jpg",
+    image: event.imageUrl || absoluteUrl("/og-default.jpg"),
     organizer: {
       "@type": "Organization",
-      name: SCHOOL_CONFIG.NAME,
-      url: "https://stelizabethhighschool.in",
+      name: SITE_NAME,
+      url: SITE_URL,
     },
   };
 }
@@ -291,7 +293,7 @@ export function createCourseSchema(course: {
     description: course.description,
     provider: {
       "@type": "Organization",
-      name: course.provider || SCHOOL_CONFIG.NAME,
+      name: course.provider || SITE_NAME,
     },
   };
 }
@@ -311,7 +313,7 @@ export function createEducationalProgramSchema(program: {
     name: program.name,
     description: program.description,
     provider: {
-      "@id": "https://stelizabethhighschool.in/#school",
+      "@id": absoluteUrl("/#school"),
     },
     timeToComplete: program.timeToComplete,
     educationalCredentialAwarded: program.educationalCredentialAwarded,
@@ -335,7 +337,7 @@ export function createPersonSchema(person: {
     email: person.email,
     image: person.imageUrl,
     worksFor: {
-      "@id": "https://stelizabethhighschool.in/#school",
+      "@id": absoluteUrl("/#school"),
     },
   };
 }
@@ -358,7 +360,7 @@ export function createReviewSchema(review: {
     },
     reviewBody: review.reviewBody,
     itemReviewed: {
-      "@id": "https://stelizabethhighschool.in/#school",
+      "@id": absoluteUrl("/#school"),
     },
   };
 

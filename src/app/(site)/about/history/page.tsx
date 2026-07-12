@@ -6,6 +6,7 @@ import { Stack } from "@/shared/ui/stack";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import { HISTORY_INTRO, HISTORY_TIMELINE, HISTORY_CLOSING } from "@/domains/about/about.data";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
@@ -20,6 +21,13 @@ export const metadata = createPageMetadata(
 export default function HistoryPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+          { label: "History", href: "/about/history" },
+        ]}
+      />
       <Breadcrumb href="/about" label="About" currentLabel="History" />
       <Hero
         eyebrow="Our Story"

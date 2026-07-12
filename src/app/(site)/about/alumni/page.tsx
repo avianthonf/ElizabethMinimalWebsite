@@ -7,14 +7,15 @@ import { Grid } from "@/shared/ui/grid";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import {
   ALUMNI_INTRO,
   ALUMNI_NETWORK,
   ALUMNI_STATISTICS,
-  ALUMNI_TESTIMONIALS,
-  ALUMNI_EVENTS,
+  ALUMNI_TESTIMONIALS_INTRO,
 } from "@/domains/about/alumni.data";
+import { getAlumniTestimonials, getAlumniEvents } from "@/domains/about/alumni.fetcher";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
@@ -23,9 +24,18 @@ export const metadata = createPageMetadata(
   "/about/alumni",
 );
 
-export default function AlumniPage() {
+export default async function AlumniPage() {
+  const testimonials = await getAlumniTestimonials();
+  const events = await getAlumniEvents();
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+          { label: "Alumni", href: "/about/alumni" },
+        ]}
+      />
       <Breadcrumb href="/about" label="About" currentLabel="Alumni" />
       <Hero
         eyebrow="Reconnect"
@@ -79,20 +89,59 @@ export default function AlumniPage() {
       {/* Testimonials */}
       <Section background="soft" padding="xlarge" ariaLabel="Alumni testimonials">
         <Container width="narrow">
-          <Stack gap="medium">
-            <Heading level="h2" variant="section">
-              {ALUMNI_TESTIMONIALS.heading}
-            </Heading>
-            <p
-              style={{
-                whiteSpace: "pre-line",
-                color: "var(--p-color-muted)",
-                fontSize: "var(--p-font-size-large)",
-                lineHeight: "1.7",
-              }}
-            >
-              {ALUMNI_TESTIMONIALS.body}
-            </p>
+          <Stack gap="large">
+            <div>
+              <Heading level="h2" variant="section">
+                {ALUMNI_TESTIMONIALS_INTRO.heading}
+              </Heading>
+              <p
+                style={{
+                  whiteSpace: "pre-line",
+                  color: "var(--p-color-muted)",
+                  fontSize: "var(--p-font-size-large)",
+                  lineHeight: "1.7",
+                  marginTop: "1rem",
+                }}
+              >
+                {ALUMNI_TESTIMONIALS_INTRO.body}
+              </p>
+            </div>
+            <Stack gap="large">
+              {testimonials.map((testimonial, index) => (
+                <Card key={index} variant="default" padding="medium">
+                  <Stack gap="medium">
+                    <div
+                      style={{
+                        fontStyle: "italic",
+                        lineHeight: "1.8",
+                        color: "var(--p-color-text)",
+                        fontSize: "var(--p-font-size-large)",
+                      }}
+                    >
+                      &ldquo;{testimonial.quote}&rdquo;
+                    </div>
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: "600",
+                          color: "var(--p-color-navy)",
+                          marginBottom: "0.25rem",
+                        }}
+                      >
+                        {testimonial.name}
+                        {testimonial.credentials && ` (${testimonial.credentials})`}
+                      </div>
+                      <Text variant="muted" size="small">
+                        {testimonial.designation}
+                      </Text>
+                      {testimonial.academicYears && (
+                        <Text variant="caption">Academic years {testimonial.academicYears}</Text>
+                      )}
+                    </div>
+                  </Stack>
+                </Card>
+              ))}
+            </Stack>
           </Stack>
         </Container>
       </Section>
@@ -105,7 +154,7 @@ export default function AlumniPage() {
               Upcoming Events
             </Heading>
             <Grid columns={3} gap="medium" responsive>
-              {ALUMNI_EVENTS.map((event) => (
+              {events.map((event) => (
                 <Card key={event.title} variant="default" padding="medium">
                   <Stack gap="small">
                     <Heading level="h3" variant="card">

@@ -6,7 +6,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
   poweredByHeader: false,
   experimental: {
     serverActions: {

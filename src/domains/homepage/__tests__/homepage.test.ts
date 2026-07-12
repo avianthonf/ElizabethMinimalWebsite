@@ -14,7 +14,7 @@ describe("Homepage Data", () => {
     expect(data.HERO_CONTENT).toBeTruthy();
     expect(data.VALUES).toHaveLength(5);
     expect(data.STATS).toHaveLength(3);
-    expect(data.TESTIMONIALS).toHaveLength(3);
+    expect(data.TESTIMONIALS).toHaveLength(2);
     expect(data.LATEST_NEWS).toHaveLength(3);
     expect(data.CTA_CONTENT.primaryCTA.text).toBe("Inquire Now");
   });
@@ -69,15 +69,14 @@ describe("Homepage Data", () => {
     expect(affiliated!.value).toBe("GBSHSE");
   });
 
-  it("has exactly 3 testimonials", () => {
-    expect(TESTIMONIALS).toHaveLength(3);
+  it("has exactly 2 testimonials", () => {
+    expect(TESTIMONIALS).toHaveLength(2);
   });
 
-  it("testimonials have all three roles represented", () => {
+  it("testimonials are from alumni", () => {
     const roles = TESTIMONIALS.map((t) => t.role);
     expect(roles).toContain("alumni");
-    expect(roles).toContain("student");
-    expect(roles).toContain("parent");
+    expect(roles.every((r) => r === "alumni")).toBe(true);
   });
 
   it("has exactly 3 news items", () => {

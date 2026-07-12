@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 import styles from "./announcement-bar.module.css";
 
@@ -15,17 +15,17 @@ interface AnnouncementBarProps {
 const RE_SHOW_DAYS = 7;
 
 /**
- * AnnouncementBar — dismissable top banner.
+ * AnnouncementBar — dismissable fixed top banner.
  *
  * SSR-safe: always renders the same DOM tree (including the close button).
  * After hydration, reads `localStorage` to determine if the user dismissed
  * it. If dismissed within the last 7 days, the bar is hidden via
- * `data-hidden` attribute. On first render (pre-hydration), the bar is
- * always visible and the close button is hidden via CSS.
+ * `data-hidden` attribute and `display: none`.
  *
- * This avoids the hydration mismatch that occurs when the server renders
- * a different DOM tree than the client (e.g. missing close button on SSR
- * vs present on hydration).
+ * Sets `--announcement-height` on `<html>` so the fixed header and reading
+ * progress bar can offset themselves. Uses a ResizeObserver to measure the
+ * bar's actual height — this stays accurate across viewport resizes and
+ * text wrapping changes.
  */
 export function AnnouncementBar({
   message,
@@ -33,12 +33,8 @@ export function AnnouncementBar({
   linkText,
   storageKey = "stelizabeths-announcement-dismissed",
 }: AnnouncementBarProps) {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    // Sync from localStorage (an external store). This is a legitimate
-    // effect: we read a value we cannot access during SSR and update
-    // React state to match. The state only changes once, on mount.
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === "undefined") return true;
     try {
       const dismissed = localStorage.getItem(storageKey);
       if (dismissed) {
@@ -46,17 +42,41 @@ export function AnnouncementBar({
         if (!Number.isNaN(dismissedAt)) {
           const reShowMs = RE_SHOW_DAYS * 24 * 60 * 60 * 1000;
           if (Date.now() - dismissedAt < reShowMs) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setVisible(false);
-          } else {
-            localStorage.removeItem(storageKey);
+            return false;
           }
+          localStorage.removeItem(storageKey);
         }
       }
     } catch {
-      // localStorage unavailable — keep visible
+      /* localStorage unavailable */
     }
-  }, [storageKey]);
+    return true;
+  });
+  const barRef = useRef<HTMLDivElement>(null);
+
+  // ── Measure bar height and broadcast to CSS custom property ──
+
+  useEffect(() => {
+    const el = barRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      document.documentElement.style.setProperty(
+        "--announcement-height",
+        visible ? `${el.offsetHeight}px` : "0px",
+      );
+    };
+
+    measure();
+
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+
+    return () => {
+      ro.disconnect();
+      document.documentElement.style.removeProperty("--announcement-height");
+    };
+  }, [visible]);
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -69,6 +89,7 @@ export function AnnouncementBar({
 
   return (
     <div
+      ref={barRef}
       className={styles.root}
       role="region"
       aria-label="Announcement"

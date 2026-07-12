@@ -4,13 +4,13 @@ import { NEWS_ARTICLES, UPCOMING_EVENTS, getNewsData } from "../news.data";
 describe("News Data", () => {
   it("getNewsData() returns all news content", async () => {
     const data = await getNewsData();
-    expect(data.NEWS_ARTICLES).toHaveLength(7);
+    expect(data.NEWS_ARTICLES).toHaveLength(10);
     expect(data.UPCOMING_EVENTS).toHaveLength(3);
   });
 
   describe("NEWS_ARTICLES", () => {
-    it("has 6 articles", () => {
-      expect(NEWS_ARTICLES).toHaveLength(7);
+    it("has 10 articles", () => {
+      expect(NEWS_ARTICLES).toHaveLength(10);
     });
 
     it("all articles have required fields", () => {
@@ -44,9 +44,10 @@ describe("News Data", () => {
       expect(uniqueHrefs.size).toBe(hrefs.length);
     });
 
-    it("includes Annual Day and Sports Meet articles", () => {
-      expect(NEWS_ARTICLES[0].title).toContain("Annual Day Celebration");
-      expect(NEWS_ARTICLES[1].title).toContain("Sports Meet XXII");
+    it("includes International Day of Yoga and Sports Meet articles", () => {
+      expect(NEWS_ARTICLES[0].title).toContain("International Day of Yoga");
+      const sports = NEWS_ARTICLES.find((a) => a.title.includes("Sports Meet"));
+      expect(sports).toBeDefined();
     });
   });
 

@@ -11,17 +11,19 @@ import {
   FOOTER_SOCIAL_LINKS,
   FOOTER_COPYRIGHT,
 } from "@/domains/nav/navigation.data";
-import { CURRENT_ANNOUNCEMENT } from "@/domains/homepage/announcements.data";
+import { getCurrentAnnouncement } from "@/domains/homepage/announcements.fetcher";
 
-export default function SiteLayout({ children }: { children: ReactNode }) {
+export default async function SiteLayout({ children }: { children: ReactNode }) {
+  const announcement = await getCurrentAnnouncement();
+
   return (
     <>
-      {CURRENT_ANNOUNCEMENT.enabled && (
+      {announcement.enabled && (
         <AnnouncementBar
-          message={CURRENT_ANNOUNCEMENT.message}
-          href={CURRENT_ANNOUNCEMENT.href}
-          linkText={CURRENT_ANNOUNCEMENT.linkText}
-          storageKey={CURRENT_ANNOUNCEMENT.storageKey}
+          message={announcement.message}
+          href={announcement.href}
+          linkText={announcement.linkText}
+          storageKey={announcement.storageKey}
         />
       )}
       <ReadingProgressBar />

@@ -18,13 +18,13 @@ describe("Visits Data", () => {
       expect(SCHOOL_ADDRESS.country).toBe("India");
     });
 
-    it("street is Pomburpa", () => {
-      expect(SCHOOL_ADDRESS.street).toBe("Pomburpa");
+    it("street is Palmar, Pomburpa", () => {
+      expect(SCHOOL_ADDRESS.street).toBe("Palmar, Pomburpa");
     });
 
-    it("area is Pomburpa, Bardez", () => {
-      expect(SCHOOL_ADDRESS.area).toContain("Pomburpa");
+    it("area is Bardez, Goa", () => {
       expect(SCHOOL_ADDRESS.area).toContain("Bardez");
+      expect(SCHOOL_ADDRESS.area).toContain("Goa");
     });
   });
 
@@ -34,7 +34,7 @@ describe("Visits Data", () => {
       expect(SCHOOL_CONTACT.email).toBeTruthy();
     });
 
-    it("email is the correct school address", () => {
+    it("email is info@stelizabethhighschool.in", () => {
       expect(SCHOOL_CONTACT.email).toBe("info@stelizabethhighschool.in");
     });
 

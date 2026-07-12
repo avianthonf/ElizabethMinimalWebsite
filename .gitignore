@@ -33,6 +33,12 @@ pdf/
 images/
 knowledge/
 
+# Binary media assets (tracked outside git)
+public/videos/*.mp4
+public/videos/*.webm
+public/images/*.mp4
+public/images/*.webm
+
 # Generated artifacts and one-off binary bundles
 *.zip
 *.pdf

@@ -1,4 +1,5 @@
 import { Link } from "next-view-transitions";
+import Image from "next/image";
 import { Hero } from "@/shared/ui/hero";
 import { Card } from "@/shared/ui/card";
 import { Container } from "@/shared/ui/container";
@@ -6,9 +7,12 @@ import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Grid } from "@/shared/ui/grid";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
+import { createWebPageSchema } from "@/shared/lib/structured-data";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
 import {
   VIDEO_GALLERY_PAGE,
   VIDEO_GALLERY_ITEMS,
@@ -25,6 +29,25 @@ export const metadata = createPageMetadata(
 export default function VideoGalleryPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonStringify(
+            createWebPageSchema(
+              VIDEO_GALLERY_PAGE.metaTitle,
+              VIDEO_GALLERY_PAGE.metaDescription,
+              "/news/video-gallery",
+            ),
+          ),
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: VIDEO_GALLERY_PAGE.breadcrumb.label, href: VIDEO_GALLERY_PAGE.breadcrumb.href },
+          { label: VIDEO_GALLERY_PAGE.breadcrumb.currentLabel, href: "/news/video-gallery" },
+        ]}
+      />
       <Hero
         eyebrow={VIDEO_GALLERY_PAGE.heroEyebrow}
         heading={VIDEO_GALLERY_PAGE.heroHeading}
@@ -56,13 +79,15 @@ export default function VideoGalleryPage() {
             <Grid columns={3} gap="medium" responsive>
               {VIDEO_GALLERY_ITEMS.map((video) => (
                 <Card key={video.title} variant="default" padding="small">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={video.thumbnail}
-                    alt={video.description}
-                    className="w-full aspect-video object-cover"
-                    loading="lazy"
-                  />
+                  <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
+                    <Image
+                      src={video.thumbnail}
+                      alt={video.description}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
                   <div style={{ padding: "1rem" }}>
                     <Stack gap="small">
                       <Heading level="h3" variant="card">

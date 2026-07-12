@@ -70,6 +70,26 @@ export const HISTORY_TIMELINE = [
     event:
       "The school came under the management of the Diocesan Society of Education of the Archdiocese of Goa and Daman, strengthening its commitment to faith-based, quality education.",
   },
+  {
+    year: "2002",
+    event:
+      "The school expanded its academic infrastructure with a dedicated Computer Laboratory, bringing digital literacy to students and marking St. Elizabeth's entry into technology-enabled learning.",
+  },
+  {
+    year: "2015",
+    event:
+      "The Academic Resource Room was established, embodying the school's belief that every child matters and ensuring students of all abilities receive the individual attention they need to learn and grow.",
+  },
+  {
+    year: "2020",
+    event:
+      "St. Elizabeth's aligned its curriculum with the National Education Policy (NEP) 2020, introducing vocational education, competency-based assessment, and experiential learning across all grades.",
+  },
+  {
+    year: "2026",
+    event:
+      "The school launched the Prahari Club in partnership with NCB and NCPCR, established the ECOSE environmental initiative with five nature-themed groups, and achieved a 97.38% pass percentage in SSC examinations — the highest in a decade.",
+  },
 ] as const;
 
 export const HISTORY_CLOSING = {

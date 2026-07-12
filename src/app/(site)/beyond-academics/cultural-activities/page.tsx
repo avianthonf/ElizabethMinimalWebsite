@@ -1,8 +1,13 @@
 import { Card } from "@/shared/ui/card";
-import { ContentPage } from "@/screens/generic";
+import { Hero } from "@/shared/ui/hero";
+import { Container } from "@/shared/ui/container";
+import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
+import { Grid } from "@/shared/ui/grid";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import {
   CULTURAL_ACTIVITIES_PAGE,
@@ -18,27 +23,60 @@ export const metadata = createPageMetadata(
 
 export default function CulturalActivitiesPage() {
   return (
-    <ContentPage
-      heroEyebrow={CULTURAL_ACTIVITIES_PAGE.heroEyebrow}
-      heroHeading={CULTURAL_ACTIVITIES_PAGE.heroHeading}
-      heroDescription={CULTURAL_ACTIVITIES_PAGE.heroDescription}
-      heroBackgroundImage={`/images/${getHeroImage("arts-hero").filename}`}
-      sectionHeading={CULTURAL_ACTIVITIES_PAGE.sectionHeading}
-      items={CULTURAL_PROGRAMMES}
-      columns={2}
-      renderItem={(item) => (
-        <Card key={item.title} variant="default" padding="medium">
-          <Stack gap="small">
-            <Heading level="h3" variant="card">
-              {item.title}
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          {
+            label: CULTURAL_ACTIVITIES_PAGE.breadcrumb.label,
+            href: CULTURAL_ACTIVITIES_PAGE.breadcrumb.href,
+          },
+          {
+            label: CULTURAL_ACTIVITIES_PAGE.breadcrumb.currentLabel,
+            href: "/beyond-academics/cultural-activities",
+          },
+        ]}
+      />
+      <Breadcrumb
+        href={CULTURAL_ACTIVITIES_PAGE.breadcrumb.href}
+        label={CULTURAL_ACTIVITIES_PAGE.breadcrumb.label}
+        currentLabel={CULTURAL_ACTIVITIES_PAGE.breadcrumb.currentLabel}
+      />
+      <Hero
+        eyebrow={CULTURAL_ACTIVITIES_PAGE.heroEyebrow}
+        heading={CULTURAL_ACTIVITIES_PAGE.heroHeading}
+        description={CULTURAL_ACTIVITIES_PAGE.heroDescription}
+        backgroundImage={`/images/${getHeroImage("arts-hero").filename}`}
+      />
+
+      <Section
+        background="soft"
+        padding="xlarge"
+        ariaLabel={CULTURAL_ACTIVITIES_PAGE.sectionAriaLabel}
+      >
+        <Container>
+          <Stack gap="large">
+            <Heading level="h2" variant="section">
+              {CULTURAL_ACTIVITIES_PAGE.sectionHeading}
             </Heading>
-            <Text variant="muted" size="medium">
-              {item.description}
-            </Text>
+            <Grid columns={2} gap="medium" responsive>
+              {CULTURAL_PROGRAMMES.map((programme) => (
+                <Card key={programme.title} variant="default" padding="medium">
+                  <Stack gap="small">
+                    <div style={{ fontSize: "2.5rem" }}>{programme.icon}</div>
+                    <Heading level="h3" variant="card">
+                      {programme.title}
+                    </Heading>
+                    <Text variant="muted" size="medium">
+                      {programme.description}
+                    </Text>
+                  </Stack>
+                </Card>
+              ))}
+            </Grid>
           </Stack>
-        </Card>
-      )}
-      sectionAriaLabel={CULTURAL_ACTIVITIES_PAGE.sectionAriaLabel}
-    />
+        </Container>
+      </Section>
+    </>
   );
 }

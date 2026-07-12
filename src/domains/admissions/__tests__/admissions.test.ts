@@ -11,8 +11,8 @@ import {
 
 describe("Admissions Data", () => {
   describe("WHY_ST_ELIZABETH_POINTS", () => {
-    it("has 10 points", () => {
-      expect(WHY_ST_ELIZABETH_POINTS).toHaveLength(10);
+    it("has 6 points", () => {
+      expect(WHY_ST_ELIZABETH_POINTS).toHaveLength(6);
     });
 
     it("all points have title and description", () => {
@@ -22,19 +22,21 @@ describe("Admissions Data", () => {
       }
     });
 
-    it("includes Academic Excellence and Values-Based Education", () => {
+    it("includes Student-Teacher Ratio and Safe Campus", () => {
       const titles = WHY_ST_ELIZABETH_POINTS.map((p) => p.title);
-      expect(titles).toContain("Academic Excellence");
-      expect(titles).toContain("Values-Based Education");
+      expect(titles.some((t) => t.includes("15:1"))).toBe(true);
+      expect(
+        titles.some((t) => t.includes("Safe") || t.includes("Village") || t.includes("Known")),
+      ).toBe(true);
     });
   });
 
   describe("ADMISSION_STEPS", () => {
-    it("has 6 steps", () => {
-      expect(ADMISSION_STEPS).toHaveLength(6);
+    it("has 5 steps", () => {
+      expect(ADMISSION_STEPS).toHaveLength(5);
     });
 
-    it("steps are numbered 1 through 6 sequentially", () => {
+    it("steps are numbered 1 through 5 sequentially", () => {
       ADMISSION_STEPS.forEach((step, index) => {
         expect(step.step).toBe(index + 1);
       });
@@ -47,9 +49,9 @@ describe("Admissions Data", () => {
       }
     });
 
-    it("first step is Inquire, last step is Enroll", () => {
-      expect(ADMISSION_STEPS[0].title).toBe("Inquire");
-      expect(ADMISSION_STEPS[5].title).toBe("Enroll");
+    it("first step is Visit the School, last step is Admission Confirmation", () => {
+      expect(ADMISSION_STEPS[0].title).toBe("Visit the School");
+      expect(ADMISSION_STEPS[4].title).toBe("Admission Confirmation");
     });
   });
 

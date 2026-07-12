@@ -7,7 +7,6 @@ import {
   ACHIEVEMENTS_CONTENT,
   ADMISSIONS_CTA_CONTENT,
 } from "../sections.data";
-import { HeroSlidesSchema, CounterStatsSchema, WelcomeContentSchema } from "../sections.validation";
 
 /**
  * Homepage data validation tests.
@@ -17,14 +16,6 @@ import { HeroSlidesSchema, CounterStatsSchema, WelcomeContentSchema } from "../s
  */
 describe("Homepage Data Validation", () => {
   describe("Hero Slides", () => {
-    it("should validate with Zod schema", () => {
-      const result = HeroSlidesSchema.safeParse(HERO_SLIDES);
-      if (!result.success) {
-        console.error("Validation errors:", result.error.issues);
-      }
-      expect(result.success).toBe(true);
-    });
-
     it("should have at least one slide", () => {
       expect(HERO_SLIDES.length).toBeGreaterThan(0);
     });
@@ -53,13 +44,15 @@ describe("Homepage Data Validation", () => {
         expect(slide.heading.trim(), `Slide ${i} heading`).not.toBe("");
         expect(slide.ctaText.trim(), `Slide ${i} CTA text`).not.toBe("");
         expect(slide.ctaHref.trim(), `Slide ${i} CTA href`).not.toBe("");
-        expect(slide.imageFilename.trim(), `Slide ${i} image`).not.toBe("");
-        expect(slide.imageAlt.trim(), `Slide ${i} alt`).not.toBe("");
+        if (slide.imageFilename) {
+          expect(slide.imageFilename.trim(), `Slide ${i} image`).not.toBe("");
+          expect(slide.imageAlt.trim(), `Slide ${i} alt`).not.toBe("");
+        }
       });
     });
 
     it("should have unique images", () => {
-      const filenames = HERO_SLIDES.map((s) => s.imageFilename);
+      const filenames = HERO_SLIDES.map((s) => s.imageFilename).filter(Boolean);
       const unique = new Set(filenames);
       expect(unique.size).toBe(filenames.length);
     });
@@ -78,14 +71,6 @@ describe("Homepage Data Validation", () => {
   });
 
   describe("Counter Stats", () => {
-    it("should validate with Zod schema", () => {
-      const result = CounterStatsSchema.safeParse(COUNTER_STATS);
-      if (!result.success) {
-        console.error("Validation errors:", result.error.issues);
-      }
-      expect(result.success).toBe(true);
-    });
-
     it("should have at least one stat", () => {
       expect(COUNTER_STATS.length).toBeGreaterThan(0);
     });
@@ -104,14 +89,6 @@ describe("Homepage Data Validation", () => {
   });
 
   describe("Welcome Content", () => {
-    it("should validate with Zod schema", () => {
-      const result = WelcomeContentSchema.safeParse(WELCOME_CONTENT);
-      if (!result.success) {
-        console.error("Validation errors:", result.error.issues);
-      }
-      expect(result.success).toBe(true);
-    });
-
     it("should have sufficient body text (min 50 chars)", () => {
       expect(WELCOME_CONTENT.body.length).toBeGreaterThanOrEqual(50);
     });

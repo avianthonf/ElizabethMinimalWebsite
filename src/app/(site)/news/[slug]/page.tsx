@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { NEWS_ARTICLES } from "@/domains/news/news.data";
+import { Link } from "next-view-transitions";
+import { getNewsArticleBySlug, getNewsArticles } from "@/domains/news/news.fetcher";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
@@ -7,7 +8,7 @@ import { Stack } from "@/shared/ui/stack";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { Text } from "@/shared/ui/text";
 import { ShareBar } from "@/features/share";
-import { SITE_URL } from "@/shared/lib/brand";
+import { SITE_URL } from "@/shared/lib";
 import { createNewsArticleSchema } from "@/shared/lib/structured-data";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import type { Metadata } from "next";
@@ -16,19 +17,16 @@ interface NewsArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-function findArticle(slug: string) {
-  return NEWS_ARTICLES.find((a) => a.href === `/news/${slug}`);
-}
-
 export async function generateStaticParams() {
-  return NEWS_ARTICLES.map((article) => ({
+  const articles = await getNewsArticles();
+  return articles.map((article) => ({
     slug: article.href.replace("/news/", ""),
   }));
 }
 
 export async function generateMetadata({ params }: NewsArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = findArticle(slug);
+  const article = await getNewsArticleBySlug(slug);
   if (!article) return {};
   return {
     title: article.title,
@@ -38,7 +36,7 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
 
 export default async function NewsArticlePage({ params }: NewsArticlePageProps) {
   const { slug } = await params;
-  const article = findArticle(slug);
+  const article = await getNewsArticleBySlug(slug);
 
   if (!article) {
     notFound();
@@ -76,6 +74,22 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
               <Text variant="muted" size="large">
                 {article.excerpt}
               </Text>
+              <Stack gap="small">
+                <Link
+                  href="/news/photo-gallery"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.375rem",
+                    color: "var(--p-color-royal-blue)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                  }}
+                >
+                  📸 Photo Gallery
+                </Link>
+              </Stack>
               <ShareBar url={`${SITE_URL}/news/${slug}`} title={article.title} />
             </Stack>
           </Container>

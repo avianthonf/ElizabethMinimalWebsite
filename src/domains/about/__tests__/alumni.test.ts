@@ -43,10 +43,13 @@ describe("Alumni Data", () => {
   });
 
   describe("ALUMNI_TESTIMONIALS", () => {
-    it("has heading, body, and callToAction", () => {
-      expect(ALUMNI_TESTIMONIALS.heading).toBeTruthy();
-      expect(ALUMNI_TESTIMONIALS.body.length).toBeGreaterThan(20);
-      expect(ALUMNI_TESTIMONIALS.callToAction).toBeTruthy();
+    it("has 3 alumni testimonials", () => {
+      expect(ALUMNI_TESTIMONIALS).toHaveLength(3);
+    });
+
+    it("has testimonial quotes and names", () => {
+      expect(ALUMNI_TESTIMONIALS[0].quote.length).toBeGreaterThan(50);
+      expect(ALUMNI_TESTIMONIALS[0].name).toBeTruthy();
     });
   });
 

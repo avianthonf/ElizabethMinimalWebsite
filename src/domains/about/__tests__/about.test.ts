@@ -78,8 +78,8 @@ describe("About Data", () => {
   });
 
   describe("HISTORY_TIMELINE", () => {
-    it("has 3 entries", () => {
-      expect(HISTORY_TIMELINE).toHaveLength(3);
+    it("has 7 entries", () => {
+      expect(HISTORY_TIMELINE).toHaveLength(7);
     });
 
     it("all entries have year and event", () => {
@@ -94,8 +94,8 @@ describe("About Data", () => {
       expect(HISTORY_TIMELINE[0].event).toContain("Pomburpa");
     });
 
-    it("last entry is 1982", () => {
-      expect(HISTORY_TIMELINE[2].year).toBe("1982");
+    it("last entry is 2026", () => {
+      expect(HISTORY_TIMELINE[6].year).toBe("2026");
     });
   });
 

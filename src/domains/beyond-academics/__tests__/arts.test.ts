@@ -3,8 +3,8 @@ import { CULTURAL_PROGRAMMES } from "../beyond.data";
 
 describe("Cultural Activities (formerly Arts)", () => {
   describe("CULTURAL_PROGRAMMES", () => {
-    it("has 5 programmes", () => {
-      expect(CULTURAL_PROGRAMMES).toHaveLength(5);
+    it("has 6 programmes", () => {
+      expect(CULTURAL_PROGRAMMES).toHaveLength(6);
     });
 
     it("all programmes have title and description", () => {
@@ -14,13 +14,12 @@ describe("Cultural Activities (formerly Arts)", () => {
       }
     });
 
-    it("includes Visual Arts, Music, Dance, Drama & Theatre, and Annual Arts Festival", () => {
+    it("includes Annual Day, Music & Dance, Drama & Theatre, and School Celebrations", () => {
       const titles = CULTURAL_PROGRAMMES.map((p) => p.title);
-      expect(titles).toContain("Visual Arts");
-      expect(titles).toContain("Music");
-      expect(titles).toContain("Dance");
+      expect(titles).toContain("Annual Day");
+      expect(titles).toContain("Music & Dance");
       expect(titles).toContain("Drama & Theatre");
-      expect(titles).toContain("Annual Arts Festival");
+      expect(titles).toContain("School Celebrations");
     });
   });
 });

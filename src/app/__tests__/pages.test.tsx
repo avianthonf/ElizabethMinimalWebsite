@@ -54,8 +54,8 @@ import ContactPage from "../(site)/contact/page";
 
 describe("Page Smoke Tests", () => {
   describe("Home '/'", () => {
-    it("renders without crashing", () => {
-      render(<HomePage />);
+    it("renders without crashing", async () => {
+      render(await HomePage());
       expect(screen.getByTestId("homepage")).toBeDefined();
     });
   });
@@ -91,8 +91,8 @@ describe("Page Smoke Tests", () => {
   });
 
   describe("About '/about/alumni'", () => {
-    it("renders the alumni community heading", () => {
-      render(<AboutAlumniPage />);
+    it("renders the alumni community heading", async () => {
+      render(await AboutAlumniPage());
       expect(screen.getByText("St. Elizabeth Alumni")).toBeDefined();
     });
   });
@@ -105,9 +105,9 @@ describe("Page Smoke Tests", () => {
   });
 
   describe("Admissions '/admissions/why'", () => {
-    it("renders Why St. Elizabeth heading", () => {
-      render(<AdmissionsWhyPage />);
-      expect(screen.getByText("Why St. Elizabeth?")).toBeDefined();
+    it("renders Why St. Elizabeth heading", async () => {
+      render(await AdmissionsWhyPage());
+      expect(screen.getByRole("heading", { name: "Why St. Elizabeth?" })).toBeDefined();
     });
   });
 
@@ -156,7 +156,7 @@ describe("Page Smoke Tests", () => {
   describe("Beyond Academics '/beyond-academics/clubs'", () => {
     it("renders Clubs heading", () => {
       render(<BeyondAcademicsClubsPage />);
-      expect(screen.getByText("Clubs & Organizations")).toBeDefined();
+      expect(screen.getAllByText("Clubs & Organizations").length).toBeGreaterThan(0);
     });
   });
 
@@ -168,8 +168,8 @@ describe("Page Smoke Tests", () => {
   });
 
   describe("News '/news'", () => {
-    it("renders the page heading", () => {
-      render(<NewsPage />);
+    it("renders the page heading", async () => {
+      render(await NewsPage());
       expect(screen.getByText("News & Events")).toBeDefined();
     });
   });

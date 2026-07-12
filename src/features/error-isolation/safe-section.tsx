@@ -67,7 +67,9 @@ export function SafeSection({ children, label }: SafeSectionProps) {
   return (
     <ErrorBoundary
       fallbackRender={({ error, resetErrorBoundary }) => {
-        console.error(`SafeSection (${label || "unknown"}) error:`, error);
+        if (process.env.NODE_ENV === "development") {
+          console.error(`SafeSection (${label || "unknown"}) error:`, error);
+        }
         return <SectionErrorFallback resetErrorBoundary={resetErrorBoundary} label={label} />;
       }}
       onError={() => {}}

@@ -12,6 +12,7 @@ import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/shared/ui/school-icon";
 import { SchoolMedallion } from "@/features/medallion";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
+import { CATCHMENT_IDENTITY } from "@/domains/about/about.data";
 import { HERO_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
@@ -109,7 +110,7 @@ export default function AboutPage() {
                       </Icon>
                     }
                     title="Achievements"
-                    description="Milestones & milestones"
+                    description="Awards & milestones"
                     href="/about/achievements"
                   />
                   <IconCard
@@ -126,6 +127,48 @@ export default function AboutPage() {
               </Stack>
             }
           />
+        </Container>
+      </Section>
+
+      {/* Rooted in Pomburpa */}
+      <Section background="soft" padding="xlarge" ariaLabel="Rooted in Pomburpa">
+        <Container width="wide">
+          <Stack gap="large">
+            <Stack gap="medium">
+              <Heading level="h2" variant="section">
+                {CATCHMENT_IDENTITY.heading}
+              </Heading>
+              <Text variant="muted" size="large">
+                {CATCHMENT_IDENTITY.body}
+              </Text>
+            </Stack>
+            <ul
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                gap: "var(--p-space-medium)",
+                paddingLeft: 0,
+                listStyle: "none",
+              }}
+            >
+              {CATCHMENT_IDENTITY.villageHighlights.map((h, i) => (
+                <li
+                  key={i}
+                  style={{
+                    padding: "var(--p-space-medium)",
+                    background: "var(--p-color-paper)",
+                    borderRadius: "8px",
+                    borderLeft: "3px solid var(--s-color-accent, var(--p-color-gold, #c9a96e))",
+                    color: "var(--p-color-muted)",
+                    fontSize: "var(--p-font-size-medium)",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </Stack>
         </Container>
       </Section>
 

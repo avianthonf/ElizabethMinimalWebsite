@@ -240,6 +240,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/contact/visit-our-campus`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/contact/thank-you`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
 
     // News section pages
     {

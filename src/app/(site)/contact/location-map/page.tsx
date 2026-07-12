@@ -3,6 +3,7 @@ import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
 import { Stack } from "@/shared/ui/stack";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Link } from "@/shared/ui/link";
@@ -29,15 +30,20 @@ export const metadata = createPageMetadata(
 export default function LocationMapPage() {
   return (
     <>
-      <>
-        <Breadcrumb href="/contact" label="Contact" currentLabel="Location & Map" />
-        <Hero
-          eyebrow="Visit"
-          heading="Location & Map"
-          description="Find us in the heart of Pomburpa, Bardez, Goa. We're easily accessible from both Panjim and Mapusa."
-          backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
-        />
-      </>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Contact", href: "/contact" },
+          { label: "Location & Map", href: "/contact/location-map" },
+        ]}
+      />
+      <Breadcrumb href="/contact" label="Contact" currentLabel="Location & Map" />
+      <Hero
+        eyebrow="Visit"
+        heading="Location & Map"
+        description="Find us in the heart of Pomburpa, Bardez, Goa. We're easily accessible from both Panjim and Mapusa."
+        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+      />
 
       <Section background="paper" padding="xlarge" ariaLabel="School location map">
         <Container width="wide">

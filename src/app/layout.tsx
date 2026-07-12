@@ -13,7 +13,7 @@ import { MenuProvider } from "@/features/menu/menu-provider";
 import { MenuOverlay } from "@/features/menu/menu-overlay";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SITE_URL } from "@/shared/lib/brand";
+import { SITE_URL } from "@/shared/lib";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import {
   createSchoolOrganizationSchema,

@@ -45,8 +45,9 @@ describe("page-utils", () => {
       const metadata = createPageMetadata("Test Page", "Test description", "/test");
 
       expect(metadata.twitter).toBeDefined();
-      expect(metadata.twitter?.card).toBe("summary_large_image");
-      expect(metadata.twitter?.title).toBe("Test Page | St. Elizabeth's High School");
+      const twitter = metadata.twitter as Record<string, string>;
+      expect(twitter.card).toBe("summary_large_image");
+      expect(twitter.title).toBe("Test Page | St. Elizabeth's High School");
     });
 
     it("should use custom OG image when provided", () => {

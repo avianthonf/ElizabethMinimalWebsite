@@ -53,7 +53,7 @@ export const SOCIAL_LINKS = {
 } as const;
 
 /** Postal code — used in JSON-LD and contact pages. */
-export const POSTAL_CODE = "403511";
+export const POSTAL_CODE = "403523";
 
 /** Returns the absolute URL for a site-relative path. */
 export function absoluteUrl(path: string): string {

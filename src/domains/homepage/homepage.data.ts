@@ -78,30 +78,30 @@ export const STATS: StatData[] = [
 
 // ── Panel 5: Testimonials ──────────────────────────────────────────────
 
+// ── TestimonialData updated for alumni-driven content ──────────────────
+
 export interface TestimonialData {
   quote: string;
   attribution: string;
   role: "alumni" | "student" | "parent" | "teacher";
+  /** Optional — for alumni testimonials */
+  subtitle?: string;
 }
 
 export const TESTIMONIALS: TestimonialData[] = [
   {
     quote:
-      "St. Elizabeth shaped me into the person I am today. The values I learned here — truth, honesty, and service — guide every decision I make.",
-    attribution: "Alumni, Class of 2020",
+      "The guidance and education I received at St. Elizabeth High School were instrumental in shaping my dream of pursuing medicine. As the first doctor from my village in Ecoxim, I look back at my alma mater with immense gratitude for empowering me to serve our community.",
+    attribution: "Dr. Mohandas Chodankar",
+    subtitle: "BHMS, PGDEMS, MBA · Svastha Health Clinic, Ecoxim · Class of 1996",
     role: "alumni",
   },
   {
     quote:
-      "The teachers here don't just teach — they inspire. They know every student by name, understand our strengths, and push us to be our best selves.",
-    attribution: "Current Student, Class XII",
-    role: "student",
-  },
-  {
-    quote:
-      "A nurturing environment where every child finds their voice. We chose St. Elizabeth for our daughter, and watching her flourish here has been our greatest joy as parents.",
-    attribution: "Parent of Class VIII Student",
-    role: "parent",
+      "The values of discipline, perseverance, teamwork, and integrity that I learned here have been the foundation of my professional journey. Today, I am privileged to serve as a Manager in an IT and Telecom organization, leading operations across Mumbai and Goa.",
+    attribution: "Subash Sitaram Volvoikar",
+    subtitle: "Manager — Delivery Telecom, Sify Technologies Ltd",
+    role: "alumni",
   },
 ];
 

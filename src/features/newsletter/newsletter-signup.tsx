@@ -90,7 +90,9 @@ export function NewsletterSignup({ className }: NewsletterSignupProps) {
     } catch (error) {
       setStatus("error");
       setMessage("Something went wrong. Please try again later.");
-      console.error("[newsletter] Subscription failed:", error);
+      if (process.env.NODE_ENV === "development") {
+        console.error("[newsletter] Subscription failed:", error);
+      }
     }
   };
 

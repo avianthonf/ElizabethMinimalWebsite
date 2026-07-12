@@ -1,11 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { Link } from "next-view-transitions";
-import { ErrorIllustration } from "@/features/error-illustration";
-import styles from "./site-error.module.css";
+import { ErrorPage } from "@/features/error-isolation/error-page";
 
-/** Error boundary for inner pages ( Site route group ). */
 export default function SiteError({
   error,
   reset,
@@ -13,25 +9,5 @@ export default function SiteError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error("Site error:", error);
-  }, [error]);
-
-  return (
-    <div className={styles.wrapper}>
-      <ErrorIllustration />
-      <h1 className={styles.heading}>Something went wrong</h1>
-      <p className={styles.description}>
-        We encountered an error loading this page. Please try again or go back to the homepage.
-      </p>
-      <div className={styles.actions}>
-        <button type="button" onClick={reset} className={styles.retryButton}>
-          Try Again
-        </button>
-        <Link href="/" className={styles.homeLink}>
-          Go Home
-        </Link>
-      </div>
-    </div>
-  );
+  return <ErrorPage error={error} reset={reset} label="Site" />;
 }

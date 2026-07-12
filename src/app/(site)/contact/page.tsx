@@ -9,6 +9,7 @@ import { createPageMetadata } from "@/shared/lib/page-utils";
 import {
   SCHOOL_ADDRESS,
   SCHOOL_CONTACT,
+  SCHOOL_LEADERSHIP,
   GOOGLE_MAPS_DIRECTIONS_URL,
 } from "@/domains/contact/contact.data";
 import { CONTACT_IMAGES } from "@/domains/media/images.data";
@@ -30,7 +31,7 @@ export default function ContactPage() {
       <Hero
         eyebrow="Connect"
         heading="Contact Us"
-        description="We'd love to hear from you. Reach out to St. Elizabeth's High School in Pomburpa, Bardez, Goa."
+        description="We'd love to hear from you! Whether you have an enquiry about admissions, academics, or school activities, feel free to get in touch with us."
         backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
       />
 
@@ -55,17 +56,26 @@ export default function ContactPage() {
                   <Text variant="muted">
                     {SCHOOL_ADDRESS.street}
                     <br />
-                    {SCHOOL_ADDRESS.area}
-                    <br />
-                    {SCHOOL_ADDRESS.city} {SCHOOL_ADDRESS.pinCode}
-                    <br />
-                    {SCHOOL_ADDRESS.country}
+                    {SCHOOL_ADDRESS.area}, {SCHOOL_ADDRESS.city} \u2013 {SCHOOL_ADDRESS.pinCode}
                   </Text>
                 </Stack>
                 <Stack gap="medium">
                   <Text variant="eyebrow">Contact</Text>
                   <Text variant="muted">Phone: {SCHOOL_CONTACT.phone}</Text>
                   <Text variant="muted">Email: {SCHOOL_CONTACT.email}</Text>
+                </Stack>
+                <Stack gap="medium">
+                  <Text variant="eyebrow">School Leadership</Text>
+                  <Text variant="muted">
+                    {SCHOOL_LEADERSHIP.managerRole}
+                    <br />
+                    {SCHOOL_LEADERSHIP.manager}
+                  </Text>
+                  <Text variant="muted">
+                    {SCHOOL_LEADERSHIP.headmistressRole}
+                    <br />
+                    {SCHOOL_LEADERSHIP.headmistress}
+                  </Text>
                 </Stack>
                 <SafeSection label="contact form">
                   <ContactForm />

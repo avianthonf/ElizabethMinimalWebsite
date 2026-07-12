@@ -3,8 +3,8 @@ import { CLUBS, BEYOND_ACADEMICS_INTRO } from "../beyond.data";
 
 describe("Student Life Data", () => {
   describe("CLUBS", () => {
-    it("has 9 clubs", () => {
-      expect(CLUBS).toHaveLength(9);
+    it("has 7 clubs", () => {
+      expect(CLUBS).toHaveLength(7);
     });
 
     it("all clubs have name, description, and category", () => {
@@ -24,11 +24,11 @@ describe("Student Life Data", () => {
       expect(categories).toContain("Athletics");
     });
 
-    it("includes Debate Society, Eco Club, and Heritage Club", () => {
+    it("includes Debate Society, Heritage Club, and Photography Club", () => {
       const names = CLUBS.map((c) => c.name);
       expect(names).toContain("Debate Society");
-      expect(names).toContain("Eco Club");
       expect(names).toContain("Heritage Club");
+      expect(names).toContain("Photography Club");
     });
 
     it("Debate Society is Academic", () => {

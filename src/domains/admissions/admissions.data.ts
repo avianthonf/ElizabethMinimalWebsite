@@ -19,54 +19,34 @@ export const ADMISSIONS_VISIT_PAGE = {
 
 export const WHY_ST_ELIZABETH_POINTS = [
   {
-    title: "Academic Excellence",
+    title: "⭐ 15:1 Student-Teacher Ratio Means Your Child Gets Seen",
     description:
-      "Our GBSHSE curriculum, aligned with NEP 2020, challenges students to think critically, solve problems creatively, and achieve their personal best. With an average class size of just 15 students, every learner receives individual attention — significantly better than the national average of 26:1 and the hallmark of truly personalized education.",
+      "In classes of just 15 students, your child won't disappear into the back row. Teachers call every student by name, track individual progress week by week, and catch struggles before they become setbacks. These are educators who arrive early, stay late, and treat your child's success as their own.",
   },
   {
-    title: "Values-Based Education",
+    title: "📚 Your Child Learns the Goa Way — NEP 2020 Ready",
     description:
-      "Rooted in the motto 'Truth and Honesty,' we shape character alongside intellect. Our students graduate not just with knowledge, but with integrity, compassion, and purpose.",
+      "The GBSHSE curriculum isn't a distant syllabus written for another state — it's designed for Goan students. With NEP 2020 already in place, your child gets competency-based learning, vocational exposure, and the advantage of a board that feeds directly into Goa's higher secondary schools. This is the curriculum that sends St. Elizabeth's students to Xavier's, Dempo, and Purushottam Walawalkar HSS — the top feeder schools in Bardez.",
   },
   {
-    title: "Holistic Development",
+    title: "💻 A Computer Lab, Smart Classrooms, and Digital Readiness",
     description:
-      "From athletics and arts to clubs and community service, St. Elizabeth offers rich opportunities for every child to discover and develop their unique talents.",
+      "Your child steps into a world where learning isn't confined to chalkboards. The computer laboratory, digital resource centre, and smart classrooms at St. Elizabeth's mean your child builds real technology fluency — not from a textbook, but from hands-on practice. In a state where digital government services are everywhere, this matters for every career path, not just the ones in IT.",
   },
   {
-    title: "Nurturing Community",
+    title: "🌱 Beyond Textbooks: Clubs, Sports, Culture, and Vocational Skills",
     description:
-      "Located in the peaceful setting of Pomburpa, Bardez, our campus is a safe, supportive environment where students are known by name and valued as individuals.",
+      "Your child can join the ECOSE environmental club, serve on the Student Council, perform at the Annual Day, compete on the athletic field, and learn vocational skills through NEP's work education programme — all without leaving campus. At St. Elizabeth's, the question isn't 'Does your child have a talent?' It's 'Which one will we discover this year?'",
   },
   {
-    title: "Dedicated Faculty",
+    title: "❤️ A Village Campus Where Your Child Is Known, Not Just Enrolled",
     description:
-      "Our experienced teachers are mentors who inspire a love of learning. They bring passion, expertise, and genuine care to every classroom.",
+      "Pomburpa isn't an industrial park — it's a village where three generations of the same family have walked through these gates. Our campus is bordered by coconut groves and the Mandovi backwaters. CCTV surveillance, an Academic Resource Room for diverse learners, and a CWSN-inclusive policy mean your child is safe, supported, and understood — not processed.",
   },
   {
-    title: "GBSHSE Advantage",
+    title: "🤝 You Are Not Just a Parent — You Are a Partner",
     description:
-      "As a Goa Board (GBSHSE) affiliated school, our curriculum is locally relevant, state-aligned, and NEP 2020-ready — giving students an advantage in state-level examinations and admissions to higher secondary schools across Goa.",
-  },
-  {
-    title: "Small School, Big Impact",
-    description:
-      "We intentionally keep our school intimate — every teacher knows every student by name, every child participates in every activity, and no one falls through the cracks. This is education the way it should be: personal, purposeful, and profoundly transformative.",
-  },
-  {
-    title: "Focused Middle & Secondary Education",
-    description:
-      "By specializing exclusively in Grades 5 through 10, we dedicate all our resources, expertise, and attention to the most formative years of a student's academic journey — free from the distractions of managing nursery children on one end or higher secondary exam pressure on the other.",
-  },
-  {
-    title: "Not a Franchise — A Family",
-    description:
-      "Unlike chain schools or branded franchises, St. Elizabeth's is an authentic Goa institution. The Diocesan Society of Education has managed us since 1982 — that's four decades of institutional stability. We answer to our community, not to shareholders.",
-  },
-  {
-    title: "What No Screen Can Teach",
-    description:
-      "Edtech platforms can deliver content, but they cannot deliver character. At St. Elizabeth's, your child learns what no app can teach: how to be a good friend, how to work as a team on the sports field, how to lead with integrity on the student council, how to serve the community through the Prahari Club, and how to grow in faith through morning assembly. These are the lessons that shape a life.",
+      "The Parent-Teacher Association, led by Chairman Mr. Willy Fernandes, isn't a formality — it's a working partnership. Regular meetings, open communication, and community events mean you know what's happening in your child's classroom, not just from the marksheet. When you choose St. Elizabeth's, you join a community where school decisions are made with families, not for them.",
   },
 ] as const;
 
@@ -97,39 +77,33 @@ export const TRANSITION_SUPPORT = {
 export const ADMISSION_STEPS = [
   {
     step: 1,
-    title: "Inquire",
+    title: "Visit the School",
     description:
-      "Complete our inquiry form or call our admissions office to express interest and receive an information packet about St. Elizabeth's High School.",
+      "Visit our school campus during office hours to experience our caring and vibrant learning environment firsthand.",
   },
   {
     step: 2,
-    title: "Visit",
+    title: "Meet the Headmistress",
     description:
-      "Schedule a campus tour to experience our school community firsthand. Meet our faculty, observe classes, and explore our facilities in Pomburpa.",
+      "Interact with the Headmistress to learn about the school, our values, curriculum, and admission eligibility for your child.",
   },
   {
     step: 3,
-    title: "Apply",
+    title: "Collect the Admission Form",
     description:
-      "Submit the completed application form along with previous academic records, recommendation letters, and the application fee.",
+      "Collect the admission form from the school office. Our staff will guide you through the requirements and documentation needed.",
   },
   {
     step: 4,
-    title: "Assessment",
+    title: "Submit the Form & Documents",
     description:
-      "Prospective students complete an age-appropriate entrance assessment to help us understand their academic readiness.",
+      "Submit the completed admission form along with the required documents including previous academic records and identification.",
   },
   {
     step: 5,
-    title: "Interview",
+    title: "Admission Confirmation",
     description:
-      "Families meet with our admissions team to discuss the student's interests, goals, and how St. Elizabeth can support their educational journey.",
-  },
-  {
-    step: 6,
-    title: "Enroll",
-    description:
-      "Upon acceptance, complete the enrollment formalities including fee payment, uniform ordering, and orientation scheduling.",
+      "Complete the admission formalities after receiving confirmation from the school. Welcome to the St. Elizabeth's family!",
   },
 ] as const;
 

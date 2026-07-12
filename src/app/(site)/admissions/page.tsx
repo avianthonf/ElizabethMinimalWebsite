@@ -12,8 +12,9 @@ import { Icon } from "@/shared/ui/icon";
 import { Link } from "@/shared/ui/link";
 import { SchoolIcon } from "@/shared/ui/school-icon";
 import { QRCard } from "@/features/qr";
+import { absoluteUrl } from "@/shared/lib";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
-import { generateFAQSchema } from "@/shared/lib/seo";
+import { generateFAQSchema } from "@/shared/lib/structured-data";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import { WHATSAPP_INQUIRY, ADMISSIONS_TIMELINE, FAQS } from "@/domains/admissions/admissions.data";
 
@@ -93,11 +94,7 @@ export default function AdmissionsPage() {
             }
             right={
               <Stack gap="medium">
-                <QRCard
-                  value={`${process.env.NEXT_PUBLIC_SITE_URL ?? "https://stelizabeths.in"}/admissions/apply`}
-                  label="Scan to apply"
-                  size={140}
-                />
+                <QRCard value={absoluteUrl("/admissions/apply")} label="Scan to apply" size={140} />
                 <Heading level="h3" variant="card">
                   Key Dates
                 </Heading>

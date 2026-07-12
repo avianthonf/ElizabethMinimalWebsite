@@ -22,6 +22,8 @@ export interface ContentPageProps<T> {
   heroBackgroundImage?: string;
   /** Optional breadcrumb rendered above the hero */
   breadcrumb?: { href: string; label: string; currentLabel: string };
+  /** Canonical page path for structured data (e.g. "/about/history") */
+  canonicalPath?: string;
   /** Section heading (h2) — when omitted, no section heading renders */
   sectionHeading?: string;
   /** Optional descriptive paragraph below the section heading */
@@ -50,6 +52,7 @@ export function ContentPage<T>({
   heroDescription,
   heroBackgroundImage,
   breadcrumb,
+  canonicalPath,
   sectionHeading,
   sectionDescription,
   items,
@@ -65,7 +68,7 @@ export function ContentPage<T>({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: safeJsonStringify(
-            createWebPageSchema(heroHeading, heroDescription ?? heroHeading, "#"),
+            createWebPageSchema(heroHeading, heroDescription ?? heroHeading, canonicalPath ?? "#"),
           ),
         }}
       />

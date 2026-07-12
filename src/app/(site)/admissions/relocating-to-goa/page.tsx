@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
 import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 import { createWebPageSchema } from "@/shared/lib/structured-data";
-import { generateFAQSchema } from "@/shared/lib/seo";
+import { generateFAQSchema } from "@/shared/lib/structured-data";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import {
   RELOCATION_PAGE,

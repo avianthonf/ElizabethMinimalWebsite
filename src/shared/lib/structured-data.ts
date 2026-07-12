@@ -91,6 +91,32 @@ export function createBreadcrumbSchema(items: BreadcrumbItem[]): BreadcrumbListS
   };
 }
 
+/**
+ * Generate BreadcrumbList schema.org JSON-LD with absolute URLs.
+ * Alias for createBreadcrumbSchema — uses absolute URLs via brand config.
+ *
+ * @example
+ * generateBreadcrumbSchema([
+ *   { name: "Home", url: "/" },
+ *   { name: "Admissions", url: "/admissions" },
+ *   { name: "Apply", url: "/admissions/apply" },
+ * ])
+ */
+export function generateBreadcrumbSchema(
+  items: readonly { name: string; url: string }[],
+): BreadcrumbListSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${BASE_URL}${item.url}`,
+    })),
+  };
+}
+
 // ── WebPage ────────────────────────────────────────────────────────
 
 export interface WebPageSchema {
@@ -209,16 +235,23 @@ export interface FAQPageSchema {
   }>;
 }
 
-export function createFAQSchema(items: FAQItem[]): FAQPageSchema {
+/**
+ * Generate FAQPage schema.org JSON-LD from a Q&amp;A array.
+ * Strips HTML tags from answers for clean rich-snippet rendering.
+ *
+ * @example
+ * generateFAQSchema(FAQS) // returns valid JSON-LD for FAQ rich snippets
+ */
+export function generateFAQSchema(faqs: readonly FAQItem[]): FAQPageSchema {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
-      name: item.question,
+      name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: faq.answer.replace(/<[^>]*>/g, ""),
       },
     })),
   };

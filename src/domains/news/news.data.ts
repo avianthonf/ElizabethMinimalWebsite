@@ -13,6 +13,33 @@ export interface NewsArticle {
 
 export const NEWS_ARTICLES: NewsArticle[] = [
   {
+    title: "International Day of Yoga",
+    date: "21 June 2026",
+    excerpt:
+      "Students of St. Elizabeth's High School celebrated the International Day of Yoga by participating in a guided yoga session that promoted physical fitness, mental well-being, and mindfulness. As part of the celebrations, a group of students also proudly represented the school at the State-Level International Day of Yoga Programme held at Shyama Prasad Mukherjee Indoor Stadium, Taleigao, joining participants from across Goa in promoting the message of health, harmony, and holistic well-being.",
+    imageFilename: "DSC07576.jpg",
+    category: "Events",
+    href: "/news/international-day-of-yoga-2026",
+  },
+  {
+    title: "Van Mahotsav Week Celebration",
+    date: "1-7 July 2026",
+    excerpt:
+      "Students enthusiastically celebrated Van Mahotsav Week through a variety of activities that promoted environmental awareness and conservation. The week featured tree plantation drives, nature-based learning experiences, and initiatives that encouraged students to care for and protect the environment.",
+    imageFilename: "DSC07290.jpg",
+    category: "Events",
+    href: "/news/van-mahotsav-week-2026",
+  },
+  {
+    title: "Manager's Day Celebration",
+    date: "11 July 2026",
+    excerpt:
+      "The school community came together to celebrate Manager's Day, expressing heartfelt gratitude and appreciation for the guidance, vision, and dedicated service of our School Manager. The celebration included cultural performances, messages of appreciation, and memorable moments shared by students and staff.",
+    imageFilename: "DSC07504.jpg",
+    category: "Events",
+    href: "/news/managers-day-2026",
+  },
+  {
     title: "Annual Day Celebration 2024",
     date: "November 15, 2024",
     excerpt:

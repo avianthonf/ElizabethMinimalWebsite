@@ -5,7 +5,11 @@ import { Section } from "@/shared/ui/section";
 import { Stack } from "@/shared/ui/stack";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
+import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
+import { createWebPageSchema } from "@/shared/lib/structured-data";
+import { safeJsonStringify } from "@/shared/lib/safe-json";
 import { ADMISSION_STEPS } from "@/domains/admissions/admissions.data";
 
 export const metadata = createPageMetadata(
@@ -19,6 +23,26 @@ export default function ApplyPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: safeJsonStringify(
+            createWebPageSchema(
+              "Apply",
+              "Learn about the admission process at St. Elizabeth's High School — from inquiry to enrollment. Six clear steps to join our school community.",
+              "/admissions/apply",
+            ),
+          ),
+        }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Admissions", href: "/admissions" },
+          { label: "Apply", href: "/admissions/apply" },
+        ]}
+      />
+      <Breadcrumb href="/admissions" label="Admissions" currentLabel="Apply" />
       <Hero
         eyebrow="Apply"
         heading="Admission Steps"

@@ -91,7 +91,7 @@ function MedallionComposition() {
    ══════════════════════════════════════════════════════════════════ */
 
 function RotatingTeeth() {
-  const groupRef = useRef<THREE.Group>(null!);
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_, delta) => {
     if (groupRef.current) {

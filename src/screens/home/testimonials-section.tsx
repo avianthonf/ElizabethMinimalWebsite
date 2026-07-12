@@ -22,6 +22,7 @@ export function TestimonialsSection({
               <p className={styles.quote}>&ldquo;{t.quote}&rdquo;</p>
               <footer className={styles.attribution}>
                 <span className={styles.name}>{t.attribution}</span>
+                {t.subtitle && <span className={styles.subtitle}>{t.subtitle}</span>}
                 <span className={styles.role}>{t.role}</span>
               </footer>
             </blockquote>

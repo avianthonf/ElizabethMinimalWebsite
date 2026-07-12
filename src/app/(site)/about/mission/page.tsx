@@ -6,6 +6,7 @@ import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Hero } from "@/shared/ui/hero";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { createPageMetadata } from "@/shared/lib/page-utils";
 import { VISION, MISSION, VALUES, VALUES_INTRO, MISSION_PAGE } from "@/domains/about/about.data";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
@@ -20,6 +21,13 @@ export const metadata = createPageMetadata(
 export default function MissionPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: MISSION_PAGE.breadcrumb.label, href: MISSION_PAGE.breadcrumb.href },
+          { label: MISSION_PAGE.breadcrumb.currentLabel, href: "/about/mission" },
+        ]}
+      />
       <Breadcrumb
         href={MISSION_PAGE.breadcrumb.href}
         label={MISSION_PAGE.breadcrumb.label}

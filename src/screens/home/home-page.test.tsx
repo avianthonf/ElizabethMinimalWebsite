@@ -14,6 +14,14 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
+// Mock the async import in events.fetcher to avoid dynamic import issues
+vi.mock("@/domains/homepage/events.fetcher", () => ({
+  getUpcomingEvents: async () => [
+    { title: "Annual Day", date: "2026-12-15", type: "cultural" as const },
+    { title: "Sports Meet", date: "2026-11-20", type: "sports" as const },
+  ],
+}));
+
 /**
  * HomePage smoke tests.
  *
@@ -22,13 +30,13 @@ vi.mock("next/navigation", () => ({
  * These tests assert the page sections are present.
  */
 describe("HomePage", () => {
-  it("renders the hero carousel", () => {
-    render(<HomePage />);
+  it("renders the hero carousel", async () => {
+    render(await HomePage());
     expect(screen.getByRole("region", { name: /featured highlights/i })).toBeInTheDocument();
   });
 
-  it("renders all major homepage sections", () => {
-    render(<HomePage />);
+  it("renders all major homepage sections", async () => {
+    render(await HomePage());
 
     // The sections are wrapped in ScrollReveal, so we look for their
     // content landmarks / aria-labels.

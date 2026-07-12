@@ -7,7 +7,7 @@ import { Grid } from "@/shared/ui/grid";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
-import { NEWS_ARTICLES } from "@/domains/news/news.data";
+import { getNewsArticles } from "@/domains/news/news.fetcher";
 import { HERO_IMAGES } from "@/domains/media/images.data";
 
 export const metadata = createPageMetadata(
@@ -16,7 +16,9 @@ export const metadata = createPageMetadata(
   "/news",
 );
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const articles = await getNewsArticles();
+
   return (
     <>
       <Hero
@@ -36,7 +38,7 @@ export default function NewsPage() {
               </Heading>
             </Stack>
             <Grid columns={3} gap="large" responsive>
-              {NEWS_ARTICLES.map((article) => (
+              {articles.map((article) => (
                 <ImageCard
                   key={article.href}
                   image={`/images/${article.imageFilename}`}
@@ -48,6 +50,21 @@ export default function NewsPage() {
                 />
               ))}
             </Grid>
+            <p
+              style={{
+                textAlign: "center",
+                marginTop: "1.5rem",
+                color: "var(--p-color-text-muted)",
+                fontSize: "1rem",
+                lineHeight: "1.6",
+              }}
+            >
+              More News Coming Soon...
+              <br />
+              This page is regularly updated with the latest events, celebrations, achievements, and
+              announcements from St. Elizabeth&apos;s High School. Be sure to visit again to stay
+              informed about what&apos;s happening in our school.
+            </p>
           </Stack>
         </Container>
       </Section>

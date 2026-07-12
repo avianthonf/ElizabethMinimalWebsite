@@ -8,7 +8,6 @@
  */
 
 import type { ReactNode } from "react";
-import { CONTACT_EMAIL, POSTAL_CODE } from "@/shared/lib/brand";
 import { SCHOOL_CONFIG, CONTACT_CONFIG } from "@/shared/config";
 
 // ── Types ──────────────────────────────────────────────────────────────
@@ -43,11 +42,24 @@ export interface ContactInfo {
 // ── School Address ─────────────────────────────────────────────────────
 
 export const SCHOOL_ADDRESS = {
+  /** School name prefixed for full-address rendering */
+  name: SCHOOL_CONFIG.NAME,
   street: CONTACT_CONFIG.ADDRESS.STREET,
-  area: `${SCHOOL_CONFIG.LOCATION.CITY}, Bardez`,
+  area: `${CONTACT_CONFIG.ADDRESS.CITY}, ${CONTACT_CONFIG.ADDRESS.STATE}`,
   city: CONTACT_CONFIG.ADDRESS.STATE,
   pinCode: CONTACT_CONFIG.ADDRESS.POSTAL_CODE,
   country: CONTACT_CONFIG.ADDRESS.COUNTRY,
+  /** Spec-compliant single-line: "St. Elizabeth's High School, Palmar, Pomburpa, Bardez, Goa – 403523" */
+  full: `${SCHOOL_CONFIG.NAME}, ${CONTACT_CONFIG.ADDRESS.STREET}, ${CONTACT_CONFIG.ADDRESS.CITY}, ${CONTACT_CONFIG.ADDRESS.STATE} \u2013 ${CONTACT_CONFIG.ADDRESS.POSTAL_CODE}`,
+} as const;
+
+// ── School Leadership ─────────────────────────────────────────────────
+
+export const SCHOOL_LEADERSHIP = {
+  manager: "Rev. Fr. Agnelo Cipriano Rodrigues",
+  managerRole: "School Manager",
+  headmistress: "Mrs. Shunia Mendes",
+  headmistressRole: "Headmistress",
 } as const;
 
 // ── School Contact ─────────────────────────────────────────────────────
