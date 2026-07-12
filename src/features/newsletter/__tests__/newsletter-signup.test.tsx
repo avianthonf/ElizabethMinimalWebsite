@@ -38,23 +38,21 @@ describe("NewsletterSignup", () => {
   });
 
   describe("Validation", () => {
-    it.skip("shows error when first name is empty", async () => {
-      // TODO: Fix timing issue with state updates
+    it("shows error when first name is empty", async () => {
       render(<NewsletterSignup />);
 
       const submitButton = screen.getByRole("button", { name: /subscribe/i });
       fireEvent.click(submitButton);
 
       const errorMessage = await screen.findByText(
-        /first name is required/i,
+        /first name can only contain letters/i,
         {},
         { timeout: 3000 },
       );
       expect(errorMessage).toBeInTheDocument();
     });
 
-    it.skip("shows error when email is empty", async () => {
-      // TODO: Fix timing issue with state updates
+    it("shows error when email is empty", async () => {
       render(<NewsletterSignup />);
 
       const firstNameInput = screen.getByLabelText(/first name/i);
@@ -63,7 +61,11 @@ describe("NewsletterSignup", () => {
       const submitButton = screen.getByRole("button", { name: /subscribe/i });
       fireEvent.click(submitButton);
 
-      const errorMessage = await screen.findByText(/email is required/i, {}, { timeout: 3000 });
+      const errorMessage = await screen.findByText(
+        /please enter a valid email/i,
+        {},
+        { timeout: 3000 },
+      );
       expect(errorMessage).toBeInTheDocument();
     });
 
@@ -124,15 +126,14 @@ describe("NewsletterSignup", () => {
       expect(successMessage).toBeInTheDocument();
     });
 
-    it.skip("clears error when user starts typing", async () => {
-      // TODO: Fix timing issue with state updates
+    it("clears error when user starts typing", async () => {
       render(<NewsletterSignup />);
 
       const submitButton = screen.getByRole("button", { name: /subscribe/i });
       fireEvent.click(submitButton);
 
       const errorMessage = await screen.findByText(
-        /first name is required/i,
+        /first name can only contain letters/i,
         {},
         { timeout: 3000 },
       );
@@ -143,7 +144,9 @@ describe("NewsletterSignup", () => {
 
       await waitFor(
         () => {
-          expect(screen.queryByText(/first name is required/i)).not.toBeInTheDocument();
+          expect(
+            screen.queryByText(/first name can only contain letters/i),
+          ).not.toBeInTheDocument();
         },
         { timeout: 3000 },
       );
