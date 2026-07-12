@@ -1,18 +1,13 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
- * Middleware that applies Content-Security-Policy headers.
+ * Content-Security-Policy middleware.
  *
- * CSP allows `connect-src` and `img-src` to the Supabase project domain
- * when configured — this enables the admin CMS and dynamic content fetching.
- * When the Supabase URL env var is not set, the default CSP (self-only)
- * remains in effect with no change in behavior.
- *
- * Admin routes (/admin/*) are protected by server-side auth checks in
- * the admin layout group — this middleware only handles CSP, not auth.
+ * Dynamically adds Supabase's project domain to connect-src and img-src
+ * when NEXT_PUBLIC_SUPABASE_URL is configured. When not set, the policy
+ * is self-only — no user action required.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function middleware(_request: NextRequest) {
+export function middleware() {
   const response = NextResponse.next();
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
