@@ -7,6 +7,7 @@ import { Grid } from "@/shared/ui/grid";
 import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { createPageMetadata } from "@/shared/lib/page-utils";
+import { cacheLife } from "next/cache";
 import { getNewsArticles } from "@/domains/news/news.fetcher";
 import { HERO_IMAGES } from "@/domains/media/images.data";
 
@@ -17,6 +18,8 @@ export const metadata = createPageMetadata(
 );
 
 export default async function NewsPage() {
+  "use cache";
+  cacheLife("hours");
   const articles = await getNewsArticles();
 
   return (

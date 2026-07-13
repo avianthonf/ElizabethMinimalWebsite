@@ -8,6 +8,15 @@ import type { NextConfig } from "next";
 */
 
 const nextConfig: NextConfig = {
+  /* ── Cache Components (Next.js 16 production caching model) ───────
+     Enables PPR (static shell + streaming) by default.
+     Uses preset cacheLife profiles (available since Next.js 15):
+       minutes — 5 min stale, 1 min revalidate, 1h expire (homepage)
+       hours   — 5 min stale, 1h revalidate,  1d expire (news/events)
+       days    — 5 min stale, 1d revalidate,  7d expire (about pages)
+     Custom profiles omitted — TypeScript only types preset names.
+  */
+  cacheComponents: true,
   poweredByHeader: false,
   experimental: {
     serverActions: {

@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 
 /**
- * Content-Security-Policy middleware.
+ * Content-Security-Policy proxy.
  *
  * Dynamically adds Supabase's project domain to connect-src and img-src
  * when NEXT_PUBLIC_SUPABASE_URL is configured. When not set, the policy
  * is self-only — no user action required.
+ *
+ * Renamed from middleware.ts → proxy.ts per Next.js 16 conventions.
  */
-export function middleware() {
+export function proxy() {
   const response = NextResponse.next();
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

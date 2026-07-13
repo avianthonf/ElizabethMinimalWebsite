@@ -6,6 +6,10 @@ export const metadata: Metadata = createPageMetadata("Home", SITE_DESCRIPTION, "
   ogImage: "/og-default.jpg",
 });
 
+import { cacheLife } from "next/cache";
+
 export default async function Home() {
+  "use cache";
+  cacheLife("minutes");
   return <HomePage />;
 }

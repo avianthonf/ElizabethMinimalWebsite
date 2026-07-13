@@ -66,6 +66,20 @@ Object.defineProperty(window, "IntersectionObserver", {
   value: IntersectionObserverMock,
 });
 
+// ── next/cache mock for vitest ────────────────────────────────────────
+// In vitest, `next.config.ts` is not loaded so `cacheComponents` is never true.
+// `cacheLife()` throws "only available with the cacheComponents config" unless
+// we stub the entire `next/cache` module.
+vi.mock("next/cache", () => ({
+  cacheLife: vi.fn(),
+  cacheTag: vi.fn(),
+  updateTag: vi.fn(),
+  revalidateTag: vi.fn(),
+  revalidatePath: vi.fn(),
+  unstable_cacheLife: vi.fn(),
+  unstable_cacheTag: vi.fn(),
+}));
+
 // ── requestAnimationFrame mock ──────────────────────────────────────────
 // Animation libraries use rAF internally. Vitest's fake timers may
 // interfere, so we provide a real-ish passthrough that uses setTimeout
