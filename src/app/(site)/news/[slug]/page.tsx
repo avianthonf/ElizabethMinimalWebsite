@@ -6,6 +6,7 @@ import { Section } from "@/shared/ui/section";
 import { Container } from "@/shared/ui/container";
 import { Stack } from "@/shared/ui/stack";
 import { Breadcrumb } from "@/widgets/breadcrumb/breadcrumb";
+import { BreadcrumbJsonLd } from "@/widgets/breadcrumb/breadcrumb-jsonld";
 import { Text } from "@/shared/ui/text";
 import { ShareBar } from "@/features/share";
 import { SITE_URL } from "@/shared/lib";
@@ -31,6 +32,19 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
   return {
     title: article.title,
     description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      type: "article",
+      publishedTime: article.date,
+      images: [`/images/${article.imageFilename}`],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: [`/images/${article.imageFilename}`],
+    },
   };
 }
 
@@ -55,6 +69,13 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonStringify(articleSchema) }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Home", href: "/" },
+          { label: "News", href: "/news" },
+          { label: article.title, href: `/news/${slug}` },
+        ]}
       />
       <>
         <Breadcrumb href="/news" label="News" currentLabel={article.title} />

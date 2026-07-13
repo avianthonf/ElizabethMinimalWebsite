@@ -10,10 +10,11 @@
  * and pass CSP without a nonce or hash.
  */
 
-import { SITE_URL, SOCIAL_LINKS, POSTAL_CODE } from "./brand";
+import { SITE_URL, SITE_NAME, SOCIAL_LINKS, POSTAL_CODE } from "./brand";
+
+const SCHOOL_NAME = SITE_NAME;
 
 const BASE_URL = SITE_URL;
-const SCHOOL_NAME = "St. Elizabeth's High School";
 const SCHOOL_ADDRESS = {
   "@type": "PostalAddress",
   streetAddress: "Pomburpa, Bardez",

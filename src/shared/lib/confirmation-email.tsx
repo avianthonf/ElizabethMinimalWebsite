@@ -56,7 +56,7 @@ export function ConfirmationEmail({ name, subject, message }: ConfirmationEmailP
               </Link>
             </Text>
             <Text style={contactItem}>
-              <strong>Phone:</strong> +91 832 2334401
+              <strong>Phone:</strong> {process.env.NEXT_PUBLIC_PHONE || "0832-2954452"}
             </Text>
             <Text style={contactItem}>
               <strong>Address:</strong> Ven. Fr. Hilario Gonsalves Rd, Pomburpa, Bardez, Goa 403521,

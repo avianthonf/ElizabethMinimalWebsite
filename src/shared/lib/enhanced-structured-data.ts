@@ -121,6 +121,15 @@ export function createSchoolOrganizationSchema() {
       "@type": "EducationalOccupationalProgram",
       name: "Alumni Network",
     },
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "School Affiliation",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Goa Board of Secondary and Higher Secondary Education",
+        alternateName: "GBSHSE",
+      },
+    },
     numberOfEmployees: {
       "@type": "QuantitativeValue",
       value: 25,

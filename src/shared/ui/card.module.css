@@ -1,5 +1,4 @@
 .card {
-  container-type: inline-size;
   background: var(--s-color-surface);
   border: 1px solid var(--s-color-border);
   border-radius: 3px;

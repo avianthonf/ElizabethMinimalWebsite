@@ -34,6 +34,9 @@ export function AchievementsSection({
     dragFree: true,
     containScroll: "trimSnaps",
     duration: 25,
+    breakpoints: {
+      "(prefers-reduced-motion: reduce)": { duration: 0 },
+    },
   });
 
   const [prevEnabled, setPrevEnabled] = useState(false);
@@ -61,18 +64,29 @@ export function AchievementsSection({
   }, [emblaApi, onSelect]);
 
   return (
-    <section className={styles.root} aria-label={ariaLabel}>
+    <section
+      className={styles.root}
+      aria-label={ariaLabel}
+      aria-roledescription="carousel"
+      id="achievements-carousel"
+    >
       <div className={styles.inner}>
         <p className={styles.eyebrow}>{eyebrow}</p>
         <h2 className={styles.heading}>{heading}</h2>
 
         <div className={styles.carousel} ref={emblaRef}>
-          <div className={styles.carouselInner}>
-            {achievements.map((achievement) => {
+          <div className={styles.carouselInner} aria-live="polite">
+            {achievements.map((achievement, i) => {
               const path = ACHIEVEMENT_ICONS[achievement.icon] ?? ACHIEVEMENT_ICONS.award;
 
               return (
-                <div key={achievement.title} className={styles.card}>
+                <div
+                  key={achievement.title}
+                  className={styles.card}
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Achievement ${i + 1} of ${achievements.length}: ${achievement.title}`}
+                >
                   <div className={styles.cardIcon}>
                     <svg
                       viewBox="0 0 24 24"
@@ -84,7 +98,7 @@ export function AchievementsSection({
                       aria-hidden="true"
                       className={styles.iconSvg}
                     >
-                      <path d={path} />
+                      <path d={path!} />
                     </svg>
                   </div>
                   {achievement.year && <span className={styles.year}>{achievement.year}</span>}
@@ -103,6 +117,7 @@ export function AchievementsSection({
             onClick={() => emblaApi?.scrollPrev()}
             disabled={!prevEnabled}
             aria-label="Previous achievement"
+            aria-controls="achievements-carousel"
           >
             ←
           </button>
@@ -112,6 +127,7 @@ export function AchievementsSection({
             onClick={() => emblaApi?.scrollNext()}
             disabled={!nextEnabled}
             aria-label="Next achievement"
+            aria-controls="achievements-carousel"
           >
             →
           </button>

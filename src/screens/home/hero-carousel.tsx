@@ -36,6 +36,9 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
     loop: true,
     duration: 25,
     skipSnaps: false,
+    breakpoints: {
+      "(prefers-reduced-motion: reduce)": { duration: 0 },
+    },
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
