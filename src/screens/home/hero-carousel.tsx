@@ -180,6 +180,7 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
                   alt={slide.imageAlt}
                   fill
                   priority={index === 0}
+                  fetchPriority={index === 0 ? "high" : undefined}
                   className={styles.image}
                   sizes="100vw"
                   quality={85}

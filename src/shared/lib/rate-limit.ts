@@ -1,3 +1,5 @@
+import "server-only";
+
 /**
  * Rate limiting utilities for Server Actions.
  *

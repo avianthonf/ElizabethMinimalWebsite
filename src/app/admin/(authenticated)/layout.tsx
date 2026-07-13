@@ -12,5 +12,12 @@ import { requireAnyAdmin } from "@/shared/lib/auth";
  */
 export default async function TransparentAuthLayout({ children }: { children: React.ReactNode }) {
   await requireAnyAdmin();
-  return <>{children}</>;
+  return (
+    <>
+      <a href="#admin-content" className="skipLink">
+        Skip to content
+      </a>
+      <main id="admin-content">{children}</main>
+    </>
+  );
 }

@@ -104,6 +104,7 @@ export function CTASection({
                 className={styles.image}
                 sizes="(max-width: 760px) 100vw, 50vw"
                 priority
+                fetchPriority="high"
               />
             </div>
           </div>

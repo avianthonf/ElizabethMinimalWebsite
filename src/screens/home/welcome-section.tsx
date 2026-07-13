@@ -62,6 +62,7 @@ export function WelcomeSection({
                 sizes="(max-width: 900px) 100vw, 50vw"
                 className={styles.carouselImage}
                 priority={i === 0}
+                fetchPriority={i === 0 ? "high" : undefined}
                 quality={85}
               />
             </div>

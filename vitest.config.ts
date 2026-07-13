@@ -9,6 +9,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
       // Stub the pagefind runtime in tests — it's a build artifact, not a real module.
       "/pagefind/pagefind.js": path.resolve(__dirname, "src/test/mocks/pagefind.ts"),
+      // server-only is compiled into next/dist — not resolvable in vitest.
+      "server-only": path.resolve(__dirname, "src/test/mocks/server-only.ts"),
     },
   },
   test: {
