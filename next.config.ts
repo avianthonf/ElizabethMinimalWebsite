@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
-import bundleAnalyzer from "@next/bundle-analyzer";
 
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
+/* ── Next.js 16 native bundle analysis ─────────────────
+   Run: npx next experimental-analyze
+   Opens Turbopack's built-in interactive treemap.
+   The @next/bundle-analyzer plugin is no longer needed —
+   Next.js 16.1+ ships a native analyzer for Turbopack.
+*/
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -133,4 +135,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default nextConfig;

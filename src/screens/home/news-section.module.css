@@ -49,6 +49,11 @@
     box-shadow 250ms ease;
 }
 
+.card:nth-child(n + 4) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 250px;
+}
+
 .card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-card-hover, 0 4px 12px rgba(0, 0, 0, 0.08));

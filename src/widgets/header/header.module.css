@@ -97,10 +97,6 @@
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
-  -webkit-mask-image: url(/logo.png);
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   border: 2px solid currentColor;
   border-radius: 1.5px 1.5px 9px 9px;
 }

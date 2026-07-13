@@ -17,6 +17,13 @@
   cursor: pointer;
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  .scrim {
+    background: rgb(0 0 0 / 88%);
+    backdrop-filter: none;
+  }
+}
+
 .panel {
   position: relative;
   z-index: var(--z-layer-1);

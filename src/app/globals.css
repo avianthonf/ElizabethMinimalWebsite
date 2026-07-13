@@ -39,7 +39,7 @@
 @import "../shims/yarl.css";
 @import "../shims/leaflet.css";
 
-@layer reset, utilities;
+@layer reset, tokens, base, components, utilities, overrides;
 
 /* ── Design Tokens (unlayered — globally available) ─── */
 
@@ -219,17 +219,12 @@
   }
 }
 
-@media (max-width: 760px) {
-  html {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
 /* ── Reset Layer ────────────────────────────────────── */
 
 @layer reset {
-  * {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
@@ -240,6 +235,7 @@
     background: var(--s-color-surface);
     color: var(--s-color-text);
     font-family: var(--font-sans);
+    scroll-behavior: smooth;
   }
 
   :where(body) {
@@ -247,16 +243,60 @@
     overflow-wrap: break-word;
   }
 
-  :where(h1, h2, h3) {
+  :where(h1, h2, h3, h4, h5, h6, caption, figcaption, blockquote, .heading) {
     text-wrap: balance;
   }
 
-  :where(p) {
+  :where(p, li, dt, dd, .prose) {
     text-wrap: pretty;
   }
 
-  :where(button, a) {
+  :where(img, svg, video, canvas, iframe) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  :where(button, input, select, textarea) {
     font: inherit;
+    color: inherit;
+  }
+
+  :where(a) {
+    color: inherit;
+  }
+
+  /* ── Modern focus ring (WCAG 2.4.13) ───────────────────
+     Box-shadow focus ring with offset so it sits outside
+     the element boundary, meeting the 2px minimum +
+     3:1 contrast ratio requirement. Override in components
+     that need custom focus styles. */
+  :where(:focus-visible) {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  /* Remove focus ring for mouse users, keyboard-only */
+  :where(:focus:not(:focus-visible)) {
+    outline: none;
+  }
+
+  :where(dialog) {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: none;
+    max-height: none;
+  }
+
+  :where(dialog::backdrop) {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    :where(dialog::backdrop) {
+      background: rgba(0, 0, 0, 0.85);
+    }
   }
 }
 
@@ -323,6 +363,10 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    :where(html) {
+      scroll-behavior: auto;
+    }
+
     *,
     *::before,
     *::after {

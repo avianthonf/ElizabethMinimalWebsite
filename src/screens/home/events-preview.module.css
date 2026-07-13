@@ -56,6 +56,11 @@
     box-shadow 200ms ease;
 }
 
+.card:nth-child(n + 4) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 68px;
+}
+
 .card:hover {
   border-color: var(--s-color-accent, var(--p-color-gold, #c9a96e));
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
