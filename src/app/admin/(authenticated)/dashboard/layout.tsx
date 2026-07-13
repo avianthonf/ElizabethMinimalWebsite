@@ -11,8 +11,8 @@ const NAV: { label: string; section: ContentSection; href: string; icon: string 
 ];
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { user, role } = await requireAnyAdmin();
-  const superAdmin = isSuperAdmin(user);
+  const { claims, role } = await requireAnyAdmin();
+  const superAdmin = isSuperAdmin(claims);
 
   // Non-super admins: only show their section + dashboard
   const visibleNav = superAdmin ? NAV : NAV.filter((n) => n.label === "Dashboard");
@@ -37,7 +37,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
         <div style={styles.sidebarFooter}>
           <div style={styles.userInfo}>
-            <span style={styles.userEmail}>{user.email}</span>
+            <span style={styles.userEmail}>{claims.email}</span>
             <span style={styles.userRole}>{ROLE_LABELS[role]}</span>
           </div>
           <Link href="/api/admin/logout" style={styles.logoutLink}>

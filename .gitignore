@@ -6,6 +6,7 @@ build
 coverage
 .env*
 !.env.example
+!.env.local.example
 .DS_Store
 *.log
 npm-debug.log*
