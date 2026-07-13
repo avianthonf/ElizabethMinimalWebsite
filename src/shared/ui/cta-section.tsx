@@ -102,6 +102,7 @@ export function CTASection({
                 width={600}
                 height={450}
                 className={styles.image}
+                sizes="(max-width: 760px) 100vw, 50vw"
                 priority
               />
             </div>

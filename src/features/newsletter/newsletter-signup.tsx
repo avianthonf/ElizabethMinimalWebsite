@@ -99,7 +99,7 @@ export function NewsletterSignup({ className }: NewsletterSignupProps) {
   return (
     <div className={`${styles.container} ${className || ""}`}>
       <div className={styles.header}>
-        <h3 className={styles.heading}>Subscribe to Our Newsletter</h3>
+        <h2 className={styles.heading}>Subscribe to Our Newsletter</h2>
         <p className={styles.description}>
           Get the latest updates, news, and events delivered to your inbox monthly.
         </p>

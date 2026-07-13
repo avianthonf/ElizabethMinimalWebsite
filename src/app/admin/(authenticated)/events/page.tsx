@@ -9,7 +9,9 @@ export default async function EventsListPage() {
   try {
     items = await getAllEvents(true);
   } catch {
-    /* empty */
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[admin] Failed to fetch events (Supabase may not be configured)");
+    }
   }
 
   async function handleDelete(id: string) {

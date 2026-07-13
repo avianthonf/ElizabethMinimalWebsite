@@ -13,7 +13,10 @@ export default async function AnnouncementsListPage() {
   try {
     items = await getAllAnnouncements();
   } catch {
-    // Supabase not configured
+    // Supabase not configured — show empty
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[admin] Failed to fetch announcements (Supabase may not be configured)");
+    }
   }
 
   async function handleDelete(id: string) {

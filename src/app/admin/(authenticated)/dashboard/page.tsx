@@ -47,6 +47,9 @@ export default async function DashboardPage() {
     testimonialsCount = testimonials.length;
   } catch {
     // Supabase not configured — show zeros
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[admin] Failed to fetch dashboard stats (Supabase may not be configured)");
+    }
   }
 
   return (

@@ -21,7 +21,7 @@ export function ErrorPage({ error, reset, label = "Site" }: ErrorPageProps & { l
   return (
     <div className={styles.wrapper}>
       <ErrorIllustration />
-      <h1 className={styles.heading}>Something went wrong</h1>
+      <h2 className={styles.heading}>Something went wrong</h2>
       <p className={styles.description}>
         We encountered an error loading this page. Please try again or go back to the homepage.
       </p>

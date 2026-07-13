@@ -12,7 +12,9 @@ export default async function AlumniEventsPage() {
   try {
     items = await getAllAlumniEvents(true);
   } catch {
-    /* empty */
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[admin] Failed to fetch alumni events (Supabase may not be configured)");
+    }
   }
 
   async function handleDelete(id: string) {

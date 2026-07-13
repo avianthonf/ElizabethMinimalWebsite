@@ -13,7 +13,9 @@ export default async function AlumniListPage() {
   try {
     items = await getAllTestimonials(true);
   } catch {
-    /* empty */
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[admin] Failed to fetch alumni (Supabase may not be configured)");
+    }
   }
 
   async function handleDelete(id: string) {

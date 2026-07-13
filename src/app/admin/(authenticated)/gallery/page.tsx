@@ -13,7 +13,9 @@ export default async function GalleryListPage() {
   try {
     items = await getAllGalleryImages(true);
   } catch {
-    /* empty */
+    if (process.env.NODE_ENV !== "production") {
+      console.error("[admin] Failed to fetch gallery images (Supabase may not be configured)");
+    }
   }
 
   async function handleDelete(id: string) {

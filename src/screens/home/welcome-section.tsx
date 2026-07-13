@@ -61,7 +61,7 @@ export function WelcomeSection({
                 fill
                 sizes="(max-width: 900px) 100vw, 50vw"
                 className={styles.carouselImage}
-                loading={i === 0 ? "eager" : "lazy"}
+                priority={i === 0}
                 quality={85}
               />
             </div>
