@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useLayoutEffect } from "react";
 import { X } from "lucide-react";
 import styles from "./announcement-bar.module.css";
 
@@ -55,8 +55,13 @@ export function AnnouncementBar({
   const barRef = useRef<HTMLDivElement>(null);
 
   // ── Measure bar height and broadcast to CSS custom property ──
+  //
+  // useLayoutEffect for the initial measurement: runs synchronously
+  // before the browser paints, guaranteeing --announcement-height is
+  // set by the time the header and progress bar compute their layout.
+  // ResizeObserver handles subsequent size changes.
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = barRef.current;
     if (!el) return;
 
@@ -67,6 +72,7 @@ export function AnnouncementBar({
       );
     };
 
+    // Synchronous initial measurement — no flash
     measure();
 
     const ro = new ResizeObserver(measure);

@@ -47,15 +47,25 @@
   background: rgba(0, 0, 0, 0.06);
   border: none;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: inherit;
   padding: 0;
+  touch-action: manipulation;
   transition: background 150ms ease;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .close {
+    width: 36px;
+    height: 36px;
+    right: clamp(8px, 1.5vw, 12px);
+  }
 }
 
 .close:hover {
