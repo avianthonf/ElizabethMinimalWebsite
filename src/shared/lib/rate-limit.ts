@@ -41,10 +41,17 @@ async function getUpstashRatelimit() {
   const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 
   if (!redisUrl || !redisToken) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "[rate-limit] Upstash Redis credentials not configured. " +
+          "Rate limiting is REQUIRED in production. " +
+          "Add UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to .env",
+      );
+    }
+
     console.warn(
       "[rate-limit] Upstash Redis credentials not configured. Using in-memory fallback. " +
-        "This is NOT production-safe on serverless (Vercel). " +
-        "Add UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to .env",
+        "This is NOT production-safe on serverless (Vercel).",
     );
     upstashInitialized = true;
     upstashRatelimit = null;
@@ -182,80 +189,6 @@ export async function rateLimit(
 
   // Development: Use in-memory fallback
   return inMemoryRateLimit(key, limit, windowSeconds);
-}
-
-/**
- * Create a rate limiter with custom configuration.
- *
- * This is useful for actions that need different limits than the default.
- *
- * @param requests - Number of requests allowed
- * @param window - Time window (e.g., "60 s", "10 m", "1 h")
- *
- * @example
- * ```ts
- * const strictLoginLimiter = createRateLimiter(3, "60 s");
- * const { success } = await strictLoginLimiter.limit(`login:${ip}`);
- * ```
- */
-export async function createRateLimiter(
-  requests: number,
-  window: `${number} ${"ms" | "s" | "m" | "h" | "d"}`,
-) {
-  const upstash = await getUpstashRatelimit();
-
-  if (upstash) {
-    // Upstash is already initialized with Redis connection in getUpstashRatelimit
-    // Just return a limiter with the specified window
-    const { Ratelimit } = await import("@upstash/ratelimit");
-    const { Redis } = await import("@upstash/redis");
-
-    const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-    const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
-
-    if (!redisUrl || !redisToken) {
-      // This shouldn't happen since getUpstashRatelimit already checked,
-      // but handle gracefully
-      const [amount, unit] = window.split(" ");
-      const seconds =
-        unit === "s"
-          ? parseInt(amount)
-          : unit === "m"
-            ? parseInt(amount) * 60
-            : parseInt(amount) * 3600;
-      return {
-        limit: (key: string) => rateLimit(key, requests, seconds),
-      };
-    }
-
-    const redis = new Redis({
-      url: redisUrl,
-      token: redisToken,
-    });
-
-    return new Ratelimit({
-      redis,
-      limiter: Ratelimit.slidingWindow(
-        requests,
-        window as `${number} ${"ms" | "s" | "m" | "h" | "d"}`,
-      ),
-      analytics: true,
-      prefix: "rl",
-    });
-  }
-
-  // Fallback to function-based limiter
-  const [amount, unit] = window.split(" ");
-  const seconds =
-    unit === "s"
-      ? parseInt(amount)
-      : unit === "m"
-        ? parseInt(amount) * 60
-        : parseInt(amount) * 3600;
-
-  return {
-    limit: (key: string) => rateLimit(key, requests, seconds),
-  };
 }
 
 /**

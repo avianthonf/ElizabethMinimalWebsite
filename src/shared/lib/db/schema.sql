@@ -28,23 +28,9 @@ AS $$
   );
 $$;
 
--- ── 1b. Check if user has a specific role ─────────────────────────────
-
-CREATE OR REPLACE FUNCTION public.has_role(r TEXT)
-RETURNS BOOLEAN
-LANGUAGE sql
-SECURITY DEFINER
-SET search_path = ''
-AS $$
-  SELECT EXISTS (
-    SELECT 1 FROM auth.users
-    WHERE id = (SELECT auth.uid())
-      AND (
-        raw_user_meta_data ->> 'role' = r
-        OR raw_user_meta_data ->> 'role' = 'super_admin'
-      )
-  );
-$$;
+-- Restrict EXECUTE to authenticated users (anon should never call admin functions).
+REVOKE EXECUTE ON FUNCTION public.is_admin() FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION public.is_admin() TO authenticated;
 
 -- ── 2. News Articles ──────────────────────────────────────────────────
 -- Maps to: src/domains/news/news.data.ts → NewsArticle
@@ -237,12 +223,15 @@ CREATE POLICY "Admin full access to gallery"
 -- ── 8. Auto-update trigger for updated_at ─────────────────────────────
 
 CREATE OR REPLACE FUNCTION public.set_updated_at()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER
+SET search_path = ''
+LANGUAGE plpgsql
+AS $$
 BEGIN
-  NEW.updated_at = now();
+  NEW.updated_at = pg_catalog.now();
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$;
 
 DO $$
 DECLARE
