@@ -28,8 +28,8 @@ describe("renderHighlightedText", () => {
     );
     const marks = container.querySelectorAll("mark");
     expect(marks.length).toBe(2);
-    expect(marks[0].textContent).toBe("one");
-    expect(marks[1].textContent).toBe("two");
+    expect(marks[0]!.textContent).toBe("one");
+    expect(marks[1]!.textContent).toBe("two");
     expect(container.textContent).toBe("one and two");
   });
 

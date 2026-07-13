@@ -37,7 +37,7 @@ export default function MissionPage() {
         eyebrow={MISSION_PAGE.heroEyebrow}
         heading={MISSION_PAGE.heroHeading}
         description={MISSION_PAGE.heroDescription}
-        backgroundImage={`/images/${COMMUNITY_IMAGES[2].filename}`}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[2]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="Vision and mission">

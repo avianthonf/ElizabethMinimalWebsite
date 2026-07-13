@@ -32,7 +32,7 @@ export default function ContactPage() {
         eyebrow="Connect"
         heading="Contact Us"
         description="We'd love to hear from you! Whether you have an enquiry about admissions, academics, or school activities, feel free to get in touch with us."
-        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        backgroundImage={`/images/${CONTACT_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="Contact information">

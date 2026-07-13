@@ -25,7 +25,7 @@ export default async function NewsPage() {
         eyebrow="Stay Informed"
         heading="News & Events"
         description="The latest updates, achievements, and happenings from the St. Elizabeth's High School community."
-        backgroundImage={`/images/${HERO_IMAGES[0].filename}`}
+        backgroundImage={`/images/${HERO_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="News articles">

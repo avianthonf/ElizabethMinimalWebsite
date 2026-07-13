@@ -35,7 +35,7 @@ export function renderHighlightedText(html: string): ReactNode {
       if (text) parts.push(text);
     }
     // Append the highlighted text (strip nested HTML inside <mark> too)
-    const highlight = stripTags(match[1]);
+    const highlight = stripTags(match[1]!);
     parts.push(
       <mark key={`hl-${key++}`} className="pagefind-highlight">
         {highlight}

@@ -33,7 +33,7 @@ export default function HistoryPage() {
         eyebrow="Our Story"
         heading="School History"
         description="Since 1954, St. Elizabeth's High School has been a beacon of quality education in Pomburpa, Bardez, Goa."
-        backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="School history">

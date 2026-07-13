@@ -15,19 +15,19 @@ export interface SectionProps {
 }
 
 const bgClass: Record<SectionBackground, string> = {
-  paper: styles.bgPaper,
-  soft: styles.bgSoft,
-  primary: styles.bgPrimary,
-  ink: styles.bgInk,
-  blue: styles.bgBlue,
+  paper: styles.bgPaper!,
+  soft: styles.bgSoft!,
+  primary: styles.bgPrimary!,
+  ink: styles.bgInk!,
+  blue: styles.bgBlue!,
 };
 
 const padClass: Record<SectionPadding, string> = {
-  none: styles.padNone,
-  small: styles.padSmall,
-  medium: styles.padMedium,
-  large: styles.padLarge,
-  xlarge: styles.padXlarge,
+  none: styles.padNone!,
+  small: styles.padSmall!,
+  medium: styles.padMedium!,
+  large: styles.padLarge!,
+  xlarge: styles.padXlarge!,
 };
 
 export function Section({
@@ -38,7 +38,7 @@ export function Section({
   ariaLabel,
   id,
 }: SectionProps): ReactNode {
-  const composedClassName = [styles.section, bgClass[background], padClass[padding], className]
+  const composedClassName = [styles.section!, bgClass[background]!, padClass[padding]!, className]
     .filter(Boolean)
     .join(" ");
 

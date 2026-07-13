@@ -53,7 +53,7 @@ export default function AboutPage() {
                 </Stack>
                 <MediaBlock
                   mediaType="image"
-                  mediaSrc={`/images/${HERO_IMAGES[2]?.filename ?? HERO_IMAGES[0].filename}`}
+                  mediaSrc={`/images/${HERO_IMAGES[2]?.filename ?? HERO_IMAGES[0]!.filename}`}
                   mediaAlt="St. Elizabeth's High School campus"
                   heading="A Tradition of Excellence"
                   description="For over seven decades, St. Elizabeth has provided quality education to students from across North Goa."

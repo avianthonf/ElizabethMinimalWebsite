@@ -24,6 +24,7 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // ── Security headers (all routes) ──────────────────────────────
       {
         source: "/(.*)",
         headers: [
@@ -63,6 +64,68 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value:
               "camera=(), microphone=(), geolocation=(), clipboard-write=(), display-capture=(), payment=(), browsing-topics=(), accelerometer=(), gyroscope=()",
+          },
+        ],
+      },
+
+      // ── Caching: public content pages ──────────────────────────────
+      // s-maxage=60: CDN caches for 1 minute (ISR handles stale invalidation)
+      // stale-while-revalidate=86400: serve stale while refreshing for 24h
+      // CDN-Cache-Control: Vercel edge-specific override for better SWR
+      {
+        source: "/((?!admin|api|_next).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, s-maxage=60, stale-while-revalidate=86400, must-revalidate",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=60, stale-while-revalidate=86400",
+          },
+        ],
+      },
+
+      // ── Caching: admin & API routes — never cache ──────────────────
+      {
+        source: "/admin/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "private, no-cache, no-store, max-age=0, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/api/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "private, no-cache, no-store, max-age=0, must-revalidate",
+          },
+        ],
+      },
+
+      // ── Caching: static assets (immutable fingerprints) ────────────
+      // Next.js sets this automatically for /_next/static, but only on
+      // warm responses. Adding it explicitly ensures cold-start consistency.
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+
+      // ── Caching: public assets (fonts, images, robots, sitemap) ────
+      {
+        source: "/public/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

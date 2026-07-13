@@ -57,13 +57,13 @@ export function useFocusTrap(containerRef: RefObject<HTMLElement | null>, isActi
 
       if (e.shiftKey) {
         // Shift+Tab: wrap from first → last
-        if (document.activeElement === first) {
+        if (document.activeElement === first && last) {
           e.preventDefault();
           last.focus();
         }
       } else {
         // Tab: wrap from last → first
-        if (document.activeElement === last) {
+        if (document.activeElement === last && first) {
           e.preventDefault();
           first.focus();
         }

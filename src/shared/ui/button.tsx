@@ -22,9 +22,9 @@ export interface ButtonProps {
 }
 
 const sizeClass: Record<ButtonSize, string> = {
-  small: styles.sizeSmall,
-  medium: styles.sizeMedium,
-  large: styles.sizeLarge,
+  small: styles.sizeSmall!,
+  medium: styles.sizeMedium!,
+  large: styles.sizeLarge!,
 };
 
 export function Button({
@@ -40,7 +40,7 @@ export function Button({
   iconPosition = "left",
   ref,
 }: ButtonProps): ReactNode {
-  const composedClassName = [styles.button, styles[variant], sizeClass[size], className]
+  const composedClassName = [styles.button!, styles[variant]!, sizeClass[size]!, className]
     .filter(Boolean)
     .join(" ");
 

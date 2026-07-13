@@ -36,7 +36,7 @@ export default function ContactInfoPage() {
         eyebrow="Contact"
         heading="Contact Information"
         description="Get in touch with St. Elizabeth's High School in Pomburpa, Bardez, Goa."
-        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        backgroundImage={`/images/${CONTACT_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="Contact details and inquiry form">

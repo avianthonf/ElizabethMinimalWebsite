@@ -18,9 +18,9 @@ export interface LinkProps {
 }
 
 const variantClass: Record<LinkVariant, string> = {
-  default: styles.default,
-  nav: styles.nav,
-  footer: styles.footer,
+  default: styles.default!,
+  nav: styles.nav!,
+  footer: styles.footer!,
 };
 
 export function Link({
@@ -37,7 +37,7 @@ export function Link({
 }: LinkProps) {
   const isExternal = external ?? /^https?:\/\//.test(href);
 
-  const composedClassName = [styles.link, variantClass[variant], className]
+  const composedClassName = [styles.link!, variantClass[variant]!, className]
     .filter(Boolean)
     .join(" ");
 

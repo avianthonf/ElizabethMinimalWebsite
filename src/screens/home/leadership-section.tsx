@@ -22,7 +22,8 @@ interface LeadershipSectionProps {
 
 // Extract first paragraph from full messages
 const getExcerpt = (message: string): string => {
-  const firstParagraph = message.split("\n\n")[0];
+  const firstParagraph = message.split("\n\n")[0] ?? "";
+  if (!firstParagraph) return "";
   return firstParagraph.length > 200 ? firstParagraph.slice(0, 200) + "..." : firstParagraph;
 };
 

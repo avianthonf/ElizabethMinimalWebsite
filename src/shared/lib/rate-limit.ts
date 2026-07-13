@@ -210,5 +210,5 @@ export function getClientIP(headers: Headers): string {
 
   // x-forwarded-for can be a comma-separated list: "client, proxy1, proxy2"
   // We want the originating client IP, not intermediate proxies
-  return forwarded.split(",")[0].trim();
+  return forwarded.split(",")[0]!.trim();
 }

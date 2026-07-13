@@ -56,7 +56,7 @@ describe("page-utils", () => {
       });
 
       const ogImages = metadata.openGraph?.images as Array<{ url: string }>;
-      expect(ogImages[0].url).toContain("/custom-og-image.jpg");
+      expect(ogImages[0]!.url).toContain("/custom-og-image.jpg");
     });
 
     it("should set canonical URL when path provided", () => {

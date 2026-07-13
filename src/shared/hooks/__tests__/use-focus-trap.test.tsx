@@ -182,8 +182,8 @@ describe("use-focus-trap", () => {
     const buttons = container.querySelectorAll("button");
 
     // Should respect tabindex order
-    expect(buttons[0].tabIndex).toBe(2);
-    expect(buttons[1].tabIndex).toBe(1);
-    expect(buttons[2].tabIndex).toBe(3);
+    expect(buttons[0]!.tabIndex).toBe(2);
+    expect(buttons[1]!.tabIndex).toBe(1);
+    expect(buttons[2]!.tabIndex).toBe(3);
   });
 });

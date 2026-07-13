@@ -82,7 +82,7 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
   // Announce slide changes via live region for screen readers.
   useEffect(() => {
     if (!liveRef.current || slides.length === 0) return;
-    liveRef.current.textContent = `Slide ${selectedIndex + 1} of ${slides.length}: ${slides[selectedIndex].heading}`;
+    liveRef.current.textContent = `Slide ${selectedIndex + 1} of ${slides.length}: ${slides[selectedIndex]!.heading}`;
   }, [selectedIndex, slides]);
 
   // focusin/focusout bubble — correctly handles focus on child elements

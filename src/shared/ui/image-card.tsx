@@ -26,9 +26,9 @@ export interface ImageCardProps {
 }
 
 const aspectRatioClass: Record<ImageAspectRatio, string> = {
-  "16:9": styles.ar16x9,
-  "4:3": styles.ar4x3,
-  "1:1": styles.ar1x1,
+  "16:9": styles.ar16x9!,
+  "4:3": styles.ar4x3!,
+  "1:1": styles.ar1x1!,
 };
 
 export function ImageCard({

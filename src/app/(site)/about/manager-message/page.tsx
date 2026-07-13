@@ -23,7 +23,7 @@ export default function ManagerMessagePage() {
         eyebrow={MANAGER_MESSAGE_PAGE.heroEyebrow}
         heading={MANAGER_MESSAGE_PAGE.heroHeading}
         description={MANAGER_MESSAGE_PAGE.heroDescription}
-        backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[0]!.filename}`}
       />
 
       <Section

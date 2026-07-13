@@ -37,7 +37,7 @@ export default function CurriculumPage() {
         eyebrow={CURRICULUM_PAGE.heroEyebrow}
         heading={CURRICULUM_PAGE.heroHeading}
         description={CURRICULUM_PAGE.heroDescription}
-        backgroundImage={`/images/${ACADEMICS_IMAGES[0].filename}`}
+        backgroundImage={`/images/${ACADEMICS_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel={CURRICULUM_PAGE.sectionAriaLabel}>

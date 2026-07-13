@@ -35,7 +35,7 @@ export default function ContactThankYouPage() {
       <Hero
         eyebrow="Received"
         heading="Thank You"
-        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        backgroundImage={`/images/${CONTACT_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="Inquiry confirmation">

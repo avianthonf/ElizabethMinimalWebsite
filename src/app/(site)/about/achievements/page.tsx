@@ -41,7 +41,7 @@ export default function AchievementsPage() {
         eyebrow={ACHIEVEMENTS_PAGE.heroEyebrow}
         heading={ACHIEVEMENTS_PAGE.heroHeading}
         description={ACHIEVEMENTS_PAGE.heroDescription}
-        backgroundImage={`/images/${COMMUNITY_IMAGES[2].filename}`}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[2]!.filename}`}
       />
 
       {SSC_RESULT_BANNER.enabled && (

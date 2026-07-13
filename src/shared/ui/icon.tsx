@@ -14,10 +14,10 @@ export interface IconProps {
 }
 
 const sizeClass: Record<IconSize, string> = {
-  small: styles.sizeSmall,
-  medium: styles.sizeMedium,
-  large: styles.sizeLarge,
-  xlarge: styles.sizeXlarge,
+  small: styles.sizeSmall!,
+  medium: styles.sizeMedium!,
+  large: styles.sizeLarge!,
+  xlarge: styles.sizeXlarge!,
 };
 
 export function Icon({
@@ -29,7 +29,7 @@ export function Icon({
   decorative = false,
   ref,
 }: IconProps): ReactNode {
-  const composedClassName = [styles.icon, sizeClass[size], className].filter(Boolean).join(" ");
+  const composedClassName = [styles.icon!, sizeClass[size]!, className].filter(Boolean).join(" ");
 
   const style = color ? { color: `var(${color}, ${color})` } : undefined;
 

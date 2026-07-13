@@ -23,11 +23,11 @@ describe("Homepage Data", () => {
   });
 
   it("values have numbers 01 through 05 in order", () => {
-    expect(VALUES[0].number).toBe("01");
-    expect(VALUES[1].number).toBe("02");
-    expect(VALUES[2].number).toBe("03");
-    expect(VALUES[3].number).toBe("04");
-    expect(VALUES[4].number).toBe("05");
+    expect(VALUES[0]!.number).toBe("01");
+    expect(VALUES[1]!.number).toBe("02");
+    expect(VALUES[2]!.number).toBe("03");
+    expect(VALUES[3]!.number).toBe("04");
+    expect(VALUES[4]!.number).toBe("05");
   });
 
   it("values have non-empty titles and bodies", () => {

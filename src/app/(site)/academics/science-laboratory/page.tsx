@@ -20,7 +20,7 @@ export default function ScienceLabPage() {
       heroEyebrow={SCIENCE_LAB_PAGE.heroEyebrow}
       heroHeading={SCIENCE_LAB_PAGE.heroHeading}
       heroDescription={SCIENCE_LAB_PAGE.heroDescription}
-      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[4].filename}`}
+      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[4]!.filename}`}
       sectionHeading={SCIENCE_LAB_PAGE.sectionHeading}
       items={SCIENCE_LAB_FACILITIES}
       columns={2}

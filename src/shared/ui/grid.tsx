@@ -13,15 +13,15 @@ export interface GridProps {
 }
 
 const colClass: Record<GridColumns, string> = {
-  2: styles.cols2,
-  3: styles.cols3,
-  4: styles.cols4,
+  2: styles.cols2!,
+  3: styles.cols3!,
+  4: styles.cols4!,
 };
 
 const gapClass: Record<GridGap, string> = {
-  small: styles.gapSmall,
-  medium: styles.gapMedium,
-  large: styles.gapLarge,
+  small: styles.gapSmall!,
+  medium: styles.gapMedium!,
+  large: styles.gapLarge!,
 };
 
 export function Grid({
@@ -32,10 +32,10 @@ export function Grid({
   className,
 }: GridProps): ReactNode {
   const composedClassName = [
-    styles.grid,
+    styles.grid!,
     colClass[columns],
     gapClass[gap],
-    responsive && styles.responsive,
+    responsive && styles.responsive!,
     className,
   ]
     .filter(Boolean)

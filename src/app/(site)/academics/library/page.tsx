@@ -33,7 +33,7 @@ export default function LibraryPage() {
       heroEyebrow={LIBRARY_PAGE.heroEyebrow}
       heroHeading={LIBRARY_PAGE.heroHeading}
       heroDescription={LIBRARY_PAGE.heroDescription}
-      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[3].filename}`}
+      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[3]!.filename}`}
       sectionHeading={LIBRARY_PAGE.sectionHeading}
       items={LIBRARY_RESOURCES}
       columns={2}

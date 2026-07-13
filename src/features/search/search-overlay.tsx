@@ -202,7 +202,7 @@ export function SearchOverlay({
         onClose();
       } else if (e.key === "Enter" && results.length > 0) {
         e.preventDefault();
-        router.push(results[0].url);
+        router.push(results[0]!.url);
         onClose();
       }
     },

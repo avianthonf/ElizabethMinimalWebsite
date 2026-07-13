@@ -87,12 +87,15 @@ All pages include:
 
 ### Authentication
 
-Currently N/A (public website). Future admin panel will use:
+The admin panel (CMS) uses Supabase Auth with granular role-based access control:
 
-- NextAuth.js for authentication
-- Role-based access control
-- Session management
-- Secure password hashing
+- **Supabase Auth** — JWT-based authentication with PKCE flow (`@supabase/ssr`)
+- **Role-based access control** — `super_admin`, `news_editor`, `announcement_editor`, `event_editor`, `alumni_editor`, `gallery_editor`
+- **Server-side guards** — `requireAnyAdmin()` in layout boundaries, `requireSection()` for per-section authorization
+- **JWT validation** — `auth.getClaims()` validates signature against Supabase public keys locally (no server round-trip)
+- **Cookie security** — `SameSite=Lax`, `Secure=true`, managed via `@supabase/ssr` cookie helpers
+- **Session management** — Automatic token refresh via `onAuthStateChange`; short-lived access tokens with rotation
+- **Rate limiting** — Brute-force protection via Upstash Redis sliding-window (or Supabase built-in auth rate limiting)
 
 ## Best Practices for Contributors
 

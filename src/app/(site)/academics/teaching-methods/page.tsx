@@ -20,7 +20,7 @@ export default function TeachingMethodsPage() {
       heroEyebrow={TEACHING_METHODS_PAGE.heroEyebrow}
       heroHeading={TEACHING_METHODS_PAGE.heroHeading}
       heroDescription={TEACHING_METHODS_PAGE.heroDescription}
-      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[1].filename}`}
+      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[1]!.filename}`}
       sectionHeading={TEACHING_METHODS_PAGE.sectionHeading}
       items={TEACHING_METHODS}
       columns={2}

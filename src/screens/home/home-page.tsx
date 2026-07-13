@@ -155,7 +155,7 @@ export async function HomePage() {
               "var(--p-color-gold)",
               "var(--p-color-deep-blue)",
               "var(--p-color-navy)",
-            ][i % 5],
+            ][i % 5]!,
           }))}
           ariaLabel={STUDENT_LIFE_CONTENT.sectionAriaLabel}
         />

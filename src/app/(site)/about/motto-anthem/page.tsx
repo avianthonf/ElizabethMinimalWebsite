@@ -23,7 +23,7 @@ export default function MottoAnthemPage() {
         heroEyebrow={MOTTO_ANTHEM_PAGE.heroEyebrow}
         heroHeading={MOTTO_ANTHEM_PAGE.heroHeading}
         heroDescription={MOTTO_ANTHEM_PAGE.heroDescription}
-        heroBackgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+        heroBackgroundImage={`/images/${COMMUNITY_IMAGES[0]!.filename}`}
         sectionHeading={SCHOOL_MOTTO.heading}
         items={[SCHOOL_MOTTO]}
         layout="list"

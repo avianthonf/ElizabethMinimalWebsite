@@ -112,8 +112,8 @@ export function createPageMetadata(
  * @returns The matching ImageAsset, or a safe fallback
  */
 export function getHeroImage(section: ImageSection): ImageAsset {
-  if (IMAGE_BY_SECTION[section]) return IMAGE_BY_SECTION[section];
-  if (HERO_IMAGES.length > 0) return HERO_IMAGES[0];
+  if (IMAGE_BY_SECTION[section]) return IMAGE_BY_SECTION[section]!;
+  if (HERO_IMAGES.length > 0) return HERO_IMAGES[0]!;
   // Hardcoded fallback — DSC07300.jpg exists and is a safe default
   return {
     filename: "DSC07300.jpg",

@@ -41,7 +41,7 @@ export default async function AlumniPage() {
         eyebrow="Reconnect"
         heading="St. Elizabeth Alumni"
         description={ALUMNI_INTRO.body}
-        backgroundImage={`/images/${COMMUNITY_IMAGES[0].filename}`}
+        backgroundImage={`/images/${COMMUNITY_IMAGES[0]!.filename}`}
       />
 
       {/* Alumni Network */}

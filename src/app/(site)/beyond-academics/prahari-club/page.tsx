@@ -38,7 +38,7 @@ export default function PrahariClubPage() {
         eyebrow={PRAHARI_PAGE.heroEyebrow}
         heading={PRAHARI_PAGE.heroHeading}
         description={PRAHARI_PAGE.heroDescription}
-        backgroundImage={`/images/${STUDENT_LIFE_IMAGES[1].filename}`}
+        backgroundImage={`/images/${STUDENT_LIFE_IMAGES[1]!.filename}`}
       />
 
       {/* Intro Section */}

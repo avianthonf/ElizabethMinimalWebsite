@@ -20,7 +20,7 @@ export default function ResourceRoomPage() {
       heroEyebrow={RESOURCE_ROOM_PAGE.heroEyebrow}
       heroHeading={RESOURCE_ROOM_PAGE.heroHeading}
       heroDescription={RESOURCE_ROOM_PAGE.heroDescription}
-      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[2].filename}`}
+      heroBackgroundImage={`/images/${ACADEMICS_IMAGES[2]!.filename}`}
       sectionHeading={RESOURCE_ROOM_PAGE.sectionHeading}
       items={RESOURCE_ROOM_SERVICES}
       columns={2}

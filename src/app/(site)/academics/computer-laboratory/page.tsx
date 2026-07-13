@@ -44,7 +44,7 @@ export default function ComputerLabPage() {
         eyebrow={COMPUTER_LAB_PAGE.heroEyebrow}
         heading={COMPUTER_LAB_PAGE.heroHeading}
         description={COMPUTER_LAB_PAGE.heroDescription}
-        backgroundImage={`/images/${ACADEMICS_IMAGES[5].filename}`}
+        backgroundImage={`/images/${ACADEMICS_IMAGES[5]!.filename}`}
       />
 
       {/* Facilities Grid */}

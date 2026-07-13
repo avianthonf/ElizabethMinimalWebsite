@@ -14,9 +14,9 @@ export interface TextProps {
 }
 
 const sizeClass: Record<TextSize, string> = {
-  small: styles.sizeSmall,
-  medium: styles.sizeMedium,
-  large: styles.sizeLarge,
+  small: styles.sizeSmall!,
+  medium: styles.sizeMedium!,
+  large: styles.sizeLarge!,
 };
 
 export function Text({
@@ -27,7 +27,7 @@ export function Text({
   as: Tag = "p",
   ref,
 }: TextProps): ReactNode {
-  const composedClassName = [styles.text, styles[variant], sizeClass[size], className]
+  const composedClassName = [styles.text!, styles[variant]!, sizeClass[size]!, className]
     .filter(Boolean)
     .join(" ");
 

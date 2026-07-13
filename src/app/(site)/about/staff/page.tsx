@@ -32,7 +32,7 @@ export default function StaffPage() {
         heroEyebrow={STAFF_PAGE.heroEyebrow}
         heroHeading={STAFF_PAGE.heroHeading}
         heroDescription={STAFF_PAGE.heroDescription}
-        heroBackgroundImage={`/images/${COMMUNITY_IMAGES[1].filename}`}
+        heroBackgroundImage={`/images/${COMMUNITY_IMAGES[1]!.filename}`}
         sectionHeading={STAFF_PAGE.sectionHeading}
         items={STAFF_MEMBERS}
         layout="list"

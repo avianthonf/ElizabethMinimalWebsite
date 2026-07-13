@@ -11,10 +11,10 @@ export interface ContainerProps {
 }
 
 const widthClass: Record<ContainerWidth, string> = {
-  narrow: styles.widthNarrow,
-  default: styles.widthDefault,
-  wide: styles.widthWide,
-  full: styles.widthFull,
+  narrow: styles.widthNarrow!,
+  default: styles.widthDefault!,
+  wide: styles.widthWide!,
+  full: styles.widthFull!,
 };
 
 export function Container({
@@ -23,7 +23,7 @@ export function Container({
   className,
   as: Tag = "div",
 }: ContainerProps): ReactNode {
-  const composedClassName = [styles.container, widthClass[width], className]
+  const composedClassName = [styles.container!, widthClass[width], className]
     .filter(Boolean)
     .join(" ");
 

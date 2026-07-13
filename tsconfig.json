@@ -5,6 +5,11 @@
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /* exactOptionalPropertyTypes: false — not yet adopted; many libraries
+       do not distinguish absent-vs-undefined optional properties */
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",

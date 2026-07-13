@@ -42,7 +42,7 @@ export default function LocationMapPage() {
         eyebrow="Visit"
         heading="Location & Map"
         description="Find us in the heart of Pomburpa, Bardez, Goa. We're easily accessible from both Panjim and Mapusa."
-        backgroundImage={`/images/${CONTACT_IMAGES[0].filename}`}
+        backgroundImage={`/images/${CONTACT_IMAGES[0]!.filename}`}
       />
 
       <Section background="paper" padding="xlarge" ariaLabel="School location map">

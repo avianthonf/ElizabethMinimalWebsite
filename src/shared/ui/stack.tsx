@@ -12,10 +12,10 @@ export interface StackProps {
 }
 
 const gapClass: Record<StackGap, string> = {
-  small: styles.gapSmall,
-  medium: styles.gapMedium,
-  large: styles.gapLarge,
-  xlarge: styles.gapXlarge,
+  small: styles.gapSmall!,
+  medium: styles.gapMedium!,
+  large: styles.gapLarge!,
+  xlarge: styles.gapXlarge!,
 };
 
 export function Stack({
@@ -24,7 +24,7 @@ export function Stack({
   className,
   as: Tag = "div",
 }: StackProps): ReactNode {
-  const composedClassName = [styles.stack, gapClass[gap], className].filter(Boolean).join(" ");
+  const composedClassName = [styles.stack!, gapClass[gap], className].filter(Boolean).join(" ");
 
   return <Tag className={composedClassName}>{children}</Tag>;
 }

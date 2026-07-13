@@ -14,9 +14,9 @@ export interface CardProps {
 }
 
 const padClass: Record<CardPadding, string> = {
-  small: styles.padSmall,
-  medium: styles.padMedium,
-  large: styles.padLarge,
+  small: styles.padSmall!,
+  medium: styles.padMedium!,
+  large: styles.padLarge!,
 };
 
 export function Card({
@@ -28,10 +28,10 @@ export function Card({
   ariaLabel,
 }: CardProps): ReactNode {
   const composedClassName = [
-    styles.card,
-    styles[variant],
-    padClass[padding],
-    !border && styles.noBorder,
+    styles.card!,
+    styles[variant]!,
+    padClass[padding]!,
+    !border && styles.noBorder!,
     className,
   ]
     .filter(Boolean)

@@ -45,7 +45,7 @@ describe("News Data", () => {
     });
 
     it("includes International Day of Yoga and Sports Meet articles", () => {
-      expect(NEWS_ARTICLES[0].title).toContain("International Day of Yoga");
+      expect(NEWS_ARTICLES[0]!.title).toContain("International Day of Yoga");
       const sports = NEWS_ARTICLES.find((a) => a.title.includes("Sports Meet"));
       expect(sports).toBeDefined();
     });
