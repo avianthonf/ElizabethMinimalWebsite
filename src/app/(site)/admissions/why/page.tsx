@@ -15,6 +15,7 @@ import { createWebPageSchema } from "@/shared/lib/structured-data";
 import { safeJsonStringify } from "@/shared/lib/safe-json";
 import { WHY_ST_ELIZABETH_POINTS } from "@/domains/admissions/admissions.data";
 import { getAlumniTestimonials } from "@/domains/about/alumni.fetcher";
+import { cacheLife } from "next/cache";
 
 export const metadata = createPageMetadata(
   "Why St. Elizabeth?",
@@ -24,6 +25,8 @@ export const metadata = createPageMetadata(
 );
 
 export default async function WhyPage() {
+  "use cache";
+  cacheLife("days");
   const heroImage = getHeroImage("admissions-hero");
   const testimonials = await getAlumniTestimonials();
 
