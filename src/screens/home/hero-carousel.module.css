@@ -117,23 +117,38 @@
 }
 
 .dot {
+  /* 24×24px hit area for WCAG 2.2 2.5.8 Level AA.
+     Visual dot rendered via ::after at 10×10px. */
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 10px;
   height: 10px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.6);
   background: transparent;
-  cursor: pointer;
-  padding: 0;
   transition:
     background 250ms ease,
     border-color 250ms ease;
 }
 
-.dot:hover {
+.dot:hover::after {
   border-color: rgba(255, 255, 255, 0.9);
 }
 
-.dotActive {
+.dotActive::after {
   background: var(--text-on-dark-primary, #ffffff);
   border-color: var(--text-on-dark-primary, #ffffff);
 }

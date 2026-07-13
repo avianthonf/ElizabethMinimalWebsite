@@ -40,6 +40,10 @@ export default async function DashboardLayout({ children }: { children: React.Re
             <span style={styles.userEmail}>{claims.email}</span>
             <span style={styles.userRole}>{ROLE_LABELS[role]}</span>
           </div>
+          <Link href="/admin/dashboard" style={styles.logoutLink}>
+            <span style={styles.navIcon}>?</span>
+            Help & Support
+          </Link>
           <Link href="/api/admin/logout" style={styles.logoutLink}>
             <span style={styles.navIcon}>←</span>
             Sign out

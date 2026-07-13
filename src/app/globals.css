@@ -335,6 +335,10 @@
 
   /* ── Fixed header offset ──────────────────────────── */
 
+  :root {
+    scroll-padding-top: calc(var(--header-height, 72px) + var(--announcement-height, 0px) + 12px);
+  }
+
   #main-content {
     scroll-padding-top: calc(var(--header-height) + var(--announcement-height, 0px) + 12px);
   }
