@@ -43,7 +43,10 @@
   top: var(--announcement-height, 0px);
   left: 0;
   color: var(--header-color, var(--s-color-text));
-  transition: top 200ms ease;
+  transition:
+    top 200ms ease,
+    background-color var(--transition-normal),
+    color var(--transition-normal);
 }
 
 .transparent {

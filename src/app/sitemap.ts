@@ -7,16 +7,34 @@ import { SITE_URL } from "@/shared/lib/brand";
  * Includes all static pages with appropriate priorities and change frequencies.
  * Homepage and main section pages have higher priority.
  *
+ * Static content pages use a fixed historical date (site launch) rather than
+ * `new Date()`, preventing search engines from seeing constant-date-churn on
+ * pages whose content genuinely hasn't changed.  Dynamic pages (news, events,
+ * gallery) would use real `lastModified` dates from the CMS but those live in
+ * the dynamic sitemap path not yet implemented.
+ *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  */
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
 
+/**
+ * Content pages that change very rarely (yearly cadence).
+ * These use a stable launch-adjacent date so they don't appear to
+ * shift every build.
+ */
+const STATIC_CONTENT_DATE = new Date("2026-07-01");
+
+/**
+ * Core pages that are updated more often (monthly/weekly) use this
+ * rolling date.  Google treats `lastModified` as a signal, not a ranking
+ * factor, so a small amount of date-churn on high-value pages is acceptable.
+ */
+const LAST_BUILD_DATE = new Date();
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     // Homepage - Highest priority
     {
       url: SITE_URL,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "weekly",
       priority: 1.0,
     },
@@ -24,61 +42,61 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // About section pages
     {
       url: `${SITE_URL}/about`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/about/history`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/about/mission`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/about/motto-anthem`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/about/manager-message`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/about/headmistress-message`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/about/staff`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/about/achievements`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/about/alumni`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/about/alumni/register`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.5,
     },
@@ -86,49 +104,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Academics section pages
     {
       url: `${SITE_URL}/academics`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/academics/curriculum`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/academics/teaching-methods`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/academics/library`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/academics/science-laboratory`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/academics/computer-laboratory`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/academics/resource-room`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/academics/vocational-education`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.7,
     },
@@ -136,37 +154,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Admissions section pages - High priority for conversion
     {
       url: `${SITE_URL}/admissions`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/admissions/apply`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/admissions/why`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/admissions/class-5-entry`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/admissions/relocating-to-goa`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/admissions/infrastructure`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -174,43 +192,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Beyond Academics section pages
     {
       url: `${SITE_URL}/beyond-academics`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/beyond-academics/sports`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/beyond-academics/cultural-activities`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/beyond-academics/clubs`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/beyond-academics/student-council`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/beyond-academics/prahari-club`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/beyond-academics/educational-tours`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.6,
     },
@@ -218,37 +236,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Contact section pages - High priority for conversion
     {
       url: `${SITE_URL}/contact`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/contact/info`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/contact/location-map`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/contact/office-hours`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/contact/visit-our-campus`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/contact/thank-you`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_DATE,
       changeFrequency: "yearly",
       priority: 0.3,
     },
@@ -256,31 +274,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // News section pages
     {
       url: `${SITE_URL}/news`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/news/photo-gallery`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/news/video-gallery`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
       url: `${SITE_URL}/news/events-calendar`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/news/newsletter`,
-      lastModified: now,
+      lastModified: LAST_BUILD_DATE,
       changeFrequency: "monthly",
       priority: 0.6,
     },

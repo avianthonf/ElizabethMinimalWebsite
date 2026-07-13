@@ -100,7 +100,6 @@ export function AnnouncementBar({
       role="region"
       aria-label="Announcement"
       data-hidden={!visible}
-      style={!visible ? { display: "none" } : undefined}
     >
       <div className={styles.inner}>
         <p className={styles.message}>

@@ -54,9 +54,13 @@ const nextConfig: NextConfig = {
             value: "same-origin",
           },
           {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "credentialless",
+          },
+          {
             key: "Permissions-Policy",
             value:
-              "camera=(), microphone=(), geolocation=(), clipboard-write=(), display-capture=(), payment=(), browsing-topics=()",
+              "camera=(), microphone=(), geolocation=(), clipboard-write=(), display-capture=(), payment=(), browsing-topics=(), accelerometer=(), gyroscope=()",
           },
         ],
       },

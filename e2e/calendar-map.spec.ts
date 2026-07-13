@@ -156,7 +156,11 @@ test.describe("Events Calendar E2E", () => {
     const response = page.goto("/news/events-calendar");
 
     // Might briefly show loading state
-    const hasLoadingState = await page.locator('[aria-busy="true"], [class*="loading"]').count();
+    await page
+      .locator('[aria-busy="true"], [class*="loading"]')
+      .first()
+      .waitFor({ state: "detached", timeout: 5000 })
+      .catch(() => {});
 
     await response;
 

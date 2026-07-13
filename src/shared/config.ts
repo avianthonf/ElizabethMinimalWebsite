@@ -9,7 +9,7 @@
  * default updates automatically.
  */
 
-import { CONTACT_EMAIL, FACEBOOK_URL, INSTAGRAM_URL, SITE_URL } from "@/shared/lib/brand";
+import { CONTACT_EMAIL, FACEBOOK_URL, INSTAGRAM_URL } from "@/shared/lib/brand";
 
 // ============================================================================
 // SCHOOL INFORMATION

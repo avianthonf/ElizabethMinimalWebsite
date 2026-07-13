@@ -100,6 +100,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <head>
+        {/* DNS preconnect for external origins — reduces TTFB for critical third-party resources.
+            crossorigin is needed for font preconnects (Google Fonts uses CORS). */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect for Vercel analytics ingestion */}
+        <link rel="preconnect" href="https://vitals.vercel-insights.com" />
         {enhancedSchemas.map((schema, index) => (
           <script
             key={index}

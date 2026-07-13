@@ -15,12 +15,24 @@
 
 /**
  * Serializes a JavaScript value to a JSON string that is safe to embed
- * inside a <script> tag in HTML. Escapes "</" → "<\/" to prevent the
- * browser's HTML parser from prematurely closing the script tag.
+ * inside a <script> tag in HTML.
  *
- * Also escapes "]]>" for the (exceedingly rare) case of embedding JSON
- * inside a CDATA section within XHTML.
+ * **Only the "</" sequence matters.**  When the browser's HTML parser
+ * sees `</script>` (case-insensitive) inside a script block, it closes
+ * the tag — even inside a string literal.  This is the canonical XSS
+ * vector for JSON-LD and inline state injection.
+ *
+ * Escaping `<` to `\u003c` prevents the sequence `</` from appearing
+ * anywhere in the output (the `/` cannot be preceded by `<`).  Escaping
+ * ALL `<` characters is required because JSON may reorder properties
+ * or split the sequence across whitespace via JSON.stringify internals.
+ *
+ * `>` is NOT escaped — only `</` triggers script tag termination; `>`
+ * alone inside a string is harmless.
+ *
+ * Reference: https://pragmaticwebsecurity.com/articles/spasecurity/json-stringify-xss
+ *           OWASP: https://cheatsheetseries.owasp.org/cheatsheets/XSS_Prevention_Cheat_Sheet.html
  */
 export function safeJsonStringify(value: unknown, space?: number): string {
-  return JSON.stringify(value, null, space).replace(/</g, "\\u003c").replace(/>/g, "\\u003e");
+  return JSON.stringify(value, null, space).replace(/</g, "\\u003c");
 }

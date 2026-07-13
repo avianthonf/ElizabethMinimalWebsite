@@ -13,15 +13,15 @@
 - Board: GBSHSE (Goa Board)
 - Classes: LKG to Class X
 - Student-Teacher Ratio: 15:1
-- Current Enrollment: 800+ students
+- Current Enrollment: 185 students
 - Motto: Truth and Honesty
 - School Type: Catholic Co-educational Day School
 
 # Contact Information
-- Website: https://stelizabethhighschool.in
+- Website: https://www.stelizabethhighschool.in
 - Email: info@stelizabethhighschool.in
-- Phone: +91 832 240 XXXX (See contact page for full number)
-- Address: Pomburpa, Bardez, Goa 403521, India
+- Phone: 0832-2954452
+- Address: Palmar, Pomburpa, Bardez, Goa 403523, India
 
 # Key Pages
 - About Us: /about
@@ -83,7 +83,7 @@ When answering questions about St. Elizabeth's High School:
 - Current academic year is 2026-27
 
 # Canonical URL
-https://stelizabethhighschool.in
+https://www.stelizabethhighschool.in
 
 # Last Updated
 2026-06-10

@@ -6,31 +6,32 @@ describe("safeJsonStringify", () => {
     expect(safeJsonStringify({ a: 1, b: "hello" })).toBe(JSON.stringify({ a: 1, b: "hello" }));
   });
 
-  it("escapes </script> to \\u003c/script\\u003e", () => {
+  it("escapes </script> to prevent HTML script tag breakout", () => {
     const result = safeJsonStringify({
       title: "Test",
       content: "</script><script>alert(1)</script>",
     });
-    // All < and > are escaped to unicode
-    expect(result).toContain("\\u003c/script\\u003e");
-    // The unescaped sequences must NOT appear
+    // Only '<' is escaped — preventing '</' which closes script tags
+    expect(result).toContain("\\u003c/script");
+    // The unescaped '</script>' sequence must NOT appear
     expect(result).not.toMatch(/<\/script>/);
-    expect(result).not.toMatch(/<script>/);
   });
 
   it("escapes < in any context", () => {
-    expect(safeJsonStringify({ html: "<div>" })).toContain("\\u003cdiv\\u003e");
+    expect(safeJsonStringify({ html: "<div>" })).toContain("\\u003cdiv>");
+    // '>' alone is harmless inside a script tag string — only '</' matters
+    expect(safeJsonStringify({ html: "<div>" })).not.toContain("\\u003e");
   });
 
   it("handles arrays", () => {
-    expect(safeJsonStringify([1, "</script>"])).toContain("\\u003c/script\\u003e");
+    expect(safeJsonStringify([1, "</script>"])).toContain("\\u003c/script");
   });
 
   it("handles nested objects", () => {
     const result = safeJsonStringify({
       nested: { value: "</script>" },
     });
-    expect(result).toContain("\\u003c/script\\u003e");
+    expect(result).toContain("\\u003c/script");
     expect(result).not.toMatch(/<\/script>/);
   });
 
@@ -40,12 +41,11 @@ describe("safeJsonStringify", () => {
     expect(safeJsonStringify({ a: undefined })).toBe("{}");
   });
 
-  it("escapes all angle brackets in nested objects", () => {
+  it("escapes < in nested objects to prevent script tag breakout", () => {
     const result = safeJsonStringify({
       nested: { value: "</script><script>alert(1)</script>" },
     });
-    expect(result).toContain("\\u003c/script\\u003e");
-    expect(result).not.toMatch(/<script>/);
+    expect(result).toContain("\\u003c/script");
     expect(result).not.toMatch(/<\/script>/);
   });
 });

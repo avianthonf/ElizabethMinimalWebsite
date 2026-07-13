@@ -18,12 +18,21 @@ export default async function HomeLayout({ children }: { children: ReactNode }) 
   return (
     <>
       {announcement.enabled && (
-        <AnnouncementBar
-          message={announcement.message}
-          href={announcement.href}
-          linkText={announcement.linkText}
-          storageKey={announcement.storageKey}
-        />
+        <>
+          {/* Pre-set --announcement-height baseline on <html> for SSR first-frame correctness.
+              The AnnouncementBar's useLayoutEffect refines via ResizeObserver post-hydration. */}
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `html { --announcement-height: 42px; }`,
+            }}
+          />
+          <AnnouncementBar
+            message={announcement.message}
+            href={announcement.href}
+            linkText={announcement.linkText}
+            storageKey={announcement.storageKey}
+          />
+        </>
       )}
       <Header navLinks={HEADER_NAV_LINKS} transparent={true} noScrollBar={true} fixed />
       <a href="#main-content" className="skipLink">

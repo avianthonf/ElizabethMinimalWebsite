@@ -6,6 +6,15 @@
   left: 0;
   width: 100%;
   z-index: var(--z-fixed);
+  transition:
+    opacity 200ms ease,
+    max-height 200ms ease;
+}
+
+.root[data-hidden="true"] {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
 }
 
 .inner {
