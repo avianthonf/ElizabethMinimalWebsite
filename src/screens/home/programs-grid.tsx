@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import styles from "./programs-grid.module.css";
 import type { ProgramBox } from "@/domains/homepage/sections.data";
 

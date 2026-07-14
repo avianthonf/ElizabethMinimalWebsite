@@ -27,7 +27,7 @@ export function ContactForm() {
    * Must be state (not ref) because it is read during render in the
    * hidden input's value attribute.
    */
-  const [startedAt, setStartedAt] = useState<string | null>(null);
+  const [startedAt, setStartedAt] = useState(() => String(Date.now()));
 
   // Redirect to thank-you page on successful submission (in effect, not render)
   useEffect(() => {

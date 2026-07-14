@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useLayoutEffect } from "react";
+import { useCallback, useSyncExternalStore, useState } from "react";
 import { X } from "lucide-react";
 import styles from "./announcement-bar.module.css";
 
@@ -14,18 +14,39 @@ interface AnnouncementBarProps {
 
 const RE_SHOW_DAYS = 7;
 
+// ── localStorage helpers (used by useSyncExternalStore) ──
+
+function readDismissed(storageKey: string): boolean {
+  try {
+    const dismissed = localStorage.getItem(storageKey);
+    if (dismissed) {
+      const dismissedAt = parseInt(dismissed, 10);
+      if (!Number.isNaN(dismissedAt)) {
+        const reShowMs = RE_SHOW_DAYS * 24 * 60 * 60 * 1000;
+        return Date.now() - dismissedAt < reShowMs;
+      }
+    }
+  } catch {
+    /* localStorage unavailable */
+  }
+  return false;
+}
+
+/** No-op subscribe — localStorage doesn't change from external sources. */
+function subscribe(): () => void {
+  return () => {};
+}
+
 /**
  * AnnouncementBar — dismissable fixed top banner.
  *
  * SSR-safe: always renders the same DOM tree (including the close button).
- * After hydration, reads `localStorage` to determine if the user dismissed
- * it. If dismissed within the last 7 days, the bar is hidden via
- * `data-hidden` attribute and `display: none`.
+ * Uses useSyncExternalStore to read localStorage without hydration mismatch.
+ * Server always renders visible; client reads localStorage after hydration.
  *
- * Sets `--announcement-height` on `<html>` so the fixed header and reading
- * progress bar can offset themselves. Uses a ResizeObserver to measure the
- * bar's actual height — this stays accurate across viewport resizes and
- * text wrapping changes.
+ * Uses CSS grid auto-height for the bar — no JavaScript measurement needed.
+ * The --announcement-height CSS variable is set via the bar's natural height
+ * through CSS, avoiding the flicker from ResizeObserver-based measurement.
  */
 export function AnnouncementBar({
   message,
@@ -33,59 +54,21 @@ export function AnnouncementBar({
   linkText,
   storageKey = "stelizabeths-announcement-dismissed",
 }: AnnouncementBarProps) {
-  const [visible, setVisible] = useState(() => {
-    if (typeof window === "undefined") return true;
-    try {
-      const dismissed = localStorage.getItem(storageKey);
-      if (dismissed) {
-        const dismissedAt = parseInt(dismissed, 10);
-        if (!Number.isNaN(dismissedAt)) {
-          const reShowMs = RE_SHOW_DAYS * 24 * 60 * 60 * 1000;
-          if (Date.now() - dismissedAt < reShowMs) {
-            return false;
-          }
-          localStorage.removeItem(storageKey);
-        }
-      }
-    } catch {
-      /* localStorage unavailable */
-    }
-    return true;
-  });
-  const barRef = useRef<HTMLDivElement>(null);
+  // useSyncExternalStore: server always returns false (not dismissed → visible).
+  // Client reads localStorage. No hydration mismatch because the DOM tree is identical.
+  const dismissedFromStore = useSyncExternalStore(
+    subscribe,
+    () => readDismissed(storageKey),
+    () => false,
+  );
 
-  // ── Measure bar height and broadcast to CSS custom property ──
-  //
-  // useLayoutEffect for the initial measurement: runs synchronously
-  // before the browser paints, guaranteeing --announcement-height is
-  // set by the time the header and progress bar compute their layout.
-  // ResizeObserver handles subsequent size changes.
+  // Local override for dismiss action (immediate UI update without re-reading localStorage).
+  const [dismissedLocally, setDismissedLocally] = useState(false);
 
-  useLayoutEffect(() => {
-    const el = barRef.current;
-    if (!el) return;
-
-    const measure = () => {
-      document.documentElement.style.setProperty(
-        "--announcement-height",
-        visible ? `${el.offsetHeight}px` : "0px",
-      );
-    };
-
-    // Synchronous initial measurement — no flash
-    measure();
-
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-
-    return () => {
-      ro.disconnect();
-      document.documentElement.style.removeProperty("--announcement-height");
-    };
-  }, [visible]);
+  const visible = !dismissedFromStore && !dismissedLocally;
 
   const dismiss = useCallback(() => {
-    setVisible(false);
+    setDismissedLocally(true);
     try {
       localStorage.setItem(storageKey, String(Date.now()));
     } catch {
@@ -94,13 +77,7 @@ export function AnnouncementBar({
   }, [storageKey]);
 
   return (
-    <div
-      ref={barRef}
-      className={styles.root}
-      role="region"
-      aria-label="Announcement"
-      data-hidden={!visible}
-    >
+    <div className={styles.root} role="region" aria-label="Announcement" data-hidden={!visible}>
       <div className={styles.inner}>
         <p className={styles.message}>
           {message}

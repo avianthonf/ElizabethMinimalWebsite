@@ -60,9 +60,8 @@ describe("AnnouncementBar", () => {
     const banner = screen.getByRole("region", { name: /announcement/i });
     expect(banner).not.toHaveAttribute("data-hidden", "true");
     fireEvent.click(screen.getByRole("button", { name: /dismiss/i }));
-    // Bar is hidden via display:none but still in the DOM — no hydration mismatch
+    // Bar is hidden via data-hidden attribute — CSS handles opacity/max-height
     expect(banner).toHaveAttribute("data-hidden", "true");
-    expect(banner).toHaveStyle({ display: "none" });
   });
 
   it("persists dismissal to localStorage", () => {

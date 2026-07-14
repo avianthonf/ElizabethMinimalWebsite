@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { Search, X, FileText, Loader2 } from "lucide-react";
 import { renderHighlightedText } from "@/shared/lib/safe-html";
 import { lockBodyScroll, unlockBodyScroll } from "@/shared/hooks/use-scroll-lock";
@@ -200,9 +200,9 @@ export function SearchOverlay({
       if (e.key === "Escape") {
         e.preventDefault();
         onClose();
-      } else if (e.key === "Enter" && results.length > 0) {
+      } else if (e.key === "Enter" && results.length > 0 && results[0]?.url) {
         e.preventDefault();
-        router.push(results[0]!.url);
+        router.push(results[0].url);
         onClose();
       }
     },

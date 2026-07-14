@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import styles from "./holistic-section.module.css";
 
 interface HolisticCard {

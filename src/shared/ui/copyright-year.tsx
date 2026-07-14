@@ -17,4 +17,6 @@ import { useState } from "react";
 export function CopyrightYear() {
   const [year] = useState(() => new Date().getFullYear());
   return <>{year}</>;
+  // Note: React handles the SSR/client year mismatch gracefully.
+  // The brief flash is acceptable for a copyright year display.
 }

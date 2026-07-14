@@ -51,6 +51,14 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
   const sectionRef = useRef<HTMLElement>(null);
   const liveRef = useRef<HTMLDivElement>(null);
 
+  // Stable ref to emblaApi — avoids recreating the autoplay interval on reInit.
+  const emblaApiRef = useRef(emblaApi);
+
+  // Keep emblaApiRef in sync in an effect (not render) per react-hooks/refs rule.
+  useEffect(() => {
+    emblaApiRef.current = emblaApi;
+  }, [emblaApi]);
+
   // Detect reduced-motion preference changes.
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -72,20 +80,23 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
   }, [emblaApi]);
 
   // Autoplay — pauses on hover/focus, respects reduced motion and user pause.
+  // Uses emblaApiRef to keep the interval stable across embla reInit.
   useEffect(() => {
-    if (!emblaApi || isPaused || userPaused) return;
-    if (prefersReducedMotion) return;
+    if (isPaused || userPaused || prefersReducedMotion) return;
 
     const interval = setInterval(() => {
-      emblaApi.scrollNext();
+      emblaApiRef.current?.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [emblaApi, isPaused, userPaused, prefersReducedMotion]);
+  }, [isPaused, userPaused, prefersReducedMotion]);
 
   // Announce slide changes via live region for screen readers.
   useEffect(() => {
     if (!liveRef.current || slides.length === 0) return;
-    liveRef.current.textContent = `Slide ${selectedIndex + 1} of ${slides.length}: ${slides[selectedIndex]!.heading}`;
+    const slide = slides[selectedIndex];
+    if (slide) {
+      liveRef.current.textContent = `Slide ${selectedIndex + 1} of ${slides.length}: ${slide.heading}`;
+    }
   }, [selectedIndex, slides]);
 
   // focusin/focusout bubble — correctly handles focus on child elements
@@ -104,7 +115,7 @@ export function HeroCarousel({ slides, ariaLabel = "Hero carousel" }: HeroCarous
       section.removeEventListener("focusin", onFocusIn);
       section.removeEventListener("focusout", onFocusOut);
     };
-  }, [slides]);
+  }, []);
 
   // Keyboard navigation: ArrowLeft/ArrowRight for carousel control.
   const onSectionKeyDown = useCallback(

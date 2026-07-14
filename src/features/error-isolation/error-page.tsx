@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { ErrorIllustration } from "@/features/error-illustration";
 import styles from "./error-page.module.css";
 

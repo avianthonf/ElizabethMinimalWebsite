@@ -11,12 +11,12 @@
 
 .heading {
   font-size: clamp(1.125rem, 3vw, 1.875rem);
-  color: var(--s-color-text);
+  color: var(--s-color-text, #1a1a1a);
   margin-bottom: 0.75rem;
 }
 
 .description {
-  color: var(--s-color-text-muted);
+  color: var(--s-color-text-muted, #5f5f5f);
   margin-bottom: 1.5rem;
   max-width: 375px;
 }
@@ -28,8 +28,8 @@
 
 .retryButton {
   padding: 0.5625rem 1.125rem;
-  background: var(--s-color-primary);
-  color: var(--s-color-surface);
+  background: var(--s-color-primary, #1b2a4a);
+  color: var(--s-color-surface, #ffffff);
   border: none;
   border-radius: 4.5px;
   cursor: pointer;
@@ -40,8 +40,8 @@
 .homeLink {
   padding: 0.5625rem 1.125rem;
   background: transparent;
-  color: var(--s-color-primary);
-  border: 1px solid var(--s-color-primary);
+  color: var(--s-color-primary, #1b2a4a);
+  border: 1px solid var(--s-color-primary, #1b2a4a);
   border-radius: 4.5px;
   cursor: pointer;
   font-size: 0.75rem;

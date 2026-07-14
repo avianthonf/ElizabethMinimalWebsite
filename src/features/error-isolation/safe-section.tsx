@@ -66,13 +66,14 @@ interface SafeSectionProps {
 export function SafeSection({ children, label }: SafeSectionProps) {
   return (
     <ErrorBoundary
-      fallbackRender={({ error, resetErrorBoundary }) => {
-        if (process.env.NODE_ENV === "development") {
-          console.error(`SafeSection (${label || "unknown"}) error:`, error);
-        }
+      fallbackRender={({ resetErrorBoundary }) => {
         return <SectionErrorFallback resetErrorBoundary={resetErrorBoundary} label={label} />;
       }}
-      onError={() => {}}
+      onError={(err) => {
+        // Log in ALL environments — never silently swallow errors.
+        // In production, replace with Sentry/crash reporting when available.
+        console.error(`[SafeSection] ${label || "unknown"}:`, err);
+      }}
     >
       {children}
     </ErrorBoundary>

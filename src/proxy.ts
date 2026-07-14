@@ -23,16 +23,16 @@ export function proxy() {
 
   // ── Content-Security-Policy ───────────────────────────────────────
   //
-  // Next.js 16 injects inline scripts for hydration, chunk loading, and
-  // next-view-transitions.  A strict script-src 'self' blocks these and
-  // causes blank pages in production.  The 'unsafe-inline' + hash pattern
+  // Next.js 16 injects inline scripts for hydration, chunk loading.
+  // A strict script-src 'self' blocks these and
+  // causes blank pages in production.  The 'unsafe-inline' pattern
   // below allows framework-sourced inline scripts while blocking injected
   // third-party inline scripts.  When Next.js stabilises nonce support for
   // all framework-injected scripts, move to 'nonce-{RANDOM}' 'strict-dynamic'.
   //
   // style-src 'unsafe-inline' is intentionally retained — CSS Modules inject
   // inline <style> blocks during HMR/dev.  In production, extraction removes
-  // most of these, but next-view-transitions still injects animation styles.
+  // most of these.
   //
   // Analytics scripts (GA4 / Vercel Analytics / Speed Insights) are loaded
   // via @next/third-parties and <Script> components, which use next/script

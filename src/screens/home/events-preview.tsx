@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import {
   UPCOMING_EVENTS as STATIC_EVENTS,
   EVENT_ICON_MAP,

@@ -10,9 +10,6 @@ import confetti from "canvas-confetti";
  * Uses canvas-confetti for lightweight, dependency-free confetti bursts.
  * Fires staggered bursts from both corners for a dramatic effect.
  * Respects prefers-reduced-motion — no confetti for accessibility users.
- *
- * tsParticles confetti preset was evaluated (Phase 3 research) but
- * canvas-confetti is simpler, lighter, and already battle-tested here.
  */
 export interface ConfettiTriggerProps {
   duration?: number;
@@ -60,8 +57,14 @@ export function ConfettiTrigger({ duration = 3000 }: ConfettiTriggerProps) {
       colors: ["#c9a96e", "#0f1d35", "#ffffff"],
     });
 
-    requestAnimationFrame(frame);
-  }, [duration]);
+    const rafId = requestAnimationFrame(frame);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      fired.current = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return null;
 }

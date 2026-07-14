@@ -40,10 +40,13 @@ export function MenuOverlay() {
   // Focus the close button when opening; restore focus to the trigger on close.
   useEffect(() => {
     if (isOpen) {
-      requestAnimationFrame(() => closeButtonRef.current?.focus());
-    } else if (triggerButtonRef?.current) {
+      const rafId = requestAnimationFrame(() => closeButtonRef.current?.focus());
+      return () => cancelAnimationFrame(rafId);
+    }
+    if (triggerButtonRef?.current) {
       triggerButtonRef.current.focus();
     }
+    return undefined;
   }, [isOpen, triggerButtonRef]);
 
   // Lock body scroll with reference counting

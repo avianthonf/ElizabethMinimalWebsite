@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import { Link } from "next-view-transitions";
-import { cacheLife } from "next/cache";
+import Link from "next/link";
 import { getNewsArticleBySlug, getNewsArticles } from "@/domains/news/news.fetcher";
 import { Hero } from "@/shared/ui/hero";
 import { Section } from "@/shared/ui/section";
@@ -50,8 +49,6 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
 }
 
 export default async function NewsArticlePage({ params }: NewsArticlePageProps) {
-  "use cache";
-  cacheLife("hours");
   const { slug } = await params;
   const article = await getNewsArticleBySlug(slug);
 

@@ -1,5 +1,5 @@
 import type { ReactNode, Ref } from "react";
-import { Link as NextLink } from "next-view-transitions";
+import NextLink from "next/link";
 import styles from "./link.module.css";
 
 export type LinkVariant = "default" | "nav" | "footer";

@@ -9,14 +9,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* ── Cache Components (Next.js 16 production caching model) ───────
-     Enables PPR (static shell + streaming) by default.
-     Uses preset cacheLife profiles (available since Next.js 15):
-       minutes — 5 min stale, 1 min revalidate, 1h expire (homepage)
-       hours   — 5 min stale, 1h revalidate,  1d expire (news/events)
-       days    — 5 min stale, 1d revalidate,  7d expire (about pages)
-     Custom profiles omitted — TypeScript only types preset names.
+     Disabled — behaves identically to "use cache" on every page.
+     We control caching at the fetcher level with DB→static fallbacks.
+     Admin pages must remain dynamic (Supabase auth), which is
+     incompatible with cacheComponents.
   */
-  cacheComponents: true,
+  cacheComponents: false,
   poweredByHeader: false,
   experimental: {
     serverActions: {
@@ -117,20 +115,7 @@ const nextConfig: NextConfig = {
         ],
       },
 
-      // ── Caching: static assets (immutable fingerprints) ────────────
-      // Next.js sets this automatically for /_next/static, but only on
-      // warm responses. Adding it explicitly ensures cold-start consistency.
-      {
-        source: "/_next/static/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-
-      // ── Caching: public assets (fonts, images, robots, sitemap) ────
+      // ── Caching: public assets (images, fonts, robots, sitemap) ──
       {
         source: "/public/(.*)",
         headers: [

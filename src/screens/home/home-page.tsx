@@ -1,4 +1,5 @@
 import { ScrollReveal } from "@/shared/ui/scroll-reveal";
+import { SafeSection } from "@/features/error-isolation/safe-section";
 import { HeroCarousel } from "./hero-carousel";
 import { CounterBar } from "./counter-bar";
 import { AchievementTicker } from "@/features/marquee";
@@ -51,10 +52,14 @@ export async function HomePage() {
   return (
     <>
       {/* S1: Hero Carousel — no scroll reveal (it's the hero) */}
-      <HeroCarousel slides={HERO_SLIDES} ariaLabel="Featured highlights" />
+      <SafeSection label="hero carousel">
+        <HeroCarousel slides={HERO_SLIDES} ariaLabel="Featured highlights" />
+      </SafeSection>
 
       {/* S2: Counter Bar — no scroll reveal (immediately visible below hero) */}
-      <CounterBar stats={COUNTER_STATS} ariaLabel="Key school statistics" />
+      <SafeSection label="counter bar">
+        <CounterBar stats={COUNTER_STATS} ariaLabel="Key school statistics" />
+      </SafeSection>
 
       {/* S2b: Achievement Ticker Strip */}
       <AchievementTicker
@@ -180,7 +185,9 @@ export async function HomePage() {
 
       {/* S12: Upcoming Events */}
       <ScrollReveal direction="right" delay={0.1}>
-        <EventsPreview events={hsEvents} />
+        <SafeSection label="upcoming events">
+          <EventsPreview events={hsEvents} />
+        </SafeSection>
       </ScrollReveal>
 
       {/* S13: News & Events */}
@@ -194,7 +201,9 @@ export async function HomePage() {
 
       {/* S14: Locate Us */}
       <ScrollReveal delay={0.1}>
-        <LocateSection {...LOCATE_CONTENT} ariaLabel={LOCATE_CONTENT.sectionAriaLabel} />
+        <SafeSection label="location map">
+          <LocateSection {...LOCATE_CONTENT} ariaLabel={LOCATE_CONTENT.sectionAriaLabel} />
+        </SafeSection>
       </ScrollReveal>
     </>
   );

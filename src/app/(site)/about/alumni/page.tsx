@@ -17,7 +17,6 @@ import {
 } from "@/domains/about/alumni.data";
 import { getAlumniTestimonials, getAlumniEvents } from "@/domains/about/alumni.fetcher";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
-import { cacheLife } from "next/cache";
 
 export const metadata = createPageMetadata(
   "Alumni",
@@ -26,8 +25,6 @@ export const metadata = createPageMetadata(
 );
 
 export default async function AlumniPage() {
-  "use cache";
-  cacheLife("days");
   const testimonials = await getAlumniTestimonials();
   const events = await getAlumniEvents();
   return (
