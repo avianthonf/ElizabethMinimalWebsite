@@ -16,7 +16,7 @@ export const ACHIEVEMENTS_PAGE = {
 
 export const SSC_RESULT_BANNER = {
   enabled: true,
-  heading: "SSC Results 2025–26",
+  heading: "SSC Results 2025-26",
   subtitle: "97.38% Pass Percentage",
   description:
     "Our students have achieved outstanding results in the Goa Board SSC examinations, continuing our tradition of academic excellence.",

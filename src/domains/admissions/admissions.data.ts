@@ -17,6 +17,11 @@ export const ADMISSIONS_VISIT_PAGE = {
   sectionAriaLabel: "Visit information",
 } as const;
 
+export const WHY_ST_ELIZABETH_INTRO = {
+  heading: "Choosing the Right School",
+  body: "Choosing the right school is one of the most important decisions for a child's future. At St. Elizabeth's High School, we provide a nurturing and inclusive environment where every child is encouraged to learn, grow, and discover their unique potential.\n\nFor over seven decades, we have combined academic excellence, values-based education, and holistic development to prepare students for success in school and in life.\n\nGuided by the spirit of faith, humility, compassion, integrity, excellence, and selfless service, we empower our students to become confident learners, responsible citizens, and compassionate individuals.",
+} as const;
+
 export const WHY_ST_ELIZABETH_POINTS = [
   {
     title: "⭐ 15:1 Student-Teacher Ratio Means Your Child Gets Seen",
@@ -252,6 +257,7 @@ export const REFERRAL_PROGRAMME = {
 
 export interface AdmissionsData {
   ADMISSIONS_VISIT_PAGE: typeof ADMISSIONS_VISIT_PAGE;
+  WHY_ST_ELIZABETH_INTRO: typeof WHY_ST_ELIZABETH_INTRO;
   WHY_ST_ELIZABETH_POINTS: typeof WHY_ST_ELIZABETH_POINTS;
   ADMISSION_STEPS: typeof ADMISSION_STEPS;
   FAQS: typeof FAQS;
@@ -268,6 +274,7 @@ export interface AdmissionsData {
 export async function getAdmissionsData(): Promise<AdmissionsData> {
   return {
     ADMISSIONS_VISIT_PAGE,
+    WHY_ST_ELIZABETH_INTRO,
     WHY_ST_ELIZABETH_POINTS,
     ADMISSION_STEPS,
     FAQS,
