@@ -46,14 +46,13 @@ export default function ContactInfoPage() {
             left={
               <Stack gap="large">
                 <Stack gap="medium">
-                  <Text variant="eyebrow">Our Details</Text>
+                  <Text variant="eyebrow">Get in Touch</Text>
                   <Heading level="h2" variant="section">
                     School Contact Information
                   </Heading>
                   <Text variant="muted" size="medium">
-                    St. Elizabeth&apos;s High School has been serving the Pomburpa community since
-                    1954. Whether you have questions about admissions, academics, or school life,
-                    we&apos;re here to help.
+                    We&apos;d love to hear from you! Whether you have an enquiry about admissions,
+                    academics, or school activities, feel free to get in touch with us.
                   </Text>
                 </Stack>
 

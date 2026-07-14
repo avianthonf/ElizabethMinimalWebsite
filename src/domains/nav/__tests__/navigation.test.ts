@@ -113,7 +113,7 @@ describe("Navigation Data", () => {
     expect(FOOTER_INTRO.body).toContain("Ven. Fr. Hilario Gonsalves Rd");
     expect(FOOTER_INTRO.body).toContain("Pomburpa, Bardez");
     expect(FOOTER_INTRO.body).toContain("Goa 403511, India");
-    expect(FOOTER_INTRO.body).toContain("info@stelizabethhighschool.in");
+    expect(FOOTER_INTRO.body).toContain("st.elizabethgoa@gmail.com");
   });
 
   it("footer intro shows since 1954 not 1949", () => {

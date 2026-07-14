@@ -14,6 +14,7 @@ import {
   ALUMNI_NETWORK,
   ALUMNI_STATISTICS,
   ALUMNI_TESTIMONIALS_INTRO,
+  ALUMNI_CLOSING,
 } from "@/domains/about/alumni.data";
 import { getAlumniTestimonials, getAlumniEvents } from "@/domains/about/alumni.fetcher";
 import { COMMUNITY_IMAGES } from "@/domains/media/images.data";
@@ -169,6 +170,27 @@ export default async function AlumniPage() {
                 </Card>
               ))}
             </Grid>
+          </Stack>
+        </Container>
+      </Section>
+
+      {/* Alumni Closing */}
+      <Section background="soft" padding="xlarge" ariaLabel="Stay connected">
+        <Container width="narrow">
+          <Stack gap="medium">
+            <Heading level="h2" variant="section">
+              {ALUMNI_CLOSING.heading}
+            </Heading>
+            <p
+              style={{
+                whiteSpace: "pre-line",
+                color: "var(--p-color-muted)",
+                fontSize: "var(--p-font-size-large)",
+                lineHeight: "1.7",
+              }}
+            >
+              {ALUMNI_CLOSING.body}
+            </p>
           </Stack>
         </Container>
       </Section>

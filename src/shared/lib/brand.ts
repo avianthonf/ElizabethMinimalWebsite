@@ -34,7 +34,7 @@ export const SCHOOL_BOARD = "Goa Board of Secondary and Higher Secondary Educati
 export const SCHOOL_BOARD_SHORT = "GBSHSE";
 
 /** Contact email for inquiries, contact form, and footer. */
-export const CONTACT_EMAIL = "info@stelizabethhighschool.in";
+export const CONTACT_EMAIL = "st.elizabethgoa@gmail.com";
 
 /** Email used as the "from" address when sending transactional email. */
 export const TRANSACTIONAL_EMAIL_FROM =

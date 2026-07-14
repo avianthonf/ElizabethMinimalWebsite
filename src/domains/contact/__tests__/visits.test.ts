@@ -34,8 +34,8 @@ describe("Visits Data", () => {
       expect(SCHOOL_CONTACT.email).toBeTruthy();
     });
 
-    it("email is info@stelizabethhighschool.in", () => {
-      expect(SCHOOL_CONTACT.email).toBe("info@stelizabethhighschool.in");
+    it("email is st.elizabethgoa@gmail.com", () => {
+      expect(SCHOOL_CONTACT.email).toBe("st.elizabethgoa@gmail.com");
     });
 
     it("email contains @ symbol", () => {

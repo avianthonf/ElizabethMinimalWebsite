@@ -7,7 +7,7 @@
 
 export const ALUMNI_INTRO = {
   heading: "Once a St. Elizabeth Student, Always Family",
-  body: "The bonds formed at St. Elizabeth's High School last a lifetime. Our alumni community spans generations and continents, united by shared values of Truth, Honesty, and service. Stay connected, give back, and help shape the future of the school that shaped you.",
+  body: "Once a part of the St. Elizabeth's High School family, always a part of it. Our alumni are our pride and our greatest ambassadors. Over the years, generations of students have carried forward the values, knowledge, and life lessons they received at St. Elizabeth's High School, making meaningful contributions to their communities and professions. We cherish our lifelong connection with our alumni and celebrate their achievements, inspiring journeys, and lasting memories of school life.",
 } as const;
 
 export const ALUMNI_NETWORK = {
@@ -52,10 +52,26 @@ export const ALUMNI_TESTIMONIALS = [
     designation: "Police Sub Inspector",
     academicYears: "1988-1998",
   },
+  {
+    quote:
+      "As PTA Chairperson, and also ex student, I am proud that St Elizabeth's High School, Pomburpa provides a safe, caring, and enjoyable learning environment where every student is encouraged to learn, grow, and succeed.",
+    name: "Willy Fernandes",
+    credentials: "",
+    designation: "PTA Chairperson, St. Elizabeth's High School",
+    academicYears: "",
+  },
+  {
+    quote:
+      "As a former staff member, it brings me immense joy to see our school launch its official website. This digital gateway perfectly mirrors the spirit of innovation and community that I always cherished during my time here. It is a wonderful tool to connect past achievements with future possibilities. Wishing the management, staff and students tremendous success as you step into this exciting new digital chapter.",
+    name: "Mrs. Premal Kadam",
+    credentials: "",
+    designation: "Former Staff Member",
+    academicYears: "",
+  },
 ] as const;
 
 export const ALUMNI_TESTIMONIALS_INTRO = {
-  heading: "Alumni Voices",
+  heading: "Voices of Our Alumni",
   body: "We invite our alumni to share their reflections and memories. Whether your journey took you around the corner or around the world, your story matters to the students who walk these halls today.",
   callToAction: "Share Your Story →",
 } as const;
@@ -86,6 +102,11 @@ export const ALUMNI_EVENTS = [
 
 // ── Async data getter (CMS-ready) ─────────────────────────────────────
 
+export const ALUMNI_CLOSING = {
+  heading: "Stay Connected",
+  body: "We warmly invite all our alumni to stay connected with the St. Elizabeth's family. Your achievements, experiences, and continued association inspire our students and strengthen our school community. Together, let's celebrate our shared legacy and build an even brighter future.",
+} as const;
+
 export interface AlumniData {
   ALUMNI_INTRO: typeof ALUMNI_INTRO;
   ALUMNI_NETWORK: typeof ALUMNI_NETWORK;
@@ -93,6 +114,7 @@ export interface AlumniData {
   ALUMNI_TESTIMONIALS: typeof ALUMNI_TESTIMONIALS;
   ALUMNI_TESTIMONIALS_INTRO: typeof ALUMNI_TESTIMONIALS_INTRO;
   ALUMNI_EVENTS: typeof ALUMNI_EVENTS;
+  ALUMNI_CLOSING: typeof ALUMNI_CLOSING;
 }
 
 export async function getAlumniData(): Promise<AlumniData> {
@@ -103,5 +125,6 @@ export async function getAlumniData(): Promise<AlumniData> {
     ALUMNI_TESTIMONIALS,
     ALUMNI_TESTIMONIALS_INTRO,
     ALUMNI_EVENTS,
+    ALUMNI_CLOSING,
   };
 }

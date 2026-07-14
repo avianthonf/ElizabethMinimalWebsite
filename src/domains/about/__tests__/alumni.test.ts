@@ -43,8 +43,8 @@ describe("Alumni Data", () => {
   });
 
   describe("ALUMNI_TESTIMONIALS", () => {
-    it("has 3 alumni testimonials", () => {
-      expect(ALUMNI_TESTIMONIALS).toHaveLength(3);
+    it("has 5 alumni testimonials", () => {
+      expect(ALUMNI_TESTIMONIALS).toHaveLength(5);
     });
 
     it("has testimonial quotes and names", () => {

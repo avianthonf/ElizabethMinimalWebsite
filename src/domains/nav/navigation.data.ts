@@ -168,7 +168,7 @@ export const FOOTER_SECTIONS: FooterSection[] = [
   {
     title: "Contact Us",
     links: [
-      { text: "Contact Info", href: "/contact/info" },
+      { text: "Contact Information", href: "/contact/info" },
       { text: "Office Hours", href: "/contact/office-hours" },
       { text: "Visit Our Campus", href: "/contact/visit-our-campus" },
       { text: "Location Map", href: "/contact/location-map" },
