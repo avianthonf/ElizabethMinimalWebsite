@@ -27,7 +27,6 @@
     ]
   },
   "dependencies": {
-    "@axe-core/react": "4.12.1",
     "@fullcalendar/core": "^6.1.21",
     "@fullcalendar/daygrid": "^6.1.21",
     "@fullcalendar/list": "^6.1.21",

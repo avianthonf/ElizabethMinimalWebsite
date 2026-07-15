@@ -62,18 +62,20 @@ export async function HomePage() {
       </SafeSection>
 
       {/* S2b: Achievement Ticker Strip */}
-      <AchievementTicker
-        items={[
-          "GBSHSE Affiliated — Goa Board of Secondary and Higher Secondary Education",
-          "Since 1954 — Seven Decades of Educational Excellence in Pomburpa",
-          "97.38% SSC Pass Percentage — Academic Year 2025-26",
-          "State-Level Sports Participation — Inter-School Athletics & Team Sports",
-          "Cultural Award Winners — Goa State Cultural Competitions",
-          "Alumni Serving Across 20+ Countries — Doctors, Engineers, Teachers, Leaders",
-          "Inter-House Competition Legacy — Red, Yellow, Blue & Green Houses",
-          "Community Recognition — Active Parish & Village Engagement Since Inception",
-        ]}
-      />
+      <SafeSection label="achievement ticker">
+        <AchievementTicker
+          items={[
+            "GBSHSE Affiliated — Goa Board of Secondary and Higher Secondary Education",
+            "Since 1954 — Seven Decades of Educational Excellence in Pomburpa",
+            "97.38% SSC Pass Percentage — Academic Year 2025-26",
+            "State-Level Sports Participation — Inter-School Athletics & Team Sports",
+            "Cultural Award Winners — Goa State Cultural Competitions",
+            "Alumni Serving Across 20+ Countries — Doctors, Engineers, Teachers, Leaders",
+            "Inter-House Competition Legacy — Red, Yellow, Blue & Green Houses",
+            "Community Recognition — Active Parish & Village Engagement Since Inception",
+          ]}
+        />
+      </SafeSection>
 
       {/* S3: Welcome / About */}
       <ScrollReveal delay={0.1}>

@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import { MotionConfig } from "motion/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { AxeProvider } from "@/shared/ui/axe-provider";
 import { SmoothScrollProvider } from "@/shared/ui/smooth-scroll-provider";
 import { RouteAnnouncer } from "@/shared/ui/route-announcer";
 import { ToastProvider } from "@/features/contact-form/toast-provider";
@@ -21,26 +20,24 @@ export function Body({ children }: { children: ReactNode }) {
 
   return (
     <MotionConfig reducedMotion="user">
-      <AxeProvider>
-        <SmoothScrollProvider>
-          <MenuProvider>
-            <Suspense fallback={null}>
-              <RouteAnnouncer />
-              <ToastProvider />
-              <GlobalSearchOverlay />
-            </Suspense>
-            {children}
-            <SafeSection label="navigation menu">
-              <MenuOverlay />
-            </SafeSection>
-            <SafeSection label="analytics">
-              <Analytics />
-              <SpeedInsights />
-            </SafeSection>
-            {ENABLE_ANALYTICS && GA_ID && <GoogleAnalytics gaId={GA_ID} />}
-          </MenuProvider>
-        </SmoothScrollProvider>
-      </AxeProvider>
+      <SmoothScrollProvider>
+        <MenuProvider>
+          <Suspense fallback={null}>
+            <RouteAnnouncer />
+            <ToastProvider />
+            <GlobalSearchOverlay />
+          </Suspense>
+          {children}
+          <SafeSection label="navigation menu">
+            <MenuOverlay />
+          </SafeSection>
+          <SafeSection label="analytics">
+            <Analytics />
+            <SpeedInsights />
+          </SafeSection>
+          {ENABLE_ANALYTICS && GA_ID && <GoogleAnalytics gaId={GA_ID} />}
+        </MenuProvider>
+      </SmoothScrollProvider>
     </MotionConfig>
   );
 }
