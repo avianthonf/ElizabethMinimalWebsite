@@ -9,7 +9,7 @@ import { WhySection } from "./why-section";
 import { ProgramsGrid } from "./programs-grid";
 import { HolisticSection } from "./holistic-section";
 import { GallerySection } from "./gallery-section";
-import { CampusThenNow } from "./campus-then-now";
+import { CampusThenNowLazy } from "./campus-then-now-lazy";
 import { AchievementsSection } from "./achievements-section";
 import { StudentLifeSection } from "./student-life-section";
 import { TestimonialsSection } from "./testimonials-section";
@@ -125,7 +125,7 @@ export async function HomePage() {
 
       {/* S7b: Campus Then & Now */}
       <ScrollReveal direction="right" delay={0.1}>
-        <CampusThenNow
+        <CampusThenNowLazy
           beforeImage={{
             filename: "DSC07317.jpg",
             alt: "Historic view of St. Elizabeth's campus",
