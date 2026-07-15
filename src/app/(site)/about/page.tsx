@@ -10,6 +10,7 @@ import { Heading } from "@/shared/ui/heading";
 import { Text } from "@/shared/ui/text";
 import { Icon } from "@/shared/ui/icon";
 import { SchoolIcon } from "@/shared/ui/school-icon";
+import { SafeSection } from "@/features/error-isolation";
 import { SchoolMedallion } from "@/features/medallion";
 import { createPageMetadata, getHeroImage } from "@/shared/lib/page-utils";
 import { CATCHMENT_IDENTITY } from "@/domains/about/about.data";
@@ -68,7 +69,9 @@ export default function AboutPage() {
                 <Heading level="h3" variant="card">
                   Our Crest
                 </Heading>
-                <SchoolMedallion ariaLabel="St. Elizabeth's school crest — 3D medallion" />
+                <SafeSection label="school medallion">
+                  <SchoolMedallion ariaLabel="St. Elizabeth's school crest — 3D medallion" />
+                </SafeSection>
                 <Heading level="h3" variant="card">
                   Explore
                 </Heading>

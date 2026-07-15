@@ -29,9 +29,8 @@ export function MedallionCanvas({ className }: MedallionCanvasProps) {
 
       <Suspense fallback={null}>
         <MedallionComposition />
+        <Environment preset="city" />
       </Suspense>
-
-      <Environment preset="city" />
     </Canvas>
   );
 }
