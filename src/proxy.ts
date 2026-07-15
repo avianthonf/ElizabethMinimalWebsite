@@ -18,8 +18,8 @@ export function proxy() {
   const connectSrc = supabaseDomain ? `'self' https://${supabaseDomain}` : "'self'";
 
   const imgSrc = supabaseDomain
-    ? `'self' https://lh3.googleusercontent.com https://maps.googleapis.com https://${supabaseDomain}`
-    : "'self' https://lh3.googleusercontent.com https://maps.googleapis.com";
+    ? `'self' https://lh3.googleusercontent.com https://maps.googleapis.com https://market-assets.fra1.cdn.digitaloceanspaces.com https://${supabaseDomain}`
+    : "'self' https://lh3.googleusercontent.com https://maps.googleapis.com https://market-assets.fra1.cdn.digitaloceanspaces.com";
 
   // ── Content-Security-Policy ───────────────────────────────────────
   //
@@ -46,6 +46,9 @@ export function proxy() {
   const googleAnalyticsDomains =
     "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com";
 
+  // @react-three/drei <Environment> loads HDR environment maps from this CDN
+  const dreiAssetsCDN = "https://market-assets.fra1.cdn.digitaloceanspaces.com";
+
   const cspDirectives = [
     `default-src 'self'`,
     `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
@@ -54,7 +57,7 @@ export function proxy() {
     `media-src 'self'`,
     `font-src 'self' data:`,
     `frame-src https://www.google.com https://maps.google.com https://www.google.com/maps`,
-    `connect-src ${connectSrc} ${vercelAnalyticsDomain} ${googleAnalyticsDomains}`,
+    `connect-src ${connectSrc} ${vercelAnalyticsDomain} ${googleAnalyticsDomains} ${dreiAssetsCDN}`,
     `object-src 'none'`,
     `base-uri 'self'`,
     `form-action 'self'`,
